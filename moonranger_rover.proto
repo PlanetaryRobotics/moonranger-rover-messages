@@ -24,8 +24,9 @@ message RotationPose {
   float w_quat = 4;
 }
 
-message Pose {
+message FullPose {
   uint64 timestamp_ns = 1;
   TranslationPose translation = 2;
-  float x_quat = 5;
+  RotationPose rotation = 3;
+  repeated float pose_covariance = 4;
 }
