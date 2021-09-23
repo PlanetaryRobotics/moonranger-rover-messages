@@ -30,5 +30,5 @@ message FullPose {
   uint64 timestamp_ns = 2;
   TranslationPose translation = 3;
   RotationPose rotation = 4;
-  repeated float pose_covariance = 5;
+  repeated float pose_covariance = 5;  /* flattened 6x6 matrix of 36 elements */
 }
