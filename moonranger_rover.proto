@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package moonranger_rover;
+
+
+message Goal {
+  float x_coordinate_m = 1;
+  float y_coordinate_m = 2;
+  float x_rad_m = 3;
+  float y_rad_m = 4;
+  float orientation_rad = 5;
+}
+
+message TranslationPose {
+  float x_m = 1;
+  float y_m = 2;
+  float z_m = 3;
+}
+
+message RotationPose {
+  float x_quat = 1;
+  float y_quat = 2;
+  float z_quat = 3;
+  float w_quat = 4;
+}
+
+message Pose {
+  uint64 timestamp_ns = 1;
+  TranslationPose translation = 2;
+  float x_quat = 5;
+}
