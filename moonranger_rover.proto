@@ -32,3 +32,12 @@ message FullPose {
   RotationPose rotation = 4;
   repeated float pose_covariance = 5;  /* flattened 6x6 matrix of 36 elements */
 }
+
+message Waypoint {
+  uint64 seq_id = 1;
+  float x_coordinate_m = 2;
+  float y_coordinate_m = 3;
+  float x_rad_m = 4;
+  float y_rad_m = 5;
+  float orientation_rad = 6;
+}
