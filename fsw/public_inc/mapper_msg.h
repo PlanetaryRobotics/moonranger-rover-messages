@@ -1,29 +1,19 @@
-/**
- *
- * \file mapper_msgs.h
- *
- * \purpose Define messages and info for mapper app
- *
- */
+/****************************************************************
+ * 
+ * @file 		mapper_msg.h
+ * 
+ * @brief 		Message typedefs for mapper app.
+ * 
+ * @version 		1.0
+ * @date 		10/05/2021
+ * 
+ * @authors 		Margaret Hansen
+ * @author 		Carnegie Mellon University, Planetary Robotics Lab
+ * 
+ ****************************************************************/
 
-#ifndef _mapper_msgs_h_
-#define _mapper_msgs_h_
-
-/**
- * Mapper command codes
- */
-
-#define MAPPER_NOOP_CC 			0
-#define MAPPER_RESET_COUNTERS_CC	1
-
-/**
- * Mapper Message IDs
- */
-
-#define MAPPER_CMD_MID            	0x1882
-#define MAPPER_SEND_HK_MID        	0x1883
-#define MAPPER_HK_TLM_MID		0x0883
-
+#ifndef _mapper_msg_h_
+#define _mapper_msg_h_
 
 /***************************************************
 /*
@@ -47,7 +37,6 @@ typedef struct
 	MAPPER_HkTlm_Payload_t	Payload;
 } OS_PACK MAPPER_HkTlm_t;
 
-
-#endif /* _mapper_msgs_h_ */
+#endif /* _mapper_msg_h_*/
 
 /* EOF */
