@@ -95,6 +95,44 @@ typedef struct
 } MOONRANGER_Pose_t;
 
 /*************************************************************************/
+/**
+ * Type definition (MOONRANGER body velocity)
+ */
+
+typedef struct
+{
+    uint64  timeStamp;   // nanoseconds
+    float32 xVelocity;   // m/s
+    float32 yawVelocity; // rad/s
+} MOONRANGER_BodyVelocity_t;
+
+/*************************************************************************/
+/**
+ * Type definition (MOONRANGER wheel velocity packet)
+ */
+typedef struct
+{
+    uint64   timeStamp;  // nanoseconds
+    float32 leftFront;  // rad/s
+    float32 rightFront; // rad/s
+    float32 leftBack;   // rad/s
+    float32 rightBack;  // rad/s
+} MOONRANGER_WheelVelocity_t;
+
+/*************************************************************************/
+/**
+ * Type definition (MOONRANGER wheel velocity packet)
+ */
+typedef struct
+{
+    uint64  timeStamp; // nanoseconds
+    float32 speed;     // m/s
+    float32 duration;  // seconds
+    float32 radius;    // meters
+
+} MOONRANGER_OptimalDriveArc_t;
+
+/*************************************************************************/
 /*
 ** Type definition (MOONRANGER point cloud)
 ** TODO: define actual structure
