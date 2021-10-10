@@ -25,10 +25,26 @@
  */
 
 /**
+ * Camera Driver Message IDs
+ * @note  Command messages IDs in this section must be selected from 
+ * usused numbers between 0x1200 and 0x127F inclusive
+ * 
+ * @note Telemetry Message IDs in this section must be selected from 
+ * usused numbers between 0x0200 and 0x027F inclusive
+  */
+
+
+
+/**
  * Camera Interface Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0200-0x02FF inclusive.
- */
+ * @note  Command messages IDs in this section must be selected from 
+ * usused numbers between 0x1280 and 0x12FF inclusive
+ * 
+ * @note Telemetry Message IDs in this section must be selected from 
+ * usused numbers between 0x0280 and 0x02FF inclusive
+  */
+
+
 /* Command to save the next available image captured from camera to disk */
 #define CAMERA_IF_CMD_MID 0x1886
 /* Telemetry that indicates image has been saved to disk and that image needs to
