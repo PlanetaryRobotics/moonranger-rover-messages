@@ -1,7 +1,16 @@
-/**
- * @file
- * Define Camera Interface Messages and info
- */
+/****************************************************************
+ * 
+ * @file 		camera_if.h
+ * 
+ * @brief 		Message typedefs for camera interface app.
+ * 
+ * @version 		1.0
+ * @date 		10/09/2021
+ * 
+ * @authors 		Tenzin Crouch
+ * @author 		Carnegie Mellon University, Planetary Robotics Lab
+ * 
+ ****************************************************************/
 #ifndef CAMERA_IF_MSG_H
 #define CAMERA_IF_MSG_H
 

@@ -15,6 +15,14 @@
 #ifndef _mapper_msg_h_
 #define _mapper_msg_h_
 
+/*
+** Mapper app command codes
+*/
+
+#define MAPPER_NOOP_CC 			0
+#define MAPPER_RESET_COUNTERS_CC	1
+
+
 /***************************************************
 /*
 ** Type definition (MAPPER housekeeping/telemetry)

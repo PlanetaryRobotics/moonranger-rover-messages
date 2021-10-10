@@ -21,12 +21,7 @@
 #define POSE_CMD_MID           0x18E4
 #define POSE_HK_TLM_MID        0x18E5
 
-/**
- * Pose estimation app command codes
- */
-#define POSE_NOOP_CC               0
-#define POSE_RESET_COUNTERS_CC     1
-#define POSE_UPDATE_PARAMS_CC      2
+
 
 #endif //_pe_msgids_h_ header
 
