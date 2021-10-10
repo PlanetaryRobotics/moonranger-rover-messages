@@ -10,10 +10,16 @@
  * @authors 		Margaret Hansen
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * @note		This file only contains app specific command and 
+ * 				telemetry message definitions and command codes.
+ * 
  ****************************************************************/
 
 #ifndef _mapper_msg_h_
 #define _mapper_msg_h_
+
+#include "cfe_sb.h"
+#include "common_types.h"
 
 /*
 ** Mapper app command codes
@@ -21,6 +27,7 @@
 
 #define MAPPER_NOOP_CC 			0
 #define MAPPER_RESET_COUNTERS_CC	1
+
 
 
 /***************************************************

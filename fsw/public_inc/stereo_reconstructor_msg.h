@@ -10,9 +10,9 @@
  * @authors 	TODO
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * 
  * @note		This file only contains app specific command and 
  * 				telemetry message definitions and command codes.
- * 
  ****************************************************************/
 
 
@@ -28,10 +28,11 @@
  * 
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
-#ifndef _imu_driver_msg_h
-#define _imu_driver_msg_h
+
+#ifndef _stereo_reconstructor_h
+#define _stereo_reconstructor_h
 
 
 
 
-#endif /* _imu_driver_msg_h */
+#endif /* _stereo_reconstructor_h */

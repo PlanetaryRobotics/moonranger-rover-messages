@@ -28,10 +28,11 @@
  * 
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
-#ifndef _imu_driver_msg_h
-#define _imu_driver_msg_h
+
+#ifndef _peripheral_computer_interface_msg_h
+#define _peripheral_computer_interface_msg_h
 
 
 
 
-#endif /* _imu_driver_msg_h */
+#endif /* _peripheral_computer_interface_msg_h */

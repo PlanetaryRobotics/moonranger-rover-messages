@@ -4,6 +4,7 @@
  * @brief defines all MoonRanger Message IDs
  *
  *
+ * @authors
  * @author Carnegie Mellon University Planetary Robotics Lab
  * @note
  */
@@ -43,6 +44,9 @@
  * @note  Message IDS in this section should fit within
  * 0x0300-0x03FF inclusive.
  */
+#define POSE_SEND_HK_MID       0x18E3
+#define POSE_CMD_MID           0x18E4
+#define POSE_HK_TLM_MID        0x18E5
 
 /**
  * Stereo Reconstructor Message IDs
@@ -70,6 +74,9 @@
  * @note  Message IDS in this section should fit within
  * 0x0700-0x07FF inclusive.
  */
+#define VEHICLE_SEND_HK_MID       0x1888
+#define VEHICLE_CMD_MID           0x1889
+#define VEHICLE_HK_TLM_MID        0x1890
 
 /**
  * Peripheral Data Manager Message IDs
@@ -82,28 +89,42 @@
  * @note  Message IDS in this section should fit within
  * 0x0900-0x09FF inclusive.
  */
+#define TLM_OUTPUT_CMD_MID     0x1880
+#define TLM_OUTPUT_SEND_HK_MID 0x1881
+
+#define TLM_OUTPUT_HK_TLM_MID     0x0880
+#define TLM_OUTPUT_DATA_TYPES_MID 0x0881
+
 
 /**
  * Command Ingestion Message IDs
  * @note  Message IDS in this section should fit within
  * 0x0A00-0x0AFF inclusive.
  */
+#define CMD_INGEST_CMD_MID     0x1884
+#define CMD_INGEST_SEND_HK_MID 0x1885
+
+#define CMD_INGEST_HK_TLM_MID 0x0884
+
 
 /**
  * Health and Safety Message IDs
  * @note  Message IDS in this section should fit within
  * 0x0B00-0x0BFF inclusive.
  */
+#define HS_CMD_MID           0x18AE    /**< \brief Msg ID for cmds to HS                */
+#define HS_SEND_HK_MID       0x18AF    /**< \brief Msg ID to request HS housekeeping    */
+#define HS_WAKEUP_MID        0x18B0    /**< \brief Msg ID to wake up HS                 */
 
 /**
  * MOONRANGER Common Message IDs
  * @note  Message IDS in this section should fit within
  * 0x0C00-0x0CFF inclusive.
  */
-#define MOONRANGER_GOAL_MID 0x0100
-#define MOONRANGER_POSE_MID 0x0101
-#define MOONRANGER_POINT_CLOUD_MID 0x0102
-#define MOONRANGER_MESH_MID 0x0103
+#define MOONRANGER_GOAL_MID 0x0C00
+#define MOONRANGER_POSE_MID 0x0C01
+#define MOONRANGER_POINT_CLOUD_MID 0x0C02
+#define MOONRANGER_MESH_MID 0x0C03
 #define MOONRANGER_BODY_VELOCITY_MID 0x0890
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0891
 #define MOONRANGER_DRIVE_ARC_MID 0x0892

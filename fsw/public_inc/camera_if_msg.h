@@ -7,12 +7,15 @@
  * @version 		1.0
  * @date 		10/09/2021
  * 
- * @authors 		Tenzin Crouch
+ * @authors 	Kelvin Kang
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * @note		This file only contains app specific command and 
+ * 				telemetry message definitions and command codes.
+ * 
  ****************************************************************/
-#ifndef CAMERA_IF_MSG_H
-#define CAMERA_IF_MSG_H
+#ifndef _camera_if_msg_h
+#define camera_if_msg_h
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -66,4 +69,4 @@ typedef struct
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK CAMERA_IF_ImgSavedTlm_t;
 
-#endif /* CAMERA_IF_MSG_H */
+#endif /* camera_if_msg_h */
