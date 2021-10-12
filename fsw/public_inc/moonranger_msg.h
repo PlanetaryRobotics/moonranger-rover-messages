@@ -149,6 +149,65 @@ typedef MOONRANGER_NoArgsCmd_t MOONRANGER_Pcl_t;
 typedef MOONRANGER_NoArgsCmd_t MOONRANGER_Mesh_t;
 
 
+/*************************************************************************/
+/*
+** Type definition (MOONRANGER SIM MESSAGES)
+** TODO: separate into sim messages file
+*/
+typedef struct {
+  CFE_SB_TlmHdr_t TlmHeader;
+  MOONRANGER_Goal_t Goal;
+} MOONRANGER_GoalMsg_t;
+
+typedef struct {
+  float32 x_coord;
+  float32 y_coord;
+  float32 z_coord;
+} MOONRANGER_Sunseeker_t;
+
+typedef struct {
+  CFE_SB_TlmHdr_t TlmHeader;
+  MOONRANGER_Sunseeker_t Sunseeker;
+} MOONRANGER_SunseekerMsg_t;
+
+typedef struct {
+  float32 x_linear;
+  float32 y_linear;
+  float32 z_linear;
+  float32 x_angular;
+  float32 y_angular;
+  float32 z_angular;
+} MOONRANGER_CmdVel_t;
+
+typedef struct {
+  CFE_SB_TlmHdr_t TlmHeader;
+  MOONRANGER_CmdVel_t CmdVel;
+} MOONRANGER_CmdVelMsg_t;
+
+typedef struct {
+  float64 x_quat;
+  float64 y_quat;
+  float64 z_quat;
+  float64 w_quat;
+  float64 ori_covariance[9];
+
+  float64 x_angVel;
+  float64 y_angVel;
+  float64 z_angVel;
+  float64 angVel_covariance[9];
+
+  float64 x_linAcc;
+  float64 y_linAcc;
+  float64 z_linAcc;
+  float64 linAcc_covariance[9];
+} MOONRANGER_Imu_t;
+
+typedef struct {
+  CFE_SB_TlmHdr_t TlmHeader;
+  MOONRANGER_Imu_t Imu;
+} MOONRANGER_ImuMsg_t;
+
+
 #endif /* _moonranger_msg_h_ */
 
 /************************/
