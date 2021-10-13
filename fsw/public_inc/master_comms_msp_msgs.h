@@ -29,10 +29,10 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _peripheral_computer_interface_msgs_h
-#define _peripheral_computer_interface_msgs_h
+#ifndef master_comms_msp_msgs_h
+#define master_comms_msp_msgs_h
 
 
 
 
-#endif /* _peripheral_computer_interface_msgs_h */
+#endif /* master_comms_msp_msgs_h */

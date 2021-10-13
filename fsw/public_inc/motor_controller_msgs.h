@@ -29,10 +29,10 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _peripheral_computer_interface_msgs_h
-#define _peripheral_computer_interface_msgs_h
+#ifndef _motor_controller_msgs_h
+#define _motor_controller_msgs_h
 
 
 
 
-#endif /* _peripheral_computer_interface_msgs_h */
+#endif /* _motor_controller_msgs_h */

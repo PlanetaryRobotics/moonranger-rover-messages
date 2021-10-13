@@ -12,7 +12,6 @@
  * 
  * @note		This file only contains app specific command and 
  * 				telemetry message definitions and command codes.
- * 
  ****************************************************************/
 
 
@@ -28,11 +27,10 @@
  * 
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
-
-#ifndef _peripheral_computer_interface_msgs_h
-#define _peripheral_computer_interface_msgs_h
-
+#ifndef __planner_msgs_h
+#define _planner_msgs_h
 
 
 
-#endif /* _peripheral_computer_interface_msgs_h */
+
+#endif /* _planner_msgs_h */

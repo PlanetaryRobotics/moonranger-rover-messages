@@ -28,10 +28,11 @@
  * 
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
-#ifndef _imu_driver_msg_h
-#define _imu_driver_msg_h
+
+#ifndef _heater_control_msp_msgs_h
+#define _heater_control_msp_msgs_h
 
 
 
 
-#endif /* _imu_driver_msg_h */
+#endif /* _motor_controller_msgs_h */

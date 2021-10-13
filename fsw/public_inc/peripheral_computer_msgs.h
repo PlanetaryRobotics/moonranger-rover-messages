@@ -29,10 +29,10 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _peripheral_computer_msg_h
-#define _peripheral_computer_msg_h
+#ifndef _peripheral_computer_msgs_h
+#define _peripheral_computer_msgs_h
 
 
 
 
-#endif /* _peripheral_computer_msg_h */
+#endif /* _peripheral_computer_msgs_h */

@@ -29,10 +29,10 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _camera_driver_msg_h
-#define _camera_driver_msg_h
+#ifndef _power_switching_msgs_h
+#define _power_switching_msgs_h
 
 
 
 
-#endif /* _camera_driver_msg_h */
+#endif /* _motor_controller_msgs_h */

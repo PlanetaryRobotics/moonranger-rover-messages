@@ -12,6 +12,7 @@
  * 
  * @note		This file only contains app specific command and 
  * 				telemetry message definitions and command codes.
+ * 
  ****************************************************************/
 
 
@@ -27,10 +28,10 @@
  * 
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
-#ifndef __planner_msg_h
-#define _planner_msg_h
+#ifndef _imu_driver_msgs_h
+#define _imu_driver_msgs_h
 
 
 
 
-#endif /* _planner_msg_h */
+#endif /* _imu_driver_msgs_h */

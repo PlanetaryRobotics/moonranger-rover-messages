@@ -14,8 +14,8 @@
  * 				telemetry message definitions and command codes.
  * 
  ****************************************************************/
-#ifndef _cmd_ingest_msg_h_
-#define _cmd_ingest_msg_h_
+#ifndef _cmd_ingest_msgs_h_
+#define _cmd_ingest_msgs_h_
 
 /*
 ** CMD_INGEST command codes
@@ -68,7 +68,7 @@ typedef struct
 
 #define CMD_INGEST_HK_TLM_LNGTH sizeof(CMD_INGEST_HkTlm_t)
 
-#endif /* _cmd_ingest_msg_h_ */
+#endif /* _cmd_ingest_msgs_h_ */
 
 /************************/
 /*  End of File Comment */

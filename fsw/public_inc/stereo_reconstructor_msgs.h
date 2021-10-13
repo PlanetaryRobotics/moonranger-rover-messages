@@ -10,9 +10,9 @@
  * @authors 	TODO
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * 
  * @note		This file only contains app specific command and 
  * 				telemetry message definitions and command codes.
- * 
  ****************************************************************/
 
 
@@ -29,10 +29,10 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _peripheral_computer_interface_msgs_h
-#define _peripheral_computer_interface_msgs_h
+#ifndef _stereo_reconstructor_msgs_h
+#define _stereo_reconstructor_msgs_h
 
 
 
 
-#endif /* _peripheral_computer_interface_msgs_h */
+#endif /* _stereo_reconstructor_h */

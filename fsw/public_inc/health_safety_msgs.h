@@ -15,8 +15,8 @@
  * 
  ****************************************************************/
 
-#ifndef _health_safety_msg_h_
-#define _health_safety_msg_h_
+#ifndef _health_safety_msgs_h_
+#define _health_safety_msgs_h_
 
 /************************************************************************
 ** Includes
@@ -108,7 +108,7 @@ typedef struct
 
 } HS_HkPacket_t;
 
-#endif /* _health_safety_msg_h_ */
+#endif /* _health_safety_msgs_h_ */
 
 /************************/
 /*  End of File Comment */

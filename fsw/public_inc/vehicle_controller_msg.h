@@ -14,8 +14,8 @@
  * 				telemetry message definitions and command codes.
  * 
  ****************************************************************/
-#ifndef _vehicle_controller_msg_h_
-#define _vehicle_controller_msg_h_
+#ifndef _vehicle_controller_msgs_h_
+#define _vehicle_controller_msgs_h_
 #include <cinttypes>
 extern "C" {
     #include "cfe.h"
@@ -46,6 +46,6 @@ typedef struct
 
 } OS_PACK VEHICLE_HkTlm_t;
 
-#endif //_vehicle_controller_msg_h_ header
+#endif //_vehicle_controller_msgs_h_ header
 
 /* EOF */

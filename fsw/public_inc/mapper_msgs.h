@@ -15,8 +15,8 @@
  * 
  ****************************************************************/
 
-#ifndef _mapper_msg_h_
-#define _mapper_msg_h_
+#ifndef _mapper_msgs_h_
+#define _mapper_msgs_h_
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -52,6 +52,6 @@ typedef struct
 	MAPPER_HkTlm_Payload_t	Payload;
 } OS_PACK MAPPER_HkTlm_t;
 
-#endif /* _mapper_msg_h_*/
+#endif /* _mapper_msgs_h_*/
 
 /* EOF */

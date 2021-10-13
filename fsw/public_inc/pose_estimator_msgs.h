@@ -14,8 +14,8 @@
  * 				telemetry message definitions and command codes.
  * 
  ****************************************************************/
-#ifndef _pose_estimator_msg_h_
-#define _pose_estimator_msg_h_
+#ifndef _pose_estimator_msgs_h_
+#define _pose_estimator_msgs_h_
 
 
 #include <cinttypes>
@@ -50,6 +50,6 @@ typedef struct
     POSE_HkTlm_Payload_t  Payload;
 
 } OS_PACK POSE_HkTlm_t;
-#endif //_pose_estimator_msg_h_ header
+#endif //_pose_estimator_msgs_h_ header
 
 /* EOF */
