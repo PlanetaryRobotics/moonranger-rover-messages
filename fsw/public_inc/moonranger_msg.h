@@ -109,10 +109,12 @@ typedef struct
 /*************************************************************************/
 /**
  * Type definition (MOONRANGER wheel velocity packet)
+ * If duration field is NULL, motor should run last recieved command, otherwise run for specified duration
  */
 typedef struct
 {
     uint64   timeStamp;  // nanoseconds
+    float32 duration;   // seconds. 
     float32 leftFront;  // rad/s
     float32 rightFront; // rad/s
     float32 leftBack;   // rad/s
