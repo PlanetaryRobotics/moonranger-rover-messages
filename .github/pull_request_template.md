@@ -26,11 +26,12 @@
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 
 - [ ] I have read and followed the `CONTRIBUTING.md` file
-- [ ] My code follows the style guidelines of this project (Google Style Guide for C++ https://google.github.io/styleguide/cppguide.html, Barr C coding standard -https://barrgroup.com/sites/default/files/barr_c_coding_standard_2018.pdf)
-- [ ] I have commented my code using Doxygen style comments, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the design documentation
+- [ ] I have applied the .clang-format file to my changes
+- [ ] I have commented my code using Doxygen style comments (see Contributing MD for examples), particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the design documentation 
+- [ ] I have updated any relevant parameters in the internal ICD
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] If this is a bug-fix, I have added tests that can catch similar bugs in the future
 - [ ] New and existing unit tests pass locally with my changes
-- [ ] For cfe app, I have reserved an empty address for my msgs_ids and perf_ids from the [tracking list](https://docs.google.com/spreadsheets/d/1yRUhNTRBOiGLswlsWftNaYlwGKDeNQ_fCnDYFrc_7fU/edit#gid=772812381) and checked that it does not clash with other apps
+- [ ] For cfe apps I have reserved an empty address for my msgs_ids and perf_ids from the [tracking list](https://docs.google.com/spreadsheets/d/1yRUhNTRBOiGLswlsWftNaYlwGKDeNQ_fCnDYFrc_7fU/edit#gid=772812381) and checked that it does not clash with other apps
