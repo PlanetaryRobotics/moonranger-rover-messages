@@ -143,6 +143,22 @@
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0891
 #define MOONRANGER_DRIVE_ARC_MID 0x0892
 
+#define MOONRANGER_SUNSEEKER_MID 0x0104
+#define MOONRANGER_CMD_VEL_MID 0x0105
+
+/* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation) */
+#define FAUXRANGER_F_L_CAM_INFO_MID 0x0501 //front left camera info
+#define FAUXRANGER_F_R_CAM_INFO_MID 0x0502 //front right camera info
+#define FAUXRANGER_B_L_CAM_INFO_MID 0x0503 //back left camera info
+#define FAUXRANGER_B_R_CAM_INFO_MID 0x0504 //back right camera info
+#define FAUXRANGER_F_L_CAM_DATA_MID 0x0505 //front left camera data
+#define FAUXRANGER_F_R_CAM_DATA_MID 0x0506 //front right camera data
+#define FAUXRANGER_B_L_CAM_DATA_MID 0x0507 //back left camera data
+#define FAUXRANGER_B_R_CAM_DATA_MID 0x0508 //back right camera data
+#define FAUXRANGER_IMU_MID 0x0509
+#define FAUXRANGER_WHEELS_MID 0x0510
+#define FAUXRANGER_ODOM_MID 0x0511
+
 #endif /* _moonranger_msgids_h_ */
 
 /************************/
