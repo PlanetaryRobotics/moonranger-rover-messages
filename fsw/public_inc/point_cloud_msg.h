@@ -1,8 +1,8 @@
 /****************************************************************
  * 
- * @file      mesh_map_msg.h
+ * @file      point_cloud_msg.h
  * 
- * @brief     Type definition for Moonranger Mesh Map message
+ * @brief     Type definition for Moonranger point cloud message
  * 
  * @version   1.0
  * @date      19 Oct 2021
@@ -13,20 +13,17 @@
  ****************************************************************/
 
 
-#ifndef _mesh_map_msg_h_
-#define _mesh_map_msg_h_
-
-#include "cfe_sb.h"
-#include "common_types.h"
+#ifndef _point_cloud_msg_h_
+#define _point_cloud_msg_h_
 
 
 /*************************************************************************/
 /*
-** Type definition (MOONRANGER mesh)
+** Type definition (MOONRANGER Point cloud)
 ** TODO: define actual structure
 */
 
-typedef MOONRANGER_NoArgsCmd_t MOONRANGER_Mesh_t;
+typedef MOONRANGER_NoArgsCmd_t MOONRANGER_Pcl_t;
 
-#endif /* _mesh_map_msg_h_ */
+#endif /* _point_cloud_msg_h_ */
 
