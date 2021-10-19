@@ -1,5 +1,16 @@
-# moonranger-rover-flight
-This repository hosts the flight software that will be used on MoonRanger rover.
+# moonranger-rover-messages
+This repository hosts the flight message definitions that will be used on MoonRanger rover.
+
+## Important Notes
+
+`moonranger_msgids.h` contains the system-wide message IDs for MoonRanger
+
+`xxx_msg.h` is for message definition files that are used my multiple apps, e.g. `goal_msg.h`
+
+`app_name_msgs.h` is for message definition files that are used solely by an app, e.g. `camera_if_msgs.h`
+
+
+
 
 ## Build Instructions
 
