@@ -15,7 +15,7 @@
  * 
  ****************************************************************/
 #ifndef _camera_if_msgs_h
-#define camera_if_msgs_h
+#define _camera_if_msgs_h
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -69,4 +69,4 @@ typedef struct
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK CAMERA_IF_ImgSavedTlm_t;
 
-#endif /* camera_if_msg_hs */
+#endif /* _camera_if_msgs_h */
