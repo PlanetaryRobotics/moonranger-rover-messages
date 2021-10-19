@@ -18,6 +18,9 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 
+// TODO move this to common location
+typedef float float32;
+
 //*************************************************************************/
 /**
  * Type definition (MOONRANGER wheel velocity packet)
