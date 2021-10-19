@@ -10,14 +10,31 @@
  * @authors 	Ben Kolligs, ...
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * @note		This file only contains app specific command and 
+ * 				telemetry message definitions and command codes.
+ * 
  ****************************************************************/
-#ifndef _pe_msg_h_
-#define _pe_msg_h_
+#ifndef _pose_estimator_msgs_h_
+#define _pose_estimator_msgs_h_
+
 
 #include <cinttypes>
 extern "C" {
 	#include "cfe.h"
 }
+
+
+/**
+ * app command codes
+ */
+#define POSE_NOOP_CC               0
+#define POSE_RESET_COUNTERS_CC     1
+#define POSE_UPDATE_PARAMS_CC      2
+
+/***************************************************
+/*
+** Type definition Housekeeping Telemetry
+*/
 typedef struct
 {
     uint8              CommandCounter;
@@ -33,6 +50,6 @@ typedef struct
     POSE_HkTlm_Payload_t  Payload;
 
 } OS_PACK POSE_HkTlm_t;
-#endif //_pe_msg_h_ header
+#endif //_pose_estimator_msgs_h_ header
 
 /* EOF */

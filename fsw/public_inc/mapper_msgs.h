@@ -10,10 +10,25 @@
  * @authors 		Margaret Hansen
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  * 
+ * @note		This file only contains app specific command and 
+ * 				telemetry message definitions and command codes.
+ * 
  ****************************************************************/
 
-#ifndef _mapper_msg_h_
-#define _mapper_msg_h_
+#ifndef _mapper_msgs_h_
+#define _mapper_msgs_h_
+
+#include "cfe_sb.h"
+#include "common_types.h"
+
+/*
+** Mapper app command codes
+*/
+
+#define MAPPER_NOOP_CC 			0
+#define MAPPER_RESET_COUNTERS_CC	1
+
+
 
 /***************************************************
 /*
@@ -37,6 +52,6 @@ typedef struct
 	MAPPER_HkTlm_Payload_t	Payload;
 } OS_PACK MAPPER_HkTlm_t;
 
-#endif /* _mapper_msg_h_*/
+#endif /* _mapper_msgs_h_*/
 
 /* EOF */

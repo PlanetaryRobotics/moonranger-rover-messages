@@ -1,9 +1,21 @@
-/**
- * @file
- * Define Camera Interface Messages and info
- */
-#ifndef CAMERA_IF_MSG_H
-#define CAMERA_IF_MSG_H
+/****************************************************************
+ * 
+ * @file 		camera_if.h
+ * 
+ * @brief 		Message typedefs for camera interface app.
+ * 
+ * @version 		1.0
+ * @date 		10/09/2021
+ * 
+ * @authors 	Kelvin Kang
+ * @author 		Carnegie Mellon University, Planetary Robotics Lab
+ * 
+ * @note		This file only contains app specific command and 
+ * 				telemetry message definitions and command codes.
+ * 
+ ****************************************************************/
+#ifndef _camera_if_msgs_h
+#define _camera_if_msgs_h
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -57,4 +69,4 @@ typedef struct
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK CAMERA_IF_ImgSavedTlm_t;
 
-#endif /* CAMERA_IF_MSG_H */
+#endif /* _camera_if_msgs_h */
