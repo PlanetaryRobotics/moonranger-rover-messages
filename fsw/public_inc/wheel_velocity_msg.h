@@ -2,7 +2,7 @@
  *
  * @file      wheel_velocity_msg.h
  *
- * @brief     Type definition for Moonranger pose message
+ * @brief     Type definition for Moonranger body velocity message
  *
  * @version   1.0
  * @date      19 Oct 2021
