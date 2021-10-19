@@ -28,7 +28,7 @@ typedef struct {
   float32 duration; // seconds
   float32 radius;   // meters
 
-} MOONRANGER_OptimalDriveArc_t;
+} MOONRANGER_DriveArc_t;
 
 /**
  * Type definition (MOONRANGER drive arc telemetry)
