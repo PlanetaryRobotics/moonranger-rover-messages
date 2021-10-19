@@ -43,3 +43,9 @@ typedef struct
 typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_Noop_t;
 typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_ResetCounters_t;
 typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_Process_t;
+
+#endif /* _moonranger_msg_h_ */
+
+/************************/
+/*  End of File Comment */
+/************************/
