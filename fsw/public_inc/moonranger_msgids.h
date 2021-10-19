@@ -9,6 +9,10 @@
  * @note
  */
 
+
+//TODO - Update IDs to ensure the values are in specified ranges
+//NOTE - need to check if there are specific values for command and telem.
+
 #ifndef _moonranger_msgids_h_
 #define _moonranger_msgids_h_
 
@@ -130,10 +134,33 @@
 #define HS_SEND_HK_MID 0x18AF /**< \brief Msg ID to request HS housekeeping*/
 #define HS_WAKEUP_MID 0x18B0  /**< \brief Msg ID to wake up HS */
 
+
+/**
+ * Scheduler Message IDs
+ * @note  Message IDS in this section should fit within
+ * 0x0C00-0x0CFF inclusive.
+ */
+#define SCH_CMD_MID                    0x1895 /**< \brief SCH Ground Commands Message ID */
+#define SCH_SEND_HK_MID                0x1896 /**< \brief SCH Send Housekeeping Message ID */
+#define SCH_UNUSED_MID                 0x1897 /**< \brief SCH MDT Unused Message Message ID */
+/*
+#define SCH_SPARE1                     0x1898
+#define SCH_SPARE2                     0x1899
+*/
+
+#define SCH_HK_TLM_MID                 0x0897 /**< \brief SCH Housekeeping Telemetry Message ID */
+#define SCH_DIAG_TLM_MID               0x0898 /**< \brief SCH Diagnostic Telemetry Message ID */
+/* 
+#define SCH_TLM_SPARE1                 0x0899
+#define SCH_TLM_SPARE2                 0x089A
+*/
+
+
+
 /**
  * MOONRANGER Common Message IDs
  * @note  Message IDS in this section should fit within
- * 0x0C00-0x0CFF inclusive.
+ * 0x0D00-0x0DFF inclusive.
  */
 #define MOONRANGER_GOAL_MID 0x0C00
 #define MOONRANGER_POSE_MID 0x0C01
