@@ -24,10 +24,8 @@
  */
 typedef struct {
   uint64 timeStamp;   // nanoseconds
-  float32 leftFront;  // rad/s
-  float32 rightFront; // rad/s
-  float32 leftBack;   // rad/s
-  float32 rightBack;  // rad/s
+  float32 xVelocity;  // m/s
+  float32 yawVelocity; // rads/s
 } MOONRANGER_BodyVelocity_t;
 
 /**
