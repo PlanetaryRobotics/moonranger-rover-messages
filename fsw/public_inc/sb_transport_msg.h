@@ -24,15 +24,15 @@
 /**
  * @brief Generic Msg type for Software Bus Transport Library.
  *
- * WARNING: do not use this msg directly, it is recommended to use
- * the API of sb_transport_lib to read/write the data as it provides
- * mutex locks to prevent data race conditions.
+ * Send this msg to inform other apps that you have written new data to the
+ * shared memory buffer.
+ * WARNING: use the API of sb_transport_lib for read/write.
  */
 typedef struct {
     CFE_SB_Msg_t MsgHdr;   // cFE generic msg header.
-    void* DataHandle;      // Pointer to the data.
-    size_t DataSize;       // Size of the data in bytes.
-    bool IsValid;          // Flag to check if msg is valid.
 } SB_Transport_Msg_t;
+
+typedef SB_Transport_Msg_t SB_Stereo_Img_Transport_Msg_t;
+typedef SB_Transport_Msg_t SB_Pcl_Transport_Msg_t;
 
 #endif   //_moonranger_sb_transport_lib_msg_h_
