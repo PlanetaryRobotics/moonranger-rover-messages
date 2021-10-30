@@ -40,6 +40,7 @@ typedef struct
 	uint8			CommandCounter;
 	uint8			CommandErrorCounter;
 	uint8			PoseCounter;
+	uint8			ValidPoseCounter;
 	uint8			GoalCounter;
 	uint8			PclCounter;
 	uint8			MeshCounter;
