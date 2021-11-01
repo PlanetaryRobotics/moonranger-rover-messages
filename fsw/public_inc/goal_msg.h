@@ -26,6 +26,7 @@
 typedef float float32;
 
 typedef struct {
+  uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
   float32 x_coord;     // meters
   float32 y_coord;     // meters
   float32 x_radius;    // meters
