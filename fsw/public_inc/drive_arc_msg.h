@@ -23,10 +23,10 @@
  * Type definition (MOONRANGER drive arc packet)
  */
 typedef struct {
-  uint64 timeStamp; // nanoseconds
-  float32 speed;    // m/s
-  float32 duration; // seconds
-  float32 radius;   // meters
+  CFE_TIME_SysTime_t timeStamp; 
+  float32            speed;    // m/s
+  float32            duration; // seconds
+  float32            radius;   // meters
 
 } MOONRANGER_DriveArc_t;
 

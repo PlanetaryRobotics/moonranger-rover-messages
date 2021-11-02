@@ -23,9 +23,9 @@
  * Type definition (MOONRANGER body velocity packet)
  */
 typedef struct {
-  uint64 timeStamp;   // nanoseconds
-  float32 xVelocity;  // m/s
-  float32 yawVelocity; // rads/s
+  CFE_TIME_SysTime_t timeStamp;   // nanoseconds
+  float32            xVelocity;   // m/s
+  float32            yawVelocity; // rads/s
 } MOONRANGER_BodyVelocity_t;
 
 /**
