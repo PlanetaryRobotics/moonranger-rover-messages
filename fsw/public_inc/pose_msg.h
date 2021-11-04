@@ -26,14 +26,14 @@
 typedef double float64;
 
 typedef struct {
-  int64   timestamp; //nanoseconds
-  float64 x_pos;  // meters
-  float64 y_pos;  // meters
-  float64 z_pos;  // meters
-  float64 x_quat; // quaternion
-  float64 y_quat; // quaternion
-  float64 z_quat; // quaternion
-  float64 w_quat; // quaternion
+  uint64  timestamp; // microseconds
+  float64 x_pos;     // meters
+  float64 y_pos;     // meters
+  float64 z_pos;     // meters
+  float64 x_quat;    // quaternion
+  float64 y_quat;    // quaternion
+  float64 z_quat;    // quaternion
+  float64 w_quat;    // quaternion
   float64 covariance[36];
 } MOONRANGER_Pose_t;
 
