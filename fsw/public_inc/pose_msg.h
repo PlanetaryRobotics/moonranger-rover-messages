@@ -26,7 +26,7 @@
 typedef double float64;
 
 typedef struct {
-  uint64  timestamp; // microseconds
+  CFE_TIME_SysTime_t  timestamp; // microseconds
   float64 x_pos;     // meters
   float64 y_pos;     // meters
   float64 z_pos;     // meters
