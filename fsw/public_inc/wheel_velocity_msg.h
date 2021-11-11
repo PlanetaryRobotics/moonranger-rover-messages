@@ -26,11 +26,11 @@ typedef float float32;
  * Type definition (MOONRANGER wheel velocity packet)
  */
 typedef struct {
-  uint64 timeStamp;   // nanoseconds
-  float32 leftFront;  // rad/s
-  float32 rightFront; // rad/s
-  float32 leftBack;   // rad/s
-  float32 rightBack;  // rad/s
+  CFE_TIME_SysTime_t timeStamp;  
+  float32            leftFront;  // rad/s
+  float32            rightFront; // rad/s
+  float32            leftBack;   // rad/s
+  float32            rightBack;  // rad/s
 } MOONRANGER_WheelVelocity_t;
 
 /**
