@@ -56,6 +56,9 @@
 #define CAMERA_IF_SEND_HK_MID 0x1887
 #define CAMERA_IF_HK_TLM_MID 0x0887
 
+/* Unused, but need to be reserved */
+#define SB_TRANSPORT_LIB_CMD_MID 0x12FF
+
 /**
  * State Estimator Message IDs
  * @note  Message IDS in this section should fit within
