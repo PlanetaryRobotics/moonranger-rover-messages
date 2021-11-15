@@ -29,8 +29,8 @@
  * DELETE THIS BLOCK ONCE COMPLETE
  *******************************************************************/
 
-#ifndef _peripheral_computer_msgs_h
-#define _peripheral_computer_msgs_h
+#ifndef _peripheral_msg_ids_h
+#define _peripheral_msg_ids_h
 
 #define MASTER_CMD_MSG 1
 #define SENSOR_DATA_MSG 2
@@ -46,7 +46,7 @@
 #define SET_NSS_PARAMS 12
 #define GET_NSS_TELEMETRY 13
 #define SET_SWITCH_GROUP_STATE 14
-#define GET_SWITCH_STATUS 15
+#define GET_SWITCH_STATUS 150
 #define SET_HEATER_STATE 16
 #define GET_HEATER_STATUS 17
 #define GET_THERMISTOR_VALUE 18
@@ -55,4 +55,4 @@
 
 
 
-#endif /* _peripheral_computer_msgs_h */
+#endif /* _peripheral_msg_ids_h */
