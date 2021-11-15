@@ -1,0 +1,13 @@
+---
+# We'll use defaults from the Googlestyle, but with 4 columns indentation and 3 space between code and comments.
+BasedOnStyle: Google
+IndentWidth: 4
+SpacesBeforeTrailingComments: 3
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakBeforeMultilineStrings: true
+AlwaysBreakTemplateDeclarations: true
+AllowShortEnumsOnASingleLine: false
