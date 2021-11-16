@@ -35,3 +35,4 @@
 - [ ] If this is a bug-fix, I have added tests that can catch similar bugs in the future
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] For cfe apps I have reserved an empty address for my msgs_ids and perf_ids from the [tracking list](https://docs.google.com/spreadsheets/d/1yRUhNTRBOiGLswlsWftNaYlwGKDeNQ_fCnDYFrc_7fU/edit#gid=772812381) and checked that it does not clash with other apps
+- [ ] For new added message types, there is a timestamp included via either an explicit timestamp variable in the struct or buried in the a tlmHeader.
