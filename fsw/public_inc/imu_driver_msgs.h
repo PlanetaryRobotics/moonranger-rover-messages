@@ -14,8 +14,8 @@
  * 				telemetry message definitions and command codes.
  * 
  ****************************************************************/
-#ifndef _imu_driver_estimator_msgs_h_
-#define _imu_driver_estimator_msgs_h_
+#ifndef _imu_driver_msgs_h_
+#define _imu_driver_msgs_h_
 
 
 #include <cinttypes>
@@ -48,6 +48,6 @@ typedef struct
     IMU_DRIVER_HkTlm_Payload_t  Payload;
 
 } OS_PACK IMU_DRIVER_HkTlm_t;
-#endif //_imu_driver_estimator_msgs_h_ header
+#endif //_imu_driver_msgs_h_ header
 
 /* EOF */
