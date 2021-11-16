@@ -18,10 +18,7 @@
 #define _imu_driver_msgs_h_
 
 
-#include <cinttypes>
-extern "C" {
-	#include "cfe.h"
-}
+#include "cfe.h"
 
 
 /**
