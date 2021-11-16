@@ -25,8 +25,12 @@
 /**
  * IMU Driver Message IDs
  * @note  Message IDS in this section should fit within
- * 0x0100-0x01FF inclusive.
+ * 0x0104-0x01FF inclusive.
  */
+#define IMU_DRIVER_SEND_HK_MID 0x0104
+#define IMU_DRIVER_CMD_MID     0x0105
+#define IMU_DRIVER_HK_TLM_MID  0x0106
+
 
 /**
  * Camera Driver Message IDs
@@ -60,13 +64,13 @@
 #define SB_TRANSPORT_LIB_CMD_MID 0x12FF
 
 /**
- * State Estimator Message IDs
+ * Pose Estimator Message IDs
  * @note  Message IDS in this section should fit within
  * 0x0300-0x03FF inclusive.
  */
-#define POSE_SEND_HK_MID 0x18E3
-#define POSE_CMD_MID 0x18E4
-#define POSE_HK_TLM_MID 0x18E5
+#define POSE_SEND_HK_MID 0x0300
+#define POSE_CMD_MID     0x0301
+#define POSE_HK_TLM_MID  0x0302
 
 /**
  * Stereo Reconstructor Message IDs
@@ -97,9 +101,9 @@
  * @note  Message IDS in this section should fit within
  * 0x0700-0x07FF inclusive.
  */
-#define VEHICLE_SEND_HK_MID 0x1888
-#define VEHICLE_CMD_MID 0x1889
-#define VEHICLE_HK_TLM_MID 0x1890
+#define VEHICLE_SEND_HK_MID 0x0700
+#define VEHICLE_CMD_MID     0x0701
+#define VEHICLE_HK_TLM_MID  0x0702
 
 /**
  * Peripheral Data Manager Message IDs
