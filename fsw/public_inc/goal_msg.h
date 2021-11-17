@@ -16,14 +16,12 @@
 #define _goal_msg_h_
 
 #include "cfe_sb.h"
-#include "common_types.h"
+#include "moonranger_common_types.h"
 
 /*************************************************************************/
 /*
 ** Type definition (MOONRANGER goal)
 */
-
-typedef float float32;
 
 typedef struct {
   float32 x_coord;     // meters
