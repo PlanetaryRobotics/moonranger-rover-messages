@@ -42,9 +42,9 @@ void ExtractPoseMsg(void *MsgPtr, MOONRANGER_Pose_t *poseData) {
     *poseData = poseMsg->pose_data;
 }
 
-void BuildWheelVelMsg(void *MsgPtr, int32 msgId, MOONRANGER_WheelVelocity_t *wheelVelData){
-  MOONRANGER_WheelVelocity_Tlm_t *ptr = MsgPtr;
-  CFE_SB_InitMsg(ptr, (CFE_SB_MsgId_t)msgId, MOONRANGER_WHEEL_VEL_TLM_LNGTH, true);
+void BuildWheelVelMsg(void *MsgPtr, int32 msgId, MOONRANGER_WheelVelocityCmd_t *wheelVelData){
+  MOONRANGER_WheelVelocity_Command_t *ptr = MsgPtr;
+  CFE_SB_InitMsg(ptr, (CFE_SB_MsgId_t)msgId, MOONRANGER_WHEEL_VEL_CMD_MSG_LNGTH, true);
 
   ptr->data = *wheelVelData;
 

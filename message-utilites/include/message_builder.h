@@ -5,7 +5,7 @@
 #include "ccsds.h"
 #include "moonranger_msgids.h"
 #include "pose_msg.h"
-#include "wheel_velocity_msg.h"
+#include "wheel_velocity_command_msg.h"
 #include "teleop_msg.h"
 
 
@@ -17,7 +17,7 @@ void BuildPoseMsg(void *MsgPtr, int32 msgId, MOONRANGER_Pose_t *poseData) ;
 /*
  * Function: BuildWheelVelMsg -
  */
-void BuildWheelVelMsg(void *MsgPtr, int32 msgId, MOONRANGER_WheelVelocity_t *wheelVelData) ;
+void BuildWheelVelMsg(void *MsgPtr, int32 msgId, MOONRANGER_WheelVelocityCmd_t *wheelVelData) ;
 
 void BuildTeleopCmd(void *MsgPtr, int32 msgId, MOONRANGER_Teleop_t *data);
 
