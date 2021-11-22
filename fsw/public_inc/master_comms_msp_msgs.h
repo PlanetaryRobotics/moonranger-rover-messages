@@ -36,10 +36,8 @@
 
 typedef enum {
     ADDR_ID_PERIPH = 0xE1,
-    ADDR_ID_WIFI,
-    ADDR_ID_COMM_BUS,
-    ADDR_ID_PWR_MGMT,
-    ADDR_ID_MOTOR,
+    ADDR_ID_COMM_BUS = 0xE3,
+    ADDR_ID_MOTOR = 0xE5,
     ADDR_ID_NSS,
     ADDR_ID_SUN,
     ADDR_ID_PWR_SWITCH,
@@ -86,7 +84,8 @@ typedef struct {
     uint8_t len;
     uint8_t msg_id;
     int32_t motor_speed[5]; // 20 bytes
-    int32_t crc;
+    uint8_t reserve[2];
+    int16_t crc;
 } MotorSpeedCmd_t;
 
 typedef struct {
