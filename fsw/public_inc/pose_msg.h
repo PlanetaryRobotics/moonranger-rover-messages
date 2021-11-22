@@ -26,15 +26,15 @@
 typedef double float64;
 
 typedef struct {
-  uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-  float64 x_pos;  // meters
-  float64 y_pos;  // meters
-  float64 z_pos;  // meters
-  float64 x_quat; // quaternion
-  float64 y_quat; // quaternion
-  float64 z_quat; // quaternion
-  float64 w_quat; // quaternion
-  float64 covariance[36];
+  CFE_TIME_SysTime_t  timeStamp; 
+  float64             x_pos;     // meters
+  float64             y_pos;     // meters
+  float64             z_pos;     // meters
+  float64             x_quat;    // quaternion
+  float64             y_quat;    // quaternion
+  float64             z_quat;    // quaternion
+  float64             w_quat;    // quaternion
+  float64             covariance[36];
 } MOONRANGER_Pose_t;
 
 /**
