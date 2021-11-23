@@ -51,14 +51,17 @@
  */
 
 /* Command to save the next available image captured from camera to disk */
-#define CAMERA_IF_CMD_MID 0x1886
+#define CAMERA_IF_CMD_MID 0x1280
 /* Telemetry that indicates image has been saved to disk and that image needs to
  * be sent back to earth */
-#define CAMERA_IF_IMG_SAVED_TLM_MID 0x0886
+#define CAMERA_IF_IMG_SAVED_TLM_MID 0x0280
+
+/* Command to ask down-stream apps to read from the sb_transport stereo img */
+#define CAMERA_IF_NEW_STEREO_IMG_MID 0x1282
 
 /* Housekeeping */
-#define CAMERA_IF_SEND_HK_MID 0x1887
-#define CAMERA_IF_HK_TLM_MID 0x0887
+#define CAMERA_IF_SEND_HK_MID 0x1281
+#define CAMERA_IF_HK_TLM_MID 0x0281
 
 /* Unused, but need to be reserved */
 #define SB_TRANSPORT_LIB_CMD_MID 0x12FF
