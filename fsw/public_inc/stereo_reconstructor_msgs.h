@@ -19,9 +19,7 @@
 /*************************************************************************/
 /*** Msg IDs*/
 
-#define STEREO_CMD_MID 0x18A0
-#define STEREO_SEND_HK_MID 0x18A1
-#define STEREO_HK_TLM_MID 0x18A2
+// see moonranger_msgids.h
 
 /*************************************************************************/
 /*** Type definition (generic "no arguments" command)*/

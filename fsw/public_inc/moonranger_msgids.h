@@ -77,6 +77,9 @@
  * @note  Message IDS in this section should fit within
  * 0x0400-0x04FF inclusive.
  */
+#define STEREO_CMD_MID 0x18A0
+#define STEREO_SEND_HK_MID 0x18A1
+#define STEREO_HK_TLM_MID 0x18A2
 
 /**
  * Mapper Message IDs
@@ -157,12 +160,10 @@
 
 #define SCH_HK_TLM_MID                 0x0897 /**< \brief SCH Housekeeping Telemetry Message ID */
 #define SCH_DIAG_TLM_MID               0x0898 /**< \brief SCH Diagnostic Telemetry Message ID */
-/* 
+/*
 #define SCH_TLM_SPARE1                 0x0899
 #define SCH_TLM_SPARE2                 0x089A
 */
-
-
 
 /**
  * MOONRANGER Common Message IDs
