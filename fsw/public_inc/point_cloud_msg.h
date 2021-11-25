@@ -31,7 +31,7 @@ typedef struct point_cloud_msg
 {
     
     CFE_TIME_SysTime_t  timestamp;
-    string  cameraLabel;
+    char*  cameraLabel;
     float32 pointCloud[IMG_WIDTH][IMG_HEIGHT][3];
 
 }MOONRANGER_Pcl_t;
