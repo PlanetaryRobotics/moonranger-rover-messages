@@ -112,8 +112,7 @@
 **       elapsed since the epoch.
 **
 */
-typedef struct
-{
+typedef struct OS_PACK  {
   uint32  Seconds;            /**< \brief Number of seconds since epoch */
   uint32  Subseconds;         /**< \brief Number of subseconds since epoch (LSB = 2^(-32) seconds) */
 } CFE_TIME_SysTime_t;
