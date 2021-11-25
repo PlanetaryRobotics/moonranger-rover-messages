@@ -36,19 +36,16 @@ void messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_conta
 }
 
 
-void messageBuild(void *DataPtr,message_builder_u* msg_container,int data_len_bytes, int32 msgId)
+void messageBuild(message_builder_u* msg_container,int data_len_bytes, int32 msgId)
 {
 
-  // Fill the header
   int header_length = CFE_SB_TLM_HDR_SIZE;
-  CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
-
-  // Fill the data
-
-  // Sanity check what we are about to do
+  // Sanity check data_len_bytes
   if(data_len_bytes+header_length<=sizeof(message_builder_u))
   {
-    memcpy(&msg_container->data_buf_ptr,DataPtr,data_len_bytes);
+    // Fill the header
+    CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
+
   }
   else
     msg_container = NULL;

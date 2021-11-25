@@ -32,7 +32,7 @@ typedef union {
 
 void messageExtract(void *MsgPtr,int num_bytes, message_builder_u* msg_container);
 
-void messageBuild(void *DataPtr,message_builder_u* msg_container,int data_len_bytes, int32 msgId);
+void messageBuild(message_builder_u* msg_container,int data_len_bytes, int32 msgId);
 
 CFE_SB_MsgId_t GetMsgId(void *MsgPtr);
 
