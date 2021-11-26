@@ -175,6 +175,8 @@
 #define MOONRANGER_DRIVE_ARC_MID 0x0D07
 #define MOONRANGER_SUNSEEKER_MID 0x0D08
 #define MOONRANGER_CMD_VEL_MID 0x0D09
+/* Temporary Message ID for End of Sem Demo Please change later*/
+#define MOONRANGER_PC_STATUS_MSG 0x0D0A
 
 /* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation) */
 #define FAUXRANGER_F_L_CAM_INFO_MID 0x0501 //front left camera info
@@ -188,6 +190,11 @@
 #define FAUXRANGER_IMU_MID 0x0509
 #define FAUXRANGER_WHEELS_MID 0x0510
 #define FAUXRANGER_ODOM_MID 0x0511
+
+
+
+
+
 
 #endif /* _moonranger_msgids_h_ */
 
