@@ -23,7 +23,7 @@
 #include <sys/types.h>
 
 
-void messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_container)
+int messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_container)
 {
   // Sanity check what we are about to do
   if(msg_len_bytes<=sizeof(message_builder_u))
@@ -31,24 +31,30 @@ void messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_conta
     memcpy(&msg_container->msg_buf_ptr,MsgPtr,msg_len_bytes);
   }
   else
-    msg_container = NULL;
+    return FAILURE;
 
+  return SUCCESS;
 }
 
 
-void messageBuild(message_builder_u* msg_container,int data_len_bytes, int32 msgId)
+int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
 {
 
   int header_length = CFE_SB_TLM_HDR_SIZE;
-  // Sanity check data_len_bytes
+  // Fill the header
+  CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
+
+  // Fill the data
+  // Sanity check what we are about to do
   if(data_len_bytes+header_length<=sizeof(message_builder_u))
   {
-    // Fill the header
-    CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
-
+    memcpy(&msg_container->data_buf_ptr,dataPtr,data_len_bytes);
   }
   else
-    msg_container = NULL;
+    return FAILURE;
+
+  // Size of built message
+  return header_length+ data_len_bytes;
 
 }
 

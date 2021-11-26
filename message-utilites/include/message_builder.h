@@ -8,6 +8,9 @@
 #include "wheel_velocity_command_msg.h"
 #include "teleop_msg.h"
 
+#define SUCCESS 1
+#define FAILURE 0
+
 /**
  * 
  * A message consists of header + data
@@ -30,9 +33,9 @@ typedef union {
 
 } message_builder_u;
 
-void messageExtract(void *MsgPtr,int num_bytes, message_builder_u* msg_container);
+int messageExtract(void *MsgPtr,int num_bytes, message_builder_u* msg_container);
 
-void messageBuild(message_builder_u* msg_container,int data_len_bytes, int32 msgId);
+int messageBuild(void* dataPtr,message_builder_u* msg_container,int data_len_bytes, int32 msgId);
 
 CFE_SB_MsgId_t GetMsgId(void *MsgPtr);
 

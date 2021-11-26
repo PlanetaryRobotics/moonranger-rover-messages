@@ -52,15 +52,17 @@ void test_message_builder_build(void) {
 
     message_builder_u msg_container;
 
+    // Fill data
+    MOONRANGER_WheelVelocityCmd_t test_message;
+    test_message.duration = 10;
+    test_message.leftFront = 8.0f;
+    test_message.rightFront = 4.0f;
+    test_message.leftBack = 6.0f;
+    test_message.rightBack = 2.0f;
+
     unsigned char test_data[32] = {0x0d,0x05,0xc0,0x00,0x00,0x1d,0x00,0x00,0x00,0x00,0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x00,0x00,0x41,0x00,0x00,0x80,0x40,0x00,0x00,0xc0,0x40,0x00,0x00,0x00,0x40};
 
-    messageBuild(&msg_container,sizeof(msg_container.WheelVelocity_Command.data), 0x0D05);
-
-    msg_container.WheelVelocity_Command.data.duration = 10;
-    msg_container.WheelVelocity_Command.data.leftFront = 8.0f;
-    msg_container.WheelVelocity_Command.data.rightFront = 4.0f;
-    msg_container.WheelVelocity_Command.data.leftBack = 6.0f;
-    msg_container.WheelVelocity_Command.data.rightBack = 2.0f;
+    messageBuild(&test_message,&msg_container,sizeof(test_message), 0x0D05);
 
     unsigned char* ptr = &msg_container.msg_buf_ptr;
 
