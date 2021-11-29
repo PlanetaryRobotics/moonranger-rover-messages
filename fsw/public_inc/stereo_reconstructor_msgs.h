@@ -35,8 +35,13 @@ typedef struct {
 typedef STEREO_NoArgsCmd_t STEREO_Noop_t;
 typedef STEREO_NoArgsCmd_t STEREO_ResetCounters_t;
 typedef STEREO_NoArgsCmd_t STEREO_Process_t;
-/*************************************************************************/ /***
-                                                                               Type definition (STEREO App housekeeping)*/
+
+/*************************************************************************/ 
+/** Type definition (STEREO App housekeeping)*/
+
+#define STEREO_HK_PAYLOAD_LEN               sizeof(STEREO_HkTlm_Payload_t)
+#define STEREO_HK_TLM_LEN                   sizeof(STEREO_HkTlm_t)
+
 typedef struct {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
