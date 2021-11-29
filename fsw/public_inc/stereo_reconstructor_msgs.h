@@ -17,11 +17,6 @@
 #define STEREO_RESET_COUNTERS_CC 1
 
 /*************************************************************************/
-/*** Msg IDs*/
-
-// see moonranger_msgids.h
-
-/*************************************************************************/
 /*** Type definition (generic "no arguments" command)*/
 
 typedef struct {

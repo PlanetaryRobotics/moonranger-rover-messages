@@ -74,9 +74,9 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x09C0-0x09FF inclusive.
  */
-#define STEREO_CMD_MID 0x18A0
-#define STEREO_SEND_HK_MID 0x18A1
-#define STEREO_HK_TLM_MID 0x18A2
+#define STEREO_CMD_MID 0x19C0
+#define STEREO_SEND_HK_MID 0x19C1
+#define STEREO_HK_TLM_MID 0x09C2
 
 /**
  * Planner Message IDs
