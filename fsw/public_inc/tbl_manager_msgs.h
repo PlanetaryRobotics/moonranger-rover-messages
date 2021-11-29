@@ -25,15 +25,6 @@
 #define TBL_MANAGER_RECEIVE_UPDATE_CC 2
 
 /**
- * Table manager Message IDs
- */
-
-#define TBL_MANAGER_CMD_MID 0x18E6
-#define TBL_MANAGER_SEND_HK_MID 0x18E7
-#define TBL_MANAGER_SEND_UPDATE_MID 0x18E8
-#define TBL_MANAGER_HK_TLM_MID 0x08E7
-
-/**
  * Command data structure
  */
 
