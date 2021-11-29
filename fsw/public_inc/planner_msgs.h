@@ -74,6 +74,10 @@ typedef struct
 {
     uint8              CommandErrorCounter;
     uint8              CommandCounter;
+	uint8			   GoalCounter;
+    uint8			   PoseCounter;
+    uint8			   ValidPoseCounter;
+    uint8			   MeshCounter;
     uint8              spare[2];
 } PLANNER_HkTlm_Payload_t;
 
