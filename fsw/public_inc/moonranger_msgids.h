@@ -74,6 +74,9 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x09C0-0x09FF inclusive.
  */
+#define STEREO_CMD_MID 0x19C0
+#define STEREO_SEND_HK_MID 0x19C1
+#define STEREO_HK_TLM_MID 0x09C2
 
 /**
  * Planner Message IDs
@@ -226,6 +229,7 @@
 #define SCH_HK_TLM_MID 0x0897
 /** SCH Diagnostic Telemetry Message ID */
 #define SCH_DIAG_TLM_MID 0x0898
+
 /*
 #define SCH_TLM_SPARE1                 0x0899
 #define SCH_TLM_SPARE2                 0x089A
