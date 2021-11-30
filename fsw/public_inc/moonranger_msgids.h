@@ -210,6 +210,16 @@
 #define HS_HK_TLM_MID 0x08AD
 
 /**
+ * Logger App Message IDs
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded into unit tests. It is safer to leave them as it is.
+ */
+
+#define LOGGER_CMD_MID      0x19F1
+#define LOGGER_SEND_HK_MID  0x19F2
+#define LOGGER_HK_TLM_MID   0x09F3
+
+/**
  * Scheduler Message IDs
  * @note Message IDs are left to the default values because some of the
  * addresses are hard coded into unit tests. It is safer to leave them as it is.
