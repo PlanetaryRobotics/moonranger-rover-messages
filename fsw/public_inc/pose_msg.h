@@ -43,7 +43,7 @@ typedef struct {
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Pose_t pose_data;
+  MOONRANGER_Pose_t data;
 } OS_PACK MOONRANGER_Pose_Tlm_t;
 
 // Message sizes
