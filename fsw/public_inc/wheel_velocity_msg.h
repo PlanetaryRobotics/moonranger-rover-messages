@@ -2,7 +2,7 @@
  *
  * @file      wheel_velocity_msg.h
  *
- * @brief     Type definition for Moonranger body velocity message
+ * @brief     Type definition for Moonranger wheel velocity message
  *
  * @version   1.0
  * @date      19 Oct 2021
@@ -18,8 +18,6 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 
-// TODO move this to common location
-typedef float float32;
 
 //*************************************************************************/
 /**
@@ -27,10 +25,11 @@ typedef float float32;
  */
 typedef struct {
   CFE_TIME_SysTime_t timeStamp;  
-  float32            leftFront;  // rad/s
-  float32            rightFront; // rad/s
-  float32            leftBack;   // rad/s
-  float32            rightBack;  // rad/s
+  float64            duration;   // seconds
+  float64            leftFront;  // rad/s
+  float64            rightFront; // rad/s
+  float64            leftBack;   // rad/s
+  float64            rightBack;  // rad/s
 } MOONRANGER_WheelVelocity_t;
 
 /**
