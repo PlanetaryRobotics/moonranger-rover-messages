@@ -34,7 +34,7 @@ typedef struct {
 } OS_PACK MOONRANGER_WheelVelocityIncoming_Tlm_t;
 
 /* Message sizes */
-#define MOONRANGER_WHEEL_INC_LNGTH sizeof(MOONRANGER_WheelVelocityIncoming_t)
-#define MOONRANGER_WHEEL_INC_TLM_LNGTH sizeof(MOONRANGER_WheelVelocityIncoming_Tlm_t)
+#define MOONRANGER_WHEEL_VEL_INC_LNGTH sizeof(MOONRANGER_WheelVelocityIncoming_t)
+#define MOONRANGER_WHEEL_VEL_INC_TLM_LNGTH sizeof(MOONRANGER_WheelVelocityIncoming_Tlm_t)
 
 #endif   //_wheel_velocity_incoming_msg_h_ header

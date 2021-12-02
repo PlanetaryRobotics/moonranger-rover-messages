@@ -18,18 +18,18 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 
-
+typedef float float32;
 //*************************************************************************/
 /**
  * Type definition (MOONRANGER wheel velocity packet)
  */
 typedef struct {
-  CFE_TIME_SysTime_t timeStamp;  
-  float64            duration;   // seconds
-  float64            leftFront;  // rad/s
-  float64            rightFront; // rad/s
-  float64            leftBack;   // rad/s
-  float64            rightBack;  // rad/s
+    CFE_TIME_SysTime_t timeStamp;
+    float32 duration;     // seconds
+    float32 leftFront;    // rad/s
+    float32 rightFront;   // rad/s
+    float32 leftBack;     // rad/s
+    float32 rightBack;    // rad/s
 } MOONRANGER_WheelVelocity_t;
 
 /**
@@ -37,8 +37,8 @@ typedef struct {
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_WheelVelocity_t data;
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    MOONRANGER_WheelVelocity_t data;
 } OS_PACK MOONRANGER_WheelVelocity_Tlm_t;
 
 // Message sizes
