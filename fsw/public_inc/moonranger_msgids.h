@@ -99,6 +99,8 @@
 #define MAPPER_CMD_MID 0x1A40
 #define MAPPER_SEND_HK_MID 0x1A41
 #define MAPPER_HK_TLM_MID 0x0A41
+/* Telemetry that indicates a new mesh has been saved */
+#define MAPPER_MESH_SAVED_TLM_MID 0x0A42
 
 /**
  * Vehicle Controller Message IDs
