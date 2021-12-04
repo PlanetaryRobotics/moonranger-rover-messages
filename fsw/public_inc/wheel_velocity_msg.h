@@ -42,6 +42,16 @@ typedef struct {
   MOONRANGER_WheelVelocity_t data;
 } OS_PACK MOONRANGER_WheelVelocity_Tlm_t;
 
+/**
+ * Buffer to hold the wheel packet data prior to sending
+ */
+
+typedef union
+{
+	CFE_SB_Msg_t MsgHdr;
+	MOONRANGER_WheelVelocity_Tlm_t WheelTlm;
+} MOONRANGER_WheelBuffer_t;
+
 // Message sizes
 #define MOONRANGER_WHEEL_VEL_LNGTH sizeof(MOONRANGER_WheelVelocity_t)
 #define MOONRANGER_WHEEL_VEL_TLM_LNGTH sizeof(MOONRANGER_WheelVelocity_Tlm_t)
