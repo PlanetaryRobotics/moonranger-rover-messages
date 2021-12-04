@@ -26,7 +26,6 @@
 #define CAMERA_IF_NOOP_CC                   0
 #define CAMERA_IF_RESET_COUNTERS_CC         1
 #define CAMERA_IF_SAVE_IMAGE_CC             2
-#define CAMERA_IF_SEND_STEREO_IMAGE_CC      3
 
 /*************************************************************************/
 /*
@@ -42,7 +41,6 @@ typedef struct
 typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_Noop_t;
 typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_ResetCounters_t;
 typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_SaveImage_t;
-typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_SendStereoImg_t;
 
 /*************************************************************************/
 /*
