@@ -43,6 +43,16 @@ typedef struct {
   MOONRANGER_Goal_t data;
 } OS_PACK MOONRANGER_Goal_Tlm_t;
 
+/**
+ * Buffer to hold goal data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union
+{
+    CFE_SB_Msg_t           MsgHdr;
+    MOONRANGER_Goal_Tlm_t  GoalTlm;
+} MOONRANGER_GoalBuffer_t;
+
 // Message sizes
 #define MOONRANGER_GOAL_LNGTH sizeof(MOONRANGER_Goal_t)
 #define MOONRANGER_GOAL_TLM_LNGTH sizeof(MOONRANGER_Goal_Tlm_t)
