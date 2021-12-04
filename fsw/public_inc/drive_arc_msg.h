@@ -23,7 +23,6 @@
  * Type definition (MOONRANGER drive arc packet)
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
   CFE_TIME_SysTime_t timeStamp; 
   float32            speed;    // m/s
   float32            duration; // seconds
