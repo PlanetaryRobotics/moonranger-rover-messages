@@ -14,3 +14,7 @@ target_include_directories(msg PUBLIC cfe_components)
 target_link_directories(msg PRIVATE cfe_components)
 
 install(TARGETS msg DESTINATION ${PROJECT_SOURCE_DIR}/dist)
+
+add_executable(test_builder.elf test/test_builder.c)
+
+target_link_libraries(test_builder.elf msg)

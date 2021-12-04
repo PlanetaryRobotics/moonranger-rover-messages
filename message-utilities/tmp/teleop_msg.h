@@ -27,7 +27,7 @@ typedef double float64;
  * Type definition (MOONRANGER teleop data)
  */
 
-typedef struct {
+typedef struct OS_PACK {
   float64 rover_x_vel;   // cm /s
   float64 rover_rot_vel; // rads/s
   float64 duration;      // seconds

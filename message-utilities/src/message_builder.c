@@ -15,47 +15,46 @@
 
 #else
 
-#include <byteswap.h>
+//#include <byteswap.h>
 
 #endif
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
 
-/*
- * Function: BuildPoseMsg -
- */
-void BuildPoseMsg(void *MsgPtr, int32 msgId, MOONRANGER_Pose_t *poseData) {
-  MOONRANGER_Pose_Tlm_t *ptr = MsgPtr;
-  CFE_SB_InitMsg(ptr, (CFE_SB_MsgId_t)msgId, MOONRANGER_POSE_TLM_LNGTH, true);
 
-  ptr->pose_data = *poseData;
+int messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_container)
+{
+  // Sanity check what we are about to do
+  if(msg_len_bytes<=sizeof(message_builder_u))
+  {
+    memcpy(&msg_container->msg_buf_ptr,MsgPtr,msg_len_bytes);
+  }
+  else
+    return FAILURE;
 
-  return;
+  return SUCCESS;
 }
 
-/*
- * Function: ExtractPoseMsg -
- */
-void ExtractPoseMsg(void *MsgPtr, MOONRANGER_Pose_t *poseData) {
-    MOONRANGER_Pose_Tlm_t *poseMsg = MsgPtr;
-    *poseData = poseMsg->pose_data;
+
+int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
+{
+
+  int header_length = CFE_SB_TLM_HDR_SIZE;
+  // Fill the header
+  CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
+
+  // Fill the data
+  // Sanity check what we are about to do
+  if(data_len_bytes+header_length<=sizeof(message_builder_u))
+  {
+    memcpy(&msg_container->data_buf_ptr,dataPtr,data_len_bytes);
+  }
+  else
+    return FAILURE;
+
+  // Size of built message
+  return header_length+ data_len_bytes;
+
 }
 
-void BuildWheelVelMsg(void *MsgPtr, int32 msgId, MOONRANGER_WheelVelocityCmd_t *wheelVelData){
-  MOONRANGER_WheelVelocity_Command_t *ptr = MsgPtr;
-  CFE_SB_InitMsg(ptr, (CFE_SB_MsgId_t)msgId, MOONRANGER_WHEEL_VEL_CMD_MSG_LNGTH, true);
-
-  ptr->data = *wheelVelData;
-
-  return;
-}
-
-void BuildTeleopCmd(void *MsgPtr, int32 msgId, MOONRANGER_Teleop_t *data){
-  MOONRANGER_Teleop_Cmd_t *ptr = MsgPtr;
-  CFE_SB_InitMsg(ptr, (CFE_SB_MsgId_t)msgId, MOONRANGER_TELEOP_CMD_LNGTH, true);
-
-  ptr->data = *data;
-
-  return;
-}
