@@ -44,8 +44,15 @@ typedef struct {
     uint8 CommandCounter;
     uint8 spare[2];
 } STEREO_HkTlm_Payload_t;
+
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
     STEREO_HkTlm_Payload_t Payload;
 } OS_PACK STEREO_HkTlm_t;
+
+typedef struct
+{
+  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+} OS_PACK STEREO_SendPclMsgTlm_t;
+
 #endif /* _stereo_reconstructor_msg_h_ */
