@@ -46,6 +46,16 @@ typedef struct {
   MOONRANGER_Pose_t data;
 } OS_PACK MOONRANGER_Pose_Tlm_t;
 
+/**
+ * Buffer to hold pose data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union
+{
+    CFE_SB_Msg_t           MsgHdr;
+    MOONRANGER_Pose_Tlm_t  PoseTlm;
+} MOONRANGER_PoseBuffer_t;
+
 // Message sizes
 #define MOONRANGER_POSE_LNGTH sizeof(MOONRANGER_Pose_t)
 #define MOONRANGER_POSE_TLM_LNGTH sizeof(MOONRANGER_Pose_Tlm_t)
