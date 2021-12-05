@@ -43,7 +43,7 @@ typedef union
 {
 	CFE_SB_Msg_t MsgHdr;
 	MOONRANGER_WheelVelocityCurrent_Tlm_t WheelTlm;
-} MOONRANGER_WheelBuffer_t;
+} MOONRANGER_WheelCurrentBuffer_t;
 
 /* Message sizes */
 #define MOONRANGER_WHEEL_VEL_CUR_LNGTH sizeof(MOONRANGER_WheelVelocityCurrent_t)
