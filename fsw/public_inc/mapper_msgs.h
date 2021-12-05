@@ -53,6 +53,14 @@ typedef struct
 	MAPPER_HkTlm_Payload_t	Payload;
 } OS_PACK MAPPER_HkTlm_t;
 
+/**
+ * Type definition - buffer for telemetry data before sending
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MAPPER_HkTlm_t HkTlm;
+} MAPPER_HkBuffer_t;
+
 #endif /* _mapper_msgs_h_*/
 
 /* EOF */

@@ -44,8 +44,17 @@ typedef struct {
     uint8 CommandCounter;
     uint8 spare[2];
 } STEREO_HkTlm_Payload_t;
+
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
     STEREO_HkTlm_Payload_t Payload;
 } OS_PACK STEREO_HkTlm_t;
+/*
+ * Buffer to hold telemetry data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    STEREO_HkTlm_t HkTlm;
+} STEREO_HkBuffer_t;
 #endif /* _stereo_reconstructor_msg_h_ */
