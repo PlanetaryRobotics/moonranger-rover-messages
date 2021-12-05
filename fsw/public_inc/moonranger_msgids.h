@@ -155,6 +155,7 @@
 #define MOONRANGER_BODY_VELOCITY_MID 0x0C04
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0C05
 #define MOONRANGER_DRIVE_ARC_MID 0x0C06
+#define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C93
 
 #define MOONRANGER_SUNSEEKER_MID 0x0C07
 #define MOONRANGER_CMD_VEL_MID 0x0C08
@@ -210,6 +211,16 @@
 #define HS_WAKEUP_MID 0x18B0
 /** HS Housekeeping Telemetry */
 #define HS_HK_TLM_MID 0x08AD
+
+/**
+ * Logger App Message IDs
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded into unit tests. It is safer to leave them as it is.
+ */
+
+#define LOGGER_CMD_MID      0x19F1
+#define LOGGER_SEND_HK_MID  0x19F2
+#define LOGGER_HK_TLM_MID   0x09F3
 
 /**
  * Scheduler Message IDs

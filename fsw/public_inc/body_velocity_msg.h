@@ -34,8 +34,18 @@ typedef struct {
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_BodyVelocity_t pose_data;
+  MOONRANGER_BodyVelocity_t data;
 } OS_PACK MOONRANGER_BodyVelocity_Tlm_t;
+
+/**
+ * Buffer to hold the body velocity packet data prior to sending
+ */
+typedef union
+{
+	CFE_SB_Msg_t MsgHdr;
+	MOONRANGER_BodyVelocity_Tlm_t BodyTlm;
+} MOONRANGER_BodyBuffer_t;
+
 
 // Message sizes
 #define MOONRANGER_BODYVEL_LNGTH sizeof(MOONRANGER_BodyVelocity_t)

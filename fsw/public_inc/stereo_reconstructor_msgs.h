@@ -15,6 +15,7 @@
 /*** STEREO App command codes*/
 #define STEREO_NOOP_CC 0
 #define STEREO_RESET_COUNTERS_CC 1
+#define STEREO_RECEIVE_CAMERA_CALIB_CC 2
 
 /*************************************************************************/
 /*** Type definition (generic "no arguments" command)*/
@@ -30,6 +31,7 @@ typedef struct {
 typedef STEREO_NoArgsCmd_t STEREO_Noop_t;
 typedef STEREO_NoArgsCmd_t STEREO_ResetCounters_t;
 typedef STEREO_NoArgsCmd_t STEREO_Process_t;
+typedef STEREO_NoArgsCmd_t STEREO_Receive_Camera_Calib_t;
 
 /*************************************************************************/ 
 /** Type definition (STEREO App housekeeping)*/
