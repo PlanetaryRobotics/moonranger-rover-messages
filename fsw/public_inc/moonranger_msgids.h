@@ -21,6 +21,8 @@
 #ifndef _moonranger_msgids_h_
 #define _moonranger_msgids_h_
 
+#include "peripheral_msgids.h"
+
 /**
  * IMU Driver Message IDs
  * @note Command message IDs in this section should fit within
@@ -234,6 +236,20 @@
 #define SCH_TLM_SPARE1                 0x0899
 #define SCH_TLM_SPARE2                 0x089A
 */
+
+
+#define INTERCOM_APP_CMD_MID            	0x1982
+#define INTERCOM_APP_GET_MOTOR_HEALTH       0x1983
+#define INTERCOM_APP_MOTOR_HEALTH_DATA      0x1984
+#define INTERCOM_APP_SET_PID_PARAMS         0x1985
+#define INTERCOM_APP_SET_MOTOR_SPEED        0x1986
+#define INTERCOM_APP_SET_MOTOR_SPEED_ALL    0x1987
+
+#define INTERCOM_APP_SEND_HK_MID        	0x1883
+#define INTERCOM_APP_READ_SERIAL            0x1884
+
+#define INTERCOM_APP_HK_TLM_MID		0x0883
+#define INTERCOM_APP_MOTOR_HEALTH     0x1887
 
 #endif /* _moonranger_msgids_h_ */
 
