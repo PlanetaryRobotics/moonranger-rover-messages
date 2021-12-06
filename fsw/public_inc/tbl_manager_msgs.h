@@ -53,6 +53,14 @@ typedef struct {
     TBL_MANAGER_HkTlm_Payload_t Payload;
 } OS_PACK TBL_MANAGER_HkTlm_t;
 
+/**
+ * Type definition - buffer for telemetry data before sending
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    TBL_MANAGER_HkTlm_t HkTlm;
+} TBL_MANAGER_HkBuffer_t;
+
 #endif /* _tbl_manager_msg_h_ */
 
 /* EOF */
