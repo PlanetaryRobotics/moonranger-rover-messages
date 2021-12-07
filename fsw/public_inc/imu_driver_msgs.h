@@ -29,6 +29,7 @@
 #define IMU_DRIVER_UPDATE_PARAMS_CC      2
 
 /***************************************************
+
 /*
 ** Type definition Housekeeping Telemetry
 */
@@ -45,6 +46,11 @@ typedef struct
     IMU_DRIVER_HkTlm_Payload_t  Payload;
 
 } OS_PACK IMU_DRIVER_HkTlm_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    IMU_DRIVER_HkTlm_t HkTlm;
+} IMU_DRIVER_HkBuffer_t;
 #endif //_imu_driver_msgs_h_ header
 
 /* EOF */
