@@ -18,6 +18,8 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 
+typedef float float32;
+
 /*************************************************************************/
 /**
  * Type definition (MOONRANGER drive arc packet)
