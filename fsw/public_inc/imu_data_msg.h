@@ -50,9 +50,6 @@ typedef struct {
     float32 inclinometer_y;
     float32 inclinometer_z;
 
-    /* Overall covariance in translation and orientation here: [x, y, z, roll, pitch, yaw] */
-    float32 covariance[36];
-
 } MOONRANGER_IMUData_t;
 
 /* Type definition for the IMU Data telemetry */
