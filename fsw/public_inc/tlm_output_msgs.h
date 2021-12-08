@@ -37,6 +37,7 @@ typedef struct
     uint8 spareToAlign[2];
 } TLM_OUTPUT_HkTlm_Payload_t;
 
+
 typedef struct
 {
     uint8                  TlmHeader[CFE_SB_TLM_HDR_SIZE];
@@ -146,6 +147,17 @@ typedef struct
     TLM_OUTPUT_EnableOutput_Payload_t Payload;
 } TLM_OUTPUT_EnableOutput_t;
 
+typedef union
+{
+    CFE_SB_Msg_t   MsgHdr;
+    TLM_OUTPUT_HkTlm_t HkTlm;
+} TLM_OUTPUT_HkTlm_Buffer_t;
+
+typedef union
+{
+    CFE_SB_Msg_t       MsgHdr;
+    TLM_OUTPUT_DataTypes_t DataTypes;
+} TLM_OUTPUT_DataTypes_Buffer_t;
 /******************************************************************************/
 
 #endif /* _tlm_output_msg_h_ */

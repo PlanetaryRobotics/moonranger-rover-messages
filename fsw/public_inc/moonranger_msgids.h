@@ -100,6 +100,8 @@
 #define MAPPER_CMD_MID 0x1A40
 #define MAPPER_SEND_HK_MID 0x1A41
 #define MAPPER_HK_TLM_MID 0x0A41
+/* Telemetry that indicates a new mesh has been saved */
+#define MAPPER_MESH_SAVED_TLM_MID 0x0A42
 
 /**
  * Vehicle Controller Message IDs
@@ -147,16 +149,17 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0C00-0x0C3F inclusive.
  */
-#define MOONRANGER_GOAL_MID 0x0C00
-#define MOONRANGER_POSE_MID 0x0C01
-#define MOONRANGER_POINT_CLOUD_MID 0x0C02
-#define MOONRANGER_MESH_MID 0x0C03
+#define MOONRANGER_GOAL_MID          0x0C00
+#define MOONRANGER_POSE_MID          0x0C01
+#define MOONRANGER_POINT_CLOUD_MID   0x0C02
+#define MOONRANGER_MESH_MID          0x0C03
 #define MOONRANGER_BODY_VELOCITY_MID 0x0C04
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0C05
-#define MOONRANGER_DRIVE_ARC_MID 0x0C06
-
-#define MOONRANGER_SUNSEEKER_MID 0x0C07
-#define MOONRANGER_CMD_VEL_MID 0x0C08
+#define MOONRANGER_DRIVE_ARC_MID     0x0C06
+#define MOONRANGER_SUNSEEKER_MID     0x0C07
+#define MOONRANGER_CMD_VEL_MID       0x0C08
+#define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
+#define MOONRANGER_IMU_DATA_MID      0x0C10
 
 /* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation)
  */
