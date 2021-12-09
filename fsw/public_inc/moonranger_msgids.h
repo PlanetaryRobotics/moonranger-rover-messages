@@ -76,7 +76,8 @@
  */
 #define STEREO_CMD_MID 0x19C0
 #define STEREO_SEND_HK_MID 0x19C1
-#define STEREO_HK_TLM_MID 0x09C2
+#define STEREO_HK_TLM_MID 0x09C1
+#define STEREO_NEW_PCL_TLM_MID 0x09C2
 
 /**
  * Planner Message IDs
