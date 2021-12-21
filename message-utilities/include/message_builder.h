@@ -7,6 +7,7 @@
 #include "pose_msg.h"
 #include "wheel_velocity_command_msg.h"
 #include "teleop_msg.h"
+#include "battery_enable_msg.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -30,6 +31,7 @@ typedef union {
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
+    MOONRANGER_battery_enable_t battery_en;
 
 } message_builder_u;
 

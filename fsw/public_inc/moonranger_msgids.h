@@ -175,6 +175,7 @@
 #define MOONRANGER_DRIVE_ARC_MID 0x0D07
 #define MOONRANGER_SUNSEEKER_MID 0x0D08
 #define MOONRANGER_CMD_VEL_MID 0x0D09
+#define MOONRANGER_BATT_EN_MID 0x0D0B
 /* Temporary Message ID for End of Sem Demo Please change later*/
 #define MOONRANGER_PC_STATUS_MSG 0x0D0A
 
