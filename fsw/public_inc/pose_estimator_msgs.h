@@ -50,6 +50,13 @@ typedef struct
     POSE_HkTlm_Payload_t  Payload;
 
 } OS_PACK POSE_HkTlm_t;
+
+typedef struct 
+{
+	CFE_SB_Msg_t	MsgHdr;
+	POSE_HkTlm_t	HkTlm;
+} POSE_HkBuffer_t;
+
 #endif //_pose_estimator_msgs_h_ header
 
 /* EOF */
