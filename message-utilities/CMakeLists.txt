@@ -11,7 +11,7 @@ file(GLOB SOURCES "src/*.c" "cfe_components/*.c")
 add_library(msg SHARED ${SOURCES})
 
 target_include_directories(msg PUBLIC cfe_components)
-target_link_directories(msg PRIVATE cfe_components)
+# target_link_directories(msg PRIVATE cfe_components)
 
 install(TARGETS msg DESTINATION ${PROJECT_SOURCE_DIR}/dist)
 
