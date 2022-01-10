@@ -8,6 +8,7 @@
 #include "pose_msg.h"
 #include "teleop_msg.h"
 #include "wheel_velocity_command_msg.h"
+#include "heater_control_msp_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -32,6 +33,7 @@ typedef union {
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
+    MOONRANGER_HeaterControl_Tlm_t HeaterControl_Tlm;
 
 } MOONRANGER_Message_u;
 

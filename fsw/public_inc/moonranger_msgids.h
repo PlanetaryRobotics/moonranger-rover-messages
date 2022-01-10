@@ -121,6 +121,7 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
+#define HEATER_CONTROL_MID 0x1AC1
 
 /**
  * GROUND Command Message IDs
