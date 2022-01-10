@@ -53,6 +53,29 @@ typedef struct
 	MAPPER_HkTlm_Payload_t	Payload;
 } OS_PACK MAPPER_HkTlm_t;
 
+/**
+ * Type definition - buffer for telemetry data before sending
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MAPPER_HkTlm_t HkTlm;
+} MAPPER_HkBuffer_t;
+
+/***************************************************
+/*
+** Type definition (MAPPER mesh saved buffer)
+*/
+
+typedef struct
+{
+	uint8 			TlmHeader[CFE_SB_TLM_HDR_SIZE];
+} OS_PACK MAPPER_MeshTlm_t;
+
+typedef union {
+	CFE_SB_Msg_t 		MsgHdr;
+	MAPPER_MeshTlm_t	MeshTlm;
+} MAPPER_MeshBuffer_t;
+
 #endif /* _mapper_msgs_h_*/
 
 /* EOF */
