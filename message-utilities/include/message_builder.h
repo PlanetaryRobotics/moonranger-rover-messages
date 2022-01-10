@@ -31,7 +31,7 @@ typedef union {
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
-    MOONRANGER_battery_enable_t battery_en;
+    BatteryEnable_Cmd_t battery_en;
 
 } message_builder_u;
 

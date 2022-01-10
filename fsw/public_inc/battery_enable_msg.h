@@ -22,22 +22,12 @@
 /**
  * Type definition battery enable command
  */
-typedef struct {
-  CFE_TIME_SysTime_t timeStamp;   // nanoseconds
-  uint8_t            battEnable;  // will look for uint8_max for enabling battery
-} MOONRANGER_battery_enable_t;
-
-/**
- * Type definition (battery enable telemetry)
- * @note includes CFS TLM Header with timestamp
- */
-typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_battery_enable_t batt_en_data;
-} MOONRANGER_battery_enable_t_Tlm_t;
+typedef struct
+{
+  uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+} BatteryEnable_Cmd_t;
 
 // Message sizes
-#define MOONRANGER_BATTERY_ENABLE_LNGTH sizeof(battery_enable_t)
-#define MOONRANGER_BATTERY_ENABLE_TLM_LNGTH sizeof(battery_enable_t_Tlm_t)
+#define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
 
 #endif /* _battery_enable_h_ */
