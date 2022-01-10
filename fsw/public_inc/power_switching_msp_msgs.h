@@ -5,7 +5,7 @@
  * @brief     Type definition for Moonranger power switching message
  * 
  * @version   1.0
- * @date   	  9 Oct 2022
+ * @date   	  10 Jan 2022
  * 
  * @authors 	Ashwin Rao
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
