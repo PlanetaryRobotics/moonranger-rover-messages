@@ -1,116 +1,189 @@
-/**
- * @file moonranger_msgids.h
+/****************************************************************
  *
- * @brief defines all MoonRanger Message IDs
+ * @file      moonranger_msgids.h
  *
+ * @brief     Defines all of MoonRanger's Message IDs.
  *
- * @authors
- * @author Carnegie Mellon University Planetary Robotics Lab
- * @note
- */
-
-
-//TODO - Update IDs to ensure the values are in specified ranges
-//NOTE - need to check if there are specific values for command and telem.
+ *            Default cFS's apps (such as scheduler and cmd_ingest) will have
+ *            0x18xx and 0x08xx addresses for commands and telemetry.
+ *
+ *            Custom Moonranger apps (such as camera_if and mapper) will use
+ *            0x1900 to 0x1FFF addresses for commands and 0x0900 to 0x0FFF
+ *            addresses for telemetry
+ *
+ * @version   1.0
+ * @date      11/24/2021
+ *
+ * @author    Carnegie Mellon University, Planetary Robotics Lab
+ *
+ ****************************************************************/
 
 #ifndef _moonranger_msgids_h_
 #define _moonranger_msgids_h_
 
 /**
- * GROUND Command Message IDs
- * @note Message IDS in this section should fit within
- * 0x0F00-0xFFF inclusive.
- */
-
-/**
  * IMU Driver Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0100-0x01FF inclusive.
+ * @note Command message IDs in this section should fit within
+ * 0x1900-0x193F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0900-0x093F inclusive.
  */
+#define IMU_DRIVER_CMD_MID 0x1900
+#define IMU_DRIVER_SEND_HK_MID 0x1901
+#define IMU_DRIVER_HK_TLM_MID 0x0901
 
 /**
- * Camera Driver Message IDs
- * @note  Command messages IDs in this section must be selected from
- * usused numbers between 0x1200 and 0x127F inclusive
- *
- * @note Telemetry Message IDs in this section must be selected from
- * usused numbers between 0x0200 and 0x027F inclusive
- */
-
-/**
- * Camera Interface Message IDs
- * @note  Command messages IDs in this section must be selected from
- * usused numbers between 0x1280 and 0x12FF inclusive
- *
- * @note Telemetry Message IDs in this section must be selected from
- * usused numbers between 0x0280 and 0x02FF inclusive
+ * Camera Driver & Camera Interface Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1940-0x197F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0940-0x097F inclusive.
  */
 
 /* Command to save the next available image captured from camera to disk */
-#define CAMERA_IF_CMD_MID 0x1886
+#define CAMERA_IF_CMD_MID 0x1940
 /* Telemetry that indicates image has been saved to disk and that image needs to
  * be sent back to earth */
-#define CAMERA_IF_IMG_SAVED_TLM_MID 0x0886
+#define CAMERA_IF_IMG_SAVED_TLM_MID 0x0940
 
 /* Housekeeping */
-#define CAMERA_IF_SEND_HK_MID 0x1887
-#define CAMERA_IF_HK_TLM_MID 0x0887
+#define CAMERA_IF_SEND_HK_MID 0x1941
+#define CAMERA_IF_HK_TLM_MID 0x0941
 
-/* Unused, but need to be reserved */
-#define SB_TRANSPORT_LIB_CMD_MID 0x12FF
+/* Stereo Msg sent */
+#define CAMERA_IF_NEW_STEREO_IMG_TLM_MID 0x0942
+
+/* Unused, but needs to be reserved */
+#define SB_TRANSPORT_LIB_CMD_MID 0x197F
 
 /**
- * State Estimator Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0300-0x03FF inclusive.
+ * Pose Estimator Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1980-0x19BF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0980-0x09BF inclusive.
  */
-#define POSE_SEND_HK_MID 0x18E3
-#define POSE_CMD_MID 0x18E4
-#define POSE_HK_TLM_MID 0x18E5
+#define POSE_CMD_MID 0x1980
+#define POSE_SEND_HK_MID 0x1981
+#define POSE_HK_TLM_MID 0x0981
 
 /**
  * Stereo Reconstructor Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0400-0x04FF inclusive.
+ * @note Command message IDs in this section should fit within
+ * 0x19C0-0x19FF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x09C0-0x09FF inclusive.
  */
-
-/**
- * Mapper Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0500-0x05FF inclusive.
- */
-#define MAPPER_CMD_MID 0x1882
-#define MAPPER_SEND_HK_MID 0x1883
-#define MAPPER_HK_TLM_MID 0x0883
+#define STEREO_CMD_MID 0x19C0
+#define STEREO_SEND_HK_MID 0x19C1
+#define STEREO_HK_TLM_MID 0x09C1
+#define STEREO_NEW_PCL_TLM_MID 0x09C2
 
 /**
  * Planner Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0600-0x06FF inclusive.
+ * @note Command message IDs in this section should fit within
+ * 0x1A00-0x1A3F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0A00-0x0A3F inclusive.
  */
-#define PLANNER_CMD_MID 0x18E0
-#define PLANNER_SEND_HK_MID 0x18E1
-#define PLANNER_HK_TLM_MID 0x08E2
+#define PLANNER_CMD_MID 0x1A00
+#define PLANNER_SEND_HK_MID 0x1A01
+#define PLANNER_HK_TLM_MID 0x0A01
+
+/**
+ * Mapper Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1A40-0x1A7F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0A40-0x0A7F inclusive.
+ */
+#define MAPPER_CMD_MID 0x1A40
+#define MAPPER_SEND_HK_MID 0x1A41
+#define MAPPER_HK_TLM_MID 0x0A41
+/* Telemetry that indicates a new mesh has been saved */
+#define MAPPER_MESH_SAVED_TLM_MID 0x0A42
 
 /**
  * Vehicle Controller Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0700-0x07FF inclusive.
+ * @note Command message IDs in this section should fit within
+ * 0x1A80-0x1ABF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0A80-0x0ABF inclusive.
  */
-#define VEHICLE_SEND_HK_MID 0x1888
-#define VEHICLE_CMD_MID 0x1889
-#define VEHICLE_HK_TLM_MID 0x1890
+#define VEHICLE_CMD_MID 0x1A80
+#define VEHICLE_SEND_HK_MID 0x1A81
+#define VEHICLE_HK_TLM_MID 0x0A81
 
 /**
  * Peripheral Data Manager Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0800-0x08FF inclusive.
+ * @note Command message IDs in this section should fit within
+ * 0x1AC0-0x1AFF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0AC0-0x0AFF inclusive.
  */
 
 /**
- * Telemetry Output Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0900-0x09FF inclusive.
+ * GROUND Command Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1B00-0x1B3F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0B00-0x0B3F inclusive.
+ */
+
+/**
+ * Table Manager Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1B80-0x1BBF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0B80-0x0BBF inclusive.
+ */
+#define TBL_MANAGER_CMD_MID 0x1B80
+#define TBL_MANAGER_SEND_HK_MID 0x1B81
+#define TBL_MANAGER_SEND_UPDATE_MID 0x1B82
+#define TBL_MANAGER_HK_TLM_MID 0x0B81
+
+/**
+ * MOONRANGER Common Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1C00-0x1C3F inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0C00-0x0C3F inclusive.
+ */
+#define MOONRANGER_GOAL_MID          0x0C00
+#define MOONRANGER_POSE_MID          0x0C01
+#define MOONRANGER_POINT_CLOUD_MID   0x0C02
+#define MOONRANGER_MESH_MID          0x0C03
+#define MOONRANGER_BODY_VELOCITY_MID 0x0C04
+#define MOONRANGER_WHEEL_VEL_CMD_MID 0x0C05
+#define MOONRANGER_DRIVE_ARC_MID     0x0C06
+#define MOONRANGER_SUNSEEKER_MID     0x0C07
+#define MOONRANGER_CMD_VEL_MID       0x0C08
+#define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
+#define MOONRANGER_BATT_ENABLE_MID   0x0C0A
+#define MOONRANGER_IMU_DATA_MID      0x0C10
+
+/* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation)
+ */
+#define FAUXRANGER_F_L_CAM_INFO_MID 0x0C21   // front left camera info
+#define FAUXRANGER_F_R_CAM_INFO_MID 0x0C22   // front right camera info
+#define FAUXRANGER_B_L_CAM_INFO_MID 0x0C23   // back left camera info
+#define FAUXRANGER_B_R_CAM_INFO_MID 0x0C24   // back right camera info
+#define FAUXRANGER_F_L_CAM_DATA_MID 0x0C25   // front left camera data
+#define FAUXRANGER_F_R_CAM_DATA_MID 0x0C26   // front right camera data
+#define FAUXRANGER_B_L_CAM_DATA_MID 0x0C27   // back left camera data
+#define FAUXRANGER_B_R_CAM_DATA_MID 0x0C28   // back right camera data
+#define FAUXRANGER_IMU_MID 0x0C29
+#define FAUXRANGER_WHEELS_MID 0x0C2A
+#define FAUXRANGER_ODOM_MID 0x0C2B
+
+/***************************************************************************/
+/************************* Default cFS Apps ********************************/
+/***************************************************************************/
+
+/**
+ * cFS Telemetry Output Message IDs
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded in the repo. It is safer to leave them as it is.
  */
 #define TLM_OUTPUT_CMD_MID 0x1880
 #define TLM_OUTPUT_SEND_HK_MID 0x1881
@@ -120,82 +193,62 @@
 
 /**
  * Command Ingestion Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0A00-0x0AFF inclusive.
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded in the repo. It is safer to leave them as it is.
  */
 #define CMD_INGEST_CMD_MID 0x1884
 #define CMD_INGEST_SEND_HK_MID 0x1885
-
 #define CMD_INGEST_HK_TLM_MID 0x0884
 
 /**
  * Health and Safety Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0B00-0x0BFF inclusive.
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded in the repo. It is safer to leave them as it is.
  */
-#define HS_CMD_MID 0x18AE     /**< \brief Msg ID for cmds to HS               */
-#define HS_SEND_HK_MID 0x18AF /**< \brief Msg ID to request HS housekeeping*/
-#define HS_WAKEUP_MID 0x18B0  /**< \brief Msg ID to wake up HS */
+/** Msg ID for cmds to HS */
+#define HS_CMD_MID 0x18AE
+/** Msg ID to request HS housekeeping */
+#define HS_SEND_HK_MID 0x18AF
+/** Msg ID to wake up HS */
+#define HS_WAKEUP_MID 0x18B0
+/** HS Housekeeping Telemetry */
+#define HS_HK_TLM_MID 0x08AD
 
+/**
+ * Logger App Message IDs
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded into unit tests. It is safer to leave them as it is.
+ */
+
+#define LOGGER_CMD_MID      0x19F1
+#define LOGGER_SEND_HK_MID  0x19F2
+#define LOGGER_HK_TLM_MID   0x09F3
 
 /**
  * Scheduler Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0C00-0x0CFF inclusive.
+ * @note Message IDs are left to the default values because some of the
+ * addresses are hard coded into unit tests. It is safer to leave them as it is.
  */
-#define SCH_CMD_MID                    0x1895 /**< \brief SCH Ground Commands Message ID */
-#define SCH_SEND_HK_MID                0x1896 /**< \brief SCH Send Housekeeping Message ID */
-#define SCH_UNUSED_MID                 0x1897 /**< \brief SCH MDT Unused Message Message ID */
+/** SCH Ground Commands Message ID */
+#define SCH_CMD_MID 0x1895
+/** SCH Send Housekeeping Message ID */
+#define SCH_SEND_HK_MID 0x1896
+/** SCH MDT Unused Message Message ID */
+#define SCH_UNUSED_MID 0x1897
 /*
 #define SCH_SPARE1                     0x1898
 #define SCH_SPARE2                     0x1899
 */
 
-#define SCH_HK_TLM_MID                 0x0897 /**< \brief SCH Housekeeping Telemetry Message ID */
-#define SCH_DIAG_TLM_MID               0x0898 /**< \brief SCH Diagnostic Telemetry Message ID */
-/* 
+/** SCH Housekeeping Telemetry Message ID */
+#define SCH_HK_TLM_MID 0x0897
+/** SCH Diagnostic Telemetry Message ID */
+#define SCH_DIAG_TLM_MID 0x0898
+
+/*
 #define SCH_TLM_SPARE1                 0x0899
 #define SCH_TLM_SPARE2                 0x089A
 */
-
-
-
-/**
- * MOONRANGER Common Message IDs
- * @note  Message IDS in this section should fit within
- * 0x0D00-0x0DFF inclusive.
- */
-#define MOONRANGER_GOAL_MID 0x0D00
-#define MOONRANGER_POSE_MID 0x0D01
-#define MOONRANGER_POINT_CLOUD_MID 0x0D02
-#define MOONRANGER_MESH_MID 0x0D03
-#define MOONRANGER_BODY_VELOCITY_MID 0x0D04
-#define MOONRANGER_WHEEL_VEL_CMD_MID 0x0D05
-#define MOONRANGER_WHEEL_VEL_TLM_MID 0x0D06
-#define MOONRANGER_DRIVE_ARC_MID 0x0D07
-#define MOONRANGER_SUNSEEKER_MID 0x0D08
-#define MOONRANGER_CMD_VEL_MID 0x0D09
-#define MOONRANGER_BATT_EN_MID 0x0D0B
-/* Temporary Message ID for End of Sem Demo Please change later*/
-#define MOONRANGER_PC_STATUS_MSG 0x0D0A
-
-/* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation) */
-#define FAUXRANGER_F_L_CAM_INFO_MID 0x0501 //front left camera info
-#define FAUXRANGER_F_R_CAM_INFO_MID 0x0502 //front right camera info
-#define FAUXRANGER_B_L_CAM_INFO_MID 0x0503 //back left camera info
-#define FAUXRANGER_B_R_CAM_INFO_MID 0x0504 //back right camera info
-#define FAUXRANGER_F_L_CAM_DATA_MID 0x0505 //front left camera data
-#define FAUXRANGER_F_R_CAM_DATA_MID 0x0506 //front right camera data
-#define FAUXRANGER_B_L_CAM_DATA_MID 0x0507 //back left camera data
-#define FAUXRANGER_B_R_CAM_DATA_MID 0x0508 //back right camera data
-#define FAUXRANGER_IMU_MID 0x0509
-#define FAUXRANGER_WHEELS_MID 0x0510
-#define FAUXRANGER_ODOM_MID 0x0511
-
-
-
-
-
 
 #endif /* _moonranger_msgids_h_ */
 

@@ -46,6 +46,16 @@ typedef struct
 
 } OS_PACK VEHICLE_HkTlm_t;
 
+/**
+ * Buffer to hold telemetry data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union
+{
+	CFE_SB_Msg_t	MsgHdr;
+	VEHICLE_HkTlm_t	HkTlm;
+} VEHICLE_HkBuffer_t;
+
 #endif //_vehicle_controller_msgs_h_ header
 
 /* EOF */

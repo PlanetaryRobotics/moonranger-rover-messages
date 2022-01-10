@@ -65,6 +65,23 @@ typedef struct
     uint8                  TlmHeader[CFE_SB_TLM_HDR_SIZE];
     CMD_INGEST_HkTlm_Payload_t Payload;
 } OS_PACK CMD_INGEST_HkTlm_t;
+/*
+ * Declaring the CMD_INGEST_IngestBuffer as a union
+ * ensures it is aligned appropriately to
+ * store a CFE_SB_Msg_t type.
+ */
+typedef union
+{
+    CFE_SB_Msg_t MsgHdr;
+    uint8        bytes[CMD_INGEST_MAX_INGEST];
+    uint16       hwords[2];
+} CMD_INGEST_IngestBuffer_t;
+
+typedef union
+{
+    CFE_SB_Msg_t   MsgHdr;
+    CMD_INGEST_HkTlm_t HkTlm;
+} CMD_INGEST_HkTlm_Buffer_t;
 
 #define CMD_INGEST_HK_TLM_LNGTH sizeof(CMD_INGEST_HkTlm_t)
 

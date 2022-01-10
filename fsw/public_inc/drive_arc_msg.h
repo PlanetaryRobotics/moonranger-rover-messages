@@ -18,6 +18,8 @@
 #include "cfe_sb.h"
 #include "moonranger_common_types.h"
 
+typedef float float32;
+
 /*************************************************************************/
 /**
  * Type definition (MOONRANGER drive arc packet)
@@ -38,6 +40,16 @@ typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
   MOONRANGER_DriveArc_t data;
 } OS_PACK MOONRANGER_DriveArc_Tlm_t;
+
+/**
+ * Buffer to hold drive arc data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union
+{
+    CFE_SB_Msg_t               MsgHdr;
+    MOONRANGER_DriveArc_Tlm_t  DriveArcTlm;
+} MOONRANGER_DriveArcBuffer_t;
 
 // Message sizes
 #define MOONRANGER_DRIVE_ARC_LNGTH sizeof(MOONRANGER_DriveArc_t)

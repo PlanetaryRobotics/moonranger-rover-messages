@@ -20,7 +20,6 @@
 
 #define MOONRANGER_TELEOP_MID 0x0895
 
-
 typedef double float64;
 
 /**
@@ -28,9 +27,9 @@ typedef double float64;
  */
 
 typedef struct OS_PACK {
-  float64 rover_x_vel;   // cm /s
-  float64 rover_rot_vel; // rads/s
-  float64 duration;      // seconds
+    float64 rover_x_vel;     // cm /s
+    float64 rover_rot_vel;   // rads/s
+    float64 duration;        // seconds
 } MOONRANGER_Teleop_t;
 
 /**
@@ -38,8 +37,8 @@ typedef struct OS_PACK {
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Teleop_t data;
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    MOONRANGER_Teleop_t data;
 } OS_PACK MOONRANGER_Teleop_Cmd_t;
 
 // Message sizes
