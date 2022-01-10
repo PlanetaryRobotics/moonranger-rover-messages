@@ -35,12 +35,12 @@ typedef union {
     MOONRANGER_battery_enable_t battery_en;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
 
-} MOONRANGER_Message_u;
+} message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
-                   MOONRANGER_Message_u* msg_container);
+                   message_builder_u* msg_container);
 
-int messageBuild(void* dataPtr, MOONRANGER_Message_u* msg_container,
+int messageBuild(void* dataPtr, message_builder_u* msg_container,
                  int data_len_bytes, int32 msgId);
 
 CFE_SB_MsgId_t GetMsgId(void* MsgPtr);
