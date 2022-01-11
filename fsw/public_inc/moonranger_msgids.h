@@ -122,6 +122,7 @@
  * 0x0AC0-0x0AFF inclusive.
  */
 #define POWER_SWITCH_MID 0x1AC0
+#define RESET_COMPONENT_MID 0x1AC1
 
 /**
  * GROUND Command Message IDs

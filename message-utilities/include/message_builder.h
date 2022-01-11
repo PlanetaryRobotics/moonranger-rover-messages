@@ -34,6 +34,7 @@ typedef union {
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     MOONRANGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
+    MOONRANGER_ResetComponent_Tlm_t ResetComponent_Tlm;
 
 } MOONRANGER_Message_u;
 
