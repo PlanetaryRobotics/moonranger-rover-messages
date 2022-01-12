@@ -45,7 +45,7 @@ typedef struct {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
     uint8 LogMsgCounter;
-    uint8 spare[2];
+    uint8 spare;
 } LOGGER_HkTlm_Payload_t;
 
 typedef struct {
