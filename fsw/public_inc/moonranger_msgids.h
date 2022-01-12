@@ -143,6 +143,18 @@
 #define TBL_MANAGER_HK_TLM_MID 0x0B81
 
 /**
+ * Table Manager Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1BC0-0x1BFF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0BC0-0x0BFF inclusive.
+ */
+
+#define LOGGER_CMD_MID      0x1BC0
+#define LOGGER_SEND_HK_MID  0x1BC1
+#define LOGGER_HK_TLM_MID   0x0BC0
+
+/**
  * MOONRANGER Common Message IDs
  * @note Command message IDs in this section should fit within
  * 0x1C00-0x1C3F inclusive.
@@ -212,16 +224,6 @@
 #define HS_WAKEUP_MID 0x18B0
 /** HS Housekeeping Telemetry */
 #define HS_HK_TLM_MID 0x08AD
-
-/**
- * Logger App Message IDs
- * @note Message IDs are left to the default values because some of the
- * addresses are hard coded into unit tests. It is safer to leave them as it is.
- */
-
-#define LOGGER_CMD_MID      0x19F1
-#define LOGGER_SEND_HK_MID  0x19F2
-#define LOGGER_HK_TLM_MID   0x09F3
 
 /**
  * Scheduler Message IDs
