@@ -23,22 +23,22 @@
 
 /*************************************************************************/
 /*
-** Type definition (MOONRANGER power switching command packet)
+** Type definition (power switching command packet)
 */
 
 typedef struct {
   uint8 power_group;
 
-} MOONRANGER_PowerSwitching_t;
+} PERIPHERAL_MANAGER_PowerSwitching_t;
 
 /**
- * Type definition (MOONRANGER power switching command telemetry)
+ * Type definition (power switching command telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_PowerSwitching_t data;
-} OS_PACK MOONRANGER_PowerSwitching_Tlm_t;
+  PERIPHERAL_MANAGER_PowerSwitching_t data;
+} OS_PACK PERIPHERAL_MANAGER_PowerSwitching_Tlm_t;
 
 /**
  * Buffer to hold power switching data prior to sending
@@ -47,31 +47,31 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_PowerSwitching_Tlm_t  PowerSwitchingTlm;
-} MOONRANGER_PowerSwitchingBuffer_t;
+    PERIPHERAL_MANAGER_PowerSwitching_Tlm_t  PowerSwitchingTlm;
+} PERIPHERAL_MANAGER_PowerSwitchingBuffer_t;
 
 // Message sizes
-#define MOONRANGER_POWER_SWITCH_LNGTH sizeof(MOONRANGER_PowerSwitching_t)
-#define MOONRANGER_POWER_SWITCH_TLM_LNGTH sizeof(MOONRANGER_PowerSwitching_Tlm_t)
+#define PERIPHERAL_MANAGER_POWER_SWITCH_LNGTH sizeof(PERIPHERAL_MANAGER_PowerSwitching_t)
+#define PERIPHERAL_MANAGER_POWER_SWITCH_TLM_LNGTH sizeof(PERIPHERAL_MANAGER_PowerSwitching_Tlm_t)
 
 /*************************************************************************/
 /*
-** Type definition (MOONRANGER reset component command packet)
+** Type definition (reset component command packet)
 */
 
 typedef struct {
   uint8 component_id;
 
-} MOONRANGER_ResetComponent_t;
+} PERIPHERAL_MANAGER_ResetComponent_t;
 
 /**
- * Type definition (MOONRANGER reset component command telemetry)
+ * Type definition (reset component command telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_ResetComponent_t data;
-} OS_PACK MOONRANGER_ResetComponent_Tlm_t;
+  PERIPHERAL_MANAGER_ResetComponent_t data;
+} OS_PACK PERIPHERAL_MANAGER_ResetComponent_Tlm_t;
 
 /**
  * Buffer to hold reset component data prior to sending
@@ -80,31 +80,31 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_ResetComponent_Tlm_t  ResetComponentTlm;
-} MOONRANGER_ResetComponentBuffer_t;
+    PERIPHERAL_MANAGER_ResetComponent_Tlm_t  ResetComponentTlm;
+} PERIPHERAL_MANAGER_ResetComponentBuffer_t;
 
 // Message sizes
-#define MOONRANGER_RESET_COMPONENT_LNGTH sizeof(MOONRANGER_ResetComponent_t)
-#define MOONRANGER_RESET_COMPONENT_TLM_LNGTH sizeof(MOONRANGER_ResetComponent_Tlm_t)
+#define PERIPHERAL_MANAGER_RESET_COMPONENT_LNGTH sizeof(PERIPHERAL_MANAGER_ResetComponent_t)
+#define PERIPHERAL_MANAGER_RESET_COMPONENT_TLM_LNGTH sizeof(PERIPHERAL_MANAGER_ResetComponent_Tlm_t)
 
 /*************************************************************************/
 /*
-** Type definition (MOONRANGER set peripheral comms command packet)
+** Type definition (set peripheral comms command packet)
 */
 
 typedef struct {
   uint8 channel;
 
-} MOONRANGER_SetPeripheralComms_t;
+} PERIPHERAL_MANAGER_SetComms_t;
 
 /**
- * Type definition (MOONRANGER set peripheral comms command telemetry)
+ * Type definition (set peripheral comms command telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_SetPeripheralComms_t data;
-} OS_PACK MOONRANGER_SetPeripheralComms_Tlm_t;
+  PERIPHERAL_MANAGER_SetComms_t data;
+} OS_PACK PERIPHERAL_MANAGER_SetComms_Tlm_t;
 
 /**
  * Buffer to hold set peripheral comms data prior to sending
@@ -113,11 +113,11 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_SetPeripheralComms_Tlm_t  SetPeripheralCommsTlm;
-} MOONRANGER_SetPeripheralCommsBuffer_t;
+    PERIPHERAL_MANAGER_SetComms_Tlm_t  SetPeripheralCommsTlm;
+} PERIPHERAL_MANAGER_SetCommsBuffer_t;
 
 // Message sizes
-#define MOONRANGER_SET_PERIPHERAL_COMMS_LNGTH sizeof(MOONRANGER_SetPeripheralComms_t)
-#define MOONRANGER_SET_PERIPHERAL_COMMS_TLM_LNGTH sizeof(MOONRANGER_SetPeripheralComms_Tlm_t)
+#define PERIPHERAL_MANAGER_SET_COMMS_LNGTH sizeof(PERIPHERAL_MANAGER_SetComms_t)
+#define PERIPHERAL_MANAGER_SET_COMMS_TLM_LNGTH sizeof(PERIPHERAL_MANAGER_SetComms_Tlm_t)
 
 #endif /* _power_switching_msgs_h */

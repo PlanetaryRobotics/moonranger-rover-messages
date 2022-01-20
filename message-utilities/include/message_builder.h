@@ -33,9 +33,9 @@ typedef union {
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
-    MOONRANGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
-    MOONRANGER_ResetComponent_Tlm_t ResetComponent_Tlm;
-    MOONRANGER_SetPeripheralComms_Tlm_t SetPeripheralComms_Tlm;
+    PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
+    PERIPHERAL_MANAGER_ResetComponent_Tlm_t ResetComponent_Tlm;
+    PERIPHERAL_MANAGER_SetComms_Tlm_t SetPeripheralComms_Tlm;
 
 } MOONRANGER_Message_u;
 
