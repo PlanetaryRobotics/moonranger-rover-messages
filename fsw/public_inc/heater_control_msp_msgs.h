@@ -23,7 +23,7 @@
 
 /*************************************************************************/
 /*
-** Type definition (MOONRANGER heater control message packet)
+** Type definition (heater control message packet)
 */
 
 typedef struct {
@@ -31,16 +31,16 @@ typedef struct {
   uint8 mode;
   uint8 setting;
 
-} MOONRANGER_HeaterControl_t;
+} PERIPHERAL_MANAGER_HeaterControl_t;
 
 /**
- * Type definition (MOONRANGER heater control message telemetry)
+ * Type definition (heater control message telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_HeaterControl_t data;
-} OS_PACK MOONRANGER_HeaterControl_Tlm_t;
+  PERIPHERAL_MANAGER_HeaterControl_t data;
+} OS_PACK PERIPHERAL_MANAGER_HeaterControl_Tlm_t;
 
 /**
  * Buffer to hold heater control data prior to sending
@@ -49,12 +49,12 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_HeaterControl_Tlm_t  HeaterControlTlm;
-} MOONRANGER_HeaterControlBuffer_t;
+    PERIPHERAL_MANAGER_HeaterControl_Tlm_t  HeaterControlTlm;
+} PERIPHERAL_MANAGER_HeaterControlBuffer_t;
 
 // Message sizes
-#define MOONRANGER_HEATER_CONTROL_LNGTH sizeof(MOONRANGER_HeaterControl_t)
-#define MOONRANGER_HEATER_CONTROL_TLM_LNGTH sizeof(MOONRANGER_HeaterControl_Tlm_t)
+#define PERIPHERAL_MANAGER_HEATER_CONTROL_LNGTH sizeof(PERIPHERAL_MANAGER_HeaterControl_t)
+#define PERIPHERAL_MANAGER_HEATER_CONTROL_TLM_LNGTH sizeof(PERIPHERAL_MANAGER_HeaterControl_Tlm_t)
 
 
 #endif /* _heater_control_msp_msgs_h */

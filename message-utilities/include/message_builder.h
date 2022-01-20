@@ -33,7 +33,7 @@ typedef union {
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
-    MOONRANGER_HeaterControl_Tlm_t HeaterControl_Tlm;
+    PERIPHERAL_MANAGER_HeaterControl_Tlm_t HeaterControl_Tlm;
 
 } MOONRANGER_Message_u;
 
