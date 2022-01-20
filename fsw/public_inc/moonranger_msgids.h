@@ -123,6 +123,7 @@
  */
 #define POWER_SWITCH_MID 0x1AC0
 #define RESET_COMPONENT_MID 0x1AC1
+#define SET_PERIPHERAL_COMMS_MID 0x1AC2
 
 /**
  * GROUND Command Message IDs
