@@ -121,6 +121,9 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
+#define PERIPHERAL_MANAGER_POWER_SWITCH_MID 0x1AC0
+#define PERIPHERAL_MANAGER_RESET_COMPONENT_MID 0x1AC1
+#define PERIPHERAL_MANAGER_SET_COMMS_MID 0x1AC2
 
 /**
  * GROUND Command Message IDs
