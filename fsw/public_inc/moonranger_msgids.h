@@ -171,6 +171,7 @@
 #define MOONRANGER_SUNSEEKER_MID     0x0C07
 #define MOONRANGER_CMD_VEL_MID       0x0C08
 #define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
+#define MOONRANGER_BATT_ENABLE_MID   0x0C0A
 #define MOONRANGER_IMU_DATA_MID      0x0C10
 
 /* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation)
