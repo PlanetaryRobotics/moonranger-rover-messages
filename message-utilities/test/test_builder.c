@@ -30,7 +30,7 @@ Hex encoding of CCSDS Packed Message (this is the payload of the UDP packet)
 
 void test_message_builder_extract(void) {
     // test stuff
-    MOONRANGER_Message_u msg_container;
+    message_builder_u msg_container;
 
     unsigned char test_data[32] = {
         0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -47,7 +47,7 @@ void test_message_builder_extract(void) {
 }
 
 void test_message_builder_build(void) {
-    MOONRANGER_Message_u msg_container;
+    message_builder_u msg_container;
 
     // Fill data
     MOONRANGER_WheelVelocityCmd_t test_message;
