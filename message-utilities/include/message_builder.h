@@ -10,6 +10,7 @@
 #include "battery_enable_msg.h"
 #include "wheel_velocity_command_msg.h"
 #include "heater_control_msp_msgs.h"
+#include "power_switching_msp_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -36,6 +37,9 @@ typedef union {
     BatteryEnable_Cmd_t battery_en;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     PERIPHERAL_MANAGER_HeaterControl_Tlm_t HeaterControl_Tlm;
+    PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
+    PERIPHERAL_MANAGER_ResetComponent_Tlm_t ResetComponent_Tlm;
+    PERIPHERAL_MANAGER_SetComms_Tlm_t SetPeripheralComms_Tlm;
 
 } message_builder_u;
 
