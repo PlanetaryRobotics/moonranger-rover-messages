@@ -16,16 +16,12 @@
 #define _pose_msg_h_
 
 #include "cfe_sb.h"
-#include "common_types.h"
+#include "moonranger_common_types.h"
 
 /*
 ** Type definition (MOONRANGER pose)
 */
-
-// TODO move this to common location
-typedef double float64;
-
-typedef struct {
+typedef struct OS_PACK {
   CFE_TIME_SysTime_t  timeStamp; 
   float64             x_pos;     // meters
   float64             y_pos;     // meters

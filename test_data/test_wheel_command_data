@@ -1,0 +1,17 @@
+This file contains a CFS message to be used for testing.
+
+The message was built using the backend with the following parameters
+
+Message Name: MOONRANGER_WheelVelocity_Command_t
+Message Len: MOONRANGER_WHEEL_VEL_CMD_MSG_LNGTH (this is a constant that is declared)
+Message ID: 0x0D09 
+Message Data:
+    Duration - 10
+    leftFront - 8.0
+    rightFront - 4.0
+    leftBack - 6.0 
+    rightBack - 2.0
+
+Hex encoding of CCSDS Packed Message (this is the payload of the UDP packet)
+0d05c000001d0000000000000a00000000000041000080400000c04000000040
+

@@ -1,6 +1,6 @@
 /****************************************************************
  *
- * @file      wheel_velocity_msg.h
+ * @file      wheel_velocity_telem_msg.h
  *
  * @brief     Type definition for Moonranger wheel velocity message
  *
@@ -12,8 +12,8 @@
  *
  ****************************************************************/
 
-#ifndef _wheel_velocity_msg_h_
-#define _wheel_velocity_msg_h_
+#ifndef _wheel_velocity_telem_msg_h_
+#define _wheel_velocity_telem_msg_h_
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -21,7 +21,7 @@
 typedef float float32;
 //*************************************************************************/
 /**
- * Type definition (MOONRANGER wheel velocity packet)
+ * Type definition (MOONRANGER wheel velocity telemetry packet)
  */
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
@@ -55,4 +55,4 @@ typedef union
 #define MOONRANGER_WHEEL_VEL_LNGTH sizeof(MOONRANGER_WheelVelocity_t)
 #define MOONRANGER_WHEEL_VEL_TLM_LNGTH sizeof(MOONRANGER_WheelVelocity_Tlm_t)
 
-#endif /* _wheel_velocity_msg_h_ */
+#endif /* _wheel_velocity_telem_msg_h_ */

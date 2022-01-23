@@ -16,7 +16,7 @@
 #define _drive_arc_msg_h_
 
 #include "cfe_sb.h"
-#include "common_types.h"
+#include "moonranger_common_types.h"
 
 typedef float float32;
 
