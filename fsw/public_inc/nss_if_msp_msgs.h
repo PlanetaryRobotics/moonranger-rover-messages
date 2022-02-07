@@ -23,14 +23,14 @@ typedef struct {
 	volatile int8_t command2; // second command byte
 	uint8_t _padding[2];
 
-} set_nss_params_t
+} set_nss_params_t;
 
 typedef struct {
 	volatile int8_t telemetry[89]; // nss telemetry data
 	uint8_t reboot_counter; // median reboot counter from FRAM
 	uint8_t message_counter; // message counter incremented each time this is sent
 	uint8_t _padding;
-} nss_health_msg_t
+} nss_health_msg_t;
 
 
 #endif /* _nss_if_msp_msgs_h */
