@@ -143,7 +143,7 @@
 #define TBL_MANAGER_HK_TLM_MID 0x0B81
 
 /**
- * Table Manager Message IDs
+ * Logger App IDs
  * @note Command message IDs in this section should fit within
  * 0x1BC0-0x1BFF inclusive.
  * @note Telemetry message IDs in this section should fit within
@@ -153,6 +153,20 @@
 #define LOGGER_CMD_MID      0x1BC0
 #define LOGGER_SEND_HK_MID  0x1BC1
 #define LOGGER_HK_TLM_MID   0x0BC0
+
+/**
+ * Logger App IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1BC0-0x1BFF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0BC0-0x0BFF inclusive.
+ */
+
+#define FTP_CMD_MID        0x1BD0
+#define FTP_SEND_HK_MID    0x1BD1
+#define FTP_MID    0x1BD2
+#define FTP_WIFI_MID   0x1BD3 
+#define FTP_HK_TLM_MID     0x0BD0
 
 /**
  * MOONRANGER Common Message IDs
