@@ -18,7 +18,7 @@
 #include "cfe_sb.h"
 #include "moonranger_common_types.h"
 
-#define SYNC_WORD_LEN 4
+#define WORD_LEN 4
 #define SYNC_WORD 0x1ACFFC1D // for use while sending messages
 
 /*************************************************************************/
@@ -30,7 +30,7 @@
  *        use by cFS and another one with sync word for use by MSP?
  * */
 typedef struct {
-    unsigned char sync_word[SYNC_WORD_LEN];  // sync word to indicate start of new frame, 0x1ACFFC1D
+    unsigned char sync_word[WORD_LEN];  // sync word to indicate start of new frame, 0x1ACFFC1D
     unsigned char cmd_code;   // command code in 0xXX format
                               // allowed values: 
                               // 0x01 - request for voltages values of photocells without filtering
@@ -61,10 +61,10 @@ typedef struct {
  * @brief   Type definition for Sun sensor voltage data field
  * */
 typedef struct {
-    unsigned char uSSA1F[4];  // voltages are reported as 4 chunks of 4 bytes each
-    unsigned char uSSA2F[4];  // voltages are reported as 4 chunks of 4 bytes each
-    unsigned char uSSA3F[4];  // voltages are reported as 4 chunks of 4 bytes each
-    unsigned char uSSA4F[4];  // voltages are reported as 4 chunks of 4 bytes each
+    unsigned char uSSA1F[WORD_LEN];  // voltages are reported as 4 chunks of 4 bytes each
+    unsigned char uSSA2F[WORD_LEN];  // voltages are reported as 4 chunks of 4 bytes each
+    unsigned char uSSA3F[WORD_LEN];  // voltages are reported as 4 chunks of 4 bytes each
+    unsigned char uSSA4F[WORD_LEN];  // voltages are reported as 4 chunks of 4 bytes each
     
 } voltage_data_t;
 
@@ -73,8 +73,8 @@ typedef struct {
  * @brief   Type definition for Sun sensor voltage data field
  * */
 typedef struct {
-    unsigned char alpha[4];     // alpha angle
-    unsigned char beta[4];      // beta angle
+    unsigned char alpha[WORD_LEN];     // alpha angle
+    unsigned char beta[WORD_LEN];      // beta angle
     unsigned char err_code;  // error code
                              // 0 No error. Angles were calculated successfully
                              // 11 Albedo: Earth; Sun sensor does not see the Sun, but Earth, and 
@@ -103,7 +103,7 @@ typedef union {
  * 
  * */
 typedef struct {
-    unsigned char sync_word[SYNC_WORD_LEN];  // sync word to indicate start of new frame, 0x1ACFFC1D
+    unsigned char sync_word[WORD_LEN];  // sync word to indicate start of new frame, 0x1ACFFC1D
     unsigned char cmd_code; // command code in 0xXX format
                             // expected values: 
                             // 0x01 - request for voltages values of photocells without filtering
