@@ -1,8 +1,18 @@
-/**
- * @file
+/****************************************************************
  *
- * Define LOGGER App  Messages and info
- */
+ * @file      logger_msg.h
+ *
+ * @brief     Message types for the logger app
+ *
+ * @version     1.0
+ * @date   		2/09/2021
+ *
+ * @authors 	Ethan Muchnik, Simi Asher, Gerry D'Ascoli
+ * @author 		Carnegie Mellon University, Planetary Robotics Lab
+ *
+ * @note		This file only contains app specific command and
+ * 				telemetry message definitions and command codes.
+ ****************************************************************/
 
 #ifndef LOGGER_MSG_H
 #define LOGGER_MSG_H

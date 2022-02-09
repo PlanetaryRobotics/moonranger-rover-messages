@@ -1,8 +1,18 @@
-/**
- * @file
+/****************************************************************
  *
- * Define FTP App  Messages and info
- */
+ * @file      ftp_msg.h
+ *
+ * @brief     Message types for the ftp app
+ *
+ * @version     1.0
+ * @date   		2/09/2021
+ *
+ * @authors 	Ethan Muchnik
+ * @author 		Carnegie Mellon University, Planetary Robotics Lab
+ *
+ * @note		This file only contains app specific command and
+ * 				telemetry message definitions and command codes.
+ ****************************************************************/
 
 #ifndef FTP_MSG_H
 #define FTP_MSG_H
