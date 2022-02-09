@@ -11,6 +11,7 @@
 #include "wheel_velocity_command_msg.h"
 #include "heater_control_msp_msgs.h"
 #include "power_switching_msp_msgs.h"
+#include "sunsensor_msg.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -40,6 +41,8 @@ typedef union {
     PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
     PERIPHERAL_MANAGER_ResetComponent_Tlm_t ResetComponent_Tlm;
     PERIPHERAL_MANAGER_SetComms_Tlm_t SetPeripheralComms_Tlm;
+    SunSensorCmd_Cmd_t sunsensor_cmd;
+    SunSensorTlm_Tlm_t sunsensor_tlm;
 
 } message_builder_u;
 
