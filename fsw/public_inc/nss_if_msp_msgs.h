@@ -22,13 +22,19 @@
 #include "moonranger_common_types.h"
 
 /*************************************************************************/
-/*
-** Type definition (NSS set params command)
-*/
+/**
+ * Type definition (NSS set params command)
+ * 
+ * command1 bit 2~0: Detector Tube #2 Scalar threshold
+ * command1 bit 5~3: Detector Tube #1 Scalar threshold
+ * command2 LSB and command1 bit 7~6: Detector tube (both) HV setting
+ * 
+ * @note bytes indexed from right to left (0: LSB, 7: MSB)
+ */
 typedef struct {
 	volatile int8_t command1; // first command byte
 	volatile int8_t command2; // second command byte
-	uint8_t _padding[2];
+	uint8_t _padding[2]; // empty
 
 } NSS_SetParams_t;
 
@@ -63,7 +69,7 @@ typedef struct {
 	volatile int8_t telemetry[89]; // nss telemetry data
 	uint8_t reboot_counter; // median reboot counter from FRAM
 	uint8_t message_counter; // message counter incremented each time this is sent
-	uint8_t _padding;
+	uint8_t _padding; // empty
 } NSS_HealthMsg_t;
 
 /**
