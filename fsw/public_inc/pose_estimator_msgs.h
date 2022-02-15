@@ -18,10 +18,8 @@
 #define _pose_estimator_msgs_h_
 
 
-#include <cinttypes>
-extern "C" {
-	#include "cfe.h"
-}
+// #include <cinttypes>
+#include "cfe_sb.h"
 
 
 /**
@@ -56,6 +54,10 @@ typedef struct
 	CFE_SB_Msg_t	MsgHdr;
 	POSE_HkTlm_t	HkTlm;
 } POSE_HkBuffer_t;
+
+// Message Size
+#define POSE_HKTLM_PAYLOAD_LNGTH sizeof(POSE_HkTlm_Payload_t)
+#define POSE_HKTLM_LNGTH sizeof(POSE_HkTlm_t)
 
 #endif //_pose_estimator_msgs_h_ header
 
