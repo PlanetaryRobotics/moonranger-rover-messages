@@ -27,8 +27,8 @@
 */
 
 typedef struct {
+  uint8 cmd_state;
   uint8 power_group;
-
 } PERIPHERAL_MANAGER_PowerSwitching_t;
 
 /**
