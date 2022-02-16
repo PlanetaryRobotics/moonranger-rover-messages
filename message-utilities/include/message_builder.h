@@ -36,7 +36,7 @@ typedef union {
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     BatteryEnable_Cmd_t battery_en;
-    MOONRANGER_RoverInit_Tlm_t rover_init_ind;
+    MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     PERIPHERAL_MANAGER_HeaterControl_Tlm_t HeaterControl_Tlm;
     PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
