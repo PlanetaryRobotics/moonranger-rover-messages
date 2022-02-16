@@ -15,7 +15,9 @@
 #ifndef _body_velocity_h_
 #define _body_velocity_h_
 
+extern "C" {
 #include "cfe_sb.h"
+}
 #include "moonranger_common_types.h"
 
 typedef float float32;

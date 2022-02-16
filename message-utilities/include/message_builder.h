@@ -12,6 +12,8 @@
 #include "heater_control_msp_msgs.h"
 #include "power_switching_msp_msgs.h"
 #include "rover_init_msg.h"
+#include "sunsensor_msg.h"
+#include "nss_if_msp_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -42,7 +44,10 @@ typedef union {
     PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
     PERIPHERAL_MANAGER_ResetComponent_Tlm_t ResetComponent_Tlm;
     PERIPHERAL_MANAGER_SetComms_Tlm_t SetPeripheralComms_Tlm;
-
+    SunSensorCmd_Cmd_t sunsensor_cmd;
+    SunSensorTlm_Tlm_t sunsensor_tlm;
+    NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
+    NSS_SetParams_Tlm_t NSSSetParams_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,

@@ -15,7 +15,9 @@
 #ifndef _pose_msg_h_
 #define _pose_msg_h_
 
+extern "C" {
 #include "cfe_sb.h"
+}
 #include "moonranger_common_types.h"
 
 /*

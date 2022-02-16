@@ -1,29 +1,28 @@
 /****************************************************************
  *
- * @file      logger_msg.h
+ * @file      ftp_msg.h
  *
- * @brief     Message types for the logger app
+ * @brief     Message types for the ftp app
  *
  * @version     1.0
  * @date   		2/09/2021
  *
- * @authors 	Ethan Muchnik, Simi Asher, Gerry D'Ascoli
+ * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
  * @note		This file only contains app specific command and
  * 				telemetry message definitions and command codes.
  ****************************************************************/
 
-#ifndef LOGGER_MSG_H
-#define LOGGER_MSG_H
+#ifndef FTP_MSG_H
+#define FTP_MSG_H
 
 /*
-** LOGGER App command codes
+** FTP App command codes
 */
-#define LOGGER_NOOP_CC 0
-#define LOGGER_RESET_COUNTERS_CC 1
-#define LOGGER_G_CC 1
-#define LOGGER_P_CC 1
+#define FTP_NOOP_CC                 0
+#define FTP_RESET_COUNTERS_CC       1
+#define FTP_PROCESS_CC              2
 
 /*************************************************************************/
 
@@ -32,7 +31,7 @@
 */
 typedef struct {
     CFE_SB_CmdHdr_t CmdHeader; /**< \brief Command header */
-} LOGGER_NoArgsCmd_t;
+} FTP_NoArgsCmd_t;
 
 /*
 ** The following commands all share the "NoArgs" format
@@ -42,13 +41,13 @@ typedef struct {
 *prototype
 ** of the handler function
 */
-typedef LOGGER_NoArgsCmd_t LOGGER_NoopCmd_t;
-typedef LOGGER_NoArgsCmd_t LOGGER_ResetCountersCmd_t;
-typedef LOGGER_NoArgsCmd_t LOGGER_ProcessCmd_t;
+typedef FTP_NoArgsCmd_t FTP_NoopCmd_t;
+typedef FTP_NoArgsCmd_t FTP_ResetCountersCmd_t;
+typedef FTP_NoArgsCmd_t FTP_ProcessCmd_t;
 
 /*************************************************************************/
 /*
-** Type definition (LOGGER App housekeeping)
+** Type definition (FTP App housekeeping)
 */
 
 typedef struct {
@@ -56,11 +55,11 @@ typedef struct {
     uint8 CommandCounter;
     uint8 LogMsgCounter;
     uint8 spare;
-} LOGGER_HkTlm_Payload_t;
+} FTP_HkTlm_Payload_t;
 
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE]; /**< \brief Telemetry header */
-    LOGGER_HkTlm_Payload_t Payload;       /**< \brief Telemetry payload */
-} LOGGER_HkTlm_t;
+    FTP_HkTlm_Payload_t Payload;       /**< \brief Telemetry payload */
+} FTP_HkTlm_t;
 
-#endif /* LOGGER_MSG_H */
+#endif /* FTP_MSG_H */
