@@ -17,7 +17,9 @@
 #ifndef _imu_data_msg_h_
 #define _imu_data_msg_h_
 
+extern "C" {
 #include "cfe.h"
+}
 
 typedef float float32;
 /**
