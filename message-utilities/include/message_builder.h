@@ -11,6 +11,7 @@
 #include "wheel_velocity_command_msg.h"
 #include "heater_control_msp_msgs.h"
 #include "power_switching_msp_msgs.h"
+#include "rover_init_msg.h"
 #include "sunsensor_msg.h"
 #include "nss_if_msp_msgs.h"
 
@@ -37,6 +38,7 @@ typedef union {
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     BatteryEnable_Cmd_t battery_en;
+    MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     PERIPHERAL_MANAGER_HeaterControl_Tlm_t HeaterControl_Tlm;
     PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
