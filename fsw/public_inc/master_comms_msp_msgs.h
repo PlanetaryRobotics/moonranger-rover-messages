@@ -91,6 +91,16 @@ typedef struct {
 typedef struct {
     uint8_t src;
     uint8_t dest;
+    uint8_t len;
+    uint8_t msg_id;
+    uint8_t cmd_state; // 0x01 on, 0x02 off
+    uint8_t switch_grp_id; // 1 ~ 20
+    int16_t crc;
+} PowerSwitchCmd_t;
+
+typedef struct {
+    uint8_t src;
+    uint8_t dest;
     uint16_t len;
     uint8_t msg_id;
     uint8_t reserve[3];
