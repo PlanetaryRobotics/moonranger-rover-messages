@@ -11,6 +11,9 @@
 #ifndef _stereo_reconstructor_msgs_h
 #define _stereo_reconstructor_msgs_h
 
+#include "cfe_sb.h"
+#include "moonranger_common_types.h"
+
 /*************************************************************************/
 /*** STEREO App command codes*/
 #define STEREO_NOOP_CC 0
