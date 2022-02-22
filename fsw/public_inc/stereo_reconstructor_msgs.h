@@ -36,6 +36,8 @@ typedef STEREO_NoArgsCmd_t STEREO_ResetCounters_t;
 typedef STEREO_NoArgsCmd_t STEREO_Process_t;
 typedef STEREO_NoArgsCmd_t STEREO_Receive_Camera_Calib_t;
 
+#define STEREO_CMD_TLM_LNGTH sizeof(STEREO_NoArgsCmd_t)
+
 /*************************************************************************/ 
 /** Type definition (STEREO App housekeeping)*/
 
@@ -57,6 +59,8 @@ typedef struct
 {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK STEREO_SendPclMsgTlm_t;
+
+#define STEREO_SEND_PCL_TLM_LNGTH sizeof(STEREO_SendPclMsgTlm_t)
 
 /*
  * Buffer to hold telemetry data prior to sending

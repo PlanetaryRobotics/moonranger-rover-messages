@@ -50,6 +50,12 @@ typedef union {
     NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
     NSS_SetParams_Tlm_t NSSSetParams_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
+    STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
+    STEREO_Noop_t StereoNoOp_Tlm;
+    STEREO_ResetCounters_t StereoResetCounters_Tlm;
+    STEREO_Process_t StereoProcess_Tlm;
+    STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
+
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
