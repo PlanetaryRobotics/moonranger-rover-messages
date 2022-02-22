@@ -31,7 +31,7 @@ typedef struct {
   float32 x_radius;    // meters
   float32 y_radius;    // meters
   float32 orientation; // radians
-  bool blind;          // switch for blind navigation
+  bool blind_nav;      // switch for blind navigation
 
 } MOONRANGER_Goal_t;
 
