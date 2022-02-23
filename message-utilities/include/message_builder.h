@@ -50,6 +50,7 @@ typedef union {
     NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
     NSS_SetParams_Tlm_t NSSSetParams_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
+    STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
     STEREO_Noop_t StereoNoOp_Tlm;
     STEREO_ResetCounters_t StereoResetCounters_Tlm;
     STEREO_Process_t StereoProcess_Tlm;
