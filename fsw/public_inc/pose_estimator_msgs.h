@@ -18,7 +18,13 @@
 #define _pose_estimator_msgs_h_
 
 
-// #include <cinttypes>
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "cfe_sb.h"
+#ifdef __cplusplus
+}
+#endif
 #include "cfe_sb.h"
 
 
