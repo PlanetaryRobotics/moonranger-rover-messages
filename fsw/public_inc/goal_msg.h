@@ -32,7 +32,7 @@ typedef struct {
   float32 y_radius;    // meters
   float32 orientation; // radians
 
-} MOONRANGER_Goal_t;
+} Goal_t;
 
 /**
  * Type definition (MOONRANGER goal telemetry)
@@ -40,8 +40,8 @@ typedef struct {
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Goal_t data;
-} OS_PACK MOONRANGER_Goal_Tlm_t;
+  Goal_t data;
+} OS_PACK Goal_Tlm_t;
 
 /**
  * Buffer to hold goal data prior to sending
@@ -50,11 +50,11 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_Goal_Tlm_t  GoalTlm;
-} MOONRANGER_GoalBuffer_t;
+    Goal_Tlm_t  GoalTlm;
+} GoalBuffer_t;
 
 // Message sizes
-#define MOONRANGER_GOAL_LNGTH sizeof(MOONRANGER_Goal_t)
-#define MOONRANGER_GOAL_TLM_LNGTH sizeof(MOONRANGER_Goal_Tlm_t)
+#define MOONRANGER_GOAL_LNGTH sizeof(Goal_t)
+#define MOONRANGER_GOAL_TLM_LNGTH sizeof(Goal_Tlm_t)
 
 #endif /* _goal_msg_h_ */

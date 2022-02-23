@@ -31,7 +31,7 @@ typedef struct
 {
    uint8    CmdHeader[CFE_SB_CMD_HDR_SIZE];
 
-} MOONRANGER_NoArgsCmd_t;
+} NoArgsCmd_t;
 
 /*
 ** The following commands all share the "NoArgs" format
@@ -40,9 +40,9 @@ typedef struct
 ** allows them to change independently in the future without changing the prototype
 ** of the handler function
 */
-typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_Noop_t;
-typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_ResetCounters_t;
-typedef MOONRANGER_NoArgsCmd_t      MOONRANGER_Process_t;
+typedef NoArgsCmd_t      Noop_t;
+typedef NoArgsCmd_t      ResetCounters_t;
+typedef NoArgsCmd_t      Process_t;
 
 #endif /* _moonranger_msg_h_ */
 

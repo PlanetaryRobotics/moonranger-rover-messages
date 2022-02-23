@@ -30,7 +30,7 @@ typedef struct {
   float32            duration; // seconds
   float32            radius;   // meters
 
-} MOONRANGER_DriveArc_t;
+} DriveArc_t;
 
 /**
  * Type definition (MOONRANGER drive arc telemetry)
@@ -38,8 +38,8 @@ typedef struct {
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_DriveArc_t data;
-} OS_PACK MOONRANGER_DriveArc_Tlm_t;
+  DriveArc_t data;
+} OS_PACK DriveArc_Tlm_t;
 
 /**
  * Buffer to hold drive arc data prior to sending
@@ -48,11 +48,11 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t               MsgHdr;
-    MOONRANGER_DriveArc_Tlm_t  DriveArcTlm;
-} MOONRANGER_DriveArcBuffer_t;
+    DriveArc_Tlm_t  DriveArcTlm;
+} DriveArcBuffer_t;
 
 // Message sizes
-#define MOONRANGER_DRIVE_ARC_LNGTH sizeof(MOONRANGER_DriveArc_t)
-#define MOONRANGER_DRIVE_ARC_TLM_LNGTH sizeof(MOONRANGER_DriveArc_Tlm_t)
+#define MOONRANGER_DRIVE_ARC_LNGTH sizeof(DriveArc_t)
+#define MOONRANGER_DRIVE_ARC_TLM_LNGTH sizeof(DriveArc_Tlm_t)
 
 #endif /* _drive_arc_msg_h_ */

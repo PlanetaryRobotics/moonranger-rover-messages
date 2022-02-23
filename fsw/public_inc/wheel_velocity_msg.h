@@ -30,7 +30,7 @@ typedef struct {
     float32 rightFront;   // rad/s
     float32 leftBack;     // rad/s
     float32 rightBack;    // rad/s
-} MOONRANGER_WheelVelocity_t;
+} WheelVelocity_t;
 
 /**
  * Type definition (MOONRANGER wheel velocity telemetry)
@@ -38,8 +38,8 @@ typedef struct {
  */
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-    MOONRANGER_WheelVelocity_t data;
-} OS_PACK MOONRANGER_WheelVelocity_Tlm_t;
+    WheelVelocity_t data;
+} OS_PACK WheelVelocity_Tlm_t;
 
 /**
  * Buffer to hold the wheel packet data prior to sending
@@ -48,11 +48,11 @@ typedef struct {
 typedef union
 {
 	CFE_SB_Msg_t MsgHdr;
-	MOONRANGER_WheelVelocity_Tlm_t WheelTlm;
-} MOONRANGER_WheelBuffer_t;
+	WheelVelocity_Tlm_t WheelTlm;
+} WheelBuffer_t;
 
 // Message sizes
-#define MOONRANGER_WHEEL_VEL_LNGTH sizeof(MOONRANGER_WheelVelocity_t)
-#define MOONRANGER_WHEEL_VEL_TLM_LNGTH sizeof(MOONRANGER_WheelVelocity_Tlm_t)
+#define MOONRANGER_WHEEL_VEL_LNGTH sizeof(WheelVelocity_t)
+#define MOONRANGER_WHEEL_VEL_TLM_LNGTH sizeof(WheelVelocity_Tlm_t)
 
 #endif /* _wheel_velocity_msg_h_ */

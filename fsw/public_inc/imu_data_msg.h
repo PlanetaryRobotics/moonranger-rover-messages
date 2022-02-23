@@ -50,14 +50,14 @@ typedef struct {
     float32 inclinometer_y;
     float32 inclinometer_z;
 
-} MOONRANGER_IMUData_t;
+} IMUData_t;
 
 /* Type definition for the IMU Data telemetry */
 typedef struct
 {
 	uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-	MOONRANGER_IMUData_t data;
-} OS_PACK MOONRANGER_IMUData_Tlm_t;
+	IMUData_t data;
+} OS_PACK IMUData_Tlm_t;
 
 /**
  * Buffer to hold the IMU Data packet prior to publishing on the software bus
@@ -65,10 +65,10 @@ typedef struct
 typedef union 
 {
 	CFE_SB_Msg_t MsgHdr;
-	MOONRANGER_IMUData_Tlm_t IMUTlm;
-} MOONRANGER_IMUDataBuffer_t;
+	IMUData_Tlm_t IMUTlm;
+} IMUDataBuffer_t;
 
 /* Message sizes */
-#define MOONRANGER_IMU_DATA_LNGTH sizeof(MOONRANGER_IMUData_t)
-#define MOONRANGER_IMU_DATA_TLM_LNGTH sizeof(MOONRANGER_IMUData_Tlm_t)
+#define MOONRANGER_IMU_DATA_LNGTH sizeof(IMUData_t)
+#define MOONRANGER_IMU_DATA_TLM_LNGTH sizeof(IMUData_Tlm_t)
 #endif //_imu_data_msg_h_ header

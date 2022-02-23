@@ -35,7 +35,7 @@ typedef struct {
   float64             z_quat;    // quaternion
   float64             w_quat;    // quaternion
   float64             covariance[36];
-} MOONRANGER_Pose_t;
+} Pose_t;
 
 /**
  * Type definition (MOONRANGER pose telemetry)
@@ -43,8 +43,8 @@ typedef struct {
  */
 typedef struct {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Pose_t data;
-} OS_PACK MOONRANGER_Pose_Tlm_t;
+  Pose_t data;
+} OS_PACK Pose_Tlm_t;
 
 /**
  * Buffer to hold pose data prior to sending
@@ -53,11 +53,11 @@ typedef struct {
 typedef union
 {
     CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_Pose_Tlm_t  PoseTlm;
-} MOONRANGER_PoseBuffer_t;
+    Pose_Tlm_t  PoseTlm;
+} PoseBuffer_t;
 
 // Message sizes
-#define MOONRANGER_POSE_LNGTH sizeof(MOONRANGER_Pose_t)
-#define MOONRANGER_POSE_TLM_LNGTH sizeof(MOONRANGER_Pose_Tlm_t)
+#define MOONRANGER_POSE_LNGTH sizeof(Pose_t)
+#define MOONRANGER_POSE_TLM_LNGTH sizeof(Pose_Tlm_t)
 
 #endif /* _pose_msg_h_ */
