@@ -27,6 +27,7 @@
 #define PLANNER_PROCESS_CC 2
 #define PLANNER_START_CC 3
 #define PLANNER_STOP_CC 4
+#define PLANNER_NAVLOOP_CC 5
 
 /**
  * Type definition (generic "no arguments" command)
