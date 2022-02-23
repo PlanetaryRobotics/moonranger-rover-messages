@@ -58,6 +58,13 @@ typedef struct {
 typedef struct
 {
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+} OS_PACK STEREO_SendHkTlm_t;
+
+#define STEREO_SEND_HK_TLM_LNGTH sizeof(STEREO_SendHkTlm_t)
+
+typedef struct
+{
+  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK STEREO_SendPclMsgTlm_t;
 
 #define STEREO_SEND_PCL_TLM_LNGTH sizeof(STEREO_SendPclMsgTlm_t)
