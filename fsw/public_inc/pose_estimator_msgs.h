@@ -25,7 +25,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-#include "cfe_sb.h"
 
 
 /**
