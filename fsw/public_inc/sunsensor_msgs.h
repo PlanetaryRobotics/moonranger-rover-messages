@@ -47,9 +47,9 @@ typedef struct {
     sun_sensor_filtered_volts_t filtered_volts;
     sun_sensor_unfiltered_volts_t unfiltered_volts;
     msp_health_payload_t msp_health;
-} sunsensor_data_payload_t;
+} sunsensor_telem_payload_t;
 
-#define SET_SUNSENSOR_DATA_PAYLOAD_LEN sizeof(set_sunsensor_data_payload_t);
+#define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t);
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -65,7 +65,7 @@ typedef struct {
 // sun sensor telem message
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    sunsensor_data_payload_t payload;
+    sunsensor_telem_payload_t payload;
     uint16 checksum;
 } sunsensor_telem_msg_t;
 

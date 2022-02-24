@@ -20,6 +20,9 @@
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
 
+#define NUM_HEATERS 14
+#define NUM_THERMISTORS 13
+
 typedef enum
 {
     HEATER_ON = 0b00000011,
@@ -62,10 +65,10 @@ typedef struct {
 
 // heater telemetry payload
 typedef struct {
-    heater_state_t heater_state[14];   // array of heater states.
-                                       // heare ID is index +1
-    uint16 temperature[13];            // array of temperature measurements.
-                                       // ID is index +1
+    heater_state_t heater_state[NUM_HEATERS];   // array of heater states.
+                                                // heare ID is index +1
+    uint16 temperature[NUM_THERMISTORS];   // array of temperature measurements.
+                                           // ID is index +1
     msp_health_payload_t msp_health;
 } heater_telem_payload_t;
 
@@ -91,7 +94,7 @@ typedef struct {
 
 #define SET_HEATER_STATE_MSG_LEN sizeof(set_heater_state_msg_t);
 
-// power switch telemetry message
+// heater telemetry message
 typedef struct {
     main_bus_hdr_t msg_hdr;
     heater_telem_payload_t payload;
@@ -114,7 +117,7 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    CFS_Set_Heater_State_Cmd_t nss_set_params_cmd;
+    CFS_Set_Heater_State_Cmd_t set_heater_state_cmd;
 } CFS_Set_Heater_State_Buffer_t;
 
 // Message sizes

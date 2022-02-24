@@ -37,18 +37,15 @@ typedef struct {
 typedef struct {
     motor_health_payload_t motor_health_data;
     nss_telem_payload_t nss_telem;
-    sunsensor_data_payload_t sunsensor_data;
+    sunsensor_telem_payload_t sunsensor_data;
     power_switch_telem_payload_t power_switch_telem;
     heater_telem_payload_t heater_telem;
-    uint16 reboot_ctr;         // counter of number of times master MSP has
-                               // rebooted since last software load
-    uint16 inv_uart_msg_ctr;   // count of invalid UART messages received by
-                               // master MSP
-    uint16 inv_spi_msg_ctr;    // count of invalid messages SPI received by
-                               // master MSP
-} peripheral_data_payload_t;
+    msp_health_payload_t msp_health;
+    uint16 inv_spi_msg_ctr;   // count of invalid messages SPI received by
+                              // master MSP
+} sensor_telem_payload_t;
 
-#define PERIPHERAL_DATA_PAYLOAD_LEN sizeof(peripheral_data_payload_t);
+#define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t);
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -56,25 +53,26 @@ typedef struct {
 typedef struct {
     periph_main_link_hdr_t msg_hdr;
     uint16 checksum;
-} get_peripheral_data_msg_t;
+} get_peripheral_sensor_telem_msg_t;
 
-#define GET_PERIPHERAL_DATA_MSG_LEN sizeof(get_peripheral_data_msg_t);
+#define GET_PERIPHERAL_SENSOR_TELEM_MSG_LEN \
+    sizeof(get_peripheral_sensor_telem_msg_t);
 
 typedef struct {
     periph_main_link_hdr_t msg_hdr;
-    peripheral_data_payload_t payload;
+    sensor_telem_payload_t payload;
     uint16 checksum;
-} peripheral_data_msg_t;
+} peripheral_sensor_telem_msg_t;
 
-#define PERIPHERAL_DATA_MSG_LEN sizeof(peripheral_data_msg_t);
+#define SENSOR_PERIPHERAL_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t);
 
 /**************************************************************************
  * CFS SB MESSAGE DEFINITIONS
  **************************************************************************/
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-    peripheral_data_payload_t payload;
-} OS_PACK CFS_Peripheral_Tlm_t;
+    sensor_telem_payload_t payload;
+} OS_PACK CFS_Peripheral_Sensor_Tlm_t;
 
 /**
  * Buffer to hold data prior to sending
@@ -82,9 +80,9 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    CFS_Peripheral_Tlm_t peripheral_telem;
-} CFS_Peripheral_Tlm_Buffer_t;
+    CFS_Peripheral_Sensor_Tlm_t peripheral_telem;
+} CFS_Peripheral_Sensor_Tlm_Buffer_t;
 
 // Message sizes
-#define CFS_PERIPHERAL_TELEM_LEN sizeof(CFS_Peripheral_Tlm_t);
+#define CFS_SENSOR_TELEM_LEN sizeof(CFS_Peripheral_Sensor_Tlm_t);
 #endif /* master_comms_msgs_h */

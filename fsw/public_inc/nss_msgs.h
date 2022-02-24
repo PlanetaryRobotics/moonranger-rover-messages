@@ -1,6 +1,6 @@
 /****************************************************************
  *
- * @file      nss_if_msp_msgs.h
+ * @file      nss_msgs.h
  *
  * @brief     all NSS related messages
  *

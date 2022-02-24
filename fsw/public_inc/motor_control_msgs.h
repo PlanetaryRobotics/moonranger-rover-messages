@@ -172,7 +172,7 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     CFS_Set_Wheel_Speed_Cmd_t set_motor_speed_cmd;
-} Set_Motor_Speed_Buffer_t;
+} Set_Wheel_Speed_Buffer_t;
 
 #define CFS_SET_WHEEL_SPEED_CMD_LEN sizeof(CFS_Set_Wheel_Speed_Cmd_t);
 
@@ -206,7 +206,7 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     CFS_Set_Motor_PID_Cmd_t set_motor_PID_cmd;
-} Set_Motor_Speed_Buffer_All_t;
+} Set_Motor_PID_Buffer_All_t;
 
 // Message sizes
 #define CFS_SET_MOTOR_PID_CMD_LEN sizeof(CFS_Set_Motor_PID_Cmd_t);

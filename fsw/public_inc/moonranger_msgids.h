@@ -126,10 +126,10 @@
 #define PC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
 #define PC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
 #define PC_NSS_SET_PARAMS_CMD_MID 0x1AC4          // set the NSS parameters
-#define PC_SET_SWITCH_STATE_CMD_MID 0x1AC5   // set switch state on power msp
-#define PC_RESET_SWITCH_CMD_MID 0x1AC6       // reset switch on power msp
-#define PC_SET_HEATER_STATE_CMD_MID 0x1AC7   // set heater state
-#define PC_PERIPHERAL_TLM_MID 0x0AC0         // receive all peripheral data
+#define PC_SET_SWITCH_STATE_CMD_MID 0x1AC5    // set switch state on power msp
+#define PC_RESET_SWITCH_CMD_MID 0x1AC6        // reset switch on power msp
+#define PC_SET_HEATER_STATE_CMD_MID 0x1AC7    // set heater state
+#define PC_PERIPHERAL_SENSOR_TLM_MID 0x0AC0   // receive all peripheral data
 
 /**
  * GROUND Command Message IDs

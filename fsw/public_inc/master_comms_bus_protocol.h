@@ -1,6 +1,6 @@
 /****************************************************************
  *
- * @file        master_comms_bus_protocol.h.h
+ * @file        master_comms_bus_protocol.h
  *
  * @brief       definitions for master comms bus protocol
  *
@@ -18,6 +18,7 @@
 
 #ifndef _master_comms_bus_protocol_h
 #define _master_comms_bus_protocol_h
+#include "common_types.h"
 
 // note: IDs selected to have minimum 2 bits difference for reliability
 typedef enum
@@ -28,7 +29,7 @@ typedef enum
     E7 = 0b00001001,   // E7 - Sun Sensor Interface Address
     E8 = 0b00001010,   // E8 - Power Switching Address
     E9 = 0b00001100    // E9 - Heater Controller Address
-} uart_address_t;
+} msp_address_t;
 
 typedef enum
 {
@@ -54,10 +55,9 @@ typedef enum
     PERIPHERAL_DATA_MID = 0b00110000
 } master_comms_bus_msg_id_t;
 
-#include "common_types.h"
 typedef struct {
-    uart_address_t src;                 // source address
-    uart_address_t dest;                // destination address
+    msp_address_t src;                  // source address
+    msp_address_t dest;                 // destination address
     uint16 msg_seq;                     // message sequence numebr
     master_comms_bus_msg_id_t msg_id;   // message id
     uint8 len;                          // payload lenght
