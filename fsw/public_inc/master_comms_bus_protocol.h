@@ -61,6 +61,12 @@ typedef struct {
     uint16 msg_seq;                     // message sequence numebr
     master_comms_bus_msg_id_t msg_id;   // message id
     uint8 len;                          // payload lenght
-} main_bus_hdr_t
+} main_bus_hdr_t;
+
+typedef struct {
+    int16 reboot_counter;        // the number of times MSP has rebooted
+    int16 invalid_msg_counter;   // the number of times an MSP has received
+                                 // invalid msgs
+} msp_health_payload_t;
 
 #endif /* _master_comms_bus_protocol_h */

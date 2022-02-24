@@ -74,7 +74,7 @@ typedef struct {
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
     peripheral_data_payload_t payload;
-} OS_PACK CFS_Peripheral_Telem_t;
+} OS_PACK CFS_Peripheral_Tlm_t;
 
 /**
  * Buffer to hold data prior to sending
@@ -82,9 +82,9 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    CFS_Peripheral_Telem_t peripheral_telem;
-} CFS_Peripheral_Telem_Buffer_t;
+    CFS_Peripheral_Tlm_t peripheral_telem;
+} CFS_Peripheral_Tlm_Buffer_t;
 
 // Message sizes
-#define CFS_PERIPHERAL_TELEM_LEN sizeof(CFS_Peripheral_Telem_t);
+#define CFS_PERIPHERAL_TELEM_LEN sizeof(CFS_Peripheral_Tlm_t);
 #endif /* master_comms_msgs_h */

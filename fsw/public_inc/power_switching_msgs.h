@@ -78,10 +78,7 @@ typedef struct {
                                          // Switching group IDis index +1
     uint16 switch_current[20];   // array of current measurements. Current group
                                  // ID is index +1
-    uint16 reboot_ctr;   // counter of number of times power switching MSP has
-                         // rebooted since last software load
-    uint16 inv_msg_ctr;   // count of invalid messages received by power
-                          // switching MSP
+    msp_health_payload_t msp_health;
 } power_switch_telem_payload_t;
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t);

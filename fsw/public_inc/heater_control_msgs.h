@@ -62,14 +62,11 @@ typedef struct {
 
 // heater telemetry payload
 typedef struct {
-    heater_state_t heater_state_t[14];   // array of heater states.
-                                         // heare ID is index +1
-    uint16 temperature[13];              // array of temperature measurements.
-                                         // ID is index +1
-    uint16 reboot_ctr;   // counter of number of times heater controller MSP has
-                         // rebooted since last software load
-    uint16 inv_msg_ctr;   // count of invalid messages received by heater
-                          // controller MSP
+    heater_state_t heater_state[14];   // array of heater states.
+                                       // heare ID is index +1
+    uint16 temperature[13];            // array of temperature measurements.
+                                       // ID is index +1
+    msp_health_payload_t msp_health;
 } heater_telem_payload_t;
 
 #define HEATER_TELEM_LEN sizeof(heater_telem_payload_t);
@@ -123,4 +120,4 @@ typedef union {
 // Message sizes
 #define CFS_SET_SWITCH_STATE_CMD_LEN sizeof(CFS_Set_Heater_State_Cmd_t);
 
-#endif /* _power_switching_msgs_h */
+#endif /* _heater_control_msgs_h */

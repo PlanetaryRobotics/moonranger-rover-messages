@@ -46,9 +46,7 @@ typedef struct {
     sun_sensor_angles_t angles;
     sun_sensor_filtered_volts_t filtered_volts;
     sun_sensor_unfiltered_volts_t unfiltered_volts;
-    uint16 reboot_ctr;   // counter of number of times NSS IF has rebooted since
-                         // last software load
-    uint16 inv_msg_ctr;   // count of invalid messages received by NSS IF
+    msp_health_payload_t msp_health;
 } sunsensor_data_payload_t;
 
 #define SET_SUNSENSOR_DATA_PAYLOAD_LEN sizeof(set_sunsensor_data_payload_t);

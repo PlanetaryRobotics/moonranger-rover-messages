@@ -47,13 +47,12 @@ typedef struct {
 } pid_gains_t;
 
 typedef struct {
-    volatile int32_t motor_hall_sensor;        // the ticks from hall sensor
-    volatile int32_t motor_desired_velocity;   // The commanded velocity
-    volatile int32_t motor_actual_velocity;    // The actual velocity
-    volatile int32_t motor_pwm;                // The motor pwm duty cycle
-    volatile int32_t motor_current;            // The current drawn by the motor
+    volatile int32 motor_hall_sensor;          // the ticks from hall sensor
+    volatile int16 motor_commanded_velocity;   // The commanded velocity
+    volatile int16 motor_actual_velocity;      // The actual velocity
+    volatile int8 motor_pwm;                   // The motor pwm duty cycle
+    volatile int16 motor_current;              // The current drawn by the motor
     volatile pid_gains_t motor_gains;          // The current motor PID gains
-    volatile brake_state_t motor_brake;        // The brake status of the motor
 } motor_health_t;
 
 /**************************************************************************
@@ -63,21 +62,20 @@ typedef struct {
 // set motor speed command
 typedef struct {
     motor_id_t motor_id;
-    int32 motor_speed;
-} set_motor_speed_payload_t;
+    int16 motor_speed;
+} set_wheel_speed_payload_t;
 
 #define SET_MOTOR_SPEED_PAYLOAD_LEN sizeof(set_motor_speed_payload_t);
 
 // set motor speed all command
 typedef struct {
-    int32 motor1_speed;
-    int32 motor2_speed;
-    int32 motor3_speed;
-    int32 motor4_speed;
-    int32 motor5_speed;
-} set_motor_speed_all_payload_t;
+    int16 motor1_speed;
+    int16 motor2_speed;
+    int16 motor3_speed;
+    int16 motor4_speed;
+} set_wheel_speed_all_payload_t;
 
-#define SET_MOTOR_S #PEED_ALL_PAYLOAD_LEN sizeof(set_motor_speed_all_payload_t);
+#define SET_MOTOR_SPEED_ALL_PAYLOAD_LEN sizeof(set_motor_speed_all_payload_t);
 
 // set motor PID command
 typedef struct {
@@ -93,7 +91,7 @@ typedef struct {
 } set_solar_panel_state_payload_t;
 
 #define SET_SOLAR_PANEL_STATE_PAYLOAD_LEN \
-    sizeof(set_solar_panel_state_paload_t);
+    sizeof(set_solar_panel_state_payload_t);
 
 // motor health message
 typedef struct {
@@ -102,10 +100,7 @@ typedef struct {
     motor_health_t motor_3;
     motor_health_t motor_4;
     motor_health_t motor_5;
-    uint16 reboot_ctr;    // counter of number of times motor controller has
-                          // rebooted since last software load
-    uint16 inv_msg_ctr;   // count of invalid messages received by motor
-                          // controller MSP
+    msp_health_payload_t msp_health;
 } motor_health_payload_t;
 
 #define MOTOR_HEALTH_PAYLOAD_LEN sizeof(motor_health_payload_t);
@@ -116,14 +111,14 @@ typedef struct {
 // get motor health command
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16 int16 checksum;
+    uint16 checksum;
 } get_motor_health_msg_t;
 
 #define GET_MOTOR_HEALTH_MSG_LEN sizeof(get_motor_health_msg_t);
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    set_motor_speed_payload_t payload;
+    set_wheel_speed_payload_t payload;
     uint16 checksum;
 } set_motor_speed_msg_t;
 
@@ -131,7 +126,7 @@ typedef struct {
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    set_motor_speed_all_payload_t payload;
+    set_wheel_speed_all_payload_t payload;
     uint16 checksum;
 } set_motor_speed_all_msg_t;
 
@@ -167,8 +162,8 @@ typedef struct {
 // cFS command structure
 typedef struct {
     uint8 CmdHeader[CFE_SB_TLM_HDR_SIZE];
-    set_motor_speed_payload_t payload;
-} OS_PACK CFS_Set_Motor_Speed_Cmd_t;
+    set_wheel_speed_payload_t payload;
+} OS_PACK CFS_Set_Wheel_Speed_Cmd_t;
 
 /**
  * Buffer to hold data prior to sending
@@ -176,16 +171,16 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    CFS_Set_Motor_Speed_Cmd_t set_motor_speed_cmd;
+    CFS_Set_Wheel_Speed_Cmd_t set_motor_speed_cmd;
 } Set_Motor_Speed_Buffer_t;
 
-#define CFS_SET_MOTOR_SPEED_CMD_LEN sizeof(CFS_Set_Motor_Speed_Cmd_t);
+#define CFS_SET_WHEEL_SPEED_CMD_LEN sizeof(CFS_Set_Wheel_Speed_Cmd_t);
 
 // cFS command structure
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_motor_speed_all_payload_t payload;
-} OS_PACK CFS_Set_Motor_Speed_All_Cmd_t;
+    set_wheel_speed_all_payload_t payload;
+} OS_PACK CFS_Set_Wheel_Speed_All_Cmd_t;
 
 /**
  * Buffer to hold data prior to sending
@@ -193,10 +188,10 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    CFS_Set_Motor_Speed_All_Cmd_t set_motor_speed_all_cmd;
-} Set_Motor_Speed_Buffer_t;
+    CFS_Set_Wheel_Speed_All_Cmd_t set_motor_speed_all_cmd;
+} Set_Wheel_Speed_All_Buffer_t;
 
-#define CFS_SET_MOTOR_SPEED_ALL_CMD_LEN sizeof(CFS_Set_Motor_Speed_All_Cmd_t);
+#define CFS_SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(CFS_Set_Wheel_Speed_All_Cmd_t);
 
 // cFS command structure
 typedef struct {
