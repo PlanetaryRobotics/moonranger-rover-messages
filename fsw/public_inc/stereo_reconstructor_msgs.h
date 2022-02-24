@@ -55,6 +55,11 @@ typedef struct
   uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK STEREO_SendPclMsgTlm_t;
 
+typedef struct
+{
+  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+} OS_PACK STEREO_SendDispMsgTlm_t;
+
 /*
  * Buffer to hold telemetry data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
