@@ -2,8 +2,8 @@
  *
  * @file     heater_controller_msgs.h
  *
- * @brief     definitions for all messages related to heater controller master
- *comms bus
+ * @brief     definitions for all master comms bus messages for heater
+ *controller
  *
  * @date   		20 Feb 2022
  *
@@ -16,7 +16,6 @@
 #ifndef _heater_controller_msgs_h
 #define _heater_controller_msgs_h
 
-#include "cfe_sb.h"
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
 
@@ -102,25 +101,5 @@ typedef struct {
 } heater_telem_msg_t;
 
 #define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t);
-
-/**************************************************************************
- * CFS SB MESSAGE DEFINITIONS
- **************************************************************************/
-typedef struct {
-    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_heater_state_payload_t payload;
-} OS_PACK CFS_Set_Heater_State_Cmd_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    CFS_Set_Heater_State_Cmd_t set_heater_state_cmd;
-} CFS_Set_Heater_State_Buffer_t;
-
-// Message sizes
-#define CFS_SET_SWITCH_STATE_CMD_LEN sizeof(CFS_Set_Heater_State_Cmd_t);
 
 #endif /* _heater_control_msgs_h */

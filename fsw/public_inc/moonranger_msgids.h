@@ -121,16 +121,20 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
-#define PC_SET_WHEEL_SPEED_CMD_MID 0x1AC0         // single wheel speed
-#define PC_SET_WHEEL_SPEED_ALL_CMD_MID 0x1AC1     // set all wheel speeds
-#define PC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
-#define PC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
-#define PC_NSS_SET_PARAMS_CMD_MID 0x1AC4          // set the NSS parameters
-#define PC_SET_SWITCH_STATE_CMD_MID 0x1AC5    // set switch state on power msp
-#define PC_RESET_SWITCH_CMD_MID 0x1AC6        // reset switch on power msp
-#define PC_SET_HEATER_STATE_CMD_MID 0x1AC7    // set heater state
-#define PC_PERIPHERAL_SENSOR_TLM_MID 0x0AC0   // receive all peripheral data
-
+#define OBC_SET_WHEEL_SPEED_CMD_MID 0x1AC0         // single wheel speed
+#define OBC_SET_WHEEL_SPEED_ALL_CMD_MID 0x1AC1     // set all wheel speeds
+#define OBC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
+#define OBC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
+#define OBC_NSS_SET_PARAMS_CMD_MID 0x1AC4          // set the NSS parameters
+#define OBC_SET_SWITCH_STATE_CMD_MID 0x1AC5   // set switch state on power msp
+#define OBC_RESET_SWITCH_CMD_MID 0x1AC6       // reset switch on power msp
+#define OBC_SET_HEATER_STATE_CMD_MID 0x1AC7   // set heater state
+#define OBC_WIFI_ENABLE_CMD_MID 0x1AC8        // enable wifi
+#define OBC_BATT_ENABLE_CMD_MID 0x1AC9        // enable battery
+#define OBC_PERIPHERAL_SENSOR_TLM_MID \
+    0x0AC0   // receive all peripheral sensor data
+#define OBC_HEALTH_TLM_MID \
+    0x0AC1   // receive all peripheral computer health data
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within
@@ -194,7 +198,6 @@
 #define MOONRANGER_SUNSENSOR_MID 0x0C07
 #define MOONRANGER_CMD_VEL_MID 0x0C08
 #define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
-#define MOONRANGER_BATT_ENABLE_MID 0x0C0A
 #define MOONRANGER_ROVER_INIT_MID 0x0C0B
 #define MOONRANGER_IMU_DATA_MID 0x0C10
 

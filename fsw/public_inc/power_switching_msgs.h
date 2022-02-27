@@ -121,41 +121,4 @@ typedef struct {
 
 #define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t);
 
-/**************************************************************************
- * CFS SB MESSAGE DEFINITIONS
- **************************************************************************/
-typedef struct {
-    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_switch_state_payload_t payload;
-} OS_PACK CFS_Set_Switch_State_Cmd_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    CFS_Set_Switch_State_Cmd_t nss_set_params_cmd;
-} CFS_Set_Switch_State_Buffer_t;
-
-// Message sizes
-#define CFS_SET_SWITCH_STATE_CMD_LEN sizeof(CFS_Set_Switch_State_Cmd_t);
-
-typedef struct {
-    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    reset_switch_payload_t payload;
-} OS_PACK CFS_Reset_Switch_Cmd_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    CFS_Reset_Switch_Cmd_t nss_set_params_cmd;
-} CFS_Reset_Switch_Buffer_t;
-
-// Message sizes
-#define CFS_RESET_SWITCH_CMD_LEN sizeof(CFS_Reset_Switch_Cmd_t);
-
 #endif /* _power_switching_msgs_h */

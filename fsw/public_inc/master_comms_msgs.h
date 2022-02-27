@@ -16,7 +16,6 @@
 #ifndef master_comms_msgs_h
 #define master_comms_msgs_h
 
-#include "cfe_sb.h"
 #include "heater_control_msgs.h"
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
@@ -66,23 +65,4 @@ typedef struct {
 
 #define SENSOR_PERIPHERAL_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t);
 
-/**************************************************************************
- * CFS SB MESSAGE DEFINITIONS
- **************************************************************************/
-typedef struct {
-    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-    sensor_telem_payload_t payload;
-} OS_PACK CFS_Peripheral_Sensor_Tlm_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    CFS_Peripheral_Sensor_Tlm_t peripheral_telem;
-} CFS_Peripheral_Sensor_Tlm_Buffer_t;
-
-// Message sizes
-#define CFS_SENSOR_TELEM_LEN sizeof(CFS_Peripheral_Sensor_Tlm_t);
 #endif /* master_comms_msgs_h */

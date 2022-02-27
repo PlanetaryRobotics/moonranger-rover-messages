@@ -74,27 +74,4 @@ typedef struct {
 
 #define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t);
 
-/**************************************************************************
- * CFS SB MESSAGE DEFINITIONS
- **************************************************************************/
-
-/**
- */
-typedef struct {
-    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_nss_params_payload_t payload;
-} OS_PACK CFS_NSS_Set_Params_Cmd_t;
-
-/**
- * Buffer to hold NSS set params data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    CFS_NSS_Set_Params_Cmd_t nss_set_params_cmd;
-} NSS_Set_Params_Buffer_t;
-
-// Message sizes
-#define CFS_NSS_SET_PARAMS_CMD_LEN sizeof(CFS_NSS_Set_Params_Cmd_t);
-
 #endif /* _nss_msgs_h */
