@@ -53,8 +53,14 @@ typedef struct {
     volatile int8 motor_pwm;                   // The motor pwm duty cycle
     volatile int16 motor_current;              // The current drawn by the motor
     volatile pid_gains_t motor_gains;          // The current motor PID gains
-} motor_health_t;
+} wheel_motor_health_t;
 
+typedef struct {
+    volatile int8 encoder_position;            // the encoder reading
+    volatile solar_panel_state_t curr_state;   // the solar panel state
+    volatile int16 motor_actual_velocity;      // The actual velocity
+    volatile int16 motor_current;              // The current drawn by the motor
+} solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
@@ -95,11 +101,11 @@ typedef struct {
 
 // motor health message
 typedef struct {
-    motor_health_t motor_1;
-    motor_health_t motor_2;
-    motor_health_t motor_3;
-    motor_health_t motor_4;
-    motor_health_t motor_5;
+    wheel_motor_health_t motor_1;
+    wheel_motor_health_t motor_2;
+    wheel_motor_health_t motor_3;
+    wheel_motor_health_t motor_4;
+    solar_panel_motor_health_t motor_5;
     msp_health_payload_t msp_health;
 } motor_health_payload_t;
 
