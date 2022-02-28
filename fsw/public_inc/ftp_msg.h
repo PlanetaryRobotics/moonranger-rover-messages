@@ -53,7 +53,7 @@ typedef FTP_NoArgsCmd_t FTP_ProcessCmd_t;
 typedef struct {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
-    uint8 LogMsgCounter;
+    uint8 FTPMsgCounter;
     uint8 spare;
 } FTP_HkTlm_Payload_t;
 
