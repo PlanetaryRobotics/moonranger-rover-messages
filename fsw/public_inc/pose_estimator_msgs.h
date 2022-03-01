@@ -17,14 +17,15 @@
 #ifndef _pose_estimator_msgs_h_
 #define _pose_estimator_msgs_h_
 
-#include <cinttypes>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "cfe.h"
+#include "cfe_sb.h"
 #ifdef __cplusplus
 }
 #endif
+
 
 /**
  * app command codes
@@ -56,6 +57,10 @@ typedef struct {
     POSE_HkTlm_t HkTlm;
 } POSE_HkBuffer_t;
 
-#endif   //_pose_estimator_msgs_h_ header
+// Message Size
+#define POSE_HKTLM_PAYLOAD_LNGTH sizeof(POSE_HkTlm_Payload_t)
+#define POSE_HKTLM_LNGTH sizeof(POSE_HkTlm_t)
+
+#endif //_pose_estimator_msgs_h_ header
 
 /* EOF */

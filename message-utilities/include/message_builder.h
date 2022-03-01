@@ -6,6 +6,7 @@
 #include "goal_msg.h"
 #include "moonranger_msgids.h"
 #include "pose_msg.h"
+#include "pose_estimator_msgs.h"
 #include "teleop_msg.h"
 #include "battery_enable_msg.h"
 #include "wheel_velocity_command_msg.h"
@@ -36,6 +37,7 @@ typedef union {
     };
 
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
+    POSE_HkTlm_t Pose_estimator_Tlm;
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     BatteryEnable_Cmd_t battery_en;
