@@ -2,10 +2,10 @@
  *
  * @file      ftp_control_msg.h
  *
- * @brief     Type definition for Moonranger pose message
+ * @brief     Type definition for Moonranger FTP control message
  *
  * @version   1.0
- * @date      10 Oct 2021
+ * @date      2 March 2021
  *
  * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
