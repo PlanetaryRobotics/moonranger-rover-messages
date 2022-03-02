@@ -1,21 +1,21 @@
 #ifndef _message_builder_h
 #define _message_builder_h
+#include "battery_enable_msg.h"
 #include "ccsds.h"
 #include "cfe_sb.h"
 #include "common_types.h"
 #include "goal_msg.h"
-#include "moonranger_msgids.h"
-#include "pose_msg.h"
-#include "pose_estimator_msgs.h"
-#include "teleop_msg.h"
-#include "battery_enable_msg.h"
-#include "wheel_velocity_command_msg.h"
 #include "heater_control_msp_msgs.h"
+#include "moonranger_msgids.h"
+#include "nss_if_msp_msgs.h"
+#include "pose_estimator_msgs.h"
+#include "pose_msg.h"
 #include "power_switching_msp_msgs.h"
 #include "rover_init_msg.h"
-#include "sunsensor_msg.h"
-#include "nss_if_msp_msgs.h"
 #include "stereo_reconstructor_msgs.h"
+#include "sunsensor_msg.h"
+#include "teleop_msg.h"
+#include "wheel_velocity_command_msg.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -65,7 +65,7 @@ int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
 
 int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
-                 int data_len_bytes, int32 msgId, int header_length);
+                        int data_len_bytes, int32 msgId, int header_length);
 int messageBuild(void* dataPtr, message_builder_u* msg_container,
                  int data_len_bytes, int32 msgId);
 

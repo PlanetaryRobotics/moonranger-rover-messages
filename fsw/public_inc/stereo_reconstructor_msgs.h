@@ -38,11 +38,11 @@ typedef STEREO_NoArgsCmd_t STEREO_Receive_Camera_Calib_t;
 
 #define STEREO_CMD_TLM_LNGTH sizeof(STEREO_NoArgsCmd_t)
 
-/*************************************************************************/ 
+/*************************************************************************/
 /** Type definition (STEREO App housekeeping)*/
 
-#define STEREO_HK_PAYLOAD_LEN               sizeof(STEREO_HkTlm_Payload_t)
-#define STEREO_HK_TLM_LEN                   sizeof(STEREO_HkTlm_t)
+#define STEREO_HK_PAYLOAD_LEN sizeof(STEREO_HkTlm_Payload_t)
+#define STEREO_HK_TLM_LEN sizeof(STEREO_HkTlm_t)
 
 typedef struct {
     uint8 CommandErrorCounter;
@@ -55,16 +55,14 @@ typedef struct {
     STEREO_HkTlm_Payload_t Payload;
 } OS_PACK STEREO_HkTlm_t;
 
-typedef struct
-{
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+typedef struct {
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK STEREO_SendPclMsgTlm_t;
 
 #define STEREO_SEND_PCL_TLM_LNGTH sizeof(STEREO_SendPclMsgTlm_t)
 
-typedef struct
-{
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+typedef struct {
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK STEREO_SendDispMsgTlm_t;
 
 /*

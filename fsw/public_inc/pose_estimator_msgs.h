@@ -17,7 +17,6 @@
 #ifndef _pose_estimator_msgs_h_
 #define _pose_estimator_msgs_h_
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -25,7 +24,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
 
 /**
  * app command codes
@@ -61,6 +59,6 @@ typedef struct {
 #define POSE_HKTLM_PAYLOAD_LNGTH sizeof(POSE_HkTlm_Payload_t)
 #define POSE_HKTLM_LNGTH sizeof(POSE_HkTlm_t)
 
-#endif //_pose_estimator_msgs_h_ header
+#endif   //_pose_estimator_msgs_h_ header
 
 /* EOF */
