@@ -41,25 +41,25 @@ typedef enum
 } brake_state_t;
 
 typedef struct {
-    int32 p_gain;   // p gain scaled down by 100
-    int32 i_gain;   // i gain scaled down by 100
-    int32 d_gain;   // d gain scaled down by 100
+    int32_t p_gain;   // p gain scaled down by 100
+    int32_t i_gain;   // i gain scaled down by 100
+    int32_t d_gain;   // d gain scaled down by 100
 } pid_gains_t;
 
 typedef struct {
-    volatile int32 motor_hall_sensor;          // the ticks from hall sensor
-    volatile int16 motor_commanded_velocity;   // The commanded velocity
-    volatile int16 motor_actual_velocity;      // The actual velocity
-    volatile int8 motor_pwm;                   // The motor pwm duty cycle
-    volatile int16 motor_current;              // The current drawn by the motor
     volatile pid_gains_t motor_gains;          // The current motor PID gains
+    volatile int32_t motor_hall_sensor;          // the ticks from hall sensor
+    volatile int16_t motor_commanded_velocity;   // The commanded velocity
+    volatile int16_t motor_actual_velocity;      // The actual velocity
+    volatile int16_t motor_pwm;                   // The motor pwm duty cycle
+    volatile int16_t motor_current;              // The current drawn by the motor
 } wheel_motor_health_t;
 
 typedef struct {
-    volatile int8 encoder_position;            // the encoder reading
-    volatile solar_panel_state_t curr_state;   // the solar panel state
-    volatile int16 motor_actual_velocity;      // The actual velocity
-    volatile int16 motor_current;              // The current drawn by the motor
+    volatile int16_t motor_actual_velocity;      // The actual velocity
+    volatile int16_t motor_current;              // The current drawn by the motor
+    volatile int8_t encoder_position;            // the encoder reading
+    volatile int8_t curr_state;   // the solar panel state
 } solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -67,29 +67,29 @@ typedef struct {
 
 // set motor speed command
 typedef struct {
+    int16_t motor_speed;
     motor_id_t motor_id;
-    int16 motor_speed;
 } set_wheel_speed_payload_t;
 
-#define SET_MOTOR_SPEED_PAYLOAD_LEN sizeof(set_motor_speed_payload_t);
+#define SET_MOTOR_SPEED_PAYLOAD_LEN sizeof(set_wheel_speed_payload_t)
 
 // set motor speed all command
 typedef struct {
-    int16 motor1_speed;
-    int16 motor2_speed;
-    int16 motor3_speed;
-    int16 motor4_speed;
+    int16_t motor1_speed;
+    int16_t motor2_speed;
+    int16_t motor3_speed;
+    int16_t motor4_speed;
 } set_wheel_speed_all_payload_t;
 
-#define SET_MOTOR_SPEED_ALL_PAYLOAD_LEN sizeof(set_motor_speed_all_payload_t);
+#define SET_MOTOR_SPEED_ALL_PAYLOAD_LEN sizeof(set_wheel_speed_all_payload_t)
 
 // set motor PID command
 typedef struct {
-    motor_id_t motor_id;
     pid_gains_t motor_pid_gains;
+    motor_id_t motor_id;
 } set_motor_pid_payload_t;
 
-#define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t);
+#define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t)
 
 // set solar panel state command
 typedef struct {
@@ -97,7 +97,7 @@ typedef struct {
 } set_solar_panel_state_payload_t;
 
 #define SET_SOLAR_PANEL_STATE_PAYLOAD_LEN \
-    sizeof(set_solar_panel_state_payload_t);
+    sizeof(set_solar_panel_state_payload_t)
 
 // motor health message
 typedef struct {
@@ -109,7 +109,7 @@ typedef struct {
     msp_health_payload_t msp_health;
 } motor_health_payload_t;
 
-#define MOTOR_HEALTH_PAYLOAD_LEN sizeof(motor_health_payload_t);
+#define MOTOR_HEALTH_PAYLOAD_LEN sizeof(motor_health_payload_t)
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -117,49 +117,49 @@ typedef struct {
 // get motor health command
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16 checksum;
+    uint16_t checksum;
 } get_motor_health_msg_t;
 
-#define GET_MOTOR_HEALTH_MSG_LEN sizeof(get_motor_health_msg_t);
+#define GET_MOTOR_HEALTH_MSG_LEN sizeof(get_motor_health_msg_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } set_motor_speed_msg_t;
 
-#define SET_MOTOR_SPEED_MSG_LEN sizeof(set_motor_speed_msg_t);
+#define SET_MOTOR_SPEED_MSG_LEN sizeof(set_motor_speed_msg_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } set_motor_speed_all_msg_t;
 
-#define SET_MOTOR_SPEED_ALL_MSG_LEN sizeof(set_motor_speed_all_msg_t;);
+#define SET_MOTOR_SPEED_ALL_MSG_LEN sizeof(set_motor_speed_all_msg_t;)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_motor_pid_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } set_motor_pid_msg_t;
 
-#define SET_MOTOR_PID_MSG_LEN sizeof(set_motor_pid_msg_t);
+#define SET_MOTOR_PID_MSG_LEN sizeof(set_motor_pid_msg_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_solar_panel_state_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } set_solar_panel_state_msg_t;
 
-#define SET_SOLAR_PANEL_STATE_MSG_LEN sizeof(set_solar_panel_state_msg_t);
+#define SET_SOLAR_PANEL_STATE_MSG_LEN sizeof(set_solar_panel_state_msg_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     motor_health_payload_t payload;
-    int16 checksum;
+    int16_t checksum;
 } motor_health_msg_t;
 
-#define MOTOR_HEALTH_MSG_LEN sizeof(motor_health_msg_t);
+#define MOTOR_HEALTH_MSG_LEN sizeof(motor_health_msg_t)
 
 #endif /* _motor_controller_msgs_h */
