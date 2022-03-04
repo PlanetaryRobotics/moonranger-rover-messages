@@ -15,6 +15,7 @@
 #include "rover_init_msg.h"
 #include "sunsensor_msg.h"
 #include "nss_if_msp_msgs.h"
+#include "imu_driver_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -50,11 +51,14 @@ typedef union {
     SunSensorTlm_Tlm_t sunsensor_tlm;
     NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
     NSS_SetParams_Tlm_t NSSSetParams_Tlm;
+    IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
 
+int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
+                 int data_len_bytes, int32 msgId, int header_length);
 int messageBuild(void* dataPtr, message_builder_u* msg_container,
                  int data_len_bytes, int32 msgId);
 
