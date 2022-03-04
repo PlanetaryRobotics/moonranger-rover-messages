@@ -18,7 +18,13 @@
 #define _imu_driver_msgs_h_
 
 
-#include "cfe.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "cfe_sb.h"
+#ifdef __cplusplus
+}
+#endif
 
 
 /**
@@ -28,7 +34,7 @@
 #define IMU_DRIVER_RESET_COUNTERS_CC     1
 #define IMU_DRIVER_UPDATE_PARAMS_CC      2
 
-/***************************************************
+/***************************************************/
 
 /*
 ** Type definition Housekeeping Telemetry
@@ -51,6 +57,9 @@ typedef union {
     CFE_SB_Msg_t MsgHdr;
     IMU_DRIVER_HkTlm_t HkTlm;
 } IMU_DRIVER_HkBuffer_t;
+
+#define IMU_DRIVER_HK_PAYLOAD_LEN   sizeof(IMU_DRIVER_HkTlm_Payload_t)
+#define IMU_DRIVER_HK_TLM_LEN       sizeof(IMU_DRIVER_HkTlm_t)
 #endif //_imu_driver_msgs_h_ header
 
 /* EOF */

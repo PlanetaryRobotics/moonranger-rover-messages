@@ -16,6 +16,8 @@
 #include "sunsensor_msg.h"
 #include "teleop_msg.h"
 #include "wheel_velocity_command_msg.h"
+#include "nss_if_msp_msgs.h"
+#include "imu_driver_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -58,14 +60,15 @@ typedef union {
     STEREO_Process_t StereoProcess_Tlm;
     STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
     STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
-
+    IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
 
 int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
-                        int data_len_bytes, int32 msgId, int header_length);
+                 int data_len_bytes, int32 msgId, int header_length);
+
 int messageBuild(void* dataPtr, message_builder_u* msg_container,
                  int data_len_bytes, int32 msgId);
 
