@@ -15,7 +15,6 @@
 #ifndef _motor_controller_msgs_h
 #define _motor_controller_msgs_h
 
-#include "cfe_sb.h"
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
 
