@@ -16,7 +16,6 @@
 #define _motor_controller_msgs_h
 
 #include "master_comms_bus_protocol.h"
-#include "moonranger_common_types.h"
 
 typedef enum
 {
