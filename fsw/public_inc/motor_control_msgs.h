@@ -21,23 +21,22 @@
 
 typedef enum
 {
-    MOTOR_1 = 0b00000011,
-    MOTOR_2 = 0b00000101,
-    MOTOR_3 = 0b00001010,
-    MOTOR_4 = 0b00001111,
-    MOTOR_5 = 0b00010100
+    MOTOR_1 = 3,    // 0b00000011,
+    MOTOR_2 = 5,    // 0b00000101,
+    MOTOR_3 = 6,    // 0b00001010,
+    MOTOR_4 = 15,   // 0b00001111
 } motor_id_t;
 
 typedef enum
 {
-    RAISED = 0b00000011,
-    LOWERED = 0b00000101
+    RAISED = 3,    // 0b00000011,
+    LOWERED = 5,   // 0b00000101
 } solar_panel_state_t;
 
 typedef enum
 {
-    ENABLE = 0b00000011,
-    DISABLE = 0b00000101
+    ENABLE = 3,    // 0b00000011,
+    DISABLE = 5,   // 0b00000101
 } brake_state_t;
 
 typedef struct {
@@ -48,18 +47,18 @@ typedef struct {
 
 typedef struct {
     volatile int32 motor_hall_sensor;          // the ticks from hall sensor
+    volatile pid_gains_t motor_gains;          // The current motor PID gains
+    volatile int16 motor_current;              // The current drawn by the motor
     volatile int16 motor_commanded_velocity;   // The commanded velocity
     volatile int16 motor_actual_velocity;      // The actual velocity
     volatile int8 motor_pwm;                   // The motor pwm duty cycle
-    volatile int16 motor_current;              // The current drawn by the motor
-    volatile pid_gains_t motor_gains;          // The current motor PID gains
 } wheel_motor_health_t;
 
 typedef struct {
-    volatile int8 encoder_position;            // the encoder reading
-    volatile solar_panel_state_t curr_state;   // the solar panel state
     volatile int16 motor_actual_velocity;      // The actual velocity
     volatile int16 motor_current;              // The current drawn by the motor
+    volatile int8 encoder_position;            // the encoder reading
+    volatile solar_panel_state_t curr_state;   // the solar panel state
 } solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -67,8 +66,8 @@ typedef struct {
 
 // set motor speed command
 typedef struct {
-    motor_id_t motor_id;
     int16 motor_speed;
+    motor_id_t motor_id;
 } set_wheel_speed_payload_t;
 
 #define SET_MOTOR_SPEED_PAYLOAD_LEN sizeof(set_motor_speed_payload_t);
@@ -85,8 +84,8 @@ typedef struct {
 
 // set motor PID command
 typedef struct {
-    motor_id_t motor_id;
     pid_gains_t motor_pid_gains;
+    motor_id_t motor_id;
 } set_motor_pid_payload_t;
 
 #define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t);
