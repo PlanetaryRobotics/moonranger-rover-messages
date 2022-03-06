@@ -74,7 +74,7 @@ typedef struct {
 
 // power switching telemetry payload
 typedef struct {
-    switch_state_t switch_state_t[20];   // array of power switch states.
+    switch_state_t switch_state[20];   // array of power switch states.
                                          // Switching group IDis index +1
     uint16 switch_current[20];   // array of current measurements. Current group
                                  // ID is index +1
