@@ -40,9 +40,9 @@ typedef struct {
 // NSS telemetry message
 typedef struct {
     uint8_t nss_data[89];   // data from sensor
-    uint8_t status;        // status byte: bit 0 = no telemetry, TODO: add more flags here
-    uint16_t reboot_ctr;   // counter of number of times NSS IF has rebooted since
-                         // last software load
+    uint8_t status;   // status byte: bit 0 = no telemetry, TODO: add more flags
+                      // here
+    msp_health_payload_t msp_health;
 } nss_telem_payload_t;
 
 #define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t);

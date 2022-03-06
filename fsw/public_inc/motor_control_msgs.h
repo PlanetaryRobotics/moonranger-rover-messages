@@ -19,23 +19,22 @@
 
 typedef enum
 {
-    MOTOR_1 = 0b00000011,
-    MOTOR_2 = 0b00000101,
-    MOTOR_3 = 0b00001010,
-    MOTOR_4 = 0b00001111,
-    MOTOR_5 = 0b00010100
+    MOTOR_1 = 3,    // 0b00000011,
+    MOTOR_2 = 5,    // 0b00000101,
+    MOTOR_3 = 6,    // 0b00001010,
+    MOTOR_4 = 15,   // 0b00001111
 } motor_id_t;
 
 typedef enum
 {
-    RAISED = 0b00000011,
-    LOWERED = 0b00000101
+    RAISED = 3,    // 0b00000011,
+    LOWERED = 5,   // 0b00000101
 } solar_panel_state_t;
 
 typedef enum
 {
-    ENABLE = 0b00000011,
-    DISABLE = 0b00000101
+    ENABLE = 3,    // 0b00000011,
+    DISABLE = 5,   // 0b00000101
 } brake_state_t;
 
 typedef struct {
@@ -45,19 +44,19 @@ typedef struct {
 } pid_gains_t;
 
 typedef struct {
-    volatile pid_gains_t motor_gains;          // The current motor PID gains
+    volatile pid_gains_t motor_gains;            // The current motor PID gains
     volatile int32_t motor_hall_sensor;          // the ticks from hall sensor
     volatile int16_t motor_commanded_velocity;   // The commanded velocity
     volatile int16_t motor_actual_velocity;      // The actual velocity
-    volatile int16_t motor_pwm;                   // The motor pwm duty cycle
-    volatile int16_t motor_current;              // The current drawn by the motor
+    volatile int16_t motor_pwm;                  // The motor pwm duty cycle
+    volatile int16_t motor_current;   // The current drawn by the motor
 } wheel_motor_health_t;
 
 typedef struct {
-    volatile int16_t motor_actual_velocity;      // The actual velocity
-    volatile int16_t motor_current;              // The current drawn by the motor
-    volatile int8_t encoder_position;            // the encoder reading
-    volatile int8_t curr_state;   // the solar panel state
+    volatile int16_t motor_actual_velocity;   // The actual velocity
+    volatile int16_t motor_current;           // The current drawn by the motor
+    volatile int8_t encoder_position;         // the encoder reading
+    volatile int8_t curr_state;               // the solar panel state
 } solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -134,7 +133,7 @@ typedef struct {
     uint16_t checksum;
 } set_motor_speed_all_msg_t;
 
-#define SET_MOTOR_SPEED_ALL_MSG_LEN sizeof(set_motor_speed_all_msg_t;)
+#define SET_MOTOR_SPEED_ALL_MSG_LEN sizeof(set_motor_speed_all_msg_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
