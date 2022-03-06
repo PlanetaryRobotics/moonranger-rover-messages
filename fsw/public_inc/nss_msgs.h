@@ -31,18 +31,18 @@
  * @note bytes indexed from right to left (0: LSB, 7: MSB)
  */
 typedef struct {
-    int8 command_1;
-    int8 command_2;
+    uint8_t command_1;
+    uint8_t command_2;
 } set_nss_params_payload_t;
 
 #define SET_NSS_PARAMS_PAYLOAD_LEN sizeof(set_nss_params_payload_t);
 
 // NSS telemetry message
 typedef struct {
-    uint8 nss_data[89];   // data from sensor
-    uint16 reboot_ctr;   // counter of number of times NSS IF has rebooted since
-                         // last software load
-    uint16 inv_msg_ctr;   // count of invalid messages received by NSS IF
+    uint8_t nss_data[89];   // data from sensor
+    uint8_t status;   // status byte: bit 0 = no telemetry, TODO: add more flags
+                      // here
+    msp_health_payload_t msp_health;
 } nss_telem_payload_t;
 
 #define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t);
@@ -53,7 +53,7 @@ typedef struct {
 // get NSS telemetry message
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16 checksum;
+    uint16_t checksum;
 } get_nss_telem_msg_t;
 
 #define GET_NSS_TELEM_MSG_LEN sizeof(get_nss_telem_msg_t);
@@ -61,7 +61,7 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_nss_params_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } set_nss_params_msg_t;
 
 #define SET_NSS_PARAMS_MSG_LEN sizeof(set_nss_params_msg_t);
@@ -69,7 +69,7 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     nss_telem_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
 } nss_telem_msg_t;
 
 #define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t);

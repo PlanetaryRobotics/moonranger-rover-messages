@@ -18,6 +18,7 @@
 
 #ifndef _master_comms_bus_protocol_h
 #define _master_comms_bus_protocol_h
+
 #include "common_types.h"
 
 // note: IDs selected to have minimum 2 bits difference for reliability
@@ -58,15 +59,15 @@ typedef enum
 typedef struct {
     msp_address_t src;                  // source address
     msp_address_t dest;                 // destination address
-    uint16 msg_seq;                     // message sequence number
+    uint16_t msg_seq;                   // message sequence number
     master_comms_bus_msg_id_t msg_id;   // message id
-    uint8 len;                          // payload lenght
+    uint8_t len;                        // payload lenght
 } main_bus_hdr_t;
 
 typedef struct {
-    int16 reboot_counter;        // the number of times MSP has rebooted
-    int16 invalid_msg_counter;   // the number of times an MSP has received
-                                 // invalid msgs
+    int16_t reboot_counter;        // the number of times MSP has rebooted
+    int16_t invalid_msg_counter;   // the number of times an MSP has received
+                                   // invalid msgs
 } msp_health_payload_t;
 
 #endif /* _master_comms_bus_protocol_h */
