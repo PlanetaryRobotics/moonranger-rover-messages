@@ -20,38 +20,34 @@
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
 
+#define NUM_SWITCH_GROUPS 15
+
 typedef enum
 {
-    POWER_ON = 0b00000011,
-    POWER_OFF = 0b00000101
+    POWER_ON = 3,    // 0b00000011,
+    POWER_OFF = 5,   // 0b00000101
 } switch_state_t;
 
 /**
- * @todo ADD DESCRIPTIVE COMMENTS HERE
+ * Switching groups corresponding to MR-AVI-0168
+ * @note does not include groups not controlled by power switching MSP
  */
-
 typedef enum
 {
-    GROUP1 = 0b00000011,   // CONTROLLED BY IOBC
-    GROUP2 = 0b00000101,   // CONTROLLED BY IOBC
-    GROUP3 = 0b00000110,
-    GROUP4 = 0b00001001,
-    GROUP5 = 0b00001010,
-    GROUP6 = 0b00001100,
-    GROUP7 = 0b00001111,
-    GROUP8 = 0b00010001,
-    GROUP9 = 0b00010100,
-    GROUP10 = 0b00010111,
-    GROUP11 = 0b00011000,
-    GROUP12 = 0b00011011,
-    GROUP13 = 0b00011100,
-    GROUP14 = 0b00100001,
-    GROUP15 = 0b00100010,
-    GROUP16 = 0b00100100,   // CONTROLLED BY IOBC
-    GROUP17 = 0b00100111,
-    GROUP18 = 0b00101000,
-    GROUP19 = 0b00101011,
-    GROUP20 = 0b00110000
+    PSW_3 = 3,     // 0b00000011
+    PSW_4 = 5,     // 0b00000101
+    PSW_5 = 6,     // 0b00000110
+    PSW_6 = 9,     // 0b00001001
+    PSW_7 = 10,    // 0b00001010
+    PSW_8 = 12,    // 0b00001100
+    PSW_9 = 15,    // 0b00001111
+    PSW_10 = 17,   // 0b00010001
+    PSW_12 = 23,   // 0b00010100
+    PSW_13 = 24,   // 0b00010111
+    PSW_14 = 27,   // 0b00011000
+    PSW_15 = 28,   // 0b00011011
+    PSW_18 = 33,   // 0b00011100
+    PSW_19 = 34    // 0b00100001
 } switch_group_id_t;
 
 /**************************************************************************
@@ -74,10 +70,8 @@ typedef struct {
 
 // power switching telemetry payload
 typedef struct {
-    switch_state_t switch_state[20];   // array of power switch states.
-                                         // Switching group IDis index +1
-    uint16 switch_current[20];   // array of current measurements. Current group
-                                 // ID is index +1
+    uint16 switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
+    switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
     msp_health_payload_t msp_health;
 } power_switch_telem_payload_t;
 
@@ -90,27 +84,27 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16 checksum;
-} get_switch_telem_msg_t;
+} get_switch_telem_cmd_t;
 
-#define GET_SWITCH_TELEM_MSG_LEN sizeof(get_switch_telem_msg_t);
+#define GET_SWITCH_TELEM_MSG_LEN sizeof(get_switch_telem_cmd_t);
 
 // set power switching state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_payload_t payload;
     uint16 checksum;
-} set_switch_state_msg_t;
+} set_switch_state_cmd_t;
 
-#define SET_SWITCH_STATE_MSG_LEN sizeof(set_switch_state_msg_t);
+#define SET_SWITCH_STATE_MSG_LEN sizeof(set_switch_state_cmd_t);
 
 // reset power switch command
 typedef struct {
     main_bus_hdr_t msg_hdr;
     reset_switch_payload_t payload;
     uint16 checksum;
-} reset_switch_msg_t;
+} reset_switch_cmd_t;
 
-#define RESET_SWITCH_MSG_LEN sizeof(reset_switch_msg_t);
+#define RESET_SWITCH_MSG_LEN sizeof(reset_switch_cmd_t);
 
 // power switch telemetry message
 typedef struct {

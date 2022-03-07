@@ -58,9 +58,9 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16 checksum;
-} get_sunsensor_data_msg_t;
+} get_sunsensor_data_cmd_t;
 
-#define GET_SUNSENSOR_DATA_MSG_LEN sizeof(get_sunsensor_data_msg_t);
+#define GET_SUNSENSOR_DATA_MSG_LEN sizeof(get_sunsensor_data_cmd_t);
 
 // sun sensor telem message
 typedef struct {

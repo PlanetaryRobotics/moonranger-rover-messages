@@ -22,33 +22,33 @@
 #define NUM_HEATERS 14
 #define NUM_THERMISTORS 13
 
+// note: IDs selected to have minimum 2 bits difference for reliability
 typedef enum
 {
-    HEATER_ON = 0b00000011,
-    HEATER_OFF = 0b00000101,
-    SCHMIDT_ON = 0b00000110
+    HEATER_ON = 3,    // 0b00000011,
+    HEATER_OFF = 5,   // 0b00000101,
+    SCHMIDT_ON = 6,   // 0b00000110
 } heater_state_t;
 
 /**
- * @todo ADD DESCRIPTIVE COMMENTS HERE
+ * Heaters as specified in MR-SYS-0161
  */
-
 typedef enum
 {
-    HEATER1 = 0b00000011,
-    HEATER2 = 0b00000101,
-    HEATER3 = 0b00000110,
-    HEATER4 = 0b00001001,
-    HEATER5 = 0b00001010,
-    HEATER6 = 0b00001100,
-    HEATER7 = 0b00001111,
-    HEATER8 = 0b00010001,
-    HEATER9 = 0b00010100,
-    HEATER10 = 0b00010111,
-    HEATER11 = 0b00011000,
-    HEATER12 = 0b00011011,
-    HEATER13 = 0b00011100,
-    HEATER14 = 0b00100001
+    HEATER1 = 3,     // 0b00000011,
+    HEATER2 = 5,     // 0b00000101,
+    HEATER3 = 6,     // 0b00000110,
+    HEATER4 = 9,     // 0b00001001,
+    HEATER5 = 10,    // 0b00001010,
+    HEATER6 = 12,    // 0b00001100,
+    HEATER7 = 15,    // 0b00001111,
+    HEATER8 = 17,    // 0b00010001,
+    HEATER9 = 20,    // 0b00010100,
+    HEATER10 = 23,   // 0b00010111,
+    HEATER11 = 24,   // 0b00011000,
+    HEATER12 = 27,   // 0b00011011,
+    HEATER13 = 28,   // 0b00011100,
+    HEATER14 = 33,   // 0b00100001
 } heater_id_t;
 
 /**************************************************************************
@@ -80,18 +80,18 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16 checksum;
-} get_heater_telem_msg_t;
+} get_heater_telem_cmd_t;
 
-#define GET_HEATER_TELEM_MSG_LEN sizeof(get_heater_telem_msg_t);
+#define GET_HEATER_TELEM_MSG_LEN sizeof(get_heater_telem_cmd_t);
 
 // set heater state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_heater_state_payload_t payload;
     uint16 checksum;
-} set_heater_state_msg_t;
+} set_heater_state_cmd_t;
 
-#define SET_HEATER_STATE_MSG_LEN sizeof(set_heater_state_msg_t);
+#define SET_HEATER_STATE_MSG_LEN sizeof(set_heater_state_cmd_t);
 
 // heater telemetry message
 typedef struct {

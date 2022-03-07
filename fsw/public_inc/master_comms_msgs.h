@@ -28,7 +28,7 @@
 typedef struct {
     uint16 msg_seq;
     master_comms_bus_msg_id_t msg_id;
-} periph_main_link_hdr_t;
+} master_msp_spi_hdr_t;
 
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -50,15 +50,15 @@ typedef struct {
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
  **************************************************************************/
 typedef struct {
-    periph_main_link_hdr_t msg_hdr;
+    master_msp_spi_hdr_t msg_hdr;
     uint16 checksum;
-} get_peripheral_sensor_telem_msg_t;
+} get_peripheral_sensor_telem_cmd_t;
 
 #define GET_PERIPHERAL_SENSOR_TELEM_MSG_LEN \
-    sizeof(get_peripheral_sensor_telem_msg_t);
+    sizeof(get_peripheral_sensor_telem_cmd_t);
 
 typedef struct {
-    periph_main_link_hdr_t msg_hdr;
+    master_msp_spi_hdr_t msg_hdr;
     sensor_telem_payload_t payload;
     uint16 checksum;
 } peripheral_sensor_telem_msg_t;

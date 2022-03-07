@@ -26,13 +26,14 @@
 /**************************************************************************
  * OBC (Peripheral Computer) (E1) Message Definitions
  **************************************************************************/
-/*
-** OBC Command Codes
-*/
+/**
+ * OBC Command Codes
+ * @note code numbers have been selected for dual bit changes.
+ */
 #define OBC_NOOP_CC 0
-#define OBC_RESET_COUNTERS_CC 1
-#define OBC_BATT_ENABLE_CC 2
-#define OBC_WIFI_ENABLE_CC 3
+#define OBC_RESET_COUNTERS_CC 3   // 0b00000011,
+#define OBC_BATT_ENABLE_CC 5      // 0b00000101,
+#define OBC_WIFI_ENABLE_CC 6      // 0b00000110,
 
 /*
 ** Type definition (generic "no arguments" command)
