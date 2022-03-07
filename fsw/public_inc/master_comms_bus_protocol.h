@@ -60,8 +60,8 @@ typedef struct {
     msp_address_t src;                  // source address
     msp_address_t dest;                 // destination address
     uint16_t msg_seq;                   // message sequence number
+    uint16_t len;                       // payload lenght
     master_comms_bus_msg_id_t msg_id;   // message id
-    uint8_t len;                        // payload lenght
 } main_bus_hdr_t;
 
 typedef struct {

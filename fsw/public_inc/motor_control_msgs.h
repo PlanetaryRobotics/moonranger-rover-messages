@@ -53,10 +53,10 @@ typedef struct {
 } wheel_motor_health_t;
 
 typedef struct {
-    volatile int16_t motor_actual_velocity;   // The actual velocity
-    volatile int16_t motor_current;           // The current drawn by the motor
-    volatile int8_t encoder_position;         // the encoder reading
-    volatile int8_t curr_state;               // the solar panel state
+    volatile int16_t motor_actual_velocity;    // The actual velocity
+    volatile int16_t motor_current;            // The current drawn by the motor
+    volatile int8_t encoder_position;          // the encoder reading
+    volatile solar_panel_state_t curr_state;   // the solar panel state
 } solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -68,7 +68,7 @@ typedef struct {
     motor_id_t motor_id;
 } set_wheel_speed_payload_t;
 
-#define SET_MOTOR_SPEED_PAYLOAD_LEN sizeof(set_wheel_speed_payload_t)
+#define SET_WHEEL_SPEED_PAYLOAD_LEN sizeof(set_wheel_speed_payload_t)
 
 // set motor speed all command
 typedef struct {
@@ -78,7 +78,7 @@ typedef struct {
     int16_t motor4_speed;
 } set_wheel_speed_all_payload_t;
 
-#define SET_MOTOR_SPEED_ALL_PAYLOAD_LEN sizeof(set_wheel_speed_all_payload_t)
+#define SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(set_wheel_speed_all_payload_t)
 
 // set motor PID command
 typedef struct {
