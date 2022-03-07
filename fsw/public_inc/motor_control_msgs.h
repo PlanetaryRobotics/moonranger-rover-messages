@@ -117,7 +117,7 @@ typedef struct {
     uint16_t checksum;
 } get_motor_health_cmd_t;
 
-#define GET_MOTOR_HEALTH_MSG_LEN sizeof(get_motor_health_cmd_t)
+#define GET_MOTOR_HEALTH_CMD_LEN sizeof(get_motor_health_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -125,7 +125,7 @@ typedef struct {
     uint16_t checksum;
 } set_motor_speed_cmd_t;
 
-#define SET_MOTOR_SPEED_MSG_LEN sizeof(set_motor_speed_cmd_t)
+#define SET_MOTOR_SPEED_CMD_LEN sizeof(set_motor_speed_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -133,7 +133,7 @@ typedef struct {
     uint16_t checksum;
 } set_motor_speed_all_cmd_t;
 
-#define SET_MOTOR_SPEED_ALL_MSG_LEN sizeof(set_motor_speed_all_cmd_t)
+#define SET_MOTOR_SPEED_ALL_CMD_LEN sizeof(set_motor_speed_all_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -141,7 +141,7 @@ typedef struct {
     uint16_t checksum;
 } set_motor_pid_cmd_t;
 
-#define SET_MOTOR_PID_MSG_LEN sizeof(set_motor_pid_cmd_t)
+#define SET_MOTOR_PID_CMD_LEN sizeof(set_motor_pid_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -149,7 +149,7 @@ typedef struct {
     uint16_t checksum;
 } set_solar_panel_state_cmd_t;
 
-#define SET_SOLAR_PANEL_STATE_MSG_LEN sizeof(set_solar_panel_state_cmd_t)
+#define SET_SOLAR_PANEL_STATE_CMD_LEN sizeof(set_solar_panel_state_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
