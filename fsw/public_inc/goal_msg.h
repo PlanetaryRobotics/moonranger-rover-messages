@@ -30,7 +30,6 @@ typedef struct {
   float32 y_radius;    // meters
   float32 orientation; // radians
   bool blind_nav;      // switch for blind navigation
-
 } MOONRANGER_Goal_t;
 
 /**
@@ -38,18 +37,17 @@ typedef struct {
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Goal_t data;
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    MOONRANGER_Goal_t data;
 } OS_PACK MOONRANGER_Goal_Tlm_t;
 
 /**
  * Buffer to hold goal data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
-typedef union
-{
-    CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_Goal_Tlm_t  GoalTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MOONRANGER_Goal_Tlm_t GoalTlm;
 } MOONRANGER_GoalBuffer_t;
 
 // Message sizes

@@ -122,13 +122,22 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
-#define PERIPHERAL_MANAGER_POWER_SWITCH_MID 0x1AC0
-#define PERIPHERAL_MANAGER_RESET_COMPONENT_MID 0x1AC1
-#define PERIPHERAL_MANAGER_SET_COMMS_MID 0x1AC2
-#define PERIPHERAL_MANAGER_HEATER_CONTROL_MID 0x1AC3
-#define NSS_SET_PARAMS_MID 0x1AC4
-#define NSS_HEALTH_MSG_MID 0x0AC0
-
+#define OBC_SET_WHEEL_SPEED_CMD_MID 0x1AC0         // single wheel speed
+#define OBC_SET_WHEEL_SPEED_ALL_CMD_MID 0x1AC1     // set all wheel speeds
+#define OBC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
+#define OBC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
+#define OBC_NSS_SET_PARAMS_CMD_MID 0x1AC4          // set the NSS parameters
+#define OBC_SET_SWITCH_STATE_CMD_MID 0x1AC5        // set switch on power msp
+#define OBC_SET_SWITCH_STATE_ALL_CMD_MID 0x1AC6   // set all switch on power msp
+#define OBC_RESET_SWITCH_CMD_MID 0x1AC7           // reset switch on power msp
+#define OBC_SET_HEATER_STATE_CMD_MID 0x1AC8       // set heater state
+#define OBC_SET_HEATER_STATE_ALL_CMD_MID 0x1AC9   // set all heater states
+#define OBC_WIFI_ENABLE_CMD_MID 0x1ACA            // enable wifi
+#define OBC_BATT_ENABLE_CMD_MID 0x1ACB            // enable battery
+#define OBC_PERIPHERAL_SENSOR_TLM_MID \
+    0x0AC0   // receive all peripheral sensor data
+#define OBC_HEALTH_TLM_MID \
+    0x0AC1   // receive all peripheral computer health data
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within
@@ -157,9 +166,9 @@
  * 0x0BC0-0x0BFF inclusive.
  */
 
-#define LOGGER_CMD_MID      0x1BC0
-#define LOGGER_SEND_HK_MID  0x1BC1
-#define LOGGER_HK_TLM_MID   0x0BC0
+#define LOGGER_CMD_MID 0x1BC0
+#define LOGGER_SEND_HK_MID 0x1BC1
+#define LOGGER_HK_TLM_MID 0x0BC0
 
 /**
  * FTP App IDs
@@ -182,19 +191,18 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0C00-0x0C3F inclusive.
  */
-#define MOONRANGER_GOAL_MID          0x0C00
-#define MOONRANGER_POSE_MID          0x0C01
-#define MOONRANGER_POINT_CLOUD_MID   0x0C02
-#define MOONRANGER_MESH_MID          0x0C03
+#define MOONRANGER_GOAL_MID 0x0C00
+#define MOONRANGER_POSE_MID 0x0C01
+#define MOONRANGER_POINT_CLOUD_MID 0x0C02
+#define MOONRANGER_MESH_MID 0x0C03
 #define MOONRANGER_BODY_VELOCITY_MID 0x0C04
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0C05
-#define MOONRANGER_DRIVE_ARC_MID     0x0C06
-#define MOONRANGER_SUNSENSOR_MID     0x0C07
-#define MOONRANGER_CMD_VEL_MID       0x0C08
+#define MOONRANGER_DRIVE_ARC_MID 0x0C06
+#define MOONRANGER_SUNSENSOR_MID 0x0C07
+#define MOONRANGER_CMD_VEL_MID 0x0C08
 #define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
-#define MOONRANGER_BATT_ENABLE_MID   0x0C0A
-#define MOONRANGER_ROVER_INIT_MID    0x0C0B
-#define MOONRANGER_IMU_DATA_MID      0x0C10
+#define MOONRANGER_ROVER_INIT_MID 0x0C0B
+#define MOONRANGER_IMU_DATA_MID 0x0C10
 
 /* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation)
  */
