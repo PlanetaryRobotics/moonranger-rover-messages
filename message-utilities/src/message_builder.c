@@ -36,11 +36,9 @@ int messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_contai
   return SUCCESS;
 }
 
-
-int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
+// generic message builder
+int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId, int header_length)
 {
-
-  int header_length = CFE_SB_TLM_HDR_SIZE;
   // Fill the header
   CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
 
@@ -58,3 +56,10 @@ int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_by
 
 }
 
+// builds message with TLM header of length CFE_SB_TLM_HDR_SIZE
+int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
+{
+  int header_length = CFE_SB_TLM_HDR_SIZE;
+
+  return messageBuildGeneric(dataPtr, msg_container, data_len_bytes, msgId, header_length);
+}

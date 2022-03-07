@@ -78,6 +78,7 @@
 #define STEREO_SEND_HK_MID 0x19C1
 #define STEREO_HK_TLM_MID 0x09C1
 #define STEREO_NEW_PCL_TLM_MID 0x09C2
+#define STEREO_NEW_DISP_TLM_MID 0x09C3
 
 /**
  * Planner Message IDs
@@ -177,8 +178,8 @@
 
 #define FTP_CMD_MID 0x1BD0
 #define FTP_SEND_HK_MID 0x1BD1
-#define FTP_MID 0x1BD2
-#define FTP_WIFI_MID 0x1BD3
+#define FTP_CONTROL 0x1BD2
+#define FTP_SYNC 0x1BD3
 #define FTP_HK_TLM_MID 0x0BD0
 
 /**

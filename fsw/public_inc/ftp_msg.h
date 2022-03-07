@@ -5,7 +5,7 @@
  * @brief     Message types for the ftp app
  *
  * @version     1.0
- * @date   		2/09/2021
+ * @date   		3/12/2021
  *
  * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
@@ -53,7 +53,7 @@ typedef FTP_NoArgsCmd_t FTP_ProcessCmd_t;
 typedef struct {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
-    uint8 LogMsgCounter;
+    uint8 FTPMsgCounter;
     uint8 spare;
 } FTP_HkTlm_Payload_t;
 
