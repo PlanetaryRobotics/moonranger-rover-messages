@@ -1,6 +1,6 @@
 /****************************************************************
  *
- * @file      ftp_sync_msg.h
+ * @file      ftp_send_all_msg.h
  *
  * @brief     Type definition for Moonranger FTP sync message
  *
@@ -12,8 +12,8 @@
  *
  ****************************************************************/
 
-#ifndef _ftp_sync_h_
-#define _ftp_sync_h_
+#ifndef _ftp_send_all_h_
+#define _ftp_send_all_h_
 
 #include "cfe_sb.h"
 #include "common_types.h"
@@ -27,7 +27,7 @@ typedef double float64;
 
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
-} MOONRANGER_FTP_Sync_t;
+} MOONRANGER_FTP_Send_All_t;
 
 /**
  * Type definition (MOONRANGER pose telemetry)
@@ -35,8 +35,8 @@ typedef struct {
  */
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-    MOONRANGER_FTP_Sync_t data;
-} OS_PACK MOONRANGER_FTP_Sync_Tlm_t;
+    MOONRANGER_FTP_Send_All_t data;
+} OS_PACK MOONRANGER_FTP_Send_All_Tlm_t;
 
 /**
  * Buffer to hold pose data prior to sending
@@ -44,11 +44,11 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    MOONRANGER_FTP_Sync_Tlm_t FTPSyncTlm;
-} MOONRANGER_FTP_SyncBuffer_t;
+    MOONRANGER_FTP_Send_All_Tlm_t FTPSyncTlm;
+} MOONRANGER_FTP_Send_AllBuffer_t;
 
 // Message sizes
-#define MOONRANGER_FTP_SYNC_LNGTH sizeof(MOONRANGER_FTP_Sync_t)
-#define MOONRANGER_FTP_SYNC_TLM_LNGTH sizeof(MOONRANGER_FTP_Sync_Tlm_t)
+#define MOONRANGER_FTP_SEND_ALL_LNGTH sizeof(MOONRANGER_FTP_Send_All_t)
+#define MOONRANGER_FTP_SEND_ALL_TLM_LNGTH sizeof(MOONRANGER_FTP_Send_All_Tlm_t)
 
-#endif /* _pose_msg_h_ */
+#endif /* ftp_send_all_h_ */
