@@ -127,11 +127,13 @@
 #define OBC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
 #define OBC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
 #define OBC_NSS_SET_PARAMS_CMD_MID 0x1AC4          // set the NSS parameters
-#define OBC_SET_SWITCH_STATE_CMD_MID 0x1AC5   // set switch state on power msp
-#define OBC_RESET_SWITCH_CMD_MID 0x1AC6       // reset switch on power msp
-#define OBC_SET_HEATER_STATE_CMD_MID 0x1AC7   // set heater state
-#define OBC_WIFI_ENABLE_CMD_MID 0x1AC8        // enable wifi
-#define OBC_BATT_ENABLE_CMD_MID 0x1AC9        // enable battery
+#define OBC_SET_SWITCH_STATE_CMD_MID 0x1AC5        // set switch on power msp
+#define OBC_SET_SWITCH_STATE_ALL_CMD_MID 0x1AC6   // set all switch on power msp
+#define OBC_RESET_SWITCH_CMD_MID 0x1AC7           // reset switch on power msp
+#define OBC_SET_HEATER_STATE_CMD_MID 0x1AC8       // set heater state
+#define OBC_SET_HEATER_STATE_ALL_CMD_MID 0x1AC9   // set all heater states
+#define OBC_WIFI_ENABLE_CMD_MID 0x1ACA            // enable wifi
+#define OBC_BATT_ENABLE_CMD_MID 0x1ACB            // enable battery
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
