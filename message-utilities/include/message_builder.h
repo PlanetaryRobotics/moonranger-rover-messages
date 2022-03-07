@@ -1,19 +1,23 @@
 #ifndef _message_builder_h
 #define _message_builder_h
+#include "battery_enable_msg.h"
 #include "ccsds.h"
 #include "cfe_sb.h"
 #include "common_types.h"
 #include "goal_msg.h"
-#include "moonranger_msgids.h"
-#include "pose_msg.h"
-#include "teleop_msg.h"
-#include "battery_enable_msg.h"
-#include "wheel_velocity_command_msg.h"
 #include "heater_control_msp_msgs.h"
+#include "moonranger_msgids.h"
+#include "nss_if_msp_msgs.h"
+#include "pose_estimator_msgs.h"
+#include "pose_msg.h"
 #include "power_switching_msp_msgs.h"
 #include "rover_init_msg.h"
+#include "stereo_reconstructor_msgs.h"
 #include "sunsensor_msg.h"
+#include "teleop_msg.h"
+#include "wheel_velocity_command_msg.h"
 #include "nss_if_msp_msgs.h"
+#include "imu_driver_msgs.h"
 
 #define SUCCESS 1
 #define FAILURE 0
@@ -35,6 +39,7 @@ typedef union {
     };
 
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
+    POSE_HkTlm_t Pose_estimator_Tlm;
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
     BatteryEnable_Cmd_t battery_en;
@@ -48,10 +53,21 @@ typedef union {
     SunSensorTlm_Tlm_t sunsensor_tlm;
     NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
     NSS_SetParams_Tlm_t NSSSetParams_Tlm;
+    STEREO_HkTlm_t StereoHk_Tlm;
+    STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
+    STEREO_Noop_t StereoNoOp_Tlm;
+    STEREO_ResetCounters_t StereoResetCounters_Tlm;
+    STEREO_Process_t StereoProcess_Tlm;
+    STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
+    STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
+    IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
+
+int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
+                 int data_len_bytes, int32 msgId, int header_length);
 
 int messageBuild(void* dataPtr, message_builder_u* msg_container,
                  int data_len_bytes, int32 msgId);
