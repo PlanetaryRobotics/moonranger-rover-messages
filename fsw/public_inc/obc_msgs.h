@@ -204,11 +204,28 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    OBC_Set_Switch_State_Cmd_t nss_set_params_cmd;
+    OBC_Set_Switch_State_Cmd_t set_switch_cmd;
 } OBC_Set_Switch_State_Buffer_t;
 
 // Message sizes
 #define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Switch_State_Cmd_t);
+
+typedef struct {
+    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+    set_switch_state_all_payload_t payload;
+} OS_PACK OBC_Set_Switch_State_All_Cmd_t;
+
+/**
+ * Buffer to hold data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_Set_Switch_State_All_Cmd_t set_switch_state_all;
+} OBC_Set_Switch_State_Buffer_t;
+
+// Message sizes
+#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Switch_State_All_Cmd_t);
 
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -246,5 +263,22 @@ typedef union {
 
 // Message sizes
 #define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t);
+
+typedef struct {
+    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+    set_heater_state_all_payload_t payload;
+} OS_PACK OBC_Set_Heater_State_All_Cmd_t;
+
+/**
+ * Buffer to hold data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_Set_Heater_State_All_Cmd_t set_heater_state_all_cmd;
+} OBC_Set_Heater_State_Buffer_t;
+
+// Message sizes
+#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t);
 
 #endif /* _obc_msgs_h */
