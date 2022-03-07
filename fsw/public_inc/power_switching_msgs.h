@@ -109,7 +109,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_all_payload_t payload;
     uint16 checksum;
-} set_switch_state_cmd_t;
+} set_switch_state_all_cmd_t;
 
 #define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t);
 
