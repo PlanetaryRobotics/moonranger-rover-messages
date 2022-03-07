@@ -60,7 +60,7 @@ typedef struct {
     uint16 checksum;
 } get_sunsensor_data_cmd_t;
 
-#define GET_SUNSENSOR_DATA_MSG_LEN sizeof(get_sunsensor_data_cmd_t);
+#define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t);
 
 // sun sensor telem message
 typedef struct {

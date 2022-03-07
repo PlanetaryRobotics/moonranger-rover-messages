@@ -56,7 +56,7 @@ typedef struct {
     uint16_t checksum;
 } get_nss_telem_cmd_t;
 
-#define GET_NSS_TELEM_MSG_LEN sizeof(get_nss_telem_cmd_t);
+#define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t);
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -64,7 +64,7 @@ typedef struct {
     uint16_t checksum;
 } set_nss_params_cmd_t;
 
-#define SET_NSS_PARAMS_MSG_LEN sizeof(set_nss_params_cmd_t);
+#define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t);
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
