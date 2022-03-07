@@ -59,21 +59,21 @@ typedef struct {
     switch_state_t switch_state;
 } set_switch_state_payload_t;
 
-#define SET_SWITCH_STATE_PAYLOAD_LEN sizeof(set_switch_state_payload_t);
+#define SET_SWITCH_STATE_PAYLOAD_LEN sizeof(set_switch_state_payload_t)
 
 // set power switching state all command payload
 typedef struct {
     switch_state_t switch_state[NUM_SWITCH_GROUPS];
 } set_switch_state_all_payload_t;
 
-#define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t);
+#define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t)
 
 // reset power switch command payload
 typedef struct {
     switch_group_id_t switch_group_id;
 } reset_switch_payload_t;
 
-#define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t);
+#define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t)
 
 // power switching telemetry payload
 typedef struct {
@@ -82,7 +82,7 @@ typedef struct {
     msp_health_payload_t msp_health;
 } power_switch_telem_payload_t;
 
-#define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t);
+#define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -93,7 +93,7 @@ typedef struct {
     uint16 checksum;
 } get_switch_telem_cmd_t;
 
-#define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t);
+#define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t)
 
 // set power switching state command
 typedef struct {
@@ -102,7 +102,7 @@ typedef struct {
     uint16 checksum;
 } set_switch_state_cmd_t;
 
-#define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t);
+#define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t)
 
 // set power switching state command
 typedef struct {
@@ -111,7 +111,7 @@ typedef struct {
     uint16 checksum;
 } set_switch_state_all_cmd_t;
 
-#define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t);
+#define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t)
 
 // reset power switch command
 typedef struct {
@@ -120,7 +120,7 @@ typedef struct {
     uint16 checksum;
 } reset_switch_cmd_t;
 
-#define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t);
+#define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t)
 
 // power switch telemetry message
 typedef struct {
@@ -129,6 +129,6 @@ typedef struct {
     uint16 checksum;
 } power_switch_telem_msg_t;
 
-#define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t);
+#define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t)
 
 #endif /* _power_switching_msgs_h */
