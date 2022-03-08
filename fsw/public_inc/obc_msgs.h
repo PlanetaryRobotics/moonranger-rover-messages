@@ -85,28 +85,6 @@ typedef union {
 /**************************************************************************
  * Motor Controller (E5) Message Definitions
  **************************************************************************/
-// command structure
-typedef struct {
-    set_wheel_speed_payload_t uart_payload;
-    uint32_t duration;   // seconds
-} Set_Wheel_Speed_Cmd_Payload;
-
-// cFS command structure
-typedef struct {
-    uint8 CmdHeader[CFE_SB_TLM_HDR_SIZE];
-    Set_Wheel_Speed_Cmd_Payload payload;
-} OS_PACK OBC_Set_Wheel_Speed_Cmd_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    OBC_Set_Wheel_Speed_Cmd_t set_motor_speed_cmd;
-} Set_Wheel_Speed_Buffer_t;
-
-#define OBC_SET_WHEEL_SPEED_CMD_LEN sizeof(OBC_Set_Wheel_Speed_Cmd_t);
 
 // command structure
 typedef struct {

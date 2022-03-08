@@ -61,15 +61,6 @@ typedef struct {
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
-
-// set motor speed command
-typedef struct {
-    int16_t motor_speed;
-    motor_id_t motor_id;
-} set_wheel_speed_payload_t;
-
-#define SET_WHEEL_SPEED_PAYLOAD_LEN sizeof(set_wheel_speed_payload_t)
-
 // set motor speed all command
 typedef struct {
     int16_t motor1_speed;
@@ -111,22 +102,6 @@ typedef struct {
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
-// get motor health command
-typedef struct {
-    main_bus_hdr_t msg_hdr;
-    uint16_t checksum;
-} get_motor_health_cmd_t;
-
-#define GET_MOTOR_HEALTH_CMD_LEN sizeof(get_motor_health_cmd_t)
-
-typedef struct {
-    main_bus_hdr_t msg_hdr;
-    set_wheel_speed_payload_t payload;
-    uint16_t checksum;
-} set_motor_speed_cmd_t;
-
-#define SET_MOTOR_SPEED_CMD_LEN sizeof(set_motor_speed_cmd_t)
-
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
