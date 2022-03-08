@@ -45,20 +45,23 @@ typedef struct {
 } OBC_NoArgsCmd_t;
 
 // separate typedefs for open mode & future changes
-typedef OBC_NoArgsCmd_t BatteryEnable_Cmd_t;
-typedef OBC_NoArgsCmd_t WifiEnable_Cmd_t;
-typedef OBC_NoArgsCmd_t MasterCommsEnable_Cmd_t;
-typedef OBC_NoArgsCmd_t PowerSwitchingEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_BatteryEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_WifiEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_MasterCommsEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_PowerSwitchingEnable_Cmd_t;
 
 // TODO - do we need the buffer definitions as per messages below?
 
 // Message sizes
-#define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
-#define WIFI_ENABLE_CMD_LNGTH sizeof(WifiEnable_Cmd_t)
-#define POWER_SWITCHING_ENABLE_CMD_LNGTH sizeof(PowerSwitchingEnable_Cmd_t)
-#define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(MasterCommsEnable_Cmd_t)
+#define BATTERY_ENABLE_CMD_LNGTH sizeof(OBC_BatteryEnable_Cmd_t)
+#define WIFI_ENABLE_CMD_LNGTH sizeof(OBC_WifiEnable_Cmd_t)
+#define POWER_SWITCHING_ENABLE_CMD_LNGTH sizeof(OBC_PowerSwitchingEnable_Cmd_t)
+#define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(OBC_MasterCommsEnable_Cmd_t)
 
 typedef struct {
+    uint16 obc_reboot_counter;
+    uint16 iobc_wifi_strenght;
+    uint16 spi_invalid_msg_counter;
 } OBC_Health_Tlm_t;
 
 typedef struct {
