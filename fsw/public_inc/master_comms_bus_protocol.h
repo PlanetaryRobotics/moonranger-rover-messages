@@ -66,6 +66,7 @@ typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted
     int16_t invalid_msg_counter;   // the number of times an MSP has received
                                    // invalid msgs
+    uint16_t __padding;
 } msp_health_payload_t;
 
 #endif /* _master_comms_bus_protocol_h */
