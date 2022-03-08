@@ -34,8 +34,6 @@ typedef enum
 
 typedef enum
 {
-    GET_MOTOR_HEALTH_MID = 3,         // 0b00000011,
-    SET_MOTOR_SPEED_MID = 5,          // 0b00000101,
     SET_MOTOR_SPEED_ALL_MID = 6,      // 0b00000110,
     SET_MOTOR_PID_MID = 9,            // 0b00001001,
     SET_SOLAR_PANEL_STATE_MID = 10,   // 0b00001010,
@@ -54,8 +52,6 @@ typedef enum
     SET_HEATER_STATE_MID = 39,        // 0b00100111,
     SET_HEATER_STATE_ALL_MID = 53,    // 0b00110101,
     HEATER_TELEM_MID = 40,            // 0b00101000,
-    GET_PERIPHERAL_DATA_MID = 43,     // 0b00101011,
-    PERIPHERAL_DATA_MID = 48,         // 0b00110000
 } master_comms_bus_msg_id_t;
 
 typedef struct {
