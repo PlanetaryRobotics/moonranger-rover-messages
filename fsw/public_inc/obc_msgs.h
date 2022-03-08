@@ -59,6 +59,9 @@ typedef OBC_NoArgsCmd_t OBC_PowerSwitchingEnable_Cmd_t;
 #define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(OBC_MasterCommsEnable_Cmd_t)
 
 typedef struct {
+    uint16 obc_reboot_counter;
+    uint16 iobc_wifi_strenght;
+    uint16 spi_invalid_msg_counter;
 } OBC_Health_Tlm_t;
 
 typedef struct {
