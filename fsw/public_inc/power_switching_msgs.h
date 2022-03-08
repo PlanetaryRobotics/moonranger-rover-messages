@@ -77,9 +77,9 @@ typedef struct {
 
 // power switching telemetry payload
 typedef struct {
+    msp_health_payload_t msp_health;
     uint16 switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
     switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
-    msp_health_payload_t msp_health;
 } power_switch_telem_payload_t;
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)
