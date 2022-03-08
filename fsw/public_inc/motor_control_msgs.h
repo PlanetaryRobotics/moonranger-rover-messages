@@ -106,9 +106,9 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
     uint16_t checksum;
-} set_motor_speed_all_cmd_t;
+} set_wheel_speed_all_cmd_t;
 
-#define SET_MOTOR_SPEED_ALL_CMD_LEN sizeof(set_motor_speed_all_cmd_t)
+#define SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(set_wheel_speed_all_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
