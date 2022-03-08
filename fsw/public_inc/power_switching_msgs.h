@@ -72,6 +72,7 @@ typedef struct {
 // reset power switch command payload
 typedef struct {
     switch_group_id_t switch_group_id;
+    uint8_t __padding;
 } reset_switch_payload_t;
 
 #define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t)
