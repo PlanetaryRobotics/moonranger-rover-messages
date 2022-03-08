@@ -38,7 +38,7 @@ typedef struct {
                               // master MSP
 } sensor_telem_payload_t;
 
-#define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t);
+#define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -59,18 +59,21 @@ typedef union {
 } second_cmd_t;
 
 typedef struct {
-    set_wheel_speed_all_cmd_t wheel_speed_cmd;
-    second_cmd_t second_cmd;
-    uint16 checksum;
-} obc_spi_cmd_t;
-
-#define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t);
-
-typedef struct {
     sensor_telem_payload_t payload;
     uint16 checksum;
 } peripheral_sensor_telem_msg_t;
 
-#define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t);
+#define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
+
+typedef struct {
+    set_wheel_speed_all_cmd_t wheel_speed_cmd;
+    second_cmd_t second_cmd;
+    uint16_t checksum;
+    uint8_t
+        padding[(PERIPHERAL_SENSOR_TELEM_MSG_LEN - SET_WHEEL_SPEED_ALL_CMD_LEN -
+                 sizeof(second_cmd_t) - sizeof(uint16_t))];
+} obc_spi_cmd_t;
+
+#define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
 #endif /* master_comms_msgs_h */
