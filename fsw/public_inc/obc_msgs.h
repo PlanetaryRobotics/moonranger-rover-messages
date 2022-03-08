@@ -31,9 +31,11 @@
  * @note code numbers have been selected for dual bit changes.
  */
 #define OBC_NOOP_CC 0
-#define OBC_RESET_COUNTERS_CC 3   // 0b00000011,
-#define OBC_BATT_ENABLE_CC 5      // 0b00000101,
-#define OBC_WIFI_ENABLE_CC 6      // 0b00000110,
+#define OBC_RESET_COUNTERS_CC 3         // 0b00000011,
+#define OBC_BATT_ENABLE_CC 5            // 0b00000101,
+#define OBC_WIFI_ENABLE_CC 6            // 0b00000110,
+#define OBC_MASTER_COMMS_ENABLE 9       // 0b00001001
+#define OBC_POWER_SWITCHING_ENABLE 10   // 0b00001010
 
 /*
 ** Type definition (generic "no arguments" command)
@@ -45,12 +47,16 @@ typedef struct {
 // separate typedefs for open mode & future changes
 typedef OBC_NoArgsCmd_t BatteryEnable_Cmd_t;
 typedef OBC_NoArgsCmd_t WifiEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t MasterCommsEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t PowerSwitchingEnable_Cmd_t;
 
 // TODO - do we need the buffer definitions as per messages below?
 
 // Message sizes
 #define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
-#define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
+#define WIFI_ENABLE_CMD_LNGTH sizeof(WifiEnable_Cmd_t)
+#define POWER_SWITCHING_ENABLE_CMD_LNGTH sizeof(PowerSwitchingEnable_Cmd_t)
+#define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(MasterCommsEnable_Cmd_t)
 
 typedef struct {
 } OBC_Health_Tlm_t;
