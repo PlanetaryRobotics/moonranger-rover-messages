@@ -83,7 +83,7 @@ typedef struct {
     msp_health_payload_t msp_health;
     uint16_t switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
     switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
-    uint8_t __padding;                                // ensure 16 bit alignment
+    uint8_t __padding[3];                                // ensure 32 bit alignment
 } power_switch_telem_payload_t;
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)
