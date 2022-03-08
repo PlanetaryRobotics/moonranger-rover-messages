@@ -24,12 +24,6 @@
 #include "power_switching_msgs.h"
 #include "sunsensor_msgs.h"
 
-// SPI header definition
-typedef struct {
-    uint16 msg_seq;
-    master_comms_bus_msg_id_t msg_id;
-} master_msp_spi_hdr_t;
-
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
@@ -49,20 +43,34 @@ typedef struct {
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
  **************************************************************************/
+typedef union {
+    set_motor_pid_cmd_t set_motor_pid_cmd;
+    set_solar_panel_state_cmd_t set_solar_panel_state_cmd;
+    get_nss_telem_cmd_t get_nss_telem_cmd;
+    set_nss_params_cmd_t set_nss_params_cmd;
+    get_sunsensor_data_cmd_t get_sunsensor_data_cmd;
+    get_switch_telem_cmd_t get_switch_telem_cmd;
+    set_switch_state_cmd_t set_switch_state_cmd;
+    set_switch_state_all_cmd_t set_switch_state_all_cmd;
+    reset_switch_cmd_t reset_switch_cmd;
+    get_heater_telem_cmd_t get_heater_telem_cmd;
+    set_heater_state_cmd_t set_heater_state_cmd;
+    set_heater_state_all_cmd_t set_heater_state_all_cmd;
+} second_cmd_t;
+
 typedef struct {
-    master_msp_spi_hdr_t msg_hdr;
+    set_wheel_speed_all_cmd_t wheel_speed_cmd;
+    second_cmd_t second_cmd;
     uint16 checksum;
-} get_peripheral_sensor_telem_cmd_t;
+} obc_spi_cmd_t;
 
-#define GET_PERIPHERAL_SENSOR_TELEM_MSG_LEN \
-    sizeof(get_peripheral_sensor_telem_cmd_t);
+#define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t);
 
 typedef struct {
-    master_msp_spi_hdr_t msg_hdr;
     sensor_telem_payload_t payload;
     uint16 checksum;
 } peripheral_sensor_telem_msg_t;
 
-#define SENSOR_PERIPHERAL_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t);
+#define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t);
 
 #endif /* master_comms_msgs_h */
