@@ -35,7 +35,7 @@ typedef struct {
     uint8_t command_2;
 } set_nss_params_payload_t;
 
-#define SET_NSS_PARAMS_PAYLOAD_LEN sizeof(set_nss_params_payload_t);
+#define SET_NSS_PARAMS_PAYLOAD_LEN sizeof(set_nss_params_payload_t)
 
 // NSS telemetry message
 typedef struct {
@@ -45,7 +45,7 @@ typedef struct {
     msp_health_payload_t msp_health;
 } nss_telem_payload_t;
 
-#define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t);
+#define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t)
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -56,7 +56,7 @@ typedef struct {
     uint16_t checksum;
 } get_nss_telem_cmd_t;
 
-#define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t);
+#define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -64,7 +64,7 @@ typedef struct {
     uint16_t checksum;
 } set_nss_params_cmd_t;
 
-#define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t);
+#define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -72,6 +72,6 @@ typedef struct {
     uint16_t checksum;
 } nss_telem_msg_t;
 
-#define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t);
+#define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t)
 
 #endif /* _nss_msgs_h */

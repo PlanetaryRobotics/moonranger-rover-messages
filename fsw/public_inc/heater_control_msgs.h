@@ -60,14 +60,14 @@ typedef struct {
     heater_state_t heater_state;
 } set_heater_state_payload_t;
 
-#define SET_HEATER_STATE_PAYLOAD_LEN sizeof(set_heater_state_payload_t);
+#define SET_HEATER_STATE_PAYLOAD_LEN sizeof(set_heater_state_payload_t)
 
 // set all heater state command payload
 typedef struct {
     heater_state_t heater_state[NUM_HEATERS];
 } set_heater_state_all_payload_t;
 
-#define SET_HEATER_STATE_ALL_PAYLOAD_LEN sizeof(set_heater_state_all_payload_t);
+#define SET_HEATER_STATE_ALL_PAYLOAD_LEN sizeof(set_heater_state_all_payload_t)
 
 // heater telemetry payload
 typedef struct {
@@ -78,7 +78,7 @@ typedef struct {
     msp_health_payload_t msp_health;
 } heater_telem_payload_t;
 
-#define HEATER_TELEM_PAYLOAD_LEN sizeof(heater_telem_payload_t);
+#define HEATER_TELEM_PAYLOAD_LEN sizeof(heater_telem_payload_t)
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -89,7 +89,7 @@ typedef struct {
     uint16 checksum;
 } get_heater_telem_cmd_t;
 
-#define GET_HEATER_TELEM_CMD_LEN sizeof(get_heater_telem_cmd_t);
+#define GET_HEATER_TELEM_CMD_LEN sizeof(get_heater_telem_cmd_t)
 
 // set heater state command
 typedef struct {
@@ -98,7 +98,7 @@ typedef struct {
     uint16 checksum;
 } set_heater_state_cmd_t;
 
-#define SET_HEATER_STATE_CMD_LEN sizeof(set_heater_state_cmd_t);
+#define SET_HEATER_STATE_CMD_LEN sizeof(set_heater_state_cmd_t)
 
 // set heater state command
 typedef struct {
@@ -107,7 +107,7 @@ typedef struct {
     uint16 checksum;
 } set_heater_state_all_cmd_t;
 
-#define SET_HEATER_STATE_ALL_CMD_LEN sizeof(set_heater_state_all_cmd_t);
+#define SET_HEATER_STATE_ALL_CMD_LEN sizeof(set_heater_state_all_cmd_t)
 
 // heater telemetry message
 typedef struct {
@@ -116,6 +116,6 @@ typedef struct {
     uint16 checksum;
 } heater_telem_msg_t;
 
-#define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t);
+#define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t)
 
 #endif /* _heater_control_msgs_h */
