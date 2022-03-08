@@ -80,7 +80,7 @@ typedef struct {
 // power switching telemetry payload
 typedef struct {
     msp_health_payload_t msp_health;
-    uint16 switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
+    uint16_t switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
     switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
 } power_switch_telem_payload_t;
 
@@ -92,7 +92,8 @@ typedef struct {
 // get power switching telemtry command
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } get_switch_telem_cmd_t;
 
 #define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t)
@@ -101,7 +102,8 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } set_switch_state_cmd_t;
 
 #define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t)
@@ -110,7 +112,8 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_all_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } set_switch_state_all_cmd_t;
 
 #define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t)
@@ -119,7 +122,8 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     reset_switch_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } reset_switch_cmd_t;
 
 #define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t)
@@ -128,7 +132,8 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     power_switch_telem_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } power_switch_telem_msg_t;
 
 #define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t)

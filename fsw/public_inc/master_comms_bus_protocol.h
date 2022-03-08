@@ -60,6 +60,7 @@ typedef struct {
     uint16_t msg_seq;                   // message sequence number
     uint16_t len;                       // payload lenght
     master_comms_bus_msg_id_t msg_id;   // message id
+    uint8_t __padding;
 } main_bus_hdr_t;
 
 typedef struct {
