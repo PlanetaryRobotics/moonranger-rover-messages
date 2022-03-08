@@ -64,6 +64,7 @@ typedef struct {
 // set power switching state all command payload
 typedef struct {
     switch_state_t switch_state[NUM_SWITCH_GROUPS];
+    uint8_t __padding;
 } set_switch_state_all_payload_t;
 
 #define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t)
