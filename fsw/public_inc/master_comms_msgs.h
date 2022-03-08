@@ -35,7 +35,8 @@ typedef struct {
     heater_telem_payload_t heater_telem;
     msp_health_payload_t msp_health;
     uint16 inv_spi_msg_ctr;   // count of invalid messages SPI received by
-                              // master MSP
+    // master MSP
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)

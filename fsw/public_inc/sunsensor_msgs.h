@@ -20,23 +20,24 @@
 #include "moonranger_common_types.h"
 
 typedef struct {
-    uint32 alpha;     // alpha angle in degrees
-    uint32 beta;      // beta angle in degrees
-    uint8 err_code;   // error code as specified in datasheet
+    uint32_t alpha;         // alpha angle in degrees
+    uint32_t beta;          // beta angle in degrees
+    uint8_t err_code;       // error code as specified in datasheet
+    uint8_t __padding[3];   // ensure 32 bit alignment
 } sun_sensor_angles_t;
 
 typedef struct {
-    uint32 uSSA1F;   // filtered voltage 1
-    uint32 uSSA2F;   // filtered voltage 2
-    uint32 uSSA3F;   // filtered voltage 3
-    uint32 uSSA4F;   // filtered voltage 4
+    uint32_t uSSA1F;   // filtered voltage 1
+    uint32_t uSSA2F;   // filtered voltage 2
+    uint32_t uSSA3F;   // filtered voltage 3
+    uint32_t uSSA4F;   // filtered voltage 4
 } sun_sensor_filtered_volts_t;
 
 typedef struct {
-    uint32 uSSA1;   // unfiltered voltage 1
-    uint32 uSSA2;   // unfiltered voltage 2
-    uint32 uSSA3;   // unfiltered voltage 3
-    uint32 uSSA4;   // unfiltered voltage 4
+    uint32_t uSSA1;   // unfiltered voltage 1
+    uint32_t uSSA2;   // unfiltered voltage 2
+    uint32_t uSSA3;   // unfiltered voltage 3
+    uint32_t uSSA4;   // unfiltered voltage 4
 } sun_sensor_unfiltered_volts_t;
 
 /**************************************************************************
@@ -57,7 +58,8 @@ typedef struct {
 // get sun sensor data message
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } get_sunsensor_data_cmd_t;
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t);
@@ -66,7 +68,8 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     sunsensor_telem_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } sunsensor_telem_msg_t;
 
 #define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t);

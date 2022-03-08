@@ -65,7 +65,7 @@ typedef struct {
 // set power switching state all command payload
 typedef struct {
     switch_state_t switch_state[NUM_SWITCH_GROUPS];
-    uint8_t __padding;
+    uint8_t __padding;   // ensure 16 bit alignment
 } set_switch_state_all_payload_t;
 
 #define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t)
@@ -73,7 +73,7 @@ typedef struct {
 // reset power switch command payload
 typedef struct {
     switch_group_id_t switch_group_id;
-    uint8_t __padding;
+    uint8_t __padding;   // ensure 16 bit alignment
 } reset_switch_payload_t;
 
 #define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t)
@@ -83,7 +83,7 @@ typedef struct {
     msp_health_payload_t msp_health;
     uint16_t switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
     switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
-    uint8_t __padding;
+    uint8_t __padding;                                // ensure 16 bit alignment
 } power_switch_telem_payload_t;
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)

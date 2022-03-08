@@ -43,6 +43,7 @@ typedef struct {
     uint8_t status;   // status byte: bit 0 = no telemetry, TODO: add more flags
                       // here
     msp_health_payload_t msp_health;
+    uint16_t __padding;   // ensure 32 bit alignment for telemetry struct
 } nss_telem_payload_t;
 
 #define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t)
@@ -54,6 +55,7 @@ typedef struct {
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } get_nss_telem_cmd_t;
 
 #define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t)
@@ -62,6 +64,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_nss_params_payload_t payload;
     uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } set_nss_params_cmd_t;
 
 #define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)
@@ -70,6 +73,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     nss_telem_payload_t payload;
     uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } nss_telem_msg_t;
 
 #define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t)
