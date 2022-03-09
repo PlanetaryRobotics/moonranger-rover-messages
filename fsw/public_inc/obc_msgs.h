@@ -62,11 +62,11 @@ typedef struct {
     uint16 obc_reboot_counter;
     uint16 iobc_wifi_strenght;
     uint16 spi_invalid_msg_counter;
-} OBC_Health_Tlm_t;
+} OBC_Health_Payload_t;
 
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];   // note Tlm Header has timestamp
-    OBC_Health_Tlm_t payload;
+    OBC_Health_Payload_t payload;
 } OS_PACK OBC_Health_Tlm_t;
 
 #define OBC_HEALTH_TLM_LEN sizeof(OBC_Health_Tlm_t)
@@ -209,7 +209,7 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     OBC_Set_Switch_State_All_Cmd_t set_switch_state_all;
-} OBC_Set_Switch_State_Buffer_t;
+} OBC_Set_Switch_State_All_Buffer_t;
 
 // Message sizes
 #define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Switch_State_All_Cmd_t)
@@ -249,7 +249,7 @@ typedef union {
 } OBC_Set_Heater_State_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t)
+#define OBC_SET_HEATER_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t)
 
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -263,9 +263,9 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     OBC_Set_Heater_State_All_Cmd_t set_heater_state_all_cmd;
-} OBC_Set_Heater_State_Buffer_t;
+} OBC_Set_Heater_State_All_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t)
+#define OBC_SET_HEATER_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t)
 
 #endif /* _obc_msgs_h */

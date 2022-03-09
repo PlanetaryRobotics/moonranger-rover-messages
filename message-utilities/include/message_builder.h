@@ -1,24 +1,18 @@
 #ifndef _message_builder_h
 #define _message_builder_h
-#include "battery_enable_msg.h"
 #include "ccsds.h"
 #include "cfe_sb.h"
 #include "common_types.h"
 #include "goal_msg.h"
-#include "heater_control_msp_msgs.h"
 #include "moonranger_msgids.h"
-#include "nss_if_msp_msgs.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
-#include "power_switching_msp_msgs.h"
 #include "rover_init_msg.h"
 #include "stereo_reconstructor_msgs.h"
-#include "sunsensor_msg.h"
 #include "teleop_msg.h"
 #include "wheel_velocity_command_msg.h"
-#include "nss_if_msp_msgs.h"
 #include "imu_driver_msgs.h"
-
+#include "obc_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -42,17 +36,14 @@ typedef union {
     POSE_HkTlm_t Pose_estimator_Tlm;
     MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
-    BatteryEnable_Cmd_t battery_en;
+    OBC_BatteryEnable_Cmd_t Battery_En_Cmd;
     MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
-    PERIPHERAL_MANAGER_HeaterControl_Tlm_t HeaterControl_Tlm;
-    PERIPHERAL_MANAGER_PowerSwitching_Tlm_t PowerSwitching_Tlm;
-    PERIPHERAL_MANAGER_ResetComponent_Tlm_t ResetComponent_Tlm;
-    PERIPHERAL_MANAGER_SetComms_Tlm_t SetPeripheralComms_Tlm;
-    SunSensorCmd_Cmd_t sunsensor_cmd;
-    SunSensorTlm_Tlm_t sunsensor_tlm;
-    NSS_HealthMsg_Tlm_t NSSHealthMsg_Tlm;
-    NSS_SetParams_Tlm_t NSSSetParams_Tlm;
+    OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
+    OBC_Set_Switch_State_Buffer_t PowerSwitching_Cmd;
+    OBC_Reset_Switch_Cmd_t ResetComponent_Cmd;
+    OBC_WifiEnable_Cmd_t WiFi_Enable_Cmd;
+    OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
     STEREO_HkTlm_t StereoHk_Tlm;
     STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
     STEREO_Noop_t StereoNoOp_Tlm;
