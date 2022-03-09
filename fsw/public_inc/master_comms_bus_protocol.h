@@ -63,6 +63,11 @@ typedef struct {
     uint8_t __padding;                  // ensures 16 bit alignment
 } main_bus_hdr_t;
 
+// Preprocessor check of main_bus_hdr_t struct size
+#if ((8 != GET_HEATER_TELEM_CMD_LEN))
+#error “main bus header struct size incorrect (expected 8 bytes)”
+#endif
+
 typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted
     int16_t invalid_msg_counter;   // the number of times an MSP has received
