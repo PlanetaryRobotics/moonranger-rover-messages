@@ -57,19 +57,11 @@ typedef struct {
     volatile int16_t motor_current;            // The current drawn by the motor
     volatile int8_t encoder_position;          // the encoder reading
     volatile solar_panel_state_t curr_state;   // the solar panel state
+    uint16_t __padding;                        // ensure 32 bit alignment
 } solar_panel_motor_health_t;
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
-
-// set motor speed command
-typedef struct {
-    int16_t motor_speed;
-    motor_id_t motor_id;
-} set_wheel_speed_payload_t;
-
-#define SET_WHEEL_SPEED_PAYLOAD_LEN sizeof(set_wheel_speed_payload_t)
-
 // set motor speed all command
 typedef struct {
     int16_t motor1_speed;
@@ -84,6 +76,7 @@ typedef struct {
 typedef struct {
     pid_gains_t motor_pid_gains;
     motor_id_t motor_id;
+    uint8_t __padding;
 } set_motor_pid_payload_t;
 
 #define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t)
@@ -91,6 +84,7 @@ typedef struct {
 // set solar panel state command
 typedef struct {
     solar_panel_state_t panel_state;
+    uint8_t __padding;   // ensure 16 bit alignment
 } set_solar_panel_state_payload_t;
 
 #define SET_SOLAR_PANEL_STATE_PAYLOAD_LEN \
@@ -111,34 +105,20 @@ typedef struct {
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
-// get motor health command
-typedef struct {
-    main_bus_hdr_t msg_hdr;
-    uint16_t checksum;
-} get_motor_health_cmd_t;
-
-#define GET_MOTOR_HEALTH_CMD_LEN sizeof(get_motor_health_cmd_t)
-
-typedef struct {
-    main_bus_hdr_t msg_hdr;
-    set_wheel_speed_payload_t payload;
-    uint16_t checksum;
-} set_motor_speed_cmd_t;
-
-#define SET_MOTOR_SPEED_CMD_LEN sizeof(set_motor_speed_cmd_t)
-
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
     uint16_t checksum;
-} set_motor_speed_all_cmd_t;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+} set_wheel_speed_all_cmd_t;
 
-#define SET_MOTOR_SPEED_ALL_CMD_LEN sizeof(set_motor_speed_all_cmd_t)
+#define SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(set_wheel_speed_all_cmd_t)
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_motor_pid_payload_t payload;
     uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } set_motor_pid_cmd_t;
 
 #define SET_MOTOR_PID_CMD_LEN sizeof(set_motor_pid_cmd_t)
@@ -147,6 +127,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_solar_panel_state_payload_t payload;
     uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } set_solar_panel_state_cmd_t;
 
 #define SET_SOLAR_PANEL_STATE_CMD_LEN sizeof(set_solar_panel_state_cmd_t)
@@ -155,6 +136,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     motor_health_payload_t payload;
     int16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } motor_health_msg_t;
 
 #define MOTOR_HEALTH_MSG_LEN sizeof(motor_health_msg_t)

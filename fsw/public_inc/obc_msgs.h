@@ -31,9 +31,11 @@
  * @note code numbers have been selected for dual bit changes.
  */
 #define OBC_NOOP_CC 0
-#define OBC_RESET_COUNTERS_CC 3   // 0b00000011,
-#define OBC_BATT_ENABLE_CC 5      // 0b00000101,
-#define OBC_WIFI_ENABLE_CC 6      // 0b00000110,
+#define OBC_RESET_COUNTERS_CC 3         // 0b00000011,
+#define OBC_BATT_ENABLE_CC 5            // 0b00000101,
+#define OBC_WIFI_ENABLE_CC 6            // 0b00000110,
+#define OBC_MASTER_COMMS_ENABLE 9       // 0b00001001
+#define OBC_POWER_SWITCHING_ENABLE 10   // 0b00001010
 
 /*
 ** Type definition (generic "no arguments" command)
@@ -43,24 +45,31 @@ typedef struct {
 } OBC_NoArgsCmd_t;
 
 // separate typedefs for open mode & future changes
-typedef OBC_NoArgsCmd_t BatteryEnable_Cmd_t;
-typedef OBC_NoArgsCmd_t WifiEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_BatteryEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_WifiEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_MasterCommsEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_PowerSwitchingEnable_Cmd_t;
 
 // TODO - do we need the buffer definitions as per messages below?
 
 // Message sizes
-#define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
-#define BATTERY_ENABLE_CMD_LNGTH sizeof(BatteryEnable_Cmd_t)
+#define BATTERY_ENABLE_CMD_LNGTH sizeof(OBC_BatteryEnable_Cmd_t)
+#define WIFI_ENABLE_CMD_LNGTH sizeof(OBC_WifiEnable_Cmd_t)
+#define POWER_SWITCHING_ENABLE_CMD_LNGTH sizeof(OBC_PowerSwitchingEnable_Cmd_t)
+#define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(OBC_MasterCommsEnable_Cmd_t)
 
 typedef struct {
-} OBC_Health_Tlm_t;
+    uint16 obc_reboot_counter;
+    uint16 iobc_wifi_strenght;
+    uint16 spi_invalid_msg_counter;
+} OBC_Health_Payload_t;
 
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];   // note Tlm Header has timestamp
-    OBC_Health_Tlm_t payload;
+    OBC_Health_Payload_t payload;
 } OS_PACK OBC_Health_Tlm_t;
 
-#define OBC_HEALTH_TLM_LEN sizeof(OBC_Health_Tlm_t);
+#define OBC_HEALTH_TLM_LEN sizeof(OBC_Health_Tlm_t)
 
 /**************************************************************************
  * Master Comms Controller (E3) Message Definitions
@@ -80,33 +89,11 @@ typedef union {
 } OBC_Peripheral_Sensor_Tlm_Buffer_t;
 
 // Message sizes
-#define OBC_SENSOR_TELEM_LEN sizeof(OBC_Peripheral_Sensor_Tlm_t);
+#define OBC_SENSOR_TELEM_LEN sizeof(OBC_Peripheral_Sensor_Tlm_t)
 
 /**************************************************************************
  * Motor Controller (E5) Message Definitions
  **************************************************************************/
-// command structure
-typedef struct {
-    set_wheel_speed_payload_t uart_payload;
-    uint32_t duration;   // seconds
-} Set_Wheel_Speed_Cmd_Payload;
-
-// cFS command structure
-typedef struct {
-    uint8 CmdHeader[CFE_SB_TLM_HDR_SIZE];
-    Set_Wheel_Speed_Cmd_Payload payload;
-} OS_PACK OBC_Set_Wheel_Speed_Cmd_t;
-
-/**
- * Buffer to hold data prior to sending
- * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
- */
-typedef union {
-    CFE_SB_Msg_t MsgHdr;
-    OBC_Set_Wheel_Speed_Cmd_t set_motor_speed_cmd;
-} Set_Wheel_Speed_Buffer_t;
-
-#define OBC_SET_WHEEL_SPEED_CMD_LEN sizeof(OBC_Set_Wheel_Speed_Cmd_t);
 
 // command structure
 typedef struct {
@@ -129,7 +116,7 @@ typedef union {
     OBC_Set_Wheel_Speed_All_Cmd_t set_motor_speed_all_cmd;
 } Set_Wheel_Speed_All_Buffer_t;
 
-#define OBC_SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(OBC_Set_Wheel_Speed_All_Cmd_t);
+#define OBC_SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(OBC_Set_Wheel_Speed_All_Cmd_t)
 
 // cFS command structure
 typedef struct {
@@ -147,7 +134,7 @@ typedef union {
 } Set_Motor_PID_Buffer_All_t;
 
 // Message sizes
-#define OBC_SET_MOTOR_PID_CMD_LEN sizeof(OBC_Set_Motor_PID_Cmd_t);
+#define OBC_SET_MOTOR_PID_CMD_LEN sizeof(OBC_Set_Motor_PID_Cmd_t)
 
 // cFS command structure
 typedef struct {
@@ -165,7 +152,7 @@ typedef union {
 } Set_Solar_Panel_State_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SOLAR_PANEL_STATE_LEN sizeof(OBC_Set_Solar_Panel_State_Cmd_t);
+#define OBC_SET_SOLAR_PANEL_STATE_LEN sizeof(OBC_Set_Solar_Panel_State_Cmd_t)
 
 /**************************************************************************
  * NSS Interface (E6) Message Definitions
@@ -188,7 +175,7 @@ typedef union {
 } NSS_Set_Params_Buffer_t;
 
 // Message sizes
-#define OBC_NSS_SET_PARAMS_CMD_LEN sizeof(OBC_NSS_Set_Params_Cmd_t);
+#define OBC_NSS_SET_PARAMS_CMD_LEN sizeof(OBC_NSS_Set_Params_Cmd_t)
 
 /**************************************************************************
  * Power Switching Controller (E8) Message Definitions
@@ -208,7 +195,7 @@ typedef union {
 } OBC_Set_Switch_State_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Switch_State_Cmd_t);
+#define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Switch_State_Cmd_t)
 
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -222,10 +209,10 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     OBC_Set_Switch_State_All_Cmd_t set_switch_state_all;
-} OBC_Set_Switch_State_Buffer_t;
+} OBC_Set_Switch_State_All_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Switch_State_All_Cmd_t);
+#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Switch_State_All_Cmd_t)
 
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -242,7 +229,7 @@ typedef union {
 } OBC_Reset_Switch_Buffer_t;
 
 // Message sizes
-#define OBC_RESET_SWITCH_CMD_LEN sizeof(OBC_Reset_Switch_Cmd_t);
+#define OBC_RESET_SWITCH_CMD_LEN sizeof(OBC_Reset_Switch_Cmd_t)
 
 /**************************************************************************
  * Heater Controller (E9) Message Definitions
@@ -262,7 +249,7 @@ typedef union {
 } OBC_Set_Heater_State_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t);
+#define OBC_SET_HEATER_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t)
 
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -276,9 +263,9 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     OBC_Set_Heater_State_All_Cmd_t set_heater_state_all_cmd;
-} OBC_Set_Heater_State_Buffer_t;
+} OBC_Set_Heater_State_All_Buffer_t;
 
 // Message sizes
-#define OBC_SET_SWITCH_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t);
+#define OBC_SET_HEATER_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t)
 
 #endif /* _obc_msgs_h */
