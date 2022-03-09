@@ -67,7 +67,7 @@ typedef struct {
 #define MAIN_BUS_HDR_LEN sizeof(main_bus_hdr_t)
 
 // Preprocessor check of struct size
-static_assert((8 != MAIN_BUS_HDR_LEN), "main_bus_hdr_t struct size incorrect (expected 8 bytes)");
+static_assert((8 == MAIN_BUS_HDR_LEN), "main_bus_hdr_t struct size incorrect (expected 8 bytes)");
 
 typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted

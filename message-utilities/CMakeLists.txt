@@ -11,7 +11,7 @@ file(GLOB SOURCES "src/*.c" "cfe_components/*.c")
  
 add_library(msg SHARED ${SOURCES})
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#to ensure enums are compiled to minimum size
 set(CMAKE_C_FLAGS "-fshort-enums")
 
 target_include_directories(msg PUBLIC cfe_components)
