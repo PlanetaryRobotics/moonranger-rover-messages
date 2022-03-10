@@ -28,18 +28,23 @@
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
 typedef struct {
-    motor_health_payload_t motor_health_data;
-    nss_telem_payload_t nss_telem;
-    sunsensor_telem_payload_t sunsensor_data;
-    power_switch_telem_payload_t power_switch_telem;
-    heater_telem_payload_t heater_telem;
-    msp_health_payload_t msp_health;
-    uint16 inv_spi_msg_ctr;   // count of invalid messages SPI received by
+    motor_health_payload_t motor_health_data;          // 108 bytes
+    nss_telem_payload_t nss_telem;                     // 96 bytes
+    sunsensor_telem_payload_t sunsensor_data;          // 48 bytes
+    power_switch_telem_payload_t power_switch_telem;   // 52 byte
+    heater_telem_payload_t heater_telem;               // 44 bytes
+    msp_health_payload_t msp_health;                   // 8 bytes
+    uint16_t inv_spi_msg_ctr;   // count of invalid messages SPI received by
     // master MSP
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (356 == SENSOR_TELEM_PAYLOAD_LEN),
+    "sensor_telem_payload_t struct size incorrect (expected 356 bytes)");
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -61,10 +66,16 @@ typedef union {
 
 typedef struct {
     sensor_telem_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } peripheral_sensor_telem_msg_t;
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (360 ==  PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    "peripheral_sensor_telem_msg_t struct size incorrect (expected 360 bytes)");
 
 typedef struct {
     set_wheel_speed_all_cmd_t wheel_speed_cmd;
@@ -76,5 +87,10 @@ typedef struct {
 } obc_spi_cmd_t;
 
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (360== OBC_SPI_CMD_LEN),
+    "obc_spi_cmd_t struct size incorrect (expected 360 bytes)");
 
 #endif /* master_comms_msgs_h */

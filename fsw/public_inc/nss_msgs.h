@@ -48,6 +48,10 @@ typedef struct {
 
 #define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t)
 
+// Preprocessor check of struct size
+static_assert((96 == NSS_TELEM_PAYLOAD_LEN),
+              "nss_telem_payload_t struct size incorrect (expected 96 bytes)");
+
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
@@ -60,6 +64,10 @@ typedef struct {
 
 #define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((12 == GET_NSS_TELEM_CMD_LEN),
+              "get_nss_telem_cmd_t struct size incorrect (expected 12 bytes)");
+
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_nss_params_payload_t payload;
@@ -69,6 +77,10 @@ typedef struct {
 
 #define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((14 == SET_NSS_PARAMS_CMD_LEN),
+              "set_nss_params_cmd_t struct size incorrect (expected 14 bytes)");
+
 typedef struct {
     main_bus_hdr_t msg_hdr;
     nss_telem_payload_t payload;
@@ -77,5 +89,9 @@ typedef struct {
 } nss_telem_msg_t;
 
 #define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t)
+
+// Preprocessor check of struct size
+static_assert((108 == NSS_TELEM_MSG_LEN),
+              "nss_telem_msg_t struct size incorrect (expected 108 bytes)");
 
 #endif /* _nss_msgs_h */
