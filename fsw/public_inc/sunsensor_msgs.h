@@ -50,7 +50,7 @@ typedef struct {
     msp_health_payload_t msp_health;
 } sunsensor_telem_payload_t;
 
-#define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t);
+#define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -62,7 +62,7 @@ typedef struct {
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } get_sunsensor_data_cmd_t;
 
-#define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t);
+#define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
 // sun sensor telem message
 typedef struct {
@@ -72,6 +72,6 @@ typedef struct {
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } sunsensor_telem_msg_t;
 
-#define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t);
+#define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
 #endif /* _sunsensor_msgs_h */
