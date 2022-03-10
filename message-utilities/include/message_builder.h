@@ -46,7 +46,7 @@ typedef union {
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
-    OBC_Reset_Switch_Cmd_t ResetComponent_Cmd;
+    OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
     OBC_WifiEnable_Cmd_t WiFi_Enable_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
     STEREO_HkTlm_t StereoHk_Tlm;
