@@ -76,7 +76,7 @@ typedef struct {
 typedef struct {
     pid_gains_t motor_pid_gains;
     motor_id_t motor_id;
-    uint8_t __padding;
+    uint8_t __padding[3];
 } set_motor_pid_payload_t;
 
 #define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t)

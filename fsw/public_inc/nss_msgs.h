@@ -19,6 +19,8 @@
 #include "master_comms_bus_protocol.h"
 #include "moonranger_common_types.h"
 
+#define NSS_DATA_LEN 89
+
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
@@ -39,7 +41,7 @@ typedef struct {
 
 // NSS telemetry message
 typedef struct {
-    uint8_t nss_data[89];   // data from sensor
+    uint8_t nss_data[NSS_DATA_LEN];   // data from sensor
     uint8_t status;   // status byte: bit 0 = no telemetry, TODO: add more flags
                       // here
     msp_health_payload_t msp_health;

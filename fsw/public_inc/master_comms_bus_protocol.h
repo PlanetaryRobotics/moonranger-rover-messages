@@ -63,6 +63,8 @@ typedef struct {
     uint8_t __padding;                  // ensures 16 bit alignment
 } main_bus_hdr_t;
 
+#define MAIN_BUS_HDR_LEN sizeof(main_bus_hdr_t)
+
 typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted
     int16_t invalid_msg_counter;   // the number of times an MSP has received
