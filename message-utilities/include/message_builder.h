@@ -62,12 +62,6 @@ typedef union {
 int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
 
-int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
-                 int data_len_bytes, int32 msgId, int header_length);
-
-int messageBuild(void* dataPtr, message_builder_u* msg_container,
-                 int data_len_bytes, int32 msgId);
-
 int messageBuildTlm(void* dataPtr, message_builder_u* msg_container,
                     int data_len_bytes, int32 msgId);
 int messageBuildCmd(void* dataPtr, message_builder_u* msg_container,

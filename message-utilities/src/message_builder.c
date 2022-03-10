@@ -36,34 +36,6 @@ int messageExtract(void *MsgPtr,int msg_len_bytes, message_builder_u* msg_contai
   return SUCCESS;
 }
 
-// generic message builder
-int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId, int header_length)
-{
-  // Fill the header
-  CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
-
-  // Fill the data
-  // Sanity check what we are about to do
-  if(data_len_bytes+header_length<=sizeof(message_builder_u))
-  {
-    memcpy(&msg_container->tlm_data_buf_ptr,dataPtr,data_len_bytes);
-  }
-  else
-    return FAILURE;
-
-  // Size of built message
-  return header_length+ data_len_bytes;
-
-}
-
-// builds message with TLM header of length CFE_SB_TLM_HDR_SIZE
-int messageBuild(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
-{
-  int header_length = CFE_SB_TLM_HDR_SIZE;
-
-  return messageBuildGeneric(dataPtr, msg_container, data_len_bytes, msgId, header_length);
-}
-
 int messageBuildTlm(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
 {
   int header_length = CFE_SB_TLM_HDR_SIZE;
