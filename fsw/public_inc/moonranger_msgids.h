@@ -21,6 +21,12 @@
 #ifndef _moonranger_msgids_h_
 #define _moonranger_msgids_h_
 
+/* V1 Command Message IDs must be 0x18xx */
+#define ROS_APP_CMD_MID 0x1872
+#define ROS_APP_SEND_HK_MID 0x1873
+/* V1 Telemetry Message IDs must be 0x08xx */
+#define ROS_APP_HK_TLM_MID 0x0873
+
 /**
  * IMU Driver Message IDs
  * @note Command message IDs in this section should fit within
