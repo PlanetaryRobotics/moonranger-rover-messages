@@ -45,6 +45,7 @@ typedef struct {
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
  **************************************************************************/
 typedef union {
+    get_motor_telem_cmd_t get_motor_telem_cmd;
     set_motor_pid_cmd_t set_motor_pid_cmd;
     set_solar_panel_state_cmd_t set_solar_panel_state_cmd;
     get_nss_telem_cmd_t get_nss_telem_cmd;
