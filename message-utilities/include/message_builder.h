@@ -29,7 +29,12 @@ typedef union {
 
     struct {
         uint8_t TlmHeader[CFE_SB_TLM_HDR_SIZE];
-        uint8_t data_buf_ptr;
+        uint8_t tlm_data_buf_ptr;
+    };
+
+    struct {
+        uint8_t CmdHeader[CFE_SB_CMD_HDR_SIZE];
+        uint8_t cmd_data_buf_ptr;
     };
 
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
@@ -40,8 +45,8 @@ typedef union {
     MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
-    OBC_Set_Switch_State_Buffer_t PowerSwitching_Cmd;
-    OBC_Reset_Switch_Cmd_t ResetComponent_Cmd;
+    OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
+    OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
     OBC_WifiEnable_Cmd_t WiFi_Enable_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
     STEREO_HkTlm_t StereoHk_Tlm;
@@ -57,11 +62,10 @@ typedef union {
 int messageExtract(void* MsgPtr, int msg_len_bytes,
                    message_builder_u* msg_container);
 
-int messageBuildGeneric(void* dataPtr, message_builder_u* msg_container,
-                 int data_len_bytes, int32 msgId, int header_length);
-
-int messageBuild(void* dataPtr, message_builder_u* msg_container,
-                 int data_len_bytes, int32 msgId);
+int messageBuildTlm(void* dataPtr, message_builder_u* msg_container,
+                    int data_len_bytes, int32 msgId);
+int messageBuildCmd(void* dataPtr, message_builder_u* msg_container,
+                    int data_len_bytes, int32 msgId);
 
 CFE_SB_MsgId_t GetMsgId(void* MsgPtr);
 
