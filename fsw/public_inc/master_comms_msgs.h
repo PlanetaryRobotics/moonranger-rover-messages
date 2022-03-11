@@ -27,6 +27,12 @@
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
+
+typedef struct {
+    int16_t valid_counter;        // the number of valid spi messages
+    int16_t invalid_msg_counter;   // the number of invalid spi messages
+} spi_health_payload_t;
+
 typedef struct {
     motor_health_payload_t motor_health_data;
     nss_telem_payload_t nss_telem;
@@ -34,9 +40,7 @@ typedef struct {
     power_switch_telem_payload_t power_switch_telem;
     heater_telem_payload_t heater_telem;
     msp_health_payload_t msp_health;
-    uint16 spi_msg_ctr;   // count of valid messages SPI received by
-    // master MSP
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    spi_health_payload_t spi_health;
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
