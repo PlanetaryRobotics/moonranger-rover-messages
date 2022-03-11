@@ -34,6 +34,7 @@ typedef enum
 
 typedef enum
 {
+    GET_MOTOR_TELEM_MID = 5,          // 0b00000101,
     SET_MOTOR_SPEED_ALL_MID = 6,      // 0b00000110,
     SET_MOTOR_PID_MID = 9,            // 0b00001001,
     SET_SOLAR_PANEL_STATE_MID = 10,   // 0b00001010,
