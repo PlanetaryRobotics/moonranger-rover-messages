@@ -47,6 +47,8 @@ typedef struct {
     sun_sensor_angles_t angles;
     sun_sensor_filtered_volts_t filtered_volts;
     sun_sensor_unfiltered_volts_t unfiltered_volts;
+    uint8_t status;         // flag used to indicate valid/invalid data from SS
+    uint8_t __padding[3];   // ensure 32 bit alignment
     msp_health_payload_t msp_health;
 } sunsensor_telem_payload_t;
 
