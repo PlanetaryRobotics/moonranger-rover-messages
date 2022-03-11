@@ -61,7 +61,8 @@ typedef union {
 
 typedef struct {
     sensor_telem_payload_t payload;
-    uint16 checksum;
+    uint16_t checksum;
+    uint16_t __padding;
 } peripheral_sensor_telem_msg_t;
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
