@@ -28,8 +28,8 @@ typedef double float64;
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
     uint8 firstFlag;        // s,d,r -> 0,1,2
-    char localPath[256];    // path to local file
-    char landerPath[256];   // path to server file
+    char localPath[512];    // path to local file
+    char landerPath[512];   // path to server file
 } MOONRANGER_FTP_Control_t;
 
 /**
