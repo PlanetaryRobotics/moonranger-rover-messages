@@ -25,7 +25,16 @@ typedef float float32;
  * This data structure is inspired by the ROS sensor_msgs/Imu.msg file
  */
 typedef struct {
+    /**
+     * The type of the timeStamp is "OS_time_t" because it is set using the
+     * return value of the "CFE_PSP_GetTime()" function. If I were to use the
+     * "CFE_TIME_GetTime()" function to set the timestamp instead, then the type
+     * of the timestamp would have to be "CFE_TIME_SysTime_t". I use
+     * "CFE_PSP_GetTime()" because it guarantees monotonic timestamps whereas
+     * "CFE_TIME_GetTime()" does not
+     */
     OS_time_t timeStamp;
+
     /* The orientation of the rover is given by a quaternion */
     float32 orientation_x;
     float32 orientation_y;
