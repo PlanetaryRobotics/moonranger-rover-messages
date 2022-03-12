@@ -57,6 +57,7 @@ typedef union {
     STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
     STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
+    OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
