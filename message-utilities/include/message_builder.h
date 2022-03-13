@@ -50,7 +50,6 @@ typedef union {
     OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
     OBC_WifiEnable_Cmd_t WiFi_Enable_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
-    OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
     STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
     STEREO_Noop_t StereoNoOp_Tlm;
