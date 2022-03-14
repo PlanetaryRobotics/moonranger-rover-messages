@@ -134,6 +134,8 @@
 #define OBC_SET_HEATER_STATE_ALL_CMD_MID 0x1AC9   // set all heater states
 #define OBC_WIFI_ENABLE_CMD_MID 0x1ACA            // enable wifi
 #define OBC_BATT_ENABLE_CMD_MID 0x1ACB            // enable battery
+#define OBC_MASTER_COMM_ENABLE_CMD_MID 0x1ACC     // enable master msp
+#define OBC_POWER_SWITCH_ENABLE_CMD_MID 0x1ACD    // enable power switching msp
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
