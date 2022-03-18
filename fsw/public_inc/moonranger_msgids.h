@@ -21,12 +21,6 @@
 #ifndef _moonranger_msgids_h_
 #define _moonranger_msgids_h_
 
-/* V1 Command Message IDs must be 0x18xx */
-#define ROS_APP_CMD_MID 0x1872
-#define ROS_APP_SEND_HK_MID 0x1873
-/* V1 Telemetry Message IDs must be 0x08xx */
-#define ROS_APP_HK_TLM_MID 0x0873
-
 /**
  * IMU Driver Message IDs
  * @note Command message IDs in this section should fit within
@@ -127,6 +121,12 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
+#define PERIPHERAL_MANAGER_POWER_SWITCH_MID 0x1AC0
+#define PERIPHERAL_MANAGER_RESET_COMPONENT_MID 0x1AC1
+#define PERIPHERAL_MANAGER_SET_COMMS_MID 0x1AC2
+#define PERIPHERAL_MANAGER_HEATER_CONTROL_MID 0x1AC3
+#define NSS_SET_PARAMS_MID 0x1AC4
+#define NSS_HEALTH_MSG_MID 0x0AC0
 
 /**
  * GROUND Command Message IDs
@@ -149,9 +149,9 @@
 #define TBL_MANAGER_HK_TLM_MID 0x0B81
 
 /**
- * Table Manager Message IDs
+ * Logger App IDs
  * @note Command message IDs in this section should fit within
- * 0x1BC0-0x1BFF inclusive.
+ * 0x1BC0-0x1BDF inclusive.
  * @note Telemetry message IDs in this section should fit within
  * 0x0BC0-0x0BFF inclusive.
  */
@@ -159,6 +159,20 @@
 #define LOGGER_CMD_MID      0x1BC0
 #define LOGGER_SEND_HK_MID  0x1BC1
 #define LOGGER_HK_TLM_MID   0x0BC0
+
+/**
+ * FTP App IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1BD0-0x1BDF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0BC0-0x0BFF inclusive.
+ */
+
+#define FTP_CMD_MID         0x1BD0
+#define FTP_SEND_HK_MID     0x1BD1
+#define FTP_MID             0x1BD2
+#define FTP_WIFI_MID        0x1BD3 
+#define FTP_HK_TLM_MID      0x0BD0
 
 /**
  * MOONRANGER Common Message IDs
@@ -174,9 +188,11 @@
 #define MOONRANGER_BODY_VELOCITY_MID 0x0C04
 #define MOONRANGER_WHEEL_VEL_CMD_MID 0x0C05
 #define MOONRANGER_DRIVE_ARC_MID     0x0C06
-#define MOONRANGER_SUNSEEKER_MID     0x0C07
+#define MOONRANGER_SUNSENSOR_MID     0x0C07
 #define MOONRANGER_CMD_VEL_MID       0x0C08
 #define MOONRANGER_WHEEL_VEL_CUR_MID 0x0C09
+#define MOONRANGER_BATT_ENABLE_MID   0x0C0A
+#define MOONRANGER_ROVER_INIT_MID    0x0C0B
 #define MOONRANGER_IMU_DATA_MID      0x0C10
 
 /* FAUXRANGER Message IDs (these messages originate from the Unreal Simulation)
