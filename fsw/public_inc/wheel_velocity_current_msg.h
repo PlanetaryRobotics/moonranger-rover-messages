@@ -22,10 +22,10 @@ typedef float float32;
 /* The Incoming wheel velocity packet */
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
-    float32 leftFront;    // rad/s
-    float32 rightFront;   // rad/s
-    float32 leftBack;     // rad/s
-    float32 rightBack;    // rad/s
+    float32 leftFront;    // RPM
+    float32 rightFront;   // RPM
+    float32 leftBack;     // RPM
+    float32 rightBack;    // RPM
 } MOONRANGER_WheelVelocityCurrent_t;
 
 /* Type definition for wheel velocity telemetry */
