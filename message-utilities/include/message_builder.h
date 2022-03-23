@@ -60,6 +60,8 @@ typedef union {
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
     MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
     OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
+    OBC_BatteryEnable_Cmd_t BatteryEnable_Tlm;
+    OBC_WifiEnable_Cmd_t WifiEnable_Tlm;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,
