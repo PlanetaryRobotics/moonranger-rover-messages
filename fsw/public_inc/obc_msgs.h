@@ -101,6 +101,8 @@ typedef struct {
     uint32_t duration;   // seconds
 } Set_Wheel_Speed_All_Cmd_Payload;
 
+#define SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(Set_Wheel_Speed_All_Cmd_Payload)
+
 // cFS command structure
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
@@ -139,7 +141,7 @@ typedef union {
 // cFS command structure
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_motor_pid_payload_t payload;
+    set_solar_panel_state_payload_t payload;
 } OS_PACK OBC_Set_Solar_Panel_State_Cmd_t;
 
 /**

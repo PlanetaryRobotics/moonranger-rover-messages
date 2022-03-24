@@ -70,8 +70,6 @@ typedef struct {
     int16_t motor4_speed;
 } set_wheel_speed_all_payload_t;
 
-#define SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(set_wheel_speed_all_payload_t)
-
 // set motor PID command
 typedef struct {
     pid_gains_t motor_pid_gains;
