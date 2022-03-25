@@ -13,6 +13,7 @@
 #include "wheel_velocity_command_msg.h"
 #include "imu_driver_msgs.h"
 #include "obc_msgs.h"
+#include "drive_arc_msg.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -57,6 +58,7 @@ typedef union {
     STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
     STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
+    MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
     OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
 } message_builder_u;
 
