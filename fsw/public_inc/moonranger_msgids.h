@@ -122,7 +122,6 @@
  * @note Telemetry message IDs in this section should fit within
  * 0x0AC0-0x0AFF inclusive.
  */
-#define OBC_SET_WHEEL_SPEED_CMD_MID 0x1AC0         // single wheel speed
 #define OBC_SET_WHEEL_SPEED_ALL_CMD_MID 0x1AC1     // set all wheel speeds
 #define OBC_SET_MOTOR_PID_CMD_MID 0x1AC2           // set the pid values
 #define OBC_SET_SOLAR_PANEL_STATE_CMD_MID 0x1AC3   // set panel up or down
