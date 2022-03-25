@@ -101,7 +101,7 @@ typedef struct {
     uint32_t duration;   // seconds
 } Set_Wheel_Speed_All_Cmd_Payload;
 
-#define SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(Set_Wheel_Speed_All_Cmd_Payload)
+#define OBC_SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(Set_Wheel_Speed_All_Cmd_Payload)
 
 // cFS command structure
 typedef struct {
