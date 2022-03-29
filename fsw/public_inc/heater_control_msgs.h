@@ -20,7 +20,7 @@
 #include "moonranger_common_types.h"
 
 #define NUM_HEATERS 14
-#define NUM_THERMISTORS 13
+#define NUM_THERMISTORS 16
 
 // note: IDs selected to have minimum 2 bits difference for reliability
 typedef enum
