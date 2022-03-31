@@ -14,6 +14,7 @@
 #include "imu_driver_msgs.h"
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
+#include "tlm_output_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -38,33 +39,52 @@ typedef union {
         uint8_t cmd_data_buf_ptr;
     };
 
+    // telemetry messages
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
-    POSE_HkTlm_t Pose_estimator_Tlm;
-    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
-    MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
-    OBC_BatteryEnable_Cmd_t Battery_En_Cmd;
-    MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
+    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command_Tlm;
+    MOONRANGER_RoverInit_Tlm_t RoverInit_Tlm;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
+    MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
+
+    OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
+
+    STEREO_HkTlm_t StereoHk_Tlm;
+    STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
+
+    TLM_OUTPUT_HkTlm_t TlmOutputHk_Tlm;
+    TLM_OUTPUT_DataTypes_t TlmOutputDataTypes_Tlm;
+
+    POSE_HkTlm_t Pose_estimator_Tlm;
+
+    IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
+
+    // command messages
+    MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
+    
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
     OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
-    OBC_WifiEnable_Cmd_t WiFi_Enable_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
     OBC_Set_Motor_PID_Cmd_t Set_Motor_Pid_Cmd;
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
-    STEREO_HkTlm_t StereoHk_Tlm;
-    STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
-    STEREO_Noop_t StereoNoOp_Tlm;
-    STEREO_ResetCounters_t StereoResetCounters_Tlm;
-    STEREO_Process_t StereoProcess_Tlm;
-    STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Tlm;
-    STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
-    IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
-    MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
-    OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
-    OBC_BatteryEnable_Cmd_t BatteryEnable_Tlm;
-    OBC_WifiEnable_Cmd_t WifiEnable_Tlm;
+    OBC_BatteryEnable_Cmd_t BatteryEnable_Cmd;
+    OBC_WifiEnable_Cmd_t WifiEnable_Cmd;
+    
+    STEREO_Noop_t StereoNoOp_Cmd;
+    STEREO_ResetCounters_t StereoResetCounters_Cmd;
+    STEREO_Process_t StereoProcess_Cmd;
+    STEREO_Receive_Camera_Calib_t StereoReceiveCameraCalib_Cmd;
+    STEREO_NoArgsCmd_t StereoNoArgs_Cmd;
+
+    TLM_OUTPUT_Noop_t TlmOutputNoOp_Cmd;
+    TLM_OUTPUT_ResetCounters_t TlmOutputResetCounters_Cmd;
+    TLM_OUTPUT_RemoveAll_t TlmOutputRemoveAll_Cmd;
+    TLM_OUTPUT_SendDataTypes_t TlmOutputSendDataTypes_Cmd;
+    TLM_OUTPUT_AddPacket_t TlmOutputAddPacket_Cmd;
+    TLM_OUTPUT_RemovePacket_t TlmOutputRemovePacket_Cmd;
+    TLM_OUTPUT_EnableOutput_t TlmOutputEnableOutput_Cmd;
+
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,

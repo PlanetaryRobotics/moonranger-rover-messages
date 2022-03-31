@@ -20,6 +20,9 @@
 #ifndef _tlm_output_msg_h_
 #define _tlm_output_msg_h_
 
+#include "cfe_sb.h"
+#include "moonranger_common_types.h"
+
 #define TO_NOP_CC             0 /*  no-op command     */
 #define TO_RESET_STATUS_CC    1 /*  reset status      */
 #define TO_ADD_PKT_CC         2 /*  add packet        */
