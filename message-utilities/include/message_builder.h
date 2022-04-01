@@ -41,7 +41,7 @@ typedef union {
 
     // telemetry messages
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
-    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command_Tlm;
+    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_RoverInit_Tlm_t RoverInit_Tlm;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
@@ -94,7 +94,10 @@ int messageBuildTlm(void* dataPtr, message_builder_u* msg_container,
                     int data_len_bytes, int32 msgId);
 int messageBuildCmd(void* dataPtr, message_builder_u* msg_container,
                     int data_len_bytes, int32 msgId);
+int messageBuildCmdWithCode(void* dataPtr, message_builder_u* msg_container,
+                            int data_len_bytes, int32 msgId, uint16 cmdCode);
 
 CFE_SB_MsgId_t GetMsgId(void* MsgPtr);
+uint16 GetCmdCode(void* MsgPtr);
 
 #endif
