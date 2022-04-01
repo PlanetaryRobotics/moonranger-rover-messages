@@ -101,7 +101,7 @@ typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_ResetCounters_t;
 typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_RemoveAll_t;
 typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_SendDataTypes_t;
 
-#define TLM_OUTPUT_CMD_TLM_LNGTH sizeof(TLM_OUTPUT_NoArgsCmd_t)
+#define TLM_OUTPUT_CMD_LEN sizeof(TLM_OUTPUT_NoArgsCmd_t)
 
 typedef struct
 {
@@ -116,6 +116,9 @@ typedef struct
     uint8                      CmdHeader[CFE_SB_CMD_HDR_SIZE];
     TLM_OUTPUT_AddPacket_Payload_t Payload;
 } TLM_OUTPUT_AddPacket_t;
+
+#define TLM_OUTPUT_ADD_PACKET_PAYLOAD_LEN sizeof(TLM_OUTPUT_AddPacket_Payload_t)
+#define TLM_OUTPUT_ADD_PACKET_CMD_LEN sizeof(TLM_OUTPUT_AddPacket_t)
 
 /*****************************************************************************/
 
@@ -139,6 +142,9 @@ typedef struct
     TLM_OUTPUT_RemovePacket_Payload_t Payload;
 } TLM_OUTPUT_RemovePacket_t;
 
+#define TLM_OUTPUT_REMOVE_PACKET_PAYLOAD_LEN sizeof(TLM_OUTPUT_RemovePacket_Payload_t)
+#define TLM_OUTPUT_REMOVE_PACKET_CMD_LEN sizeof(TLM_OUTPUT_RemovePacket_t)
+
 /******************************************************************************/
 
 typedef struct
@@ -151,6 +157,9 @@ typedef struct
     uint8                         CmdHeader[CFE_SB_CMD_HDR_SIZE];
     TLM_OUTPUT_EnableOutput_Payload_t Payload;
 } TLM_OUTPUT_EnableOutput_t;
+
+#define TLM_OUTPUT_ENABLE_OUTPUT_PAYLOAD_LEN sizeof(TLM_OUTPUT_EnableOutput_Payload_t)
+#define TLM_OUTPUT_ENABLE_OUTPUT_CMD_LEN sizeof(TLM_OUTPUT_EnableOutput_t)
 
 typedef union
 {
