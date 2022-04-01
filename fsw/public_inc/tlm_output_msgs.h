@@ -101,6 +101,8 @@ typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_ResetCounters_t;
 typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_RemoveAll_t;
 typedef TLM_OUTPUT_NoArgsCmd_t TLM_OUTPUT_SendDataTypes_t;
 
+#define TLM_OUTPUT_CMD_TLM_LNGTH sizeof(TLM_OUTPUT_NoArgsCmd_t)
+
 typedef struct
 {
     CFE_SB_MsgId_t Stream;
