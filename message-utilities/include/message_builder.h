@@ -4,6 +4,7 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 #include "goal_msg.h"
+#include "planner_msgs.h"
 #include "moonranger_msgids.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
@@ -53,6 +54,7 @@ typedef union {
     OBC_Set_Motor_PID_Cmd_t Set_Motor_Pid_Cmd;
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
+    PLANNER_HkTlm_t PlannerHk_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
     STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
     STEREO_Noop_t StereoNoOp_Tlm;
