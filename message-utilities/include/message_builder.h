@@ -55,6 +55,9 @@ typedef union {
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
     PLANNER_HkTlm_t PlannerHk_Tlm;
+    PLANNER_Noop_t Planner_NoOp_Tlm;
+    PLANNER_ResetCounters_t Planner_ResetCounters_Tlm;
+    PLANNER_Process_t Planner_Process_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
     STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
     STEREO_Noop_t StereoNoOp_Tlm;
