@@ -47,7 +47,8 @@ typedef struct
     TLM_OUTPUT_HkTlm_Payload_t Payload;
 } TLM_OUTPUT_HkTlm_t;
 
-#define TO_HK_TLM_LNGTH sizeof(TLM_OUTPUT_HkTlm_t)
+#define TLM_OUTPUT_HK_PAYLOAD_LEN sizeof(TLM_OUTPUT_HkTlm_Payload_t)
+#define TLM_OUTPUT_HK_TLM_LEN sizeof(TLM_OUTPUT_HkTlm_t)
 
 /******************************************************************************/
 
@@ -79,7 +80,8 @@ typedef struct
     TLM_OUTPUT_DataTypes_Payload_t Payload;
 } TLM_OUTPUT_DataTypes_t;
 
-#define TO_DATA_TYPES_LNGTH sizeof(TLM_OUTPUT_DataTypes_t)
+#define TLM_OUTPUT_DATA_TYPES_PAYLOAD_LEN sizeof(TLM_OUTPUT_DataTypes_Payload_t)
+#define TLM_OUTPUT_DATA_TYPES_TLM_LEN sizeof(TLM_OUTPUT_DataTypes_t)
 
 /******************************************************************************/
 
