@@ -49,11 +49,15 @@ typedef OBC_NoArgsCmd_t OBC_BatteryEnable_Cmd_t;
 typedef OBC_NoArgsCmd_t OBC_WifiEnable_Cmd_t;
 typedef OBC_NoArgsCmd_t OBC_MasterCommsEnable_Cmd_t;
 typedef OBC_NoArgsCmd_t OBC_PowerSwitchingEnable_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_GetEPSMSAIStatus_Cmd_t;
+typedef OBC_NoArgsCmd_t OBC_GetEPSMConverter_Cmd_t;
 
 // TODO - do we need the buffer definitions as per messages below?
 
 // Message sizes
 #define BATTERY_ENABLE_CMD_LNGTH sizeof(OBC_BatteryEnable_Cmd_t)
+#define EPSM_GET_SAI_LNGTH sizeof(OBC_GetEPSMSAIStatus_Cmd_t)
+#define EPSM_GET_CONVERTER_LNGTH sizeof(OBC_GetEPSMConverter_Cmd_t)
 #define WIFI_ENABLE_CMD_LNGTH sizeof(OBC_WifiEnable_Cmd_t)
 #define POWER_SWITCHING_ENABLE_CMD_LNGTH sizeof(OBC_PowerSwitchingEnable_Cmd_t)
 #define MASTER_COMMS_ENABLE_CMD_LNGTH sizeof(OBC_MasterCommsEnable_Cmd_t)
@@ -267,5 +271,46 @@ typedef union {
 
 // Message sizes
 #define OBC_SET_HEATER_STATE_ALL_CMD_LEN sizeof(OBC_Set_Heater_State_All_Cmd_t)
+
+/**************************************************************************
+ * EPSM Message Definitions
+ **************************************************************************/
+typedef struct {
+    uint16_t volt;       // units are millivolts
+    int16_t amps;        // units are milliamps
+    uint8_t SAI_state;   // see EPSM:TEL? 0 documentation
+    uint8_t valid;       // if this SAI's data is valid
+} SAIStatus_t;
+
+typedef struct {
+    uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
+    SAIStatus_t Status[6];
+} OS_PACK OBC_EPSM_SAIStatus_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_EPSM_SAIStatus_t OBC_EPSM_response;
+} OBC_EPSM_SAIStatus_buffer_t;
+
+#define OBC_EPSM_SAI_STATUS_TELEM_LEN sizeof(OBC_EPSM_SAIStatus_t)
+
+typedef struct {
+    uint16_t volt;             // units are millivolts
+    int16_t amps;              // units are milliamps
+    uint8_t converter_state;   // see EPSM:TEL? 8 documentation
+    uint8_t valid;             // if this converter's data is valid
+} ConverterState_t
+
+    typedef struct {
+    uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
+    ConverterState_t Status[4];   // 3.3V, 5V, 12V, AUX in order
+} OS_PACK OBC_EPSM_ConverterStatus_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    ConverterState_t OBC_EPSM_response;
+} OBC_EPSM_ConverterState_buffer_t;
+
+#define OBC_EPSM_CONVERTER_STATUS_TELEM_LEN sizeof(OBC_EPSM_ConverterStatus_t)
 
 #endif /* _obc_msgs_h */
