@@ -47,6 +47,10 @@ typedef struct {
 typedef PLANNER_NoArgsCmd_t PLANNER_Noop_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_ResetCounters_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_Process_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Start_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Stop_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Eval_Trigger_t;
+
 
 /*************************************************************************/
 

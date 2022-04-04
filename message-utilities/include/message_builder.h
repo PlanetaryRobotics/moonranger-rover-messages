@@ -57,6 +57,9 @@ typedef union {
     PLANNER_HkTlm_t PlannerHk_Tlm;
     PLANNER_Noop_t Planner_NoOp_Tlm;
     PLANNER_ResetCounters_t Planner_ResetCounters_Tlm;
+    PLANNER_Start_t Planner_Start_Tlm;
+    PLANNER_Stop_t Planner_Stop_Tlm;
+    PLANNER_Eval_Trigger_t Planner_Eval_Trigger_Tlm;
     PLANNER_Process_t Planner_Process_Tlm;
     STEREO_HkTlm_t StereoHk_Tlm;
     STEREO_SendPclMsgTlm_t StereoSendPcl_Tlm;
