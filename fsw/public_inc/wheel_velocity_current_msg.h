@@ -25,13 +25,16 @@ typedef float float32;
 
 /* The Incoming wheel velocity packet */
 typedef struct {
-    OS_time_t timeStamp;                // time this message was generated
     OS_time_t sourceEncoderTimestamp;   // timestamp belonging to the encoder
                                         // data used to generate this message
-    float32 leftFront;                  // RPM
-    float32 rightFront;                 // RPM
-    float32 leftBack;                   // RPM
-    float32 rightBack;                  // RPM
+    /* The left front motor speed in RPM*/
+    int16 motorOne;
+    /* The right front motor speed in RPM */
+    int16 motorTwo;
+    /* The left back motor speed in RPM */
+    int16 motorThree;
+    /* The right back motor speed in RPM */
+    int16 motorFour;
 } MOONRANGER_WheelVelocityCurrent_t;
 
 /* Type definition for wheel velocity telemetry */
