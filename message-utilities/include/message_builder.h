@@ -45,6 +45,7 @@ typedef union {
     MOONRANGER_RoverInit_Tlm_t rover_init_indicator;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
+    OBC_Set_Heater_State_All_Cmd_t HeaterControlAll_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
     OBC_Set_Switch_State_All_Cmd_t PowerSwitchingAll_Cmd;
     OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
@@ -59,6 +60,8 @@ typedef union {
     STEREO_NoArgsCmd_t StereoNoArgs_Tlm;
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
     OBC_Peripheral_Sensor_Tlm_t PeripheralSensor_Tlm;
+    OBC_Set_Wheel_Speed_All_Cmd_t WheelSpeed_Cmd;
+    OBC_Set_Solar_Panel_State_Cmd_t SolarPanel_Cmd;
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,

@@ -139,7 +139,7 @@ typedef union {
 // cFS command structure
 typedef struct {
     uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
-    set_motor_pid_payload_t payload;
+    set_solar_panel_state_payload_t payload;
 } OS_PACK OBC_Set_Solar_Panel_State_Cmd_t;
 
 /**
