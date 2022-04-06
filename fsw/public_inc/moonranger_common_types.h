@@ -14,7 +14,7 @@
  *
  ****************************************************************/
 
-//include for all common types from the OSAL.
+// include for all common types from the OSAL.
 #include "common_types.h"
 
 /**
@@ -25,7 +25,7 @@ typedef float float32;
 
 /**
  * Camera ID definitions
-*/
+ */
 /* Defines the number of cameras on the robot. Used for the length of the camera
    calibration data structures. */
 #define STEREO_NUMBER_OF_CAMERAS 4
@@ -41,9 +41,9 @@ typedef float float32;
 // the right camera of the robot as seen facing rearwards
 // adjacent to "rear left", and diagonally opposite "front right"
 #define STEREO_REAR_RIGHT_CAMERA_ID 3
-//these temporary defintions exist to get perception running as quickly as
-//possible. They are obsolete and eventually all of the perception code should
-//move to using the definitons above
+// these temporary defintions exist to get perception running as quickly as
+// possible. They are obsolete and eventually all of the perception code should
+// move to using the definitons above
 #define STEREO_HISTORICAL_FRONT_LEFT_CAMERA_ID 0
 #define STEREO_HISTORICAL_FRONT_RIGHT_CAMERA_ID 1
 #define STEREO_HISTORICAL_REAR_LEFT_CAMERA_ID 2
