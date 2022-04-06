@@ -37,7 +37,7 @@
 #include "cfe_sb.h"
 #include "ccsds.h"
 // #include "osapi.h"
-// #include "cfe_error.h"
+#include "cfe_error.h"
 
 #include <string.h>
 
@@ -304,46 +304,46 @@ void CFE_SB_InitMsg(void           *MsgPtr,
 // }/* end CFE_SB_TimeStampMsg */
 
 
-// /*
-//  * Function: CFE_SB_GetCmdCode - See API and header file for details
-//  */
-// uint16 CFE_SB_GetCmdCode(CFE_SB_MsgPtr_t MsgPtr)
-// {
-//     CFE_SB_CmdHdr_t     *CmdHdrPtr;
+/*
+ * Function: CFE_SB_GetCmdCode - See API and header file for details
+ */
+uint16 CFE_SB_GetCmdCode(CFE_SB_MsgPtr_t MsgPtr)
+{
+    CFE_SB_CmdHdr_t     *CmdHdrPtr;
 
-//     /* if msg type is telemetry or there is no secondary hdr, return 0 */
-//     if((CCSDS_RD_TYPE(MsgPtr->Hdr) == CCSDS_TLM)||(CCSDS_RD_SHDR(MsgPtr->Hdr) == 0)){
-//         return 0;
-//     }/* end if */
+    /* if msg type is telemetry or there is no secondary hdr, return 0 */
+    if((CCSDS_RD_TYPE(MsgPtr->Hdr) == CCSDS_TLM)||(CCSDS_RD_SHDR(MsgPtr->Hdr) == 0)){
+        return 0;
+    }/* end if */
 
-//     /* Cast the input pointer to a Cmd Msg pointer */
-//     CmdHdrPtr = (CFE_SB_CmdHdr_t *)MsgPtr;
+    /* Cast the input pointer to a Cmd Msg pointer */
+    CmdHdrPtr = (CFE_SB_CmdHdr_t *)MsgPtr;
 
-//     return CCSDS_RD_FC(CmdHdrPtr->Cmd.Sec);
-// }/* end CFE_SB_GetCmdCode */
+    return CCSDS_RD_FC(CmdHdrPtr->Cmd.Sec);
+}/* end CFE_SB_GetCmdCode */
 
 
-// /*
-//  * Function: CFE_SB_SetCmdCode - See API and header file for details
-//  */
-// int32 CFE_SB_SetCmdCode(CFE_SB_MsgPtr_t MsgPtr,
-//                       uint16 CmdCode)
-// {
-//     CFE_SB_CmdHdr_t     *CmdHdrPtr;
+/*
+ * Function: CFE_SB_SetCmdCode - See API and header file for details
+ */
+int32 CFE_SB_SetCmdCode(CFE_SB_MsgPtr_t MsgPtr,
+                      uint16 CmdCode)
+{
+    CFE_SB_CmdHdr_t     *CmdHdrPtr;
 
-//     /* if msg type is telemetry or there is no secondary hdr... */
-//     if((CCSDS_RD_TYPE(MsgPtr->Hdr) == CCSDS_TLM)||(CCSDS_RD_SHDR(MsgPtr->Hdr) == 0)){
-//         return CFE_SB_WRONG_MSG_TYPE;
-//     }/* end if */
+    /* if msg type is telemetry or there is no secondary hdr... */
+    if((CCSDS_RD_TYPE(MsgPtr->Hdr) == CCSDS_TLM)||(CCSDS_RD_SHDR(MsgPtr->Hdr) == 0)){
+        return CFE_SB_WRONG_MSG_TYPE;
+    }/* end if */
 
-//     /* Cast the input pointer to a Cmd Msg pointer */
-//     CmdHdrPtr = (CFE_SB_CmdHdr_t *)MsgPtr;
+    /* Cast the input pointer to a Cmd Msg pointer */
+    CmdHdrPtr = (CFE_SB_CmdHdr_t *)MsgPtr;
 
-//     CCSDS_WR_FC(CmdHdrPtr->Cmd.Sec,CmdCode);
+    CCSDS_WR_FC(CmdHdrPtr->Cmd.Sec,CmdCode);
 
-//     return CFE_SUCCESS;
+    return CFE_SUCCESS;
 
-// }/* end CFE_SB_SetCmdCode */
+}/* end CFE_SB_SetCmdCode */
 
 
 // /*

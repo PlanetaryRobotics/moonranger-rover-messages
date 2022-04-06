@@ -59,10 +59,19 @@ int messageBuildTlm(void* dataPtr, message_builder_u* msg_container,int data_len
 
 int messageBuildCmd(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId)
 {
+  // force command code to be 0 if unspecified
+  return messageBuildCmdWithCode(dataPtr, msg_container, data_len_bytes, msgId, 0);
+}
+
+int messageBuildCmdWithCode(void* dataPtr, message_builder_u* msg_container,int data_len_bytes, int32 msgId, uint16 cmdCode)
+{
   int header_length = CFE_SB_CMD_HDR_SIZE;
 
   // Fill the header
   CFE_SB_InitMsg(&msg_container->msg_buf_ptr, (CFE_SB_MsgId_t)msgId, header_length+ data_len_bytes, true);
+
+  // set command code
+  CFE_SB_SetCmdCode((CFE_SB_MsgPtr_t)&msg_container->msg_buf_ptr, cmdCode);
 
   // Fill the data
   // Sanity check what we are about to do
