@@ -54,7 +54,7 @@ typedef union {
     OBC_Set_Motor_PID_Cmd_t Set_Motor_Pid_Cmd;
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
-    PLANNER_HkTlm_t PlannerHk_Cmd;
+    PLANNER_HkTlm_t PlannerHk_Tlm;
     PLANNER_Noop_t Planner_NoOp_Cmd;
     PLANNER_ResetCounters_t Planner_ResetCounters_Cmd;
     PLANNER_Start_t Planner_Start_Cmd;

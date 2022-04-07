@@ -85,6 +85,9 @@ typedef union
     PLANNER_HkTlm_t      HkTlm;
 } PLANNER_HkBuffer_t;
 
+#define PLANNER_HK_TLM_LEN sizeof(PLANNER_HkTlm_t);
+#define PLANNER_HK_PAYLOAD_LEN sizeof(PLANNER_HkBuffer_t);
+
 #endif /* _planner_msgs_h */
 
 /************************/
