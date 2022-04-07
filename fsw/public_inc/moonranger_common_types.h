@@ -28,7 +28,7 @@ typedef float float32;
  */
 /* Defines the number of cameras on the robot. Used for the length of the camera
    calibration data structures. */
-#define STEREO_NUMBER_OF_CAMERAS 4
+#define NUMBER_OF_CAMERAS 4
 // the left camera of the robot as seen facing forwards
 // adjacent to "front right", and diagonally opposite "rear left"
 #define STEREO_FRONT_LEFT_CAMERA_ID 1
