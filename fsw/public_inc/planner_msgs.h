@@ -59,6 +59,9 @@ typedef PLANNER_NoArgsCmd_t PLANNER_Eval_Trigger_t;
  * Type definition (PLANNER App housekeeping)
  */
 
+#define PLANNER_HK_PAYLOAD_LEN sizeof(PLANNER_HkTlm_Payload_t)
+#define PLANNER_HK_TLM_LEN sizeof(PLANNER_HkTlm_t)
+
 typedef struct {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
@@ -84,9 +87,6 @@ typedef union
     CFE_SB_Msg_t         MsgHdr;
     PLANNER_HkTlm_t      HkTlm;
 } PLANNER_HkBuffer_t;
-
-#define PLANNER_HK_TLM_LEN sizeof(PLANNER_HkTlm_t);
-#define PLANNER_HK_PAYLOAD_LEN sizeof(PLANNER_HkBuffer_t);
 
 #endif /* _planner_msgs_h */
 
