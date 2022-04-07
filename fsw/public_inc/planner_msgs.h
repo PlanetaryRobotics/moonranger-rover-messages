@@ -51,6 +51,7 @@ typedef PLANNER_NoArgsCmd_t PLANNER_Start_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_Stop_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_Eval_Trigger_t;
 
+#define PLANNER_CMD_TLM_LNGTH sizeof(PLANNER_NoArgsCmd_t)
 
 /*************************************************************************/
 
