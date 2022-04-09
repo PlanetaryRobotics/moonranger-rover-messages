@@ -135,10 +135,16 @@
 #define OBC_BATT_ENABLE_CMD_MID 0x1ACB            // enable battery
 #define OBC_MASTER_COMM_ENABLE_CMD_MID 0x1ACC     // enable master msp
 #define OBC_POWER_SWITCH_ENABLE_CMD_MID 0x1ACD    // enable power switching msp
+#define OBC_GET_EPSM_SAI_STATUS_MID 0x1ACE        // ask for EPSM SAI status
+#define OBC_GET_EPSM_CONVERTER_STATUS_MID \
+    0x1ACF   // ask for EPSM Converter status
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
     0x0AC1   // receive all peripheral computer health data
+#define OBC_EPSM_SAI_STATUS_TLM_MID 0x0AC2   // all EPSM SAI telemetry
+#define OBC_EPSM_CONVERTER_STATUS_TLM_MID \
+    0x0AC3   // all EPSM converter telemetry
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within
