@@ -134,10 +134,16 @@
 #define OBC_SET_HEATER_STATE_ALL_CMD_MID 0x1AC9   // set all heater states
 #define OBC_WIFI_ENABLE_CMD_MID 0x1ACA            // enable wifi
 #define OBC_BATT_ENABLE_CMD_MID 0x1ACB            // enable battery
+#define OBC_GET_EPSM_SAI_STATUS_MID 0x1ACC        // ask for EPSM SAI status
+#define OBC_GET_EPSM_CONVERTER_STATUS_MID \
+    0x1ACD   // ask for EPSM Converter status
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
     0x0AC1   // receive all peripheral computer health data
+#define OBC_EPSM_SAI_STATUS_TLM_MID 0x0AC2   // all EPSM SAI telemetry
+#define OBC_EPSM_CONVERTER_STATUS_TLM_MID \
+    0x0AC3   // all EPSM converter telemetry
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within

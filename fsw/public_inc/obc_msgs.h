@@ -299,7 +299,7 @@ typedef struct {
     int16_t amps;              // units are milliamps
     uint8_t converter_state;   // see EPSM:TEL? 8 documentation
     uint8_t valid;             // if this converter's data is valid
-} ConverterState_t
+} ConverterState_t;
 
     typedef struct {
     uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
