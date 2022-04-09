@@ -19,6 +19,7 @@
 #define STEREO_NOOP_CC 0
 #define STEREO_RESET_COUNTERS_CC 1
 #define STEREO_RECEIVE_CAMERA_CALIB_CC 2
+#define STEREO_PROCESS_CC 3
 
 /*************************************************************************/
 /*** Type definition (generic "no arguments" command)*/
