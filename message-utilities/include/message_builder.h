@@ -58,12 +58,13 @@ typedef union {
     POSE_HkTlm_t Pose_estimator_Tlm;
 
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
-
+    
+    PLANNER_HkTlm_t PlannerHk_Tlm;
+    
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
 
     PLANNER_Eval_Trigger_t Planner_Eval_Trigger_Cmd;
-    PLANNER_HkTlm_t PlannerHk_Tlm;
     PLANNER_Noop_t Planner_NoOp_Cmd;
     PLANNER_ResetCounters_t Planner_ResetCounters_Cmd;
     PLANNER_Start_t Planner_Start_Cmd;
