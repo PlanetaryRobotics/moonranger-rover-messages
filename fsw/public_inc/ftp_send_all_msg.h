@@ -44,7 +44,7 @@ typedef struct {
  */
 typedef union {
     CFE_SB_Msg_t MsgHdr;
-    MOONRANGER_FTP_Send_All_Tlm_t FTPSyncTlm;
+    MOONRANGER_FTP_Send_All_Tlm_t FTPSendAllTlm;
 } MOONRANGER_FTP_Send_AllBuffer_t;
 
 // Message sizes
