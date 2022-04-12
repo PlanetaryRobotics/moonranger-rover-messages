@@ -4,6 +4,7 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 #include "goal_msg.h"
+#include "planner_msgs.h"
 #include "moonranger_msgids.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
@@ -57,9 +58,18 @@ typedef union {
     POSE_HkTlm_t Pose_estimator_Tlm;
 
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
-
+    
+    PLANNER_HkTlm_t PlannerHk_Tlm;
+    
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
+
+    PLANNER_Eval_Trigger_t Planner_Eval_Trigger_Cmd;
+    PLANNER_Noop_t Planner_NoOp_Cmd;
+    PLANNER_ResetCounters_t Planner_ResetCounters_Cmd;
+    PLANNER_Start_t Planner_Start_Cmd;
+    PLANNER_Stop_t Planner_Stop_Cmd;
+    PLANNER_Process_t Planner_Process_Cmd;
     
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
