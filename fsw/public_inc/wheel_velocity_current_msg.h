@@ -15,11 +15,9 @@
 #ifndef _wheel_velocity_current_msg_h_
 #define _wheel_velocity_current_msg_h_
 
-extern "C" {
 #include "cfe.h"
 #include "cfe_sb.h"
 #include "common_types.h"
-}
 
 typedef float float32;
 
