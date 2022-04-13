@@ -145,6 +145,7 @@
 #define OBC_EPSM_SAI_STATUS_TLM_MID 0x0AC2   // all EPSM SAI telemetry
 #define OBC_EPSM_CONVERTER_STATUS_TLM_MID \
     0x0AC3   // all EPSM converter telemetry
+#define OBC_BM2_STATUS_TLM_MID 0x0AC4
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within
