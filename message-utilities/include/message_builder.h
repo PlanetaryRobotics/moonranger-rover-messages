@@ -16,6 +16,8 @@
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
 #include "tlm_output_msgs.h"
+#include "camera_if_msgs.h"
+#include "mapper_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -94,6 +96,15 @@ typedef union {
     TLM_OUTPUT_AddPacket_t TlmOutputAddPacket_Cmd;
     TLM_OUTPUT_RemovePacket_t TlmOutputRemovePacket_Cmd;
     TLM_OUTPUT_EnableOutput_t TlmOutputEnableOutput_Cmd;
+
+    CAMERA_IF_Noop_t CameraIFNoOp_Cmd;
+    CAMERA_IF_ResetCounters_t CameraIFResetCounters_Cmd;
+    CAMERA_IF_SaveImage_t CameraIFSaveImage_Cmd;
+    CAMERA_IF_NoArgsCmd_t CameraIFNoArgs_Cmd;
+
+    MAPPER_Noop_t MapperNoOp_Cmd;
+    MAPPER_ResetCounters_t MapperReseteCounters_Cmd;
+    MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
 
 } message_builder_u;
 
