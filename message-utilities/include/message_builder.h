@@ -16,6 +16,7 @@
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
 #include "tlm_output_msgs.h"
+#include "cfe_evs_msg.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -61,6 +62,9 @@ typedef union {
     
     PLANNER_HkTlm_t PlannerHk_Tlm;
     
+    CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
+    CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
+
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
 
