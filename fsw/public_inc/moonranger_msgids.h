@@ -137,6 +137,7 @@
 #define OBC_GET_EPSM_SAI_STATUS_MID 0x1ACC        // ask for EPSM SAI status
 #define OBC_GET_EPSM_CONVERTER_STATUS_MID \
     0x1ACD   // ask for EPSM Converter status
+#define OBC_GET_BM2_STATUS_MID 0x1ACE
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
@@ -144,6 +145,7 @@
 #define OBC_EPSM_SAI_STATUS_TLM_MID 0x0AC2   // all EPSM SAI telemetry
 #define OBC_EPSM_CONVERTER_STATUS_TLM_MID \
     0x0AC3   // all EPSM converter telemetry
+#define OBC_BM2_STATUS_TLM_MID 0x0AC4
 /**
  * GROUND Command Message IDs
  * @note Command message IDs in this section should fit within

@@ -301,7 +301,7 @@ typedef struct {
     uint8_t valid;             // if this converter's data is valid
 } ConverterState_t;
 
-    typedef struct {
+typedef struct {
     uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
     ConverterState_t Status[4];   // 3.3V, 5V, 12V, AUX in order
 } OS_PACK OBC_EPSM_ConverterStatus_t;
@@ -310,6 +310,23 @@ typedef union {
     CFE_SB_Msg_t MsgHdr;
     ConverterState_t OBC_EPSM_response;
 } OBC_EPSM_ConverterState_buffer_t;
+
+typedef struct {
+    uint16_t time_to_full;    // in minutes 65535 means not charging
+    uint16_t time_to_empty;   // in minutes 6555 means not discharing
+        uint8_t charge_state;     // 0-100% charge state
+    uint8_t valid; //if the msg is valid;
+} BatteryModuleState_t;
+
+typedef struct {
+    uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
+    BatteryModuleState_t battery_module[2];
+} OS_PACK OBC_BM_Status_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_BM_Status_t OBC_BM_response;
+} OBC_EPSM_BM_Status_t;
 
 #define OBC_EPSM_CONVERTER_STATUS_TELEM_LEN sizeof(OBC_EPSM_ConverterStatus_t)
 
