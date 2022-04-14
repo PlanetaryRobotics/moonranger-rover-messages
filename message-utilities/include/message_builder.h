@@ -6,6 +6,7 @@
 #include "goal_msg.h"
 #include "planner_msgs.h"
 #include "moonranger_msgids.h"
+#include "cfe_msgids.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
 #include "rover_init_msg.h"

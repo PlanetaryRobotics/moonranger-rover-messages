@@ -217,12 +217,6 @@
 #define FAUXRANGER_WHEELS_MID 0x0C2A
 #define FAUXRANGER_ODOM_MID 0x0C2B
 
-/**
- * CFE EVS Message IDs
- */
-#define CFE_EVS_LONG_EVENT_MID 0x0000
-#define CFE_EVS_SHORT_EVENT_MID 0x0001
-
 /***************************************************************************/
 /************************* Default cFS Apps ********************************/
 /***************************************************************************/
