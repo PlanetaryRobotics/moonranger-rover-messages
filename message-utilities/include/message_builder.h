@@ -62,6 +62,11 @@ typedef union {
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
     
     PLANNER_HkTlm_t PlannerHk_Tlm;
+
+    CAMERA_IF_HkTlm_t CameraIFHk_Tlm;
+    CAMERA_IF_ImgSavedTlm_t CameraIFImgSaved_Tlm;
+
+    MAPPER_HkTlm_t MapperHk_Tlm;
     
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
