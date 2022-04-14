@@ -11,7 +11,6 @@
 #include "rover_init_msg.h"
 #include "stereo_reconstructor_msgs.h"
 #include "teleop_msg.h"
-#include "wheel_velocity_command_msg.h"
 #include "imu_driver_msgs.h"
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
@@ -44,7 +43,6 @@ typedef union {
 
     // telemetry messages
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
-    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_RoverInit_Tlm_t RoverInit_Tlm;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
