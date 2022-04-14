@@ -1235,11 +1235,11 @@ typedef struct {
 
 } CFE_EVS_ShortEventTlm_t;
 
-# define CFE_EVS_LONG_EVENT_TLM_LEN sizeof(CFE_EVS_LongEventTlm_t)
-# define CFE_EVS_LONG_EVENT_PAYLOAD_LEN sizeof(CFE_EVS_LongEventTlm_Payload_t)
+#define CFE_EVS_LONG_EVENT_TLM_LEN sizeof(CFE_EVS_LongEventTlm_t)
+#define CFE_EVS_LONG_EVENT_PAYLOAD_LEN sizeof(CFE_EVS_LongEventTlm_Payload_t)
 
-# define CFE_EVS_SHORT_EVENT_TLM_LEN sizeof(CFE_EVS_ShortEventTlm_t)
-# define CFE_EVS_SHORT_EVENT_PAYLOAD_LEN sizeof(CFE_EVS_ShortEventTlm_Payload_t)
+#define CFE_EVS_SHORT_EVENT_TLM_LEN sizeof(CFE_EVS_ShortEventTlm_t)
+#define CFE_EVS_SHORT_EVENT_PAYLOAD_LEN sizeof(CFE_EVS_ShortEventTlm_Payload_t)
 
 /*
  * COMPATIBILITY TYPEDEFS:
