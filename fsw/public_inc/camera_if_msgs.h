@@ -42,6 +42,8 @@ typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_Noop_t;
 typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_ResetCounters_t;
 typedef CAMERA_IF_NoArgsCmd_t CAMERA_IF_SaveImage_t;
 
+#define CAMERA_IF_CMD_LNGTH sizeof(CAMERA_IF_NoArgsCmd_t)
+
 /*************************************************************************/
 /*
 ** Type definition Camera Interface Housekeeping Telemetry
@@ -90,5 +92,9 @@ typedef union
   CAMERA_IF_ImgSavedTlm_t ImgSavedTlm;
 } CAMERA_IF_ImgSavedBuffer_t;
 
+#define CAMERA_IF_HK_TLM_LEN sizeof(CAMERA_IF_HkTlm_t)
+#define CAMERA_IF_HK_PAYLOAD_LEN sizeof(CAMERA_IF_HkTlm_Payload_t)
+
+#define CAMERA_IF_IMG_SAVED_TLM_LEN sizeof(CAMERA_IF_ImgSavedTlm_t)
 
 #endif /* _camera_if_msgs_h */
