@@ -16,10 +16,9 @@
  ****************************************************************/
 #ifndef _vehicle_controller_msgs_h_
 #define _vehicle_controller_msgs_h_
-#include <cinttypes>
-extern "C" {
-    #include "cfe.h"
-}
+
+#include "cfe_sb.h"
+#include "common_types.h"
 
 /**
  * Vehicle App command codes
@@ -28,7 +27,16 @@ extern "C" {
 #define VEHICLE_RESET_COUNTERS_CC     1
 #define VEHICLE_UPDATE_PARAMS_CC      2
 
+/* Generic "no arguments" command */
+typedef struct {
+    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+} VEHICLE_CONTROLLER_NoArgsCmd_t;
 
+typedef VEHICLE_CONTROLLER_NoArgsCmd_t VEHICLE_CONTROLLER_Noop_t;
+typedef VEHICLE_CONTROLLER_NoArgsCmd_t VEHICLE_CONTROLLER_ResetCounters_t;
+typedef VEHICLE_CONTROLLER_NoArgsCmd_t VEHICLE_CONTROLLER_UpdateParams_t;
+
+#define VEHICLE_CONTROLLER_CMD_LNGTH sizeof(VEHICLE_CONTROLLER_NoArgsCmd_t)
 
 typedef struct
 {
@@ -55,6 +63,9 @@ typedef union
 	CFE_SB_Msg_t	MsgHdr;
 	VEHICLE_HkTlm_t	HkTlm;
 } VEHICLE_HkBuffer_t;
+
+#define VEHICLE_CONTROLLER_HK_TLM_LEN sizeof(VEHICLE_HkTlm_t)
+#define VEHICLE_CONTROLLER_HK_PAYLOAD_LEN sizeof(VEHICLE_HkTlm_Payload_t)
 
 #endif //_vehicle_controller_msgs_h_ header
 

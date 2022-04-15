@@ -19,6 +19,7 @@
 #include "cfe_evs_msg.h"
 #include "camera_if_msgs.h"
 #include "mapper_msgs.h"
+#include "vehicle_controller_msg.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -67,6 +68,8 @@ typedef union {
     CAMERA_IF_ImgSavedTlm_t CameraIFImgSaved_Tlm;
 
     MAPPER_HkTlm_t MapperHk_Tlm;
+
+    VEHICLE_HkTlm_t VehicleHk_Tlm;
     
     CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
     CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
@@ -116,6 +119,11 @@ typedef union {
     MAPPER_Noop_t MapperNoOp_Cmd;
     MAPPER_ResetCounters_t MapperReseteCounters_Cmd;
     MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
+
+    VEHICLE_CONTROLLER_Noop_t VehicleControllerNoOp_Cmd;
+    VEHICLE_CONTROLLER_ResetCounters_t VehicleControllerResetCounters_Cmd;
+    VEHICLE_CONTROLLER_UpdateParams_t VehicleControllerUpdateParams_Cmd;
+    VEHICLE_CONTROLLER_NoArgsCmd_t VehicleControllerNoargs_Cmd;
 
 } message_builder_u;
 
