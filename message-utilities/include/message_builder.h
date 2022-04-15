@@ -77,9 +77,12 @@ typedef union {
     PLANNER_Process_t Planner_Process_Cmd;
     
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
+    OBC_Set_Heater_State_All_Cmd_t HeaterControlAll_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
+    OBC_Set_Switch_State_All_Cmd_t PowerSwitchingAll_Cmd;
     OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
+    OBC_Set_Solar_Panel_State_Cmd_t SolarPanel_Cmd;
     OBC_Set_Motor_PID_Cmd_t Set_Motor_Pid_Cmd;
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
