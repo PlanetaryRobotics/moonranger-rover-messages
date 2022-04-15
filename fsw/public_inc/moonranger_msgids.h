@@ -137,7 +137,8 @@
 #define OBC_POWER_SWITCH_ENABLE_CMD_MID 0x1ACD    // enable power switching msp
 #define OBC_GET_EPSM_SAI_STATUS_MID 0x1ACE        // ask for EPSM SAI status
 #define OBC_GET_EPSM_CONVERTER_STATUS_MID \
-    0x1ACF   // ask for EPSM Converter status
+    0x1ACF                              // ask for EPSM Converter status
+#define OBC_GET_BM2_STATUS_MID 0x1AD0   // ask for battery module status
 #define OBC_PERIPHERAL_SENSOR_TLM_MID \
     0x0AC0   // receive all peripheral sensor data
 #define OBC_HEALTH_TLM_MID \
