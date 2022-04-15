@@ -29,56 +29,56 @@ Hex encoding of CCSDS Packed Message (this is the payload of the UDP packet)
 */
 
 void test_message_builder_extract(void) {
-    // test stuff
-    message_builder_u msg_container;
+    // // test stuff
+    // message_builder_u msg_container;
 
-    unsigned char test_data[32] = {
-        0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
-        0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
+    // unsigned char test_data[32] = {
+    //     0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
+    //     0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
+    //     0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
 
-    messageExtract(&test_data, 32, &msg_container);
+    // messageExtract(&test_data, 32, &msg_container);
 
-    printf("%d\n", msg_container.WheelVelocity_Command.data.duration);
-    printf("%f\n", msg_container.WheelVelocity_Command.data.leftFront);
-    printf("%f\n", msg_container.WheelVelocity_Command.data.rightFront);
-    printf("%f\n", msg_container.WheelVelocity_Command.data.leftBack);
-    printf("%f\n", msg_container.WheelVelocity_Command.data.rightBack);
+    // printf("%d\n", msg_container.WheelVelocity_Command.data.duration);
+    // printf("%f\n", msg_container.WheelVelocity_Command.data.leftFront);
+    // printf("%f\n", msg_container.WheelVelocity_Command.data.rightFront);
+    // printf("%f\n", msg_container.WheelVelocity_Command.data.leftBack);
+    // printf("%f\n", msg_container.WheelVelocity_Command.data.rightBack);
 }
 
 void test_message_builder_build(void) {
-    message_builder_u msg_container;
+    // message_builder_u msg_container;
 
-    // Fill data
-    MOONRANGER_WheelVelocityCmd_t test_message;
-    test_message.duration = 10;
-    test_message.leftFront = 8.0f;
-    test_message.rightFront = 4.0f;
-    test_message.leftBack = 6.0f;
-    test_message.rightBack = 2.0f;
+    // // Fill data
+    // MOONRANGER_WheelVelocityCmd_t test_message;
+    // test_message.duration = 10;
+    // test_message.leftFront = 8.0f;
+    // test_message.rightFront = 4.0f;
+    // test_message.leftBack = 6.0f;
+    // test_message.rightBack = 2.0f;
 
-    unsigned char test_data[32] = {
-        0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
-        0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
+    // unsigned char test_data[32] = {
+    //     0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
+    //     0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
+    //     0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
 
-    messageBuildTlm(&test_message, &msg_container, sizeof(test_message), 0x0D05);
+    // messageBuildTlm(&test_message, &msg_container, sizeof(test_message), 0x0D05);
 
-    unsigned char* ptr = &msg_container.msg_buf_ptr;
+    // unsigned char* ptr = &msg_container.msg_buf_ptr;
 
-    for (int i = 0; i < 32; i++) printf("%x ", *(ptr + i));
-    printf("\n");
+    // for (int i = 0; i < 32; i++) printf("%x ", *(ptr + i));
+    // printf("\n");
 }
 
 void test_get_msg_id(void) {
-    unsigned char test_data[32] = {
-        0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
-        0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
+    // unsigned char test_data[32] = {
+    //     0x0d, 0x05, 0xc0, 0x00, 0x00, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00,
+    //     0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x00, 0x00,
+    //     0x80, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x00, 0x40};
 
-    uint16 msgID = (uint16)(GetMsgId(test_data));
+    // uint16 msgID = (uint16)(GetMsgId(test_data));
 
-    printf("Got message ID %d\n", msgID);
+    // printf("Got message ID %d\n", msgID);
 }
 
 int main() {
