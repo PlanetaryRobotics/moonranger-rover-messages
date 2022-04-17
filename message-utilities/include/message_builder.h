@@ -112,6 +112,8 @@ typedef union {
     MAPPER_ResetCounters_t MapperReseteCounters_Cmd;
     MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
 
+    OBC_I2C_USER_DEFINED_TX_t I2C_user_defined_Cmd;
+
 } message_builder_u;
 
 int messageExtract(void* MsgPtr, int msg_len_bytes,

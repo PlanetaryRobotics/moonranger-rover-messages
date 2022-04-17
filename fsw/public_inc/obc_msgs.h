@@ -105,7 +105,8 @@ typedef struct {
     uint32_t duration;   // seconds
 } Set_Wheel_Speed_All_Cmd_Payload;
 
-#define OBC_SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(Set_Wheel_Speed_All_Cmd_Payload)
+#define OBC_SET_WHEEL_SPEED_ALL_PAYLOAD_LEN \
+    sizeof(Set_Wheel_Speed_All_Cmd_Payload)
 
 // cFS command structure
 typedef struct {
@@ -258,7 +259,7 @@ typedef union {
 #define OBC_SET_HEATER_STATE_CMD_LEN sizeof(OBC_Set_Heater_State_Cmd_t)
 
 typedef struct {
-    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+    uint8_t CmdHeader[CFE_SB_CMD_HDR_SIZE];
     set_heater_state_all_payload_t payload;
 } OS_PACK OBC_Set_Heater_State_All_Cmd_t;
 
@@ -313,11 +314,13 @@ typedef union {
     ConverterState_t OBC_EPSM_response;
 } OBC_EPSM_ConverterState_buffer_t;
 
+#define OBC_EPSM_CONVERTER_STATUS_TELEM_LEN sizeof(OBC_EPSM_ConverterStatus_t)
+
 typedef struct {
     uint16_t time_to_full;    // in minutes 65535 means not charging
     uint16_t time_to_empty;   // in minutes 6555 means not discharing
-        uint8_t charge_state;     // 0-100% charge state
-    uint8_t valid; //if the msg is valid;
+    uint8_t charge_state;     // 0-100% charge state
+    uint8_t valid;            // if the msg is valid;
 } BatteryModuleState_t;
 
 typedef struct {
@@ -328,8 +331,43 @@ typedef struct {
 typedef union {
     CFE_SB_Msg_t MsgHdr;
     OBC_BM_Status_t OBC_BM_response;
-} OBC_EPSM_BM_Status_t;
+} OBC_EPSM_BM_Status_buffer_t;
 
-#define OBC_EPSM_CONVERTER_STATUS_TELEM_LEN sizeof(OBC_EPSM_ConverterStatus_t)
+#define OBC_EPSM_BM_STATUS_TELEM_LEN sizeof(OBC_BM_Status_t)
+
+typedef struct {
+    uint8_t tx_data[46];
+    uint8_t i2c_slave_addr;
+    uint8_t tx_bytes;
+    uint8_t rx_bytes;
+} user_tx_data_t;
+
+typedef struct {
+    uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
+    user_tx_data_t tx_data;
+} OS_PACK OBC_I2C_USER_DEFINED_TX_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_I2C_USER_DEFINED_TX_t user_tx;
+} OBC_I2C_USER_DEFINED_TX_buffer_t;
+
+#define OBC_I2C_USER_DEFINED_LEN sizeof(OBC_I2C_USER_DEFINED_TX_t)
+
+typedef struct {
+    uint8_t tx_data[46];
+} user_rx_data_t;
+
+typedef struct {
+    uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
+    user_rx_data_t rx_data;
+} OS_PACK OBC_I2C_USER_DEFINED_RX_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    OBC_I2C_USER_DEFINED_RX_t user_tx;
+} OBC_I2C_USER_DEFINED_RX_buffer_t;
+
+#define OBC_I2C_USER_DEFINED_TELEM_LEN sizeof(OBC_I2C_USER_DEFINED_RX_t)
 
 #endif /* _obc_msgs_h */
