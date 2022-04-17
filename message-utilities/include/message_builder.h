@@ -12,12 +12,13 @@
 #include "rover_init_msg.h"
 #include "stereo_reconstructor_msgs.h"
 #include "teleop_msg.h"
-#include "wheel_velocity_command_msg.h"
 #include "imu_driver_msgs.h"
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
 #include "tlm_output_msgs.h"
 #include "cfe_evs_msg.h"
+#include "camera_if_msgs.h"
+#include "mapper_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -44,7 +45,6 @@ typedef union {
 
     // telemetry messages
     MOONRANGER_Pose_Tlm_t Pose_Tlm;
-    MOONRANGER_WheelVelocity_Command_t WheelVelocity_Command;
     MOONRANGER_RoverInit_Tlm_t RoverInit_Tlm;
     MOONRANGER_Goal_Tlm_t Goal_Tlm;
     MOONRANGER_DriveArc_Tlm_t DriveArc_Tlm;
@@ -62,6 +62,11 @@ typedef union {
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
     
     PLANNER_HkTlm_t PlannerHk_Tlm;
+
+    CAMERA_IF_HkTlm_t CameraIFHk_Tlm;
+    CAMERA_IF_ImgSavedTlm_t CameraIFImgSaved_Tlm;
+
+    MAPPER_HkTlm_t MapperHk_Tlm;
     
     CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
     CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
@@ -77,9 +82,12 @@ typedef union {
     PLANNER_Process_t Planner_Process_Cmd;
     
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
+    OBC_Set_Heater_State_All_Cmd_t HeaterControlAll_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
+    OBC_Set_Switch_State_All_Cmd_t PowerSwitchingAll_Cmd;
     OBC_Reset_Switch_Cmd_t ResetPowerSwitch_Cmd;
     OBC_NSS_Set_Params_Cmd_t NSSSetParams_Cmd;
+    OBC_Set_Solar_Panel_State_Cmd_t SolarPanel_Cmd;
     OBC_Set_Motor_PID_Cmd_t Set_Motor_Pid_Cmd;
     OBC_Set_Solar_Panel_State_Cmd_t Set_Solar_Panel_State_Cmd;
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
@@ -99,6 +107,15 @@ typedef union {
     TLM_OUTPUT_AddPacket_t TlmOutputAddPacket_Cmd;
     TLM_OUTPUT_RemovePacket_t TlmOutputRemovePacket_Cmd;
     TLM_OUTPUT_EnableOutput_t TlmOutputEnableOutput_Cmd;
+
+    CAMERA_IF_Noop_t CameraIFNoOp_Cmd;
+    CAMERA_IF_ResetCounters_t CameraIFResetCounters_Cmd;
+    CAMERA_IF_SaveImage_t CameraIFSaveImage_Cmd;
+    CAMERA_IF_NoArgsCmd_t CameraIFNoArgs_Cmd;
+
+    MAPPER_Noop_t MapperNoOp_Cmd;
+    MAPPER_ResetCounters_t MapperReseteCounters_Cmd;
+    MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
 
 } message_builder_u;
 

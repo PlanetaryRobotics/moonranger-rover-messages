@@ -24,7 +24,7 @@ typedef float float32;
  * Type definition (MOONRANGER wheel velocity telemetry packet)
  */
 typedef struct {
-    CFE_TIME_SysTime_t timeStamp;
+    OS_time_t timeStamp;
     float32 duration;     // seconds
     float32 leftFront;    // rad/s
     float32 rightFront;   // rad/s
