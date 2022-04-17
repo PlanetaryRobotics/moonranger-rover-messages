@@ -20,6 +20,7 @@
 #include "camera_if_msgs.h"
 #include "mapper_msgs.h"
 #include "vehicle_controller_msg.h"
+#include "tbl_manager_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -70,6 +71,8 @@ typedef union {
     MAPPER_HkTlm_t MapperHk_Tlm;
 
     VEHICLE_HkTlm_t VehicleHk_Tlm;
+
+    TBL_MANAGER_HkTlm_t TblManager_Tlm;
     
     CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
     CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
@@ -124,6 +127,11 @@ typedef union {
     VEHICLE_CONTROLLER_ResetCounters_t VehicleControllerResetCounters_Cmd;
     VEHICLE_CONTROLLER_UpdateParams_t VehicleControllerUpdateParams_Cmd;
     VEHICLE_CONTROLLER_NoArgsCmd_t VehicleControllerNoargs_Cmd;
+
+    TBL_MANAGER_Noop_t TblManagerNoOp_Cmd;
+    TBL_MANAGER_ResetCounters_t TblmanagerResetCounters_Cmd;
+    TBL_MANAGER_Update_t TblManagerUpdate_Cmd;
+    TBL_MANAGER_NoArgsCmd_t TblManagerNoargs_Cmd;
 
 } message_builder_u;
 

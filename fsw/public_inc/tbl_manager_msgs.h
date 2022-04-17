@@ -16,6 +16,9 @@
 #ifndef _tbl_manager_msg_h_
 #define _tbl_manager_msg_h_
 
+#include "cfe_sb.h"
+#include "common_types.h"
+
 /**
  * Table manager command codes
  */
@@ -37,6 +40,7 @@ typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_Noop_t;
 typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_ResetCounters_t;
 typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_Update_t;
 
+#define TBL_MANAGER_CMD_TLM_LNGTH sizeof(TBL_MANAGER_NoArgsCmd_t)
 
 /***************************************************
 /*
@@ -60,6 +64,9 @@ typedef union {
     CFE_SB_Msg_t MsgHdr;
     TBL_MANAGER_HkTlm_t HkTlm;
 } TBL_MANAGER_HkBuffer_t;
+
+#define TBL_MANAGER_HK_TLM_LEN sizeof(TBL_MANAGER_HkTlm_t)
+#define TBL_MANAGER_HK_PAYLOAD_LEN sizeof(TBL_MANAGER_HkTlm_Payload_t)
 
 #endif /* _tbl_manager_msg_h_ */
 
