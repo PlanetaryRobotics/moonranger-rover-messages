@@ -20,6 +20,7 @@
 #include "mapper_msgs.h"
 #include "vehicle_controller_msg.h"
 #include "tbl_manager_msgs.h"
+#include "cmd_ingest_msgs.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -73,6 +74,8 @@ typedef union {
     VEHICLE_HkTlm_t VehicleHk_Tlm;
 
     TBL_MANAGER_HkTlm_t TblManager_Tlm;
+
+    CMD_INGEST_HkTlm_t CmdIngest_Tlm;
     
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
@@ -126,6 +129,10 @@ typedef union {
     TBL_MANAGER_ResetCounters_t TblmanagerResetCounters_Cmd;
     TBL_MANAGER_Update_t TblManagerUpdate_Cmd;
     TBL_MANAGER_NoArgsCmd_t TblManagerNoargs_Cmd;
+
+    CMD_INGEST_Noop_t CmdIngestNoOp_Cmd;
+    CMD_INGEST_ResetCounters_t CmdIngestResetCounters_Cmd;
+    CMD_INGEST_NoArgsCmd_t CmdIngestNoargs_Cmd;
 
 } message_builder_u;
 

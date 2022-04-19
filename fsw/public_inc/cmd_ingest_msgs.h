@@ -17,6 +17,9 @@
 #ifndef _cmd_ingest_msgs_h_
 #define _cmd_ingest_msgs_h_
 
+#include "cfe_sb.h"
+#include "common_types.h"
+
 /*
 ** CMD_INGEST command codes
 */
@@ -42,6 +45,8 @@ typedef struct
  */
 typedef CMD_INGEST_NoArgsCmd_t CMD_INGEST_Noop_t;
 typedef CMD_INGEST_NoArgsCmd_t CMD_INGEST_ResetCounters_t;
+
+#define CMD_INGEST_CMD_LNGTH sizeof(CMD_INGEST_NoArgsCmd_t)
 
 /*************************************************************************/
 /*
@@ -70,12 +75,12 @@ typedef struct
  * ensures it is aligned appropriately to
  * store a CFE_SB_Msg_t type.
  */
-typedef union
-{
-    CFE_SB_Msg_t MsgHdr;
-    uint8        bytes[CMD_INGEST_MAX_INGEST];
-    uint16       hwords[2];
-} CMD_INGEST_IngestBuffer_t;
+// typedef union
+// {
+//     CFE_SB_Msg_t MsgHdr;
+//     uint8        bytes[CMD_INGEST_MAX_INGEST];
+//     uint16       hwords[2];
+// } CMD_INGEST_IngestBuffer_t;
 
 typedef union
 {
@@ -83,7 +88,8 @@ typedef union
     CMD_INGEST_HkTlm_t HkTlm;
 } CMD_INGEST_HkTlm_Buffer_t;
 
-#define CMD_INGEST_HK_TLM_LNGTH sizeof(CMD_INGEST_HkTlm_t)
+#define CMD_INGEST_HK_TLM_LEN sizeof(CMD_INGEST_HkTlm_t)
+#define CMD_INGEST_HK_PAYLOAD_LEN sizeof(CMD_INGEST_HkTlm_Payload_t)
 
 #endif /* _cmd_ingest_msgs_h_ */
 
