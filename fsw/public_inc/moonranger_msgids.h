@@ -283,6 +283,8 @@
 #define SCH_TLM_SPARE2                 0x089A
 */
 
+#define STEREO_RECTIFIED_IMG_SAVED_TLM_MID 0x089B
+
 #endif /* _moonranger_msgids_h_ */
 
 /************************/
