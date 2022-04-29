@@ -48,7 +48,9 @@ typedef enum
     HEATER11 = 24,   // 0b00011000,
     HEATER12 = 27,   // 0b00011011,
     HEATER13 = 28,   // 0b00011100,
-    HEATER14 = 33,   // 0b00100001
+    HEATER14 = 33,   // 0b00100001,
+    HEATER15 = 34,   // 0b00100010,
+    HEATER16 = 36    // 0b00100100
 } heater_id_t;
 
 /**************************************************************************
@@ -72,9 +74,9 @@ typedef struct {
 // heater telemetry payload
 typedef struct {
     heater_state_t heater_state[NUM_HEATERS];   // array of heater states.
-                                                // heare ID is index +1
+                                                // heater ID is index +1
     uint16_t temperature[NUM_THERMISTORS];      // array of temperature
-                                             // measurements. ID is index +1
+                                                // measurements. ID is index +1
     msp_health_payload_t msp_health;
 } heater_telem_payload_t;
 
