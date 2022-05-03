@@ -278,6 +278,10 @@ typedef union {
 /**************************************************************************
  * EPSM Message Definitions
  **************************************************************************/
+#define NUM_POWER_RAILS 4   // 3.3V, 5V, 12V, AUX in order
+#define NUM_BATT_MODULES 2
+#define MAX_USER_CMD_LEN 46   // max length of user defined I2C command
+
 typedef struct {
     uint16_t volt;       // units are millivolts
     int16_t amps;        // units are milliamps
@@ -306,7 +310,7 @@ typedef struct {
 
 typedef struct {
     uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
-    ConverterState_t Status[4];   // 3.3V, 5V, 12V, AUX in order
+    ConverterState_t Status[NUM_POWER_RAILS];   // 3.3V, 5V, 12V, AUX in order
 } OS_PACK OBC_EPSM_ConverterStatus_t;
 
 typedef union {
@@ -325,7 +329,7 @@ typedef struct {
 
 typedef struct {
     uint8_t TlmHdr[CFE_SB_TLM_HDR_SIZE];
-    BatteryModuleState_t battery_module[2];
+    BatteryModuleState_t battery_module[NUM_BATT_MODULES];
 } OS_PACK OBC_BM_Status_t;
 
 typedef union {
@@ -336,7 +340,7 @@ typedef union {
 #define OBC_EPSM_BM_STATUS_TELEM_LEN sizeof(OBC_BM_Status_t)
 
 typedef struct {
-    uint8_t tx_data[46];
+    uint8_t tx_data[MAX_USER_CMD_LEN];
     uint8_t i2c_slave_addr;
     uint8_t tx_bytes;
     uint8_t rx_bytes;
@@ -355,7 +359,7 @@ typedef union {
 #define OBC_I2C_USER_DEFINED_LEN sizeof(OBC_I2C_USER_DEFINED_TX_t)
 
 typedef struct {
-    uint8_t tx_data[46];
+    uint8_t rx_data[MAX_USER_CMD_LEN];
 } user_rx_data_t;
 
 typedef struct {
