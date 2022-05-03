@@ -123,9 +123,11 @@ typedef union {
     MAPPER_ResetCounters_t MapperReseteCounters_Cmd;
     MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
 
-<<<<<<< HEAD
     OBC_I2C_USER_DEFINED_TX_t I2C_user_defined_Cmd;
-=======
+    OBC_BM_Status_t BM_status_Telem;
+    OBC_EPSM_ConverterStatus_t EPSM_Converter_Telem;
+    OBC_EPSM_SAIStatus_t EPSM_SAI_Telem;
+
     VEHICLE_CONTROLLER_Noop_t VehicleControllerNoOp_Cmd;
     VEHICLE_CONTROLLER_ResetCounters_t VehicleControllerResetCounters_Cmd;
     VEHICLE_CONTROLLER_UpdateParams_t VehicleControllerUpdateParams_Cmd;
@@ -135,7 +137,6 @@ typedef union {
     TBL_MANAGER_ResetCounters_t TblmanagerResetCounters_Cmd;
     TBL_MANAGER_Update_t TblManagerUpdate_Cmd;
     TBL_MANAGER_NoArgsCmd_t TblManagerNoargs_Cmd;
->>>>>>> main
 
 } message_builder_u;
 
