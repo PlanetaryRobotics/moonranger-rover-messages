@@ -26,6 +26,12 @@ typedef struct {
     uint8_t __padding[3];   // ensure 32 bit alignment
 } sun_sensor_angles_t;
 
+#define SUN_SENS_ANGLES_LEN sizeof(sun_sensor_angles_t)
+
+// Preprocessor check of struct size
+static_assert((12 == SUN_SENS_ANGLES_LEN),
+              "sun_sensor_angles_t struct size incorrect (expected 12 bytes)");
+
 typedef struct {
     uint32_t uSSA1F;   // filtered voltage 1
     uint32_t uSSA2F;   // filtered voltage 2
@@ -54,6 +60,11 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (52 == SUNSENSOR_TELEM_PAYLOAD_LEN),
+    "sunsensor_telem_payload_t struct size incorrect (expected 52 bytes)");
+
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
@@ -66,6 +77,11 @@ typedef struct {
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (12 == GET_SUNSENSOR_DATA_CMD_LEN),
+    "get_sunsensor_data_cmd_t struct size incorrect (expected 12 bytes)");
+
 // sun sensor telem message
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -74,6 +90,12 @@ typedef struct {
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } sunsensor_telem_msg_t;
 
+#define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (64 == SUNSENSOR_TELEM_LEN),
+    "sunsensor_telem_msg_t struct size incorrect (expected 64 bytes)");
 #define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
 #endif /* _sunsensor_msgs_h */

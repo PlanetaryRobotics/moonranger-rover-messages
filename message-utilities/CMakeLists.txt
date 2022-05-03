@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.6.4)
+cmake_minimum_required(VERSION 3.10.2)
+
 project(MOONRANGER_MSG_UTILS C)
 
 include_directories(../fsw/public_inc)
@@ -9,6 +10,9 @@ include_directories(include)
 file(GLOB SOURCES "src/*.c" "cfe_components/*.c")
  
 add_library(msg SHARED ${SOURCES})
+
+#to ensure enums are compiled to minimum size
+set(CMAKE_C_FLAGS "-fshort-enums")
 
 target_include_directories(msg PUBLIC cfe_components)
 # target_link_directories(msg PRIVATE cfe_components)
