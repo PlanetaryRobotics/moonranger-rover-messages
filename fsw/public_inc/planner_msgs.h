@@ -47,12 +47,20 @@ typedef struct {
 typedef PLANNER_NoArgsCmd_t PLANNER_Noop_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_ResetCounters_t;
 typedef PLANNER_NoArgsCmd_t PLANNER_Process_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Start_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Stop_t;
+typedef PLANNER_NoArgsCmd_t PLANNER_Eval_Trigger_t;
+
+#define PLANNER_CMD_TLM_LNGTH sizeof(PLANNER_NoArgsCmd_t)
 
 /*************************************************************************/
 
 /**
  * Type definition (PLANNER App housekeeping)
  */
+
+#define PLANNER_HK_PAYLOAD_LEN sizeof(PLANNER_HkTlm_Payload_t)
+#define PLANNER_HK_TLM_LEN sizeof(PLANNER_HkTlm_t)
 
 typedef struct {
     uint8 CommandErrorCounter;

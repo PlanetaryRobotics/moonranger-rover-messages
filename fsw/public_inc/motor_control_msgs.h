@@ -137,6 +137,14 @@ static_assert(
  **************************************************************************/
 typedef struct {
     main_bus_hdr_t msg_hdr;
+    uint16_t checksum;
+    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+} get_motor_telem_cmd_t;
+
+#define GET_MOTOR_TELEM_CMD_LEN sizeof(get_motor_telem_cmd_t)
+
+typedef struct {
+    main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
     uint16_t checksum;
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency

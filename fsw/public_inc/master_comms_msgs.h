@@ -27,16 +27,20 @@
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
+
 typedef struct {
-    motor_health_payload_t motor_health_data;          // 108 bytes
-    nss_telem_payload_t nss_telem;                     // 96 bytes
-    sunsensor_telem_payload_t sunsensor_data;          // 48 bytes
-    power_switch_telem_payload_t power_switch_telem;   // 52 byte
-    heater_telem_payload_t heater_telem;               // 44 bytes
-    msp_health_payload_t msp_health;                   // 8 bytes
-    uint16_t inv_spi_msg_ctr;   // count of invalid messages SPI received by
-    // master MSP
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    int16_t valid_counter;        // the number of valid spi messages
+    int16_t invalid_msg_counter;   // the number of invalid spi messages
+} spi_health_payload_t;
+
+typedef struct {
+    motor_health_payload_t motor_health_data;
+    nss_telem_payload_t nss_telem;
+    sunsensor_telem_payload_t sunsensor_data;
+    power_switch_telem_payload_t power_switch_telem;
+    heater_telem_payload_t heater_telem;
+    msp_health_payload_t msp_health;
+    spi_health_payload_t spi_health;
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
@@ -50,6 +54,7 @@ static_assert(
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
  **************************************************************************/
 typedef union {
+    get_motor_telem_cmd_t get_motor_telem_cmd;
     set_motor_pid_cmd_t set_motor_pid_cmd;
     set_solar_panel_state_cmd_t set_solar_panel_state_cmd;
     get_nss_telem_cmd_t get_nss_telem_cmd;
@@ -93,3 +98,4 @@ static_assert((364 == OBC_SPI_CMD_LEN),
               "obc_spi_cmd_t struct size incorrect (expected 364 bytes)");
 
 #endif /* master_comms_msgs_h */
+

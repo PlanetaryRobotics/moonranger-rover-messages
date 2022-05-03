@@ -28,7 +28,14 @@
 #define MAPPER_NOOP_CC 			0
 #define MAPPER_RESET_COUNTERS_CC	1
 
+typedef struct {
+	uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+} MAPPER_NoArgsCmd_t;
 
+typedef MAPPER_NoArgsCmd_t MAPPER_Noop_t;
+typedef MAPPER_NoArgsCmd_t MAPPER_ResetCounters_t;
+
+#define MAPPER_CMD_LNGTH sizeof(MAPPER_NoArgsCmd_t)
 
 /***************************************************
 /*
@@ -75,6 +82,9 @@ typedef union {
 	CFE_SB_Msg_t 		MsgHdr;
 	MAPPER_MeshTlm_t	MeshTlm;
 } MAPPER_MeshBuffer_t;
+
+#define MAPPER_HK_PAYLOAD_LNGTH sizeof(MAPPER_HkTlm_Payload_t)
+#define MAPPER_HK_TLM_LNGTH sizeof(MAPPER_HkTlm_t)
 
 #endif /* _mapper_msgs_h_*/
 
