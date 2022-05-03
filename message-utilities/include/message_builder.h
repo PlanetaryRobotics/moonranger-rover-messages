@@ -6,6 +6,7 @@
 #include "goal_msg.h"
 #include "planner_msgs.h"
 #include "moonranger_msgids.h"
+#include "cfe_msgids.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
 #include "rover_init_msg.h"
@@ -15,6 +16,7 @@
 #include "obc_msgs.h"
 #include "drive_arc_msg.h"
 #include "tlm_output_msgs.h"
+#include "cfe_evs_msg.h"
 #include "camera_if_msgs.h"
 #include "mapper_msgs.h"
 #define SUCCESS 1
@@ -66,6 +68,9 @@ typedef union {
 
     MAPPER_HkTlm_t MapperHk_Tlm;
     
+    CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
+    CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
+
     // command messages
     MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
 
