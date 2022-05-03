@@ -29,7 +29,9 @@ typedef enum
     E6 = 6,    // 0b00000110, E6 - NSS Interface Address
     E7 = 9,    // 0b00001001, E7 - Sun Sensor Interface Address
     E8 = 10,   // 0b00001010, E8 - Power Switching Address
-    E9 = 12,   // 0b00001100  E9 - Heater Controller Address
+    E9 = 12,   // 0b00001100, E9 - Heater Controller Address
+    TC = 0xD8, // 0b11011000, Trace probe collector
+    TM = 0xDB, // 0b11011011, Trace probe mutation actuator
 } msp_address_t;
 
 typedef enum
@@ -53,6 +55,8 @@ typedef enum
     SET_HEATER_STATE_MID = 39,        // 0b00100111,
     SET_HEATER_STATE_ALL_MID = 53,    // 0b00110101,
     HEATER_TELEM_MID = 40,            // 0b00101000,
+    TRACE_PACKET = 200,               // 0b11001000,
+    TRACE_MUTATION = 203,             // 0b11001011,
 } master_comms_bus_msg_id_t;
 
 typedef struct {
