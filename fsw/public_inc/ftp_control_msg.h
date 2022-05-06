@@ -4,26 +4,16 @@
  *
  * @brief     Type definition for Moonranger FTP control message
  *
- * @version   1.0
- * @date      2 March 2021
- *
  * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
  ****************************************************************/
 
-#ifndef _pose_msg_h_
-#define _pose_msg_h_
+#ifndef _ftp_control_h_
+#define _ftp_control_h_
 
 #include "cfe_sb.h"
 #include "common_types.h"
-
-/*
-** Type definition (MOONRANGER pose)
-*/
-
-// TODO move this to common location
-typedef double float64;
 
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
@@ -33,7 +23,7 @@ typedef struct {
 } MOONRANGER_FTP_Control_t;
 
 /**
- * Type definition (MOONRANGER pose telemetry)
+ * Type definition (MOONRANGER FTP control telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
@@ -42,7 +32,7 @@ typedef struct {
 } OS_PACK MOONRANGER_FTP_Control_Tlm_t;
 
 /**
- * Buffer to hold pose data prior to sending
+ * Buffer to hold FTP control data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
 typedef union {
@@ -54,4 +44,4 @@ typedef union {
 #define MOONRANGER_FTP_CONTROL_LNGTH sizeof(MOONRANGER_FTP_Control_t)
 #define MOONRANGER_FTP_CONTROL_TLM_LNGTH sizeof(MOONRANGER_FTP_Control_Tlm_t)
 
-#endif /* _pose_msg_h_ */
+#endif /* _ftp_control_h_ */

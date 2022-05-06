@@ -2,10 +2,7 @@
  *
  * @file      ftp_send_all_msg.h
  *
- * @brief     Type definition for Moonranger FTP sync message
- *
- * @version   1.0
- * @date      2 March 2021
+ * @brief     Type definition for Moonranger FTP Send All message
  *
  * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
@@ -18,19 +15,12 @@
 #include "cfe_sb.h"
 #include "common_types.h"
 
-/*
-** Type definition (MOONRANGER pose)
-*/
-
-// TODO move this to common location
-typedef double float64;
-
 typedef struct {
     CFE_TIME_SysTime_t timeStamp;
 } MOONRANGER_FTP_Send_All_t;
 
 /**
- * Type definition (MOONRANGER pose telemetry)
+ * Type definition (MOONRANGER FTP send all telemetry)
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
@@ -39,7 +29,7 @@ typedef struct {
 } OS_PACK MOONRANGER_FTP_Send_All_Tlm_t;
 
 /**
- * Buffer to hold pose data prior to sending
+ * Buffer to hold FTP send all data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
 typedef union {
