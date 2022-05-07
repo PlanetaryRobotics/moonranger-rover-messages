@@ -4,9 +4,6 @@
  *
  * @brief     Message types for the ftp app
  *
- * @version     1.0
- * @date   		3/12/2021
- *
  * @authors 	Ethan Muchnik
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
