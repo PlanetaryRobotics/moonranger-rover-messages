@@ -34,9 +34,8 @@ typedef struct {
 #define SPI_HEALTH_PAYLOAD_LEN sizeof(spi_health_payload_t)
 
 // Preprocessor struct size and alignment checks
-static_assert(
-    (4 == SPI_HEALTH_PAYLOAD_LEN),
-    "spi_health_payload_t struct size incorrect (expected 4 bytes)");
+static_assert((4 == SPI_HEALTH_PAYLOAD_LEN),
+              "spi_health_payload_t struct size incorrect (expected 4 bytes)");
 
 static_assert(((SPI_HEALTH_PAYLOAD_LEN % 2) == 0),
               "spi_health_payload_t struct not 16 bit aligned");
@@ -109,7 +108,8 @@ typedef struct {
 
 // Preprocessor struct size and alignment checks
 static_assert((PERIPHERAL_SENSOR_TELEM_MSG_LEN == OBC_SPI_CMD_LEN),
-              "obc_spi_cmd_t struct size does not match peripheral_sensor_telem_msg_t struct size)");
+              "obc_spi_cmd_t struct size does not match "
+              "peripheral_sensor_telem_msg_t struct size)");
 
 static_assert(((OBC_SPI_CMD_LEN % 4) == 0),
               "obc_spi_cmd_t struct not 32 bit aligned");
