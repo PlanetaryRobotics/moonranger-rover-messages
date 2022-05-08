@@ -5,8 +5,6 @@
  * @brief     definitions for all messages related to power switching master
  *comms bus
  *
- * @date   		20 Feb 2022
- *
  * @authors 	Tenzin Crouch
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
@@ -29,9 +27,19 @@
  **************************************************************************/
 
 typedef struct {
-    int16_t valid_counter;        // the number of valid spi messages
+    int16_t valid_counter;         // the number of valid spi messages
     int16_t invalid_msg_counter;   // the number of invalid spi messages
 } spi_health_payload_t;
+
+#define SPI_HEALTH_PAYLOAD_LEN sizeof(spi_health_payload_t)
+
+// Preprocessor struct size and alignment checks
+static_assert(
+    (4 == SPI_HEALTH_PAYLOAD_LEN),
+    "spi_health_payload_t struct size incorrect (expected 4 bytes)");
+
+static_assert(((SPI_HEALTH_PAYLOAD_LEN % 2) == 0),
+              "spi_health_payload_t struct not 16 bit aligned");
 
 typedef struct {
     motor_health_payload_t motor_health_data;
@@ -45,10 +53,13 @@ typedef struct {
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
-    (360 == SENSOR_TELEM_PAYLOAD_LEN),
-    "sensor_telem_payload_t struct size incorrect (expected 360 bytes)");
+    (368 == SENSOR_TELEM_PAYLOAD_LEN),
+    "sensor_telem_payload_t struct size incorrect (expected 368 bytes)");
+
+static_assert(((SENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
+              "sensor_telem_payload_t struct not 32 bit aligned");
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -77,10 +88,13 @@ typedef struct {
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
-    (364 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
-    "peripheral_sensor_telem_msg_t struct size incorrect (expected 364 bytes)");
+    (372 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    "peripheral_sensor_telem_msg_t struct size incorrect (expected 372 bytes)");
+
+static_assert(((PERIPHERAL_SENSOR_TELEM_MSG_LEN % 4) == 0),
+              "peripheral_sensor_telem_msg_t struct not 32 bit aligned");
 
 typedef struct {
     set_wheel_speed_all_cmd_t wheel_speed_cmd;
@@ -93,9 +107,11 @@ typedef struct {
 
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
-// Preprocessor check of struct size
-static_assert((364 == OBC_SPI_CMD_LEN),
-              "obc_spi_cmd_t struct size incorrect (expected 364 bytes)");
+// Preprocessor struct size and alignment checks
+static_assert((PERIPHERAL_SENSOR_TELEM_MSG_LEN == OBC_SPI_CMD_LEN),
+              "obc_spi_cmd_t struct size does not match peripheral_sensor_telem_msg_t struct size)");
+
+static_assert(((OBC_SPI_CMD_LEN % 4) == 0),
+              "obc_spi_cmd_t struct not 32 bit aligned");
 
 #endif /* master_comms_msgs_h */
-

@@ -54,6 +54,9 @@ typedef struct {
 static_assert((96 == NSS_TELEM_PAYLOAD_LEN),
               "nss_telem_payload_t struct size incorrect (expected 96 bytes)");
 
+static_assert(((NSS_TELEM_PAYLOAD_LEN % 4) == 0),
+              "nss_telem_payload_t struct not 32 bit aligned");
+
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
@@ -70,11 +73,14 @@ typedef struct {
 static_assert((12 == GET_NSS_TELEM_CMD_LEN),
               "get_nss_telem_cmd_t struct size incorrect (expected 12 bytes)");
 
+static_assert(((GET_NSS_TELEM_CMD_LEN % 4) == 0),
+              "get_nss_telem_cmd_t struct not 32 bit aligned");
+
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_nss_params_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding; //for consistent footer on MSPs commands
 } set_nss_params_cmd_t;
 
 #define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)
@@ -82,6 +88,9 @@ typedef struct {
 // Preprocessor check of struct size
 static_assert((14 == SET_NSS_PARAMS_CMD_LEN),
               "set_nss_params_cmd_t struct size incorrect (expected 14 bytes)");
+
+static_assert(((SET_NSS_PARAMS_CMD_LEN % 2) == 0),
+              "set_nss_params_cmd_t struct not 16 bit aligned");
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -95,5 +104,8 @@ typedef struct {
 // Preprocessor check of struct size
 static_assert((108 == NSS_TELEM_MSG_LEN),
               "nss_telem_msg_t struct size incorrect (expected 108 bytes)");
+
+static_assert(((NSS_TELEM_MSG_LEN % 4) == 0),
+              "nss_telem_msg_t struct not 32 bit aligned");
 
 #endif /* _nss_msgs_h */
