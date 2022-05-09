@@ -1,26 +1,25 @@
 #ifndef _message_builder_h
 #define _message_builder_h
+#include "camera_if_msgs.h"
 #include "ccsds.h"
+#include "cfe_evs_msg.h"
+#include "cfe_msgids.h"
 #include "cfe_sb.h"
 #include "common_types.h"
+#include "drive_arc_msg.h"
 #include "goal_msg.h"
-#include "planner_msgs.h"
+#include "imu_driver_msgs.h"
+#include "mapper_msgs.h"
 #include "moonranger_msgids.h"
-#include "cfe_msgids.h"
+#include "obc_msgs.h"
+#include "planner_msgs.h"
 #include "pose_estimator_msgs.h"
 #include "pose_msg.h"
 #include "rover_init_msg.h"
 #include "stereo_reconstructor_msgs.h"
-#include "teleop_msg.h"
-#include "imu_driver_msgs.h"
-#include "obc_msgs.h"
-#include "drive_arc_msg.h"
-#include "tlm_output_msgs.h"
-#include "cfe_evs_msg.h"
-#include "camera_if_msgs.h"
-#include "mapper_msgs.h"
-#include "vehicle_controller_msg.h"
 #include "tbl_manager_msgs.h"
+#include "tlm_output_msgs.h"
+#include "vehicle_controller_msg.h"
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -62,7 +61,7 @@ typedef union {
     POSE_HkTlm_t Pose_estimator_Tlm;
 
     IMU_DRIVER_HkTlm_t Imu_driver_Tlm;
-    
+
     PLANNER_HkTlm_t PlannerHk_Tlm;
 
     CAMERA_IF_HkTlm_t CameraIFHk_Tlm;
@@ -73,12 +72,9 @@ typedef union {
     VEHICLE_HkTlm_t VehicleHk_Tlm;
 
     TBL_MANAGER_HkTlm_t TblManager_Tlm;
-    
+
     CFE_EVS_LongEventTlm_t CFELongEvent_Tlm;
     CFE_EVS_ShortEventTlm_t CFEShortEvent_Tlm;
-
-    // command messages
-    MOONRANGER_Teleop_Cmd_t Teleop_Cmd;
 
     PLANNER_Eval_Trigger_t Planner_Eval_Trigger_Cmd;
     PLANNER_Noop_t Planner_NoOp_Cmd;
@@ -86,7 +82,7 @@ typedef union {
     PLANNER_Start_t Planner_Start_Cmd;
     PLANNER_Stop_t Planner_Stop_Cmd;
     PLANNER_Process_t Planner_Process_Cmd;
-    
+
     OBC_Set_Heater_State_Cmd_t HeaterControl_Cmd;
     OBC_Set_Heater_State_All_Cmd_t HeaterControlAll_Cmd;
     OBC_Set_Switch_State_Cmd_t PowerSwitching_Cmd;
@@ -99,7 +95,8 @@ typedef union {
     OBC_Set_Wheel_Speed_All_Cmd_t Set_Wheel_Speed_All_Cmd;
     OBC_BatteryEnable_Cmd_t BatteryEnable_Cmd;
     OBC_WifiEnable_Cmd_t WifiEnable_Cmd;
-    
+    OBC_MasterCommsEnable_Cmd_t OBC_MasterCommsEnable_Cmd;
+
     STEREO_Noop_t StereoNoOp_Cmd;
     STEREO_ResetCounters_t StereoResetCounters_Cmd;
     STEREO_Process_t StereoProcess_Cmd;
