@@ -32,7 +32,7 @@ extern "C" {
 #define POSE_RESET_COUNTERS_CC 1
 #define POSE_UPDATE_PARAMS_CC 2
 
-/***************************************************
+/***************************************************/
 /*
 ** Type definition Housekeeping Telemetry
 */

@@ -31,9 +31,8 @@
  * Command data structure
  */
 
-typedef struct
-{
-  uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+typedef struct {
+    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
 } TBL_MANAGER_NoArgsCmd_t;
 
 typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_Noop_t;
@@ -42,7 +41,7 @@ typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_Update_t;
 
 #define TBL_MANAGER_CMD_TLM_LNGTH sizeof(TBL_MANAGER_NoArgsCmd_t)
 
-/***************************************************
+/***************************************************/
 /*
 ** Type definition (TBL_MANAGER housekeeping/telemetry)
 */
