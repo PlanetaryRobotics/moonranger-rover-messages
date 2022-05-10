@@ -29,8 +29,8 @@
  **************************************************************************/
 
 typedef struct {
-    int16_t valid_counter;        // the number of valid spi messages
-    int16_t invalid_msg_counter;   // the number of invalid spi messages
+    uint16_t valid_counter;         // the number of valid spi messages
+    uint16_t invalid_msg_counter;   // the number of invalid spi messages
 } spi_health_payload_t;
 
 typedef struct {
@@ -41,9 +41,19 @@ typedef struct {
     heater_telem_payload_t heater_telem;
     msp_health_payload_t msp_health;
     spi_health_payload_t spi_health;
+    uint16_t power_switching_msp_adc;
+    uint16_t telem_updated;
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
+
+// To be used to mask telem_updated values. Masked indicates telemetry updated.
+#define MOTOR_CMD1_UPDATED 0x0003
+#define MOTOR_CMD2_UPDATED 0x000c
+#define NSS_UPDATED 0x0030
+#define SS_UPDATED 0x00c0
+#define POWER_UPDATED 0x0300
+#define HEATER_UPDATED 0x0c00
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
