@@ -124,6 +124,7 @@ typedef union {
     MAPPER_NoArgsCmd_t MapperNoArgs_Cmd;
 
     OBC_I2C_USER_DEFINED_TX_t I2C_user_defined_Cmd;
+    OBC_I2C_USER_DEFINED_RX_t I2C_user_defined_Telem;
     OBC_BM_Status_t BM_status_Telem;
     OBC_EPSM_ConverterStatus_t EPSM_Converter_Telem;
     OBC_EPSM_SAIStatus_t EPSM_SAI_Telem;
