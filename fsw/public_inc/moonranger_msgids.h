@@ -79,6 +79,7 @@
 #define STEREO_HK_TLM_MID 0x09C1
 #define STEREO_NEW_PCL_TLM_MID 0x09C2
 #define STEREO_NEW_DISP_TLM_MID 0x09C3
+#define STEREO_RECTIFIED_IMG_SAVED_TLM_MID 0x09C4
 
 /**
  * Planner Message IDs
@@ -282,8 +283,6 @@
 #define SCH_TLM_SPARE1                 0x0899
 #define SCH_TLM_SPARE2                 0x089A
 */
-
-#define STEREO_RECTIFIED_IMG_SAVED_TLM_MID 0x089B
 
 #endif /* _moonranger_msgids_h_ */
 
