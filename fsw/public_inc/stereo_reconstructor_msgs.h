@@ -75,4 +75,16 @@ typedef union {
     STEREO_HkTlm_t HkTlm;
 } STEREO_HkBuffer_t;
 
+
+/*
+ * Buffer to hold telemetry data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    STEREO_SendPclMsgTlm_t HkTlm;
+} STEREO_SendPclMsgBuffer_t;
+
+
 #endif /* _stereo_reconstructor_msg_h_ */
