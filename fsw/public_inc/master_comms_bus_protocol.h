@@ -24,14 +24,14 @@
 // note: IDs selected to have minimum 2 bits difference for reliability
 typedef enum
 {
-    E3 = 3,    // 0b00000011  E3 - Master Comms Bus Controller Address
-    E5 = 5,    // 0b00000101, E5 - Motor Controller Address
-    E6 = 6,    // 0b00000110, E6 - NSS Interface Address
-    E7 = 9,    // 0b00001001, E7 - Sun Sensor Interface Address
-    E8 = 10,   // 0b00001010, E8 - Power Switching Address
-    E9 = 12,   // 0b00001100, E9 - Heater Controller Address
-    TC = 0xD8, // 0b11011000, Trace probe collector
-    TM = 0xDB, // 0b11011011, Trace probe mutation actuator
+    E3 = 3,      // 0b00000011  E3 - Master Comms Bus Controller Address
+    E5 = 5,      // 0b00000101, E5 - Motor Controller Address
+    E6 = 6,      // 0b00000110, E6 - NSS Interface Address
+    E7 = 9,      // 0b00001001, E7 - Sun Sensor Interface Address
+    E8 = 10,     // 0b00001010, E8 - Power Switching Address
+    E9 = 12,     // 0b00001100, E9 - Heater Controller Address
+    TC = 0xD8,   // 0b11011000, Trace probe collector
+    TM = 0xDB,   // 0b11011011, Trace probe mutation actuator
 } msp_address_t;
 
 typedef enum
@@ -75,5 +75,7 @@ typedef struct {
     int16_t invalid_msg_counter;   // the number of times an MSP has received
                                    // invalid msgs
 } msp_health_payload_t;
+
+#define MSP_HEALTH_PAYLOAD_LEN sizeof(msp_health_payload_t)
 
 #endif /* _master_comms_bus_protocol_h */
