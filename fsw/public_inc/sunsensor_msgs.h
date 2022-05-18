@@ -29,9 +29,9 @@ typedef struct {
 
 #define SUNSENSOR_ANGLES_LEN sizeof(sun_sensor_angles_t)
 
-// static_assert((16 == SUNSENSOR_ANGLES_LEN),
-//               "sun_sensor_angles_t struct size incorrect (expected 16
-//               bytes)");
+static_assert(
+    (16 == SUNSENSOR_ANGLES_LEN),
+    "sun_sensor_angles_t struct size incorrect (expected 16 bytes)\n");
 
 typedef struct {
     uint32_t uSSA1F;   // filtered voltage 1
@@ -42,9 +42,9 @@ typedef struct {
 
 #define SUNSENSOR_FILTERED_VOLTS_LEN sizeof(sun_sensor_filtered_volts_t)
 
-// static_assert(
-//     (16 == SUNSENSOR_FILTERED_VOLTS_LEN),
-//     "sun_sensor_filtered_volts_t struct size incorrect (expected 16 bytes)");
+static_assert(
+    (16 == SUNSENSOR_FILTERED_VOLTS_LEN),
+    "sun_sensor_filtered_volts_t struct size incorrect (expected 16 bytes)\n");
 
 typedef struct {
     uint32_t uSSA1;   // unfiltered voltage 1
@@ -55,10 +55,9 @@ typedef struct {
 
 #define SUNSENSOR_UNFILTERED_VOLTS_LEN sizeof(sun_sensor_unfiltered_volts_t)
 
-// static_assert(
-//     (16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
-//     "sun_sensor_unfiltered_volts_t struct size incorrect (expected 16
-//     bytes)");
+static_assert((16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
+              "sun_sensor_unfiltered_volts_t struct size incorrect (expected "
+              "16 bytes)\n");
 
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -74,10 +73,9 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
-// static_assert(
-//     (16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
-//     "sun_sensor_unfiltered_volts_t struct size incorrect (expected 16
-//     bytes)");
+static_assert((16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
+              "sun_sensor_unfiltered_volts_t struct size incorrect (expected "
+              "16 bytes)\n");
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
@@ -90,9 +88,9 @@ typedef struct {
 
 #define SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
-// static_assert(
-//     (16 == SUNSENSOR_DATA_CMD_LEN),
-//     "get_sunsensor_data_cmd_t struct size incorrect (expected 68 bytes)");
+static_assert(
+    (12 == SUNSENSOR_DATA_CMD_LEN),
+    "get_sunsensor_data_cmd_t struct size incorrect (expected 12 bytes)\n");
 
 // sun sensor telem message
 typedef struct {
@@ -104,8 +102,8 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
-// static_assert(
-//     (68 == SUNSENSOR_TELEM_LEN),
-//     "sunsensor_telem_msg_t struct size incorrect (expected 68 bytes)");
+static_assert(
+    (68 == SUNSENSOR_TELEM_LEN),
+    "sunsensor_telem_msg_t struct size incorrect (expected 68 bytes)\n");
 
 #endif /* _sunsensor_msgs_h */
