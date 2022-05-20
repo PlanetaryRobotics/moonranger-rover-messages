@@ -20,11 +20,12 @@
 #include "moonranger_common_types.h"
 
 typedef struct {
-    uint32_t alpha;         // alpha angle in degrees
-    uint32_t beta;          // beta angle in degrees
-    uint32_t sun_detect;    // sun detection percentage
-    uint8_t err_code;       // error code as specified in datasheet
-    uint8_t __padding[3];   // ensure 32 bit alignment
+    uint32_t alpha;        // alpha angle in degrees
+    uint32_t beta;         // beta angle in degrees
+    uint32_t sun_detect;   // sun detection percentage
+    uint8_t err_code;      // error code as specified in datasheet
+    uint8_t status;        // error code as specified in datasheet
+    uint16_t __padding;    // ensure 32 bit alignment
 } sun_sensor_angles_t;
 
 #define SUNSENSOR_ANGLES_LEN sizeof(sun_sensor_angles_t)
@@ -33,42 +34,11 @@ typedef struct {
 //     (16 == SUNSENSOR_ANGLES_LEN),
 //     "sun_sensor_angles_t struct size incorrect (expected 16 bytes)\n");
 
-typedef struct {
-    uint32_t uSSA1F;   // filtered voltage 1
-    uint32_t uSSA2F;   // filtered voltage 2
-    uint32_t uSSA3F;   // filtered voltage 3
-    uint32_t uSSA4F;   // filtered voltage 4
-} sun_sensor_filtered_volts_t;
-
-#define SUNSENSOR_FILTERED_VOLTS_LEN sizeof(sun_sensor_filtered_volts_t)
-
-// static_assert(
-//     (16 == SUNSENSOR_FILTERED_VOLTS_LEN),
-//     "sun_sensor_filtered_volts_t struct size incorrect (expected 16
-//     bytes)\n");
-
-typedef struct {
-    uint32_t uSSA1;   // unfiltered voltage 1
-    uint32_t uSSA2;   // unfiltered voltage 2
-    uint32_t uSSA3;   // unfiltered voltage 3
-    uint32_t uSSA4;   // unfiltered voltage 4
-} sun_sensor_unfiltered_volts_t;
-
-#define SUNSENSOR_UNFILTERED_VOLTS_LEN sizeof(sun_sensor_unfiltered_volts_t)
-
-// static_assert((16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
-//               "sun_sensor_unfiltered_volts_t struct size incorrect (expected
-//               " "16 bytes)\n");
-
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
 typedef struct {
     sun_sensor_angles_t angles;
-    sun_sensor_filtered_volts_t filtered_volts;
-    sun_sensor_unfiltered_volts_t unfiltered_volts;
-    uint8_t status;         // flag used to indicate valid/invalid data from SS
-    uint8_t __padding[3];   // ensure 32 bit alignment
     msp_health_payload_t msp_health;
 } sunsensor_telem_payload_t;
 
