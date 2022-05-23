@@ -57,7 +57,7 @@ typedef struct {
     uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
 } get_sunsensor_data_cmd_t;
 
-#define SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
+#define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
 // static_assert(
 //     (12 == SUNSENSOR_DATA_CMD_LEN),
