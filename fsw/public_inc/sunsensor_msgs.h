@@ -30,6 +30,18 @@ typedef struct {
 
 #define SUNSENSOR_ANGLES_LEN sizeof(sun_sensor_angles_t)
 
+// Preprocessor check of struct size
+static_assert((12 == SUN_SENS_ANGLES_LEN),
+              "sun_sensor_angles_t struct size incorrect (expected 12 bytes)");
+
+// typedef struct {
+//     uint32_t uSSA1F;   // filtered voltage 1
+//     uint32_t uSSA2F;   // filtered voltage 2
+//     uint32_t uSSA3F;   // filtered voltage 3
+//     uint32_t uSSA4F;   // filtered voltage 4
+// } sun_sensor_filtered_volts_t;
+
+
 // static_assert(
 //     (16 == SUNSENSOR_ANGLES_LEN),
 //     "sun_sensor_angles_t struct size incorrect (expected 16 bytes)\n");
@@ -44,9 +56,11 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
-// static_assert((16 == SUNSENSOR_UNFILTERED_VOLTS_LEN),
-//               "sun_sensor_unfiltered_volts_t struct size incorrect (expected
-//               " "16 bytes)\n");
+// Preprocessor check of struct size
+static_assert(
+    (52 == SUNSENSOR_TELEM_PAYLOAD_LEN),
+    "sunsensor_telem_payload_t struct size incorrect (expected 52 bytes)");
+
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
  **************************************************************************/
@@ -59,9 +73,10 @@ typedef struct {
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
-// static_assert(
-//     (12 == SUNSENSOR_DATA_CMD_LEN),
-//     "get_sunsensor_data_cmd_t struct size incorrect (expected 12 bytes)\n");
+// Preprocessor check of struct size
+static_assert(
+    (12 == GET_SUNSENSOR_DATA_CMD_LEN),
+    "get_sunsensor_data_cmd_t struct size incorrect (expected 12 bytes)");
 
 // sun sensor telem message
 typedef struct {
@@ -73,8 +88,10 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
-// static_assert(
-//     (68 == SUNSENSOR_TELEM_LEN),
-//     "sunsensor_telem_msg_t struct size incorrect (expected 68 bytes)\n");
+// Preprocessor check of struct size
+static_assert(
+    (64 == SUNSENSOR_TELEM_LEN),
+    "sunsensor_telem_msg_t struct size incorrect (expected 64 bytes)");
+#define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
 #endif /* _sunsensor_msgs_h */

@@ -62,6 +62,10 @@ typedef struct {
 
 #define SET_SWITCH_STATE_PAYLOAD_LEN sizeof(set_switch_state_payload_t)
 
+// Preprocessor check of struct size
+static_assert((2 == SET_SWITCH_STATE_PAYLOAD_LEN),
+              "set_switch_state_payload_t struct size incorrect (expected 2 bytes)");
+
 // set power switching state all command payload
 typedef struct {
     switch_state_t switch_state[NUM_SWITCH_GROUPS];
@@ -69,6 +73,10 @@ typedef struct {
 } set_switch_state_all_payload_t;
 
 #define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t)
+
+// Preprocessor check of struct size
+static_assert((16 == SET_SWITCH_STATE_ALL_PAYLOAD_LEN),
+              "set_switch_state_all_payload_t struct size incorrect (expected 16 bytes)");
 
 // reset power switch command payload
 typedef struct {
@@ -78,15 +86,23 @@ typedef struct {
 
 #define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t)
 
+// Preprocessor check of struct size
+static_assert((2 == RESET_SWITCH_PAYLOAD_LEN),
+              "reset_switch_payload_t struct size incorrect (expected 2 bytes)");
+
 // power switching telemetry payload
 typedef struct {
     msp_health_payload_t msp_health;
     uint16_t switch_current[NUM_SWITCH_GROUPS];   // array current measurements.
     switch_state_t switch_state[NUM_SWITCH_GROUPS];   // array switch states.
-    uint8_t __padding[3];                                // ensure 32 bit alignment
+    uint8_t __padding[3];                             // ensure 32 bit alignment
 } power_switch_telem_payload_t;
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)
+
+// Preprocessor check of struct size
+static_assert((52 == POWER_SWITCH_TELEM_LEN),
+              "power_switch_telem_payload_t struct size incorrect (expected 52 bytes)");
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -100,6 +116,10 @@ typedef struct {
 
 #define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((12 == GET_SWITCH_TELEM_CMD_LEN),
+              "get_switch_telem_cmd_t struct size incorrect (expected 12 bytes)");
+
 // set power switching state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -109,6 +129,10 @@ typedef struct {
 } set_switch_state_cmd_t;
 
 #define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t)
+
+// Preprocessor check of struct size
+static_assert((14 == SET_SWITCH_STATE_CMD_LEN),
+              "set_switch_state_cmd_t struct size incorrect (expected 14 bytes)");
 
 // set power switching state command
 typedef struct {
@@ -120,6 +144,10 @@ typedef struct {
 
 #define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((28 == SET_SWITCH_STATE_ALL_CMD_LEN),
+              "set_switch_state_all_cmd_t struct size incorrect (expected 28 bytes)");
+
 // reset power switch command
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -130,6 +158,10 @@ typedef struct {
 
 #define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((14 == RESET_SWITCH_CMD_LEN),
+              "reset_switch_cmd_t struct size incorrect (expected 14 bytes)");
+
 // power switch telemetry message
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -139,5 +171,9 @@ typedef struct {
 } power_switch_telem_msg_t;
 
 #define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t)
+
+// Preprocessor check of struct size
+static_assert((64 == POWER_SWITCH_TELEM_MSG_LEN),
+              "power_switch_telem_msg_t struct size incorrect (expected 64 bytes)");
 
 #endif /* _power_switching_msgs_h */

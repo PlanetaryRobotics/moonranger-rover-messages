@@ -64,12 +64,22 @@ typedef struct {
 
 #define SET_HEATER_STATE_PAYLOAD_LEN sizeof(set_heater_state_payload_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (2 == SET_HEATER_STATE_PAYLOAD_LEN),
+    "set_heater_state_payload_t struct size incorrect (expected 2 bytes)");
+
 // set all heater state command payload
 typedef struct {
     heater_state_t heater_state[NUM_HEATERS];
 } set_heater_state_all_payload_t;
 
 #define SET_HEATER_STATE_ALL_PAYLOAD_LEN sizeof(set_heater_state_all_payload_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (16 == SET_HEATER_STATE_ALL_PAYLOAD_LEN),
+    "set_heater_state_payload_all_t struct size incorrect (expected 16 bytes)");
 
 // heater telemetry payload
 typedef struct {
@@ -81,6 +91,11 @@ typedef struct {
 } heater_telem_payload_t;
 
 #define HEATER_TELEM_PAYLOAD_LEN sizeof(heater_telem_payload_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (52 == HEATER_TELEM_PAYLOAD_LEN),
+    "heater_telem_payload_t struct size incorrect (expected 52 bytes)");
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -94,6 +109,11 @@ typedef struct {
 
 #define GET_HEATER_TELEM_CMD_LEN sizeof(get_heater_telem_cmd_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (12 == GET_HEATER_TELEM_CMD_LEN),
+    "get_heater_telem_cmd_t struct size incorrect (expected 12 bytes)");
+
 // set heater state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -103,6 +123,11 @@ typedef struct {
 } set_heater_state_cmd_t;
 
 #define SET_HEATER_STATE_CMD_LEN sizeof(set_heater_state_cmd_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (14 == SET_HEATER_STATE_CMD_LEN),
+    "set_heater_state_cmd_t struct size incorrect (expected 14 bytes)");
 
 // set heater state command
 typedef struct {
@@ -114,6 +139,11 @@ typedef struct {
 
 #define SET_HEATER_STATE_ALL_CMD_LEN sizeof(set_heater_state_all_cmd_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (28 == SET_HEATER_STATE_ALL_CMD_LEN),
+    "set_heater_state_all_cmd_t struct size incorrect (expected 28 bytes)");
+
 // heater telemetry message
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -123,5 +153,10 @@ typedef struct {
 } heater_telem_msg_t;
 
 #define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t)
+
+// Preprocessor check of struct size
+static_assert(
+    (64 == HEATER_TELEM_MSG_LEN),
+    "heater_telem_msg_t struct size incorrect (expected 56 bytes)");
 
 #endif /* _heater_control_msgs_h */

@@ -55,6 +55,11 @@ typedef struct {
 #define POWER_UPDATED 0x0300
 #define HEATER_UPDATED 0x0c00
 
+// Preprocessor check of struct size
+static_assert(
+    (368 == SENSOR_TELEM_PAYLOAD_LEN),
+    "sensor_telem_payload_t struct size incorrect (expected 368 bytes)");
+
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
  **************************************************************************/
@@ -82,6 +87,11 @@ typedef struct {
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
 
+// Preprocessor check of struct size
+static_assert(
+    (372 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    "peripheral_sensor_telem_msg_t struct size incorrect (expected 372 bytes)");
+
 typedef struct {
     set_wheel_speed_all_cmd_t wheel_speed_cmd;
     second_cmd_t second_cmd;
@@ -93,4 +103,9 @@ typedef struct {
 
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
+// Preprocessor check of struct size
+static_assert((372== OBC_SPI_CMD_LEN),
+              "obc_spi_cmd_t struct size incorrect (expected 372 bytes)");
+
 #endif /* master_comms_msgs_h */
+
