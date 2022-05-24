@@ -34,6 +34,8 @@ typedef struct {
 static_assert((16 == SUNSENSOR_ANGLES_LEN),
               "sun_sensor_angles_t struct size incorrect (expected 16 bytes)");
 
+#define SUN_SENS_UNFILTERED_VOLTS_LEN sizeof(sun_sensor_unfiltered_volts_t)
+
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
  **************************************************************************/
@@ -44,10 +46,13 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (20 == SUNSENSOR_TELEM_PAYLOAD_LEN),
     "sunsensor_telem_payload_t struct size incorrect (expected 20 bytes)");
+
+static_assert(((SUNSENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
+              "sunsensor_telem_payload_t struct not 32 bit aligned");
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -56,30 +61,36 @@ static_assert(
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } get_sunsensor_data_cmd_t;
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (12 == GET_SUNSENSOR_DATA_CMD_LEN),
     "get_sunsensor_data_cmd_t struct size incorrect (expected 12 bytes)");
+
+static_assert(((GET_SUNSENSOR_DATA_CMD_LEN % 4) == 0),
+              "get_sunsensor_data_cmd_t struct not 32 bit aligned");
 
 // sun sensor telem message
 typedef struct {
     main_bus_hdr_t msg_hdr;
     sunsensor_telem_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } sunsensor_telem_msg_t;
 
 #define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (32 == SUNSENSOR_TELEM_LEN),
     "sunsensor_telem_msg_t struct size incorrect (expected 64 bytes)");
 #define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
+
+static_assert(((SUNSENSOR_TELEM_LEN % 4) == 0),
+              "sunsensor_telem_msg_t struct not 32 bit aligned");
 
 #endif /* _sunsensor_msgs_h */

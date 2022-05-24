@@ -5,8 +5,6 @@
  * @brief     definitions for all master comms bus messages for heater
  *controller
  *
- * @date   		20 Feb 2022
- *
  * @authors 	Tenzin Crouch
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
@@ -64,10 +62,13 @@ typedef struct {
 
 #define SET_HEATER_STATE_PAYLOAD_LEN sizeof(set_heater_state_payload_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (2 == SET_HEATER_STATE_PAYLOAD_LEN),
     "set_heater_state_payload_t struct size incorrect (expected 2 bytes)");
+
+static_assert(((SET_HEATER_STATE_PAYLOAD_LEN % 2) == 0),
+              "set_heater_state_payload_t not 16 bit aligned");
 
 // set all heater state command payload
 typedef struct {
@@ -76,10 +77,13 @@ typedef struct {
 
 #define SET_HEATER_STATE_ALL_PAYLOAD_LEN sizeof(set_heater_state_all_payload_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (16 == SET_HEATER_STATE_ALL_PAYLOAD_LEN),
     "set_heater_state_payload_all_t struct size incorrect (expected 16 bytes)");
+
+static_assert(((SET_HEATER_STATE_ALL_PAYLOAD_LEN % 2) == 0),
+              "set_heater_state_payload_all_t struct not 16 bit aligned");
 
 // heater telemetry payload
 typedef struct {
@@ -92,10 +96,13 @@ typedef struct {
 
 #define HEATER_TELEM_PAYLOAD_LEN sizeof(heater_telem_payload_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (52 == HEATER_TELEM_PAYLOAD_LEN),
     "heater_telem_payload_t struct size incorrect (expected 52 bytes)");
+
+static_assert(((HEATER_TELEM_PAYLOAD_LEN % 2) == 0),
+              "heater_telem_payload_t struct not 16 bit aligned");
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -104,59 +111,70 @@ static_assert(
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } get_heater_telem_cmd_t;
 
 #define GET_HEATER_TELEM_CMD_LEN sizeof(get_heater_telem_cmd_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (12 == GET_HEATER_TELEM_CMD_LEN),
     "get_heater_telem_cmd_t struct size incorrect (expected 12 bytes)");
+
+static_assert(((GET_HEATER_TELEM_CMD_LEN % 4) == 0),
+              "get_heater_telem_cmd_t struct not 32 bit aligned");
 
 // set heater state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_heater_state_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } set_heater_state_cmd_t;
 
 #define SET_HEATER_STATE_CMD_LEN sizeof(set_heater_state_cmd_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (14 == SET_HEATER_STATE_CMD_LEN),
     "set_heater_state_cmd_t struct size incorrect (expected 14 bytes)");
+
+static_assert(((SET_HEATER_STATE_CMD_LEN % 2) == 0),
+              "set_heater_state_cmd_t struct not 16 bit aligned");
 
 // set heater state command
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_heater_state_all_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } set_heater_state_all_cmd_t;
 
 #define SET_HEATER_STATE_ALL_CMD_LEN sizeof(set_heater_state_all_cmd_t)
 
-// Preprocessor check of struct size
+// Preprocessor struct size and alignment checks
 static_assert(
     (28 == SET_HEATER_STATE_ALL_CMD_LEN),
     "set_heater_state_all_cmd_t struct size incorrect (expected 28 bytes)");
+
+static_assert(((SET_HEATER_STATE_ALL_CMD_LEN % 4) == 0),
+              "set_heater_state_all_cmd_t struct not 32 bit aligned");
 
 // heater telemetry message
 typedef struct {
     main_bus_hdr_t msg_hdr;
     heater_telem_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   // ensure messages are 32 bit aligned for consistency
+    uint16_t __padding;   //for consistent footer on MSPs commands
 } heater_telem_msg_t;
 
 #define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t)
 
-// Preprocessor check of struct size
-static_assert(
-    (64 == HEATER_TELEM_MSG_LEN),
-    "heater_telem_msg_t struct size incorrect (expected 56 bytes)");
+// Preprocessor struct size and alignment checks
+static_assert((64 == HEATER_TELEM_MSG_LEN),
+              "heater_telem_msg_t struct size incorrect (expected 64 bytes)");
+
+static_assert(((HEATER_TELEM_MSG_LEN % 4) == 0),
+              "heater_telem_msg_t struct not 32 bit aligned");
 
 #endif /* _heater_control_msgs_h */
