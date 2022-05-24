@@ -84,8 +84,6 @@ typedef struct {
 
 #define MSP_HEALTH_PAYLOAD_LEN sizeof(msp_health_payload_t)
 
-<<<<<<< HEAD
-=======
 // Preprocessor struct size and alignment checks
 static_assert((4 == MSP_HEALTH_PAYLOAD_LEN),
               "msp_health_payload_t struct size incorrect (expected 4 bytes)");
@@ -93,5 +91,4 @@ static_assert((4 == MSP_HEALTH_PAYLOAD_LEN),
 static_assert(((MSP_HEALTH_PAYLOAD_LEN % 2) == 0),
               "msp_health_payload_t struct not 16 bit aligned");
 
->>>>>>> origin/scratch/add_static_alignment_checks
 #endif /* _master_comms_bus_protocol_h */
