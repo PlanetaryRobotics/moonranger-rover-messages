@@ -64,8 +64,8 @@ typedef struct {
 
 // Preprocessor struct size and alignment checks
 static_assert(
-    (336 == SENSOR_TELEM_PAYLOAD_LEN),
-    "sensor_telem_payload_t struct size incorrect (expected 336 bytes)");
+    (340 == SENSOR_TELEM_PAYLOAD_LEN),
+    "sensor_telem_payload_t struct size incorrect (expected 340 bytes)");
 
 static_assert(((SENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
               "sensor_telem_payload_t struct not 32 bit aligned");
@@ -99,8 +99,8 @@ typedef struct {
 
 // Preprocessor struct size and alignment checks
 static_assert(
-    (340 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
-    "peripheral_sensor_telem_msg_t struct size incorrect (expected 340 bytes)");
+    (344 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    "peripheral_sensor_telem_msg_t struct size incorrect (expected 344 bytes)");
 
 static_assert(((PERIPHERAL_SENSOR_TELEM_MSG_LEN % 4) == 0),
               "peripheral_sensor_telem_msg_t struct not 32 bit aligned");
@@ -117,8 +117,8 @@ typedef struct {
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
 // Preprocessor check of struct size
-static_assert((340== OBC_SPI_CMD_LEN),
-              "obc_spi_cmd_t struct size incorrect (expected 340 bytes)");
+static_assert((PERIPHERAL_SENSOR_TELEM_MSG_LEN == OBC_SPI_CMD_LEN),
+              "obc_spi_cmd_t struct size incorrect, does not match peripheral_sensor_telem_msg_t (expected 340 bytes)");
 
 static_assert(((OBC_SPI_CMD_LEN % 4) == 0),
               "obc_spi_cmd_t struct not 32 bit aligned");
