@@ -31,20 +31,8 @@ typedef struct {
 #define SUNSENSOR_ANGLES_LEN sizeof(sun_sensor_angles_t)
 
 // Preprocessor check of struct size
-static_assert((12 == SUN_SENS_ANGLES_LEN),
-              "sun_sensor_angles_t struct size incorrect (expected 12 bytes)");
-
-// typedef struct {
-//     uint32_t uSSA1F;   // filtered voltage 1
-//     uint32_t uSSA2F;   // filtered voltage 2
-//     uint32_t uSSA3F;   // filtered voltage 3
-//     uint32_t uSSA4F;   // filtered voltage 4
-// } sun_sensor_filtered_volts_t;
-
-
-// static_assert(
-//     (16 == SUNSENSOR_ANGLES_LEN),
-//     "sun_sensor_angles_t struct size incorrect (expected 16 bytes)\n");
+static_assert((16 == SUNSENSOR_ANGLES_LEN),
+              "sun_sensor_angles_t struct size incorrect (expected 16 bytes)");
 
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -58,8 +46,8 @@ typedef struct {
 
 // Preprocessor check of struct size
 static_assert(
-    (52 == SUNSENSOR_TELEM_PAYLOAD_LEN),
-    "sunsensor_telem_payload_t struct size incorrect (expected 52 bytes)");
+    (20 == SUNSENSOR_TELEM_PAYLOAD_LEN),
+    "sunsensor_telem_payload_t struct size incorrect (expected 20 bytes)");
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -90,7 +78,7 @@ typedef struct {
 
 // Preprocessor check of struct size
 static_assert(
-    (64 == SUNSENSOR_TELEM_LEN),
+    (32 == SUNSENSOR_TELEM_LEN),
     "sunsensor_telem_msg_t struct size incorrect (expected 64 bytes)");
 #define GET_SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
