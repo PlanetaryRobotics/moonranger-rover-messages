@@ -33,12 +33,14 @@ typedef struct {
 
 #define SPI_HEALTH_PAYLOAD_LEN sizeof(spi_health_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert((4 == SPI_HEALTH_PAYLOAD_LEN),
               "spi_health_payload_t struct size incorrect (expected 4 bytes)");
 
 static_assert(((SPI_HEALTH_PAYLOAD_LEN % 2) == 0),
               "spi_health_payload_t struct not 16 bit aligned");
+#endif
 
 typedef struct {
     motor_health_payload_t motor_health_data;
@@ -62,6 +64,7 @@ typedef struct {
 #define POWER_UPDATED 0x0300
 #define HEATER_UPDATED 0x0c00
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (340 == SENSOR_TELEM_PAYLOAD_LEN),
@@ -69,6 +72,7 @@ static_assert(
 
 static_assert(((SENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
               "sensor_telem_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -97,6 +101,7 @@ typedef struct {
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (344 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
@@ -104,6 +109,7 @@ static_assert(
 
 static_assert(((PERIPHERAL_SENSOR_TELEM_MSG_LEN % 4) == 0),
               "peripheral_sensor_telem_msg_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     set_wheel_speed_all_cmd_t wheel_speed_cmd;
@@ -116,11 +122,14 @@ typedef struct {
 
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
 static_assert((PERIPHERAL_SENSOR_TELEM_MSG_LEN == OBC_SPI_CMD_LEN),
-              "obc_spi_cmd_t struct size incorrect, does not match peripheral_sensor_telem_msg_t (expected 340 bytes)");
+              "obc_spi_cmd_t struct size incorrect, does not match "
+              "peripheral_sensor_telem_msg_t (expected 340 bytes)");
 
 static_assert(((OBC_SPI_CMD_LEN % 4) == 0),
               "obc_spi_cmd_t struct not 32 bit aligned");
+#endif
 
 #endif /* master_comms_msgs_h */

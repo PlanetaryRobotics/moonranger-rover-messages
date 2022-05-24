@@ -62,6 +62,7 @@ typedef struct {
 
 #define SET_SWITCH_STATE_PAYLOAD_LEN sizeof(set_switch_state_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (2 == SET_SWITCH_STATE_PAYLOAD_LEN),
@@ -69,6 +70,7 @@ static_assert(
 
 static_assert(((SET_SWITCH_STATE_PAYLOAD_LEN % 2) == 0),
               "set_switch_state_payload_t struct not 16 bit aligned");
+#endif
 
 // set power switching state all command payload
 typedef struct {
@@ -78,6 +80,7 @@ typedef struct {
 
 #define SET_SWITCH_STATE_ALL_PAYLOAD_LEN sizeof(set_switch_state_all_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (16 == SET_SWITCH_STATE_ALL_PAYLOAD_LEN),
@@ -85,6 +88,7 @@ static_assert(
 
 static_assert(((SET_SWITCH_STATE_PAYLOAD_LEN % 2) == 0),
               "set_switch_state_all_payload_t struct not 16 bit aligned");
+#endif
 
 // reset power switch command payload
 typedef struct {
@@ -94,6 +98,7 @@ typedef struct {
 
 #define RESET_SWITCH_PAYLOAD_LEN sizeof(reset_switch_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (2 == RESET_SWITCH_PAYLOAD_LEN),
@@ -101,6 +106,7 @@ static_assert(
 
 static_assert(((SET_SWITCH_STATE_PAYLOAD_LEN % 2) == 0),
               "set_switch_state_all_payload_t struct not 16 bit aligned");
+#endif
 
 // power switching telemetry payload
 typedef struct {
@@ -112,6 +118,7 @@ typedef struct {
 
 #define POWER_SWITCH_TELEM_LEN sizeof(power_switch_telem_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (52 == POWER_SWITCH_TELEM_LEN),
@@ -119,6 +126,7 @@ static_assert(
 
 static_assert(((POWER_SWITCH_TELEM_LEN % 4) == 0),
               "power_switch_telem_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -132,6 +140,7 @@ typedef struct {
 
 #define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (12 == GET_SWITCH_TELEM_CMD_LEN),
@@ -139,6 +148,7 @@ static_assert(
 
 static_assert(((GET_SWITCH_TELEM_CMD_LEN % 4) == 0),
               "get_switch_telem_cmd_t struct not 32 bit aligned");
+#endif
 
 // set power switching state command
 typedef struct {
@@ -150,6 +160,7 @@ typedef struct {
 
 #define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (14 == SET_SWITCH_STATE_CMD_LEN),
@@ -157,6 +168,7 @@ static_assert(
 
 static_assert(((SET_SWITCH_STATE_CMD_LEN % 2) == 0),
               "set_switch_state_cmd_t struct not 16 bit aligned");
+#endif
 
 // set power switching state command
 typedef struct {
@@ -168,6 +180,7 @@ typedef struct {
 
 #define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (28 == SET_SWITCH_STATE_ALL_CMD_LEN),
@@ -175,6 +188,7 @@ static_assert(
 
 static_assert(((SET_SWITCH_STATE_ALL_CMD_LEN % 2) == 0),
               "set_switch_state_all_cmd_t struct not 16 bit aligned");
+#endif
 
 // reset power switch command
 typedef struct {
@@ -186,12 +200,14 @@ typedef struct {
 
 #define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert((14 == RESET_SWITCH_CMD_LEN),
               "reset_switch_cmd_t struct size incorrect (expected 14 bytes)");
 
 static_assert(((RESET_SWITCH_CMD_LEN % 2) == 0),
               "reset_switch_cmd_t struct not 16 bit aligned");
+#endif
 
 // power switch telemetry message
 typedef struct {
@@ -203,6 +219,7 @@ typedef struct {
 
 #define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (64 == POWER_SWITCH_TELEM_MSG_LEN),
@@ -210,5 +227,5 @@ static_assert(
 
 static_assert(((POWER_SWITCH_TELEM_MSG_LEN % 4) == 0),
               "power_switch_telem_msg_t struct not 32 bit aligned");
-
+#endif
 #endif /* _power_switching_msgs_h */

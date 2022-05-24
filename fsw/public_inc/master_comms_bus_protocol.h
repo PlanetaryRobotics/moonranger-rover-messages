@@ -69,13 +69,15 @@ typedef struct {
 
 #define MAIN_BUS_HDR_LEN sizeof(main_bus_hdr_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert((8 == MAIN_BUS_HDR_LEN),
               "main_bus_hdr_t struct size incorrect (expected 8 bytes)");
 
 static_assert(((MAIN_BUS_HDR_LEN % 2) == 0),
               "main_bus_hdr_t struct not 16 bit aligned");
-              
+#endif
+
 typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted
     int16_t invalid_msg_counter;   // the number of times an MSP has received
@@ -84,11 +86,13 @@ typedef struct {
 
 #define MSP_HEALTH_PAYLOAD_LEN sizeof(msp_health_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert((4 == MSP_HEALTH_PAYLOAD_LEN),
               "msp_health_payload_t struct size incorrect (expected 4 bytes)");
 
 static_assert(((MSP_HEALTH_PAYLOAD_LEN % 2) == 0),
               "msp_health_payload_t struct not 16 bit aligned");
+#endif
 
 #endif /* _master_comms_bus_protocol_h */

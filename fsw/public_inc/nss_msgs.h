@@ -50,12 +50,14 @@ typedef struct {
 
 #define NSS_TELEM_PAYLOAD_LEN sizeof(nss_telem_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
 static_assert((96 == NSS_TELEM_PAYLOAD_LEN),
               "nss_telem_payload_t struct size incorrect (expected 96 bytes)");
 
 static_assert(((NSS_TELEM_PAYLOAD_LEN % 4) == 0),
               "nss_telem_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -69,12 +71,14 @@ typedef struct {
 
 #define GET_NSS_TELEM_CMD_LEN sizeof(get_nss_telem_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
 static_assert((12 == GET_NSS_TELEM_CMD_LEN),
               "get_nss_telem_cmd_t struct size incorrect (expected 12 bytes)");
 
 static_assert(((GET_NSS_TELEM_CMD_LEN % 4) == 0),
               "get_nss_telem_cmd_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -85,12 +89,14 @@ typedef struct {
 
 #define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
 static_assert((14 == SET_NSS_PARAMS_CMD_LEN),
               "set_nss_params_cmd_t struct size incorrect (expected 14 bytes)");
 
 static_assert(((SET_NSS_PARAMS_CMD_LEN % 2) == 0),
               "set_nss_params_cmd_t struct not 16 bit aligned");
+#endif
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -101,11 +107,12 @@ typedef struct {
 
 #define NSS_TELEM_MSG_LEN sizeof(nss_telem_msg_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
 static_assert((108 == NSS_TELEM_MSG_LEN),
               "nss_telem_msg_t struct size incorrect (expected 108 bytes)");
 
 static_assert(((NSS_TELEM_MSG_LEN % 4) == 0),
               "nss_telem_msg_t struct not 32 bit aligned");
-
+#endif
 #endif /* _nss_msgs_h */

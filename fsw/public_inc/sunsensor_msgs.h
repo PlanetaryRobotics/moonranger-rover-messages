@@ -30,9 +30,14 @@ typedef struct {
 
 #define SUNSENSOR_ANGLES_LEN sizeof(sun_sensor_angles_t)
 
-// Preprocessor check of struct size
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
 static_assert((16 == SUNSENSOR_ANGLES_LEN),
               "sun_sensor_angles_t struct size incorrect (expected 16 bytes)");
+
+static_assert(((SUNSENSOR_ANGLES_LEN % 4) == 0),
+              "sun_sensor_angles_t struct not 32 bit aligned");
+#endif
 
 #define SUN_SENS_UNFILTERED_VOLTS_LEN sizeof(sun_sensor_unfiltered_volts_t)
 
@@ -46,6 +51,7 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_PAYLOAD_LEN sizeof(sunsensor_telem_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (20 == SUNSENSOR_TELEM_PAYLOAD_LEN),
@@ -53,6 +59,7 @@ static_assert(
 
 static_assert(((SUNSENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
               "sunsensor_telem_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -66,6 +73,7 @@ typedef struct {
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (12 == GET_SUNSENSOR_DATA_CMD_LEN),
@@ -73,6 +81,7 @@ static_assert(
 
 static_assert(((GET_SUNSENSOR_DATA_CMD_LEN % 4) == 0),
               "get_sunsensor_data_cmd_t struct not 32 bit aligned");
+#endif
 
 // sun sensor telem message
 typedef struct {
@@ -84,6 +93,7 @@ typedef struct {
 
 #define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (32 == SUNSENSOR_TELEM_LEN),
@@ -92,5 +102,6 @@ static_assert(
 
 static_assert(((SUNSENSOR_TELEM_LEN % 4) == 0),
               "sunsensor_telem_msg_t struct not 32 bit aligned");
+#endif
 
 #endif /* _sunsensor_msgs_h */

@@ -54,6 +54,7 @@ typedef struct {
 
 #define WHEEL_MOTOR_HEALTH_LEN sizeof(wheel_motor_health_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (24 == WHEEL_MOTOR_HEALTH_LEN),
@@ -61,6 +62,7 @@ static_assert(
 
 static_assert(((WHEEL_MOTOR_HEALTH_LEN % 4) == 0),
               "wheel_motor_health_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     volatile int16_t motor_actual_velocity;    // The actual velocity
@@ -72,6 +74,7 @@ typedef struct {
 
 #define SOLAR_PANEL_MOTOR_HEALTH_LEN sizeof(solar_panel_motor_health_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (8 == SOLAR_PANEL_MOTOR_HEALTH_LEN),
@@ -79,7 +82,7 @@ static_assert(
 
 static_assert(((SOLAR_PANEL_MOTOR_HEALTH_LEN % 4) == 0),
               "solar_panel_motor_health_t struct not 32 bit aligned");
-
+#endif
 
 /**************************************************************************
  * MOONRANGER MESSAGE PAYLOADS
@@ -94,6 +97,7 @@ typedef struct {
 
 #define SET_WHEEL_SPEED_ALL_PAYLOAD_LEN sizeof(set_wheel_speed_all_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (8 == SET_WHEEL_SPEED_ALL_PAYLOAD_LEN),
@@ -101,7 +105,7 @@ static_assert(
 
 static_assert(((SET_WHEEL_SPEED_ALL_PAYLOAD_LEN % 4) == 0),
               "set_wheel_speed_all_payload_t struct not 32 bit aligned");
-
+#endif
 
 // set motor PID command
 typedef struct {
@@ -112,6 +116,7 @@ typedef struct {
 
 #define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (16 == SET_MOTOR_PID_PAYLOAD_LEN),
@@ -119,7 +124,8 @@ static_assert(
 
 static_assert(((SET_MOTOR_PID_PAYLOAD_LEN % 4) == 0),
               "set_motor_pid_payload_t struct not 32 bit aligned");
-    
+#endif
+
 // set solar panel state command
 typedef struct {
     solar_panel_state_t panel_state;
@@ -129,6 +135,7 @@ typedef struct {
 #define SET_SOLAR_PANEL_STATE_PAYLOAD_LEN \
     sizeof(set_solar_panel_state_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (2 == SET_SOLAR_PANEL_STATE_PAYLOAD_LEN),
@@ -136,6 +143,7 @@ static_assert(
 
 static_assert(((SET_SOLAR_PANEL_STATE_PAYLOAD_LEN % 2) == 0),
               "set_solar_panel_state_payload_t struct not 16 bit aligned");
+#endif
 
 // motor health message
 typedef struct {
@@ -149,14 +157,15 @@ typedef struct {
 
 #define MOTOR_HEALTH_PAYLOAD_LEN sizeof(motor_health_payload_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (108 == MOTOR_HEALTH_PAYLOAD_LEN),
     "motor_health_payload_t struct size incorrect (expected 108 bytes)");
 
-
 static_assert(((MOTOR_HEALTH_PAYLOAD_LEN % 4) == 0),
               "motor_health_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * MASTER COMMS BUS UART MESSAGE DEFINITIONS
@@ -169,11 +178,12 @@ typedef struct {
 
 #define GET_MOTOR_TELEM_CMD_LEN sizeof(get_motor_telem_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (12 == GET_MOTOR_TELEM_CMD_LEN),
     "motor_health_payload_t struct size incorrect (expected 12 bytes)");
-
+#endif
 
 static_assert(((GET_MOTOR_TELEM_CMD_LEN % 4) == 0),
               "set_motor_pid_payload_t struct not 32 bit aligned");
@@ -187,14 +197,15 @@ typedef struct {
 
 #define SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(set_wheel_speed_all_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (20 == SET_WHEEL_SPEED_ALL_CMD_LEN),
     "set_wheel_speed_all_cmd_t struct size incorrect (expected 20 bytes)");
 
-
 static_assert(((SET_WHEEL_SPEED_ALL_CMD_LEN % 4) == 0),
               "set_wheel_speed_all_cmd_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -205,6 +216,7 @@ typedef struct {
 
 #define SET_MOTOR_PID_CMD_LEN sizeof(set_motor_pid_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (28 == SET_MOTOR_PID_CMD_LEN),
@@ -212,6 +224,7 @@ static_assert(
 
 static_assert(((SET_MOTOR_PID_CMD_LEN % 4) == 0),
               "set_motor_pid_cmd_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
@@ -222,6 +235,7 @@ typedef struct {
 
 #define SET_SOLAR_PANEL_STATE_CMD_LEN sizeof(set_solar_panel_state_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (14 == SET_SOLAR_PANEL_STATE_CMD_LEN),
@@ -229,6 +243,8 @@ static_assert(
 
 static_assert(((SET_SOLAR_PANEL_STATE_CMD_LEN % 2) == 0),
               "set_solar_panel_state_cmd_t struct not 16 bit aligned");
+#endif
+
 typedef struct {
     main_bus_hdr_t msg_hdr;
     motor_health_payload_t payload;
@@ -238,13 +254,14 @@ typedef struct {
 
 #define MOTOR_HEALTH_MSG_LEN sizeof(motor_health_msg_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
 static_assert(
     (120 == MOTOR_HEALTH_MSG_LEN),
     "motor_health_msg_t struct size incorrect (expected 120 bytes)");
 
-
 static_assert(((MOTOR_HEALTH_MSG_LEN % 4) == 0),
               "motor_health_msg_t struct not 32 bit aligned");
+#endif
 
 #endif /* _motor_controller_msgs_h */
