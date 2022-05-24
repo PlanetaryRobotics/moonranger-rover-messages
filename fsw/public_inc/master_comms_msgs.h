@@ -57,7 +57,7 @@ typedef struct {
 
 // Preprocessor check of struct size
 static_assert(
-    (368 == SENSOR_TELEM_PAYLOAD_LEN),
+    (336 == SENSOR_TELEM_PAYLOAD_LEN),
     "sensor_telem_payload_t struct size incorrect (expected 368 bytes)");
 
 /**************************************************************************
@@ -89,7 +89,7 @@ typedef struct {
 
 // Preprocessor check of struct size
 static_assert(
-    (372 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    (340 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
     "peripheral_sensor_telem_msg_t struct size incorrect (expected 372 bytes)");
 
 typedef struct {
@@ -104,7 +104,7 @@ typedef struct {
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
 // Preprocessor check of struct size
-static_assert((372== OBC_SPI_CMD_LEN),
+static_assert((340== OBC_SPI_CMD_LEN),
               "obc_spi_cmd_t struct size incorrect (expected 372 bytes)");
 
 #endif /* master_comms_msgs_h */
