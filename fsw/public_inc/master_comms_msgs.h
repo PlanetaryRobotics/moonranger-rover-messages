@@ -5,8 +5,6 @@
  * @brief     definitions for all messages related to power switching master
  *comms bus
  *
- * @date   		20 Feb 2022
- *
  * @authors 	Tenzin Crouch
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
@@ -29,9 +27,20 @@
  **************************************************************************/
 
 typedef struct {
-    int16_t valid_counter;        // the number of valid spi messages
-    int16_t invalid_msg_counter;   // the number of invalid spi messages
+    uint16_t valid_counter;         // the number of valid spi messages
+    uint16_t invalid_msg_counter;   // the number of invalid spi messages
 } spi_health_payload_t;
+
+#define SPI_HEALTH_PAYLOAD_LEN sizeof(spi_health_payload_t)
+
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
+static_assert((4 == SPI_HEALTH_PAYLOAD_LEN),
+              "spi_health_payload_t struct size incorrect (expected 4 bytes)");
+
+static_assert(((SPI_HEALTH_PAYLOAD_LEN % 2) == 0),
+              "spi_health_payload_t struct not 16 bit aligned");
+#endif
 
 typedef struct {
     motor_health_payload_t motor_health_data;
@@ -41,14 +50,29 @@ typedef struct {
     heater_telem_payload_t heater_telem;
     msp_health_payload_t msp_health;
     spi_health_payload_t spi_health;
+    uint16_t power_switching_msp_adc;
+    uint16_t telem_updated;
 } sensor_telem_payload_t;
 
 #define SENSOR_TELEM_PAYLOAD_LEN sizeof(sensor_telem_payload_t)
 
-// Preprocessor check of struct size
+// To be used to mask telem_updated values. Masked indicates telemetry updated.
+#define MOTOR_CMD1_UPDATED 0x0003
+#define MOTOR_CMD2_UPDATED 0x000c
+#define NSS_UPDATED 0x0030
+#define SS_UPDATED 0x00c0
+#define POWER_UPDATED 0x0300
+#define HEATER_UPDATED 0x0c00
+
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
 static_assert(
-    (368 == SENSOR_TELEM_PAYLOAD_LEN),
-    "sensor_telem_payload_t struct size incorrect (expected 368 bytes)");
+    (340 == SENSOR_TELEM_PAYLOAD_LEN),
+    "sensor_telem_payload_t struct size incorrect (expected 340 bytes)");
+
+static_assert(((SENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
+              "sensor_telem_payload_t struct not 32 bit aligned");
+#endif
 
 /**************************************************************************
  * PERIPHERAL-MASTER COMMS LINK MESSAGE DEFINITIONS
@@ -77,10 +101,15 @@ typedef struct {
 
 #define PERIPHERAL_SENSOR_TELEM_MSG_LEN sizeof(peripheral_sensor_telem_msg_t)
 
-// Preprocessor check of struct size
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
 static_assert(
-    (372 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
-    "peripheral_sensor_telem_msg_t struct size incorrect (expected 372 bytes)");
+    (344 == PERIPHERAL_SENSOR_TELEM_MSG_LEN),
+    "peripheral_sensor_telem_msg_t struct size incorrect (expected 344 bytes)");
+
+static_assert(((PERIPHERAL_SENSOR_TELEM_MSG_LEN % 4) == 0),
+              "peripheral_sensor_telem_msg_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     set_wheel_speed_all_cmd_t wheel_speed_cmd;
@@ -93,9 +122,14 @@ typedef struct {
 
 #define OBC_SPI_CMD_LEN sizeof(obc_spi_cmd_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor check of struct size
-static_assert((372== OBC_SPI_CMD_LEN),
-              "obc_spi_cmd_t struct size incorrect (expected 372 bytes)");
+static_assert((PERIPHERAL_SENSOR_TELEM_MSG_LEN == OBC_SPI_CMD_LEN),
+              "obc_spi_cmd_t struct size incorrect, does not match "
+              "peripheral_sensor_telem_msg_t (expected 340 bytes)");
+
+static_assert(((OBC_SPI_CMD_LEN % 4) == 0),
+              "obc_spi_cmd_t struct not 32 bit aligned");
+#endif
 
 #endif /* master_comms_msgs_h */
-
