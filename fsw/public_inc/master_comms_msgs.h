@@ -27,13 +27,8 @@
  **************************************************************************/
 
 typedef struct {
-<<<<<<< HEAD
     uint16_t valid_counter;         // the number of valid spi messages
     uint16_t invalid_msg_counter;   // the number of invalid spi messages
-=======
-    int16_t valid_counter;         // the number of valid spi messages
-    int16_t invalid_msg_counter;   // the number of invalid spi messages
->>>>>>> origin/scratch/add_static_alignment_checks
 } spi_health_payload_t;
 
 #define SPI_HEALTH_PAYLOAD_LEN sizeof(spi_health_payload_t)
