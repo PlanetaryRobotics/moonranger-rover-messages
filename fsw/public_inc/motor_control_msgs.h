@@ -183,10 +183,10 @@ typedef struct {
 static_assert(
     (12 == GET_MOTOR_TELEM_CMD_LEN),
     "motor_health_payload_t struct size incorrect (expected 12 bytes)");
-#endif
 
 static_assert(((GET_MOTOR_TELEM_CMD_LEN % 4) == 0),
               "set_motor_pid_payload_t struct not 32 bit aligned");
+#endif
 
 typedef struct {
     main_bus_hdr_t msg_hdr;
