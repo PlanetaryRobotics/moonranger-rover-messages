@@ -88,6 +88,23 @@ typedef union
     PLANNER_HkTlm_t      HkTlm;
 } PLANNER_HkBuffer_t;
 
+/**
+ * Type definition (PLANNER goal reached message)
+ */
+
+typedef struct {
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+} OS_PACK PLANNER_GoalReached_t;
+
+/**
+ * Buffer to hold telemetry data prior to sending
+ * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
+ */
+typedef union {
+    CFE_SB_Msg_t           MsgHdr;
+    PLANNER_GoalReached_t  GoalReachedTlm;
+} PLANNER_GoalReachedBuffer_t;
+
 #endif /* _planner_msgs_h */
 
 /************************/
