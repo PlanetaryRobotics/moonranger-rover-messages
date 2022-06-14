@@ -162,9 +162,9 @@
 /**
  * Logger App IDs
  * @note Command message IDs in this section should fit within
- * 0x1BC0-0x1BDF inclusive.
+ * 0x1BC0-0x1BCF inclusive.
  * @note Telemetry message IDs in this section should fit within
- * 0x0BC0-0x0BFF inclusive.
+ * 0x0BC0-0x0BCF inclusive.
  */
 
 #define LOGGER_CMD_MID 0x1BC0
@@ -176,7 +176,7 @@
  * @note Command message IDs in this section should fit within
  * 0x1BD0-0x1BDF inclusive.
  * @note Telemetry message IDs in this section should fit within
- * 0x0BC0-0x0BFF inclusive.
+ * 0x0BD0-0x0BDF inclusive.
  */
 
 #define FTP_CMD_MID 0x1BD0
@@ -185,6 +185,17 @@
 #define FTP_SEND_ALL 0x1BD3
 #define FTP_INIT 0x1BD4
 #define FTP_HK_TLM_MID 0x0BD0
+
+/**
+ * Plan Handler Message IDs
+ * @note Command message IDs in this section should fit within
+ * 0x1BE0-0x1BFF inclusive.
+ * @note Telemetry message IDs in this section should fit within
+ * 0x0BE0-0x0BFF inclusive.
+ */
+#define PLAN_HANDLER_CMD_MID 0x1BE0
+#define PLAN_HANDLER_SEND_HK_MID 0x1BE1
+#define PLAN_HANDLER_HK_TLM_MID 0x0BE0
 
 /**
  * MOONRANGER Common Message IDs
