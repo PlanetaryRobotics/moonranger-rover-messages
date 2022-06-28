@@ -219,7 +219,10 @@
 #define FAUXRANGER_IMU_MID 0x0C29
 #define FAUXRANGER_WHEELS_MID 0x0C2A
 #define FAUXRANGER_ODOM_MID 0x0C2B
-
+/* Command to save the next available point cloud captured from ROS to disk */
+#define FAUXRANGER_PCL_CMD_MID 0x0C2C
+/* Telemetry that indicates point cloud has been saved to disk */
+#define FAUXRANGER_PCL_SAVED_TLM_MID 0x0940
 /***************************************************************************/
 /************************* Default cFS Apps ********************************/
 /***************************************************************************/
