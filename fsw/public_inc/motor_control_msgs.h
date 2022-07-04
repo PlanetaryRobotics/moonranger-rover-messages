@@ -56,9 +56,8 @@ typedef struct {
 
 #if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
-static_assert(
-    (24 == WHEEL_MOTOR_HEALTH_LEN),
-    "wheel_motor_health_t struct size incorrect (expected 24 bytes)");
+static_assert((24 == WHEEL_MOTOR_HEALTH_LEN),
+              "wheel_motor_health_t struct size incorrect (expected 24 bytes)");
 
 static_assert(((WHEEL_MOTOR_HEALTH_LEN % 4) == 0),
               "wheel_motor_health_t struct not 32 bit aligned");
@@ -111,7 +110,7 @@ static_assert(((SET_WHEEL_SPEED_ALL_PAYLOAD_LEN % 4) == 0),
 typedef struct {
     pid_gains_t motor_pid_gains;
     motor_id_t motor_id;
-    uint8_t __padding[3];  // ensure 16 bit alignment
+    uint8_t __padding[3];   // ensure 16 bit alignment
 } set_motor_pid_payload_t;
 
 #define SET_MOTOR_PID_PAYLOAD_LEN sizeof(set_motor_pid_payload_t)
@@ -173,7 +172,7 @@ static_assert(((MOTOR_HEALTH_PAYLOAD_LEN % 4) == 0),
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } get_motor_telem_cmd_t;
 
 #define GET_MOTOR_TELEM_CMD_LEN sizeof(get_motor_telem_cmd_t)
@@ -192,7 +191,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_wheel_speed_all_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_wheel_speed_all_cmd_t;
 
 #define SET_WHEEL_SPEED_ALL_CMD_LEN sizeof(set_wheel_speed_all_cmd_t)
@@ -211,16 +210,15 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_motor_pid_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_motor_pid_cmd_t;
 
 #define SET_MOTOR_PID_CMD_LEN sizeof(set_motor_pid_cmd_t)
 
 #if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
-static_assert(
-    (28 == SET_MOTOR_PID_CMD_LEN),
-    "set_motor_pid_cmd_t struct size incorrect (expected 28 bytes)");
+static_assert((28 == SET_MOTOR_PID_CMD_LEN),
+              "set_motor_pid_cmd_t struct size incorrect (expected 28 bytes)");
 
 static_assert(((SET_MOTOR_PID_CMD_LEN % 4) == 0),
               "set_motor_pid_cmd_t struct not 32 bit aligned");
@@ -230,7 +228,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_solar_panel_state_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_solar_panel_state_cmd_t;
 
 #define SET_SOLAR_PANEL_STATE_CMD_LEN sizeof(set_solar_panel_state_cmd_t)
@@ -256,9 +254,8 @@ typedef struct {
 
 #if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
 // Preprocessor struct size and alignment checks
-static_assert(
-    (120 == MOTOR_HEALTH_MSG_LEN),
-    "motor_health_msg_t struct size incorrect (expected 120 bytes)");
+static_assert((120 == MOTOR_HEALTH_MSG_LEN),
+              "motor_health_msg_t struct size incorrect (expected 120 bytes)");
 
 static_assert(((MOTOR_HEALTH_MSG_LEN % 4) == 0),
               "motor_health_msg_t struct not 32 bit aligned");

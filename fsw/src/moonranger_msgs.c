@@ -40,8 +40,7 @@
 /* cFE requires that a library have an initialization routine      */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int32 MOONRANGER_LibInit(void)
-{
+int32 MOONRANGER_LibInit(void) {
     return CFE_SUCCESS;
 
 } /* End MOONRANGER_LibInit */

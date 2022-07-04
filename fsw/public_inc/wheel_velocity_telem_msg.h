@@ -45,10 +45,9 @@ typedef struct {
  * Buffer to hold the wheel packet data prior to sending
  */
 
-typedef union
-{
-	CFE_SB_Msg_t MsgHdr;
-	MOONRANGER_WheelVelocity_Tlm_t WheelTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MOONRANGER_WheelVelocity_Tlm_t WheelTlm;
 } MOONRANGER_WheelBuffer_t;
 
 // Message sizes
