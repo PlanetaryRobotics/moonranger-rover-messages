@@ -2,8 +2,8 @@
  *
  * @file 		moonranger_msg_strings.h
  *
- * @brief 		Header file specifying macros to use in order to create a
- *string of a certain color on output console
+ * @brief 		Header file specifying macros to use in order to create
+ *a string of a certain color on output console
  *
  * @version 	1.0
  * @date 		12/06/2021

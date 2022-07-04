@@ -87,10 +87,11 @@
 #define CFE_SEVERITY_BITMASK \
     ((int32)0xc0000000) /**< @brief Error Severity Bitmask */
 
-#define CFE_SEVERITY_SUCCESS ((int32)0x00000000) /**< @brief Severity Success \
-                                                  */
-#define CFE_SEVERITY_INFO ((int32)0x40000000)    /**< @brief Severity Info */
-#define CFE_SEVERITY_ERROR ((int32)0xc0000000)   /**< @brief Severity Error */
+#define CFE_SEVERITY_SUCCESS                                                \
+    ((int32)0x00000000)                        /**< @brief Severity Success \
+                                                */
+#define CFE_SEVERITY_INFO ((int32)0x40000000)  /**< @brief Severity Info */
+#define CFE_SEVERITY_ERROR ((int32)0xc0000000) /**< @brief Severity Error */
 
 /*
 ** cFE Service Identifiers

@@ -129,8 +129,9 @@
 /*
 ** Macro Definitions
 */
-#define CFE_BIT(x) (1 << (x)) /**< \brief Places a one at bit positions 0 - \
-                                 31*/
+#define CFE_BIT(x)                                           \
+    (1 << (x)) /**< \brief Places a one at bit positions 0 - \
+                  31*/
 #define CFE_SET(i, x) ((i) |= CFE_BIT(x))  /**< \brief Sets bit x of i */
 #define CFE_CLR(i, x) ((i) &= ~CFE_BIT(x)) /**< \brief Clears bit x of i */
 #define CFE_TST(i, x) \

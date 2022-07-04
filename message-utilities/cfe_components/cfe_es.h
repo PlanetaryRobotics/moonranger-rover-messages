@@ -57,8 +57,9 @@
 #define OS_PRINTF(m, n)
 #endif
 
-#define CFE_ES_DBIT(x) (1L << (x)) /* Places a one at bit positions 0 thru 31 \
-                                    */
+#define CFE_ES_DBIT(x)                                     \
+    (1L << (x)) /* Places a one at bit positions 0 thru 31 \
+                 */
 #define CFE_ES_DTEST(i, x) \
     (((i)&CFE_ES_DBIT(x)) != 0) /* true iff bit x of i is set */
 #define CFE_ES_TEST_LONG_MASK(m, s) \
