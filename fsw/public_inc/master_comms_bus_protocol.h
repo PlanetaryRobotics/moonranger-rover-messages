@@ -79,8 +79,8 @@ static_assert(((MAIN_BUS_HDR_LEN % 2) == 0),
 #endif
 
 typedef struct {
-    int16_t reboot_counter;        // the number of times MSP has rebooted
-    int16_t invalid_msg_counter;   // the number of times an MSP has received
+    uint16_t reboot_counter;        // the number of times MSP has rebooted
+    uint16_t invalid_msg_counter;   // the number of times an MSP has received
                                    // invalid msgs
 } msp_health_payload_t;
 
