@@ -4,8 +4,6 @@
  *
  * @brief       definitions for master comms bus protocol
  *
- * @date   		20 Feb 2022
- *
  * @authors 	Tenzin Crouch
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
  *
@@ -19,17 +17,20 @@
 #ifndef _master_comms_bus_protocol_h
 #define _master_comms_bus_protocol_h
 
+#include "assert.h"
 #include "common_types.h"
 
 // note: IDs selected to have minimum 2 bits difference for reliability
 typedef enum
 {
-    E3 = 3,    // 0b00000011  E3 - Master Comms Bus Controller Address
-    E5 = 5,    // 0b00000101, E5 - Motor Controller Address
-    E6 = 6,    // 0b00000110, E6 - NSS Interface Address
-    E7 = 9,    // 0b00001001, E7 - Sun Sensor Interface Address
-    E8 = 10,   // 0b00001010, E8 - Power Switching Address
-    E9 = 12,   // 0b00001100  E9 - Heater Controller Address
+    E3 = 3,      // 0b00000011  E3 - Master Comms Bus Controller Address
+    E5 = 5,      // 0b00000101, E5 - Motor Controller Address
+    E6 = 6,      // 0b00000110, E6 - NSS Interface Address
+    E7 = 9,      // 0b00001001, E7 - Sun Sensor Interface Address
+    E8 = 10,     // 0b00001010, E8 - Power Switching Address
+    E9 = 12,     // 0b00001100, E9 - Heater Controller Address
+    TC = 0xD8,   // 0b11011000, Trace probe collector
+    TM = 0xDB,   // 0b11011011, Trace probe mutation actuator
 } msp_address_t;
 
 typedef enum
@@ -53,6 +54,8 @@ typedef enum
     SET_HEATER_STATE_MID = 39,        // 0b00100111,
     SET_HEATER_STATE_ALL_MID = 53,    // 0b00110101,
     HEATER_TELEM_MID = 40,            // 0b00101000,
+    TRACE_PACKET = 200,               // 0b11001000,
+    TRACE_MUTATION = 203,             // 0b11001011,
 } master_comms_bus_msg_id_t;
 
 typedef struct {
@@ -66,10 +69,30 @@ typedef struct {
 
 #define MAIN_BUS_HDR_LEN sizeof(main_bus_hdr_t)
 
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
+static_assert((8 == MAIN_BUS_HDR_LEN),
+              "main_bus_hdr_t struct size incorrect (expected 8 bytes)");
+
+static_assert(((MAIN_BUS_HDR_LEN % 2) == 0),
+              "main_bus_hdr_t struct not 16 bit aligned");
+#endif
+
 typedef struct {
     int16_t reboot_counter;        // the number of times MSP has rebooted
     int16_t invalid_msg_counter;   // the number of times an MSP has received
                                    // invalid msgs
 } msp_health_payload_t;
+
+#define MSP_HEALTH_PAYLOAD_LEN sizeof(msp_health_payload_t)
+
+#if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer
+// Preprocessor struct size and alignment checks
+static_assert((4 == MSP_HEALTH_PAYLOAD_LEN),
+              "msp_health_payload_t struct size incorrect (expected 4 bytes)");
+
+static_assert(((MSP_HEALTH_PAYLOAD_LEN % 2) == 0),
+              "msp_health_payload_t struct not 16 bit aligned");
+#endif
 
 #endif /* _master_comms_bus_protocol_h */
