@@ -31,9 +31,8 @@
  * Command data structure
  */
 
-typedef struct
-{
-  uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
+typedef struct {
+    uint8 CmdHeader[CFE_SB_CMD_HDR_SIZE];
 } TBL_MANAGER_NoArgsCmd_t;
 
 typedef TBL_MANAGER_NoArgsCmd_t TBL_MANAGER_Noop_t;

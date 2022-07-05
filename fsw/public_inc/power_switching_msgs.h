@@ -134,8 +134,8 @@ static_assert(((POWER_SWITCH_TELEM_LEN % 4) == 0),
 // get power switching telemtry command
 typedef struct {
     main_bus_hdr_t msg_hdr;
-    uint16_t checksum; 
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t checksum;
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } get_switch_telem_cmd_t;
 
 #define GET_SWITCH_TELEM_CMD_LEN sizeof(get_switch_telem_cmd_t)
@@ -154,8 +154,8 @@ static_assert(((GET_SWITCH_TELEM_CMD_LEN % 4) == 0),
 typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_payload_t payload;
-    uint16_t checksum; 
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t checksum;
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_switch_state_cmd_t;
 
 #define SET_SWITCH_STATE_CMD_LEN sizeof(set_switch_state_cmd_t)
@@ -175,7 +175,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_switch_state_all_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_switch_state_all_cmd_t;
 
 #define SET_SWITCH_STATE_ALL_CMD_LEN sizeof(set_switch_state_all_cmd_t)
@@ -195,7 +195,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     reset_switch_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs
+    uint16_t __padding;   // for consistent footer on MSPs
 } reset_switch_cmd_t;
 
 #define RESET_SWITCH_CMD_LEN sizeof(reset_switch_cmd_t)
@@ -214,7 +214,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     power_switch_telem_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } power_switch_telem_msg_t;
 
 #define POWER_SWITCH_TELEM_MSG_LEN sizeof(power_switch_telem_msg_t)

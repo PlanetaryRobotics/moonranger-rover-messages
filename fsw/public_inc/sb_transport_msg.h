@@ -19,6 +19,7 @@
 #define _moonranger_sb_transport_lib_msg_h_
 
 #include <stdio.h>
+
 #include "cfe_sb.h"
 
 /**

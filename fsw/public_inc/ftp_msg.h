@@ -17,9 +17,9 @@
 /*
 ** FTP App command codes
 */
-#define FTP_NOOP_CC                 0
-#define FTP_RESET_COUNTERS_CC       1
-#define FTP_PROCESS_CC              2
+#define FTP_NOOP_CC 0
+#define FTP_RESET_COUNTERS_CC 1
+#define FTP_PROCESS_CC 2
 
 /*************************************************************************/
 
@@ -56,7 +56,7 @@ typedef struct {
 
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE]; /**< \brief Telemetry header */
-    FTP_HkTlm_Payload_t Payload;       /**< \brief Telemetry payload */
+    FTP_HkTlm_Payload_t Payload;          /**< \brief Telemetry payload */
 } FTP_HkTlm_t;
 
 #endif /* FTP_MSG_H */
