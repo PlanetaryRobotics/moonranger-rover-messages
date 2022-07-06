@@ -84,7 +84,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     set_nss_params_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding; //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } set_nss_params_cmd_t;
 
 #define SET_NSS_PARAMS_CMD_LEN sizeof(set_nss_params_cmd_t)

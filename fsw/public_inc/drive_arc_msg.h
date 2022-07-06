@@ -25,10 +25,10 @@ typedef float float32;
  * Type definition (MOONRANGER drive arc packet)
  */
 typedef struct {
-  CFE_TIME_SysTime_t timeStamp; 
-  float32            speed;    // m/s
-  float32            duration; // seconds
-  float32            radius;   // meters
+    CFE_TIME_SysTime_t timeStamp;
+    float32 speed;      // m/s
+    float32 duration;   // seconds
+    float32 radius;     // meters
 
 } MOONRANGER_DriveArc_t;
 
@@ -37,18 +37,17 @@ typedef struct {
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_DriveArc_t data;
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    MOONRANGER_DriveArc_t data;
 } OS_PACK MOONRANGER_DriveArc_Tlm_t;
 
 /**
  * Buffer to hold drive arc data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
-typedef union
-{
-    CFE_SB_Msg_t               MsgHdr;
-    MOONRANGER_DriveArc_Tlm_t  DriveArcTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MOONRANGER_DriveArc_Tlm_t DriveArcTlm;
 } MOONRANGER_DriveArcBuffer_t;
 
 // Message sizes

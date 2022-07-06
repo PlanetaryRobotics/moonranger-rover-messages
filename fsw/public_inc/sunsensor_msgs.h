@@ -68,7 +68,7 @@ static_assert(((SUNSENSOR_TELEM_PAYLOAD_LEN % 4) == 0),
 typedef struct {
     main_bus_hdr_t msg_hdr;
     uint16_t checksum;
-    uint16_t __padding;   //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } get_sunsensor_data_cmd_t;
 
 #define GET_SUNSENSOR_DATA_CMD_LEN sizeof(get_sunsensor_data_cmd_t)
@@ -88,7 +88,7 @@ typedef struct {
     main_bus_hdr_t msg_hdr;
     sunsensor_telem_payload_t payload;
     uint16_t checksum;
-    uint16_t __padding;   //for consistent footer on MSPs commands
+    uint16_t __padding;   // for consistent footer on MSPs commands
 } sunsensor_telem_msg_t;
 
 #define SUNSENSOR_TELEM_LEN sizeof(sunsensor_telem_msg_t)

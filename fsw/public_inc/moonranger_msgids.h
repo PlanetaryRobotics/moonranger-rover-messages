@@ -90,6 +90,8 @@
 #define PLANNER_CMD_MID 0x1A00
 #define PLANNER_SEND_HK_MID 0x1A01
 #define PLANNER_HK_TLM_MID 0x0A01
+/* Telemetry that indicates the goal has been reached */
+#define PLANNER_GOAL_REACHED_MID 0x0A02
 
 /**
  * Mapper Message IDs

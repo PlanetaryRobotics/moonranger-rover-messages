@@ -22,9 +22,8 @@
 /**
  * Type definition rover init message
  */
-typedef struct
-{
-  uint8 CmdHeader[CFE_SB_TLM_HDR_SIZE];
+typedef struct {
+    uint8 CmdHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK MOONRANGER_RoverInit_Tlm_t;
 
 // Message sizes
