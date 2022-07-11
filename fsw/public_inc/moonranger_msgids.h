@@ -65,6 +65,7 @@
  */
 #define POSE_CMD_MID 0x1980
 #define POSE_SEND_HK_MID 0x1981
+#define POSE_SEND_POSE_MID 0x0980
 #define POSE_HK_TLM_MID 0x0981
 
 /**
