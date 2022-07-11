@@ -54,12 +54,16 @@ typedef union {
     PLAN_HANDLER_HkTlm_t HkTlm;
 } PLAN_HANDLER_HkBuffer_t;
 
+#define PLAN_HANDLER_HK_PAYLOAD_LEN sizeof(PLAN_HANDLER_HkTlm_Payload_t)
+#define PLAN_HANDLER_HK_TLM_LEN sizeof(PLAN_HANDLER_HkTlm_t)
+
 
 /*************************************************************************/
 /*
 ** Type definition (Plan Handler - Information pertaining to a plan table)
 */
-
+// This structure is just a placeholder for the plan info type. Will update
+// in future version
 typedef struct {
 
     char filename[64];
