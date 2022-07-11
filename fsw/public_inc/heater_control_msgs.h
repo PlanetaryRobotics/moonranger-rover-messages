@@ -180,7 +180,6 @@ typedef struct {
     uint16_t __padding;   // for consistent footer on MSPs commands
 } heater_telem_msg_t;
 
-
 #define HEATER_TELEM_MSG_LEN sizeof(heater_telem_msg_t)
 
 #if (__STDC_VERSION__ >= 201112L)   // check if compiling with C11 or newer

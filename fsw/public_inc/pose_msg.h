@@ -28,15 +28,15 @@ extern "C" {
 ** Type definition (MOONRANGER pose)
 */
 typedef struct OS_PACK {
-  CFE_TIME_SysTime_t  timeStamp; 
-  float64             x_pos;     // meters
-  float64             y_pos;     // meters
-  float64             z_pos;     // meters
-  float64             x_quat;    // quaternion
-  float64             y_quat;    // quaternion
-  float64             z_quat;    // quaternion
-  float64             w_quat;    // quaternion
-  float64             covariance[36];
+    CFE_TIME_SysTime_t timeStamp;
+    float64 x_pos;    // meters
+    float64 y_pos;    // meters
+    float64 z_pos;    // meters
+    float64 x_quat;   // quaternion
+    float64 y_quat;   // quaternion
+    float64 z_quat;   // quaternion
+    float64 w_quat;   // quaternion
+    float64 covariance[36];
 } MOONRANGER_Pose_t;
 
 /**
@@ -44,18 +44,17 @@ typedef struct OS_PACK {
  * @note includes CFS TLM Header with timestamp
  */
 typedef struct {
-  uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
-  MOONRANGER_Pose_t data;
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    MOONRANGER_Pose_t data;
 } OS_PACK MOONRANGER_Pose_Tlm_t;
 
 /**
  * Buffer to hold pose data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
-typedef union
-{
-    CFE_SB_Msg_t           MsgHdr;
-    MOONRANGER_Pose_Tlm_t  PoseTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    MOONRANGER_Pose_Tlm_t PoseTlm;
 } MOONRANGER_PoseBuffer_t;
 
 // Message sizes

@@ -1,18 +1,18 @@
 /****************************************************************
- * 
+ *
  * @file 		vc_msg.h
- * 
+ *
  * @brief 		The message definitions for the vehicle controller app
- * 
+ *
  * @version 	1.0
  * @date 		09/19/2021
- * 
+ *
  * @authors 	Ben Kolligs, ...
  * @author 		Carnegie Mellon University, Planetary Robotics Lab
- * 
- * @note		This file only contains app specific command and 
+ *
+ * @note		This file only contains app specific command and
  * 				telemetry message definitions and command codes.
- * 
+ *
  ****************************************************************/
 #ifndef _vehicle_controller_msgs_h_
 #define _vehicle_controller_msgs_h_
@@ -23,9 +23,9 @@
 /**
  * Vehicle App command codes
  */
-#define VEHICLE_NOOP_CC               0
-#define VEHICLE_RESET_COUNTERS_CC     1
-#define VEHICLE_UPDATE_PARAMS_CC      2
+#define VEHICLE_NOOP_CC 0
+#define VEHICLE_RESET_COUNTERS_CC 1
+#define VEHICLE_UPDATE_PARAMS_CC 2
 
 /* Generic "no arguments" command */
 typedef struct {
@@ -38,19 +38,17 @@ typedef VEHICLE_CONTROLLER_NoArgsCmd_t VEHICLE_CONTROLLER_UpdateParams_t;
 
 #define VEHICLE_CONTROLLER_CMD_LNGTH sizeof(VEHICLE_CONTROLLER_NoArgsCmd_t)
 
-typedef struct
-{
-    uint8              CommandCounter;
-    uint8              CommandErrorCounter;
-    uint8              WheelCounter;
-    uint8              ArcCounter;
-    uint8              spare[2];
+typedef struct {
+    uint8 CommandCounter;
+    uint8 CommandErrorCounter;
+    uint8 WheelCounter;
+    uint8 ArcCounter;
+    uint8 spare[2];
 } VEHICLE_HkTlm_Payload_t;
 
-typedef struct
-{
-    uint8              TlmHeader[CFE_SB_TLM_HDR_SIZE];
-    VEHICLE_HkTlm_Payload_t  Payload;
+typedef struct {
+    uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    VEHICLE_HkTlm_Payload_t Payload;
 
 } OS_PACK VEHICLE_HkTlm_t;
 
@@ -58,15 +56,14 @@ typedef struct
  * Buffer to hold telemetry data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
-typedef union
-{
-	CFE_SB_Msg_t	MsgHdr;
-	VEHICLE_HkTlm_t	HkTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    VEHICLE_HkTlm_t HkTlm;
 } VEHICLE_HkBuffer_t;
 
 #define VEHICLE_CONTROLLER_HK_TLM_LEN sizeof(VEHICLE_HkTlm_t)
 #define VEHICLE_CONTROLLER_HK_PAYLOAD_LEN sizeof(VEHICLE_HkTlm_Payload_t)
 
-#endif //_vehicle_controller_msgs_h_ header
+#endif   //_vehicle_controller_msgs_h_ header
 
 /* EOF */

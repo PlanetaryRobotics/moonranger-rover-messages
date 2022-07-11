@@ -82,10 +82,9 @@ typedef struct {
  * Buffer to hold telemetry data prior to sending
  * Defined as a union to ensure proper alignment for a CFE_SB_Msg_t type
  */
-typedef union
-{
-    CFE_SB_Msg_t         MsgHdr;
-    PLANNER_HkTlm_t      HkTlm;
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    PLANNER_HkTlm_t HkTlm;
 } PLANNER_HkBuffer_t;
 
 /**

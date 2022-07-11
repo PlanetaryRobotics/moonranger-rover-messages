@@ -43,56 +43,67 @@
 #include "ccsds.h"
 #include "cfe_time.h"
 
-
 /*
 ** Defines
 */
-#define CFE_SB_POLL                     0      /**< \brief Option used with #CFE_SB_RcvMsg to request immediate pipe status */
-#define CFE_SB_PEND_FOREVER            -1      /**< \brief Option used with #CFE_SB_RcvMsg to force a wait for next message */
-#define CFE_SB_SUB_ENTRIES_PER_PKT      20     /**< \brief Configuration parameter used by SBN App */
-#define CFE_SB_SUBSCRIPTION             0      /**< \brief Subtype specifier used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
-#define CFE_SB_UNSUBSCRIPTION           1      /**< \brief Subtype specified used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
+#define CFE_SB_POLL                                                         \
+    0 /**< \brief Option used with #CFE_SB_RcvMsg to request immediate pipe \
+         status */
+#define CFE_SB_PEND_FOREVER                                                 \
+    -1 /**< \brief Option used with #CFE_SB_RcvMsg to force a wait for next \
+          message */
+#define CFE_SB_SUB_ENTRIES_PER_PKT \
+    20 /**< \brief Configuration parameter used by SBN App */
+#define CFE_SB_SUBSCRIPTION                                                    \
+    0 /**< \brief Subtype specifier used in #CFE_SB_SingleSubscriptionTlm_t by \
+         SBN App */
+#define CFE_SB_UNSUBSCRIPTION                                                  \
+    1 /**< \brief Subtype specified used in #CFE_SB_SingleSubscriptionTlm_t by \
+         SBN App */
 
 /* ------------------------------------------------------ */
 /* Macro Constants for use with the CFE_SB_MsgId_t type   */
 /* ------------------------------------------------------ */
 
 /**
- * \brief Translation macro to convert from MsgId integer values to opaque/abstract API values
+ * \brief Translation macro to convert from MsgId integer values to
+ * opaque/abstract API values
  *
- * This conversion exists in macro form to allow compile-time evaluation for constants, and
- * should not be used directly in application code.
+ * This conversion exists in macro form to allow compile-time evaluation for
+ * constants, and should not be used directly in application code.
  *
  * For applications, use the CFE_SB_ValueToMsgId() inline function instead.
  *
  * \sa CFE_SB_ValueToMsgId()
  */
-#define CFE_SB_MSGID_WRAP_VALUE(val)     ((CFE_SB_MsgId_t)(val))
+#define CFE_SB_MSGID_WRAP_VALUE(val) ((CFE_SB_MsgId_t)(val))
 
 /**
- * \brief Translation macro to convert to MsgId integer values from opaque/abstract API values
+ * \brief Translation macro to convert to MsgId integer values from
+ * opaque/abstract API values
  *
- * This conversion exists in macro form to allow compile-time evaluation for constants, and
- * should not be used directly in application code.
+ * This conversion exists in macro form to allow compile-time evaluation for
+ * constants, and should not be used directly in application code.
  *
  * For applications, use the CFE_SB_MsgIdToValue() inline function instead.
  *
  * \sa CFE_SB_MsgIdToValue()
  */
-#define CFE_SB_MSGID_UNWRAP_VALUE(mid)   ((CFE_SB_MsgId_Atom_t)(mid))
+#define CFE_SB_MSGID_UNWRAP_VALUE(mid) ((CFE_SB_MsgId_Atom_t)(mid))
 
 /**
  * \brief Reserved value for CFE_SB_MsgId_t that will not match any valid MsgId
  *
- * This rvalue macro can be used for static/compile-time data initialization to ensure that
- * the initialized value does not alias to a valid MsgId object.
+ * This rvalue macro can be used for static/compile-time data initialization to
+ * ensure that the initialized value does not alias to a valid MsgId object.
  */
-#define CFE_SB_MSGID_RESERVED            CFE_SB_MSGID_WRAP_VALUE(-1)
+#define CFE_SB_MSGID_RESERVED CFE_SB_MSGID_WRAP_VALUE(-1)
 
 /**
  * \brief A literal of the CFE_SB_MsgId_t type representing an invalid ID
  *
- * This value should be used for runtime initialization of CFE_SB_MsgId_t values.
+ * This value should be used for runtime initialization of CFE_SB_MsgId_t
+ * values.
  *
  * \note This may be a compound literal in a future revision.  Per C99, compound
  * literals are lvalues, not rvalues, so this value should not be used in
@@ -100,34 +111,41 @@
  * purposes (rvalue), #CFE_SB_MSGID_RESERVED should be used instead.
  * However, in the current implementation, they are equivalent.
  */
-#define CFE_SB_INVALID_MSG_ID            CFE_SB_MSGID_RESERVED
+#define CFE_SB_INVALID_MSG_ID CFE_SB_MSGID_RESERVED
 
 /**
  * \defgroup CFESBPktTypeDefs cFE SB Packet Type Defines
  * \{
  */
-#define CFE_SB_PKTTYPE_INVALID          0      /**< \brief #CFE_SB_GetPktType response if message type can not be determined */
-#define CFE_SB_PKTTYPE_CMD              1      /**< \brief #CFE_SB_GetPktType response for command packets */
-#define CFE_SB_PKTTYPE_TLM              2      /**< \brief #CFE_SB_GetPktType response for telemetry packets */
+#define CFE_SB_PKTTYPE_INVALID                                           \
+    0 /**< \brief #CFE_SB_GetPktType response if message type can not be \
+         determined */
+#define CFE_SB_PKTTYPE_CMD \
+    1 /**< \brief #CFE_SB_GetPktType response for command packets */
+#define CFE_SB_PKTTYPE_TLM \
+    2 /**< \brief #CFE_SB_GetPktType response for telemetry packets */
 /** \} */
 
 /*
 ** Macro Definitions
 */
-#define CFE_BIT(x)   (1 << (x))               /**< \brief Places a one at bit positions 0 - 31*/
-#define CFE_SET(i,x) ((i) |= CFE_BIT(x))      /**< \brief Sets bit x of i */
-#define CFE_CLR(i,x) ((i) &= ~CFE_BIT(x))     /**< \brief Clears bit x of i */
-#define CFE_TST(i,x) (((i) & CFE_BIT(x)) != 0)/**< \brief true(non zero) if bit x of i is set */
+#define CFE_BIT(x)                                           \
+    (1 << (x)) /**< \brief Places a one at bit positions 0 - \
+                  31*/
+#define CFE_SET(i, x) ((i) |= CFE_BIT(x))  /**< \brief Sets bit x of i */
+#define CFE_CLR(i, x) ((i) &= ~CFE_BIT(x)) /**< \brief Clears bit x of i */
+#define CFE_TST(i, x) \
+    (((i)&CFE_BIT(x)) != 0) /**< \brief true(non zero) if bit x of i is set */
 
 /**
  * \brief Set memory address within SB Message
  *
- * Macro that should be used to set memory addresses within software bus messages.
- * For now this does a straight copy, but in a future revision this may translate the
- * raw memory address into a "safe" integer value.  This is particularly important if
- * the message is to be sent off this CPU.
+ * Macro that should be used to set memory addresses within software bus
+ * messages. For now this does a straight copy, but in a future revision this
+ * may translate the raw memory address into a "safe" integer value.  This is
+ * particularly important if the message is to be sent off this CPU.
  */
-#define CFE_SB_SET_MEMADDR(msgdst,src)       msgdst = (cpuaddr)src
+#define CFE_SB_SET_MEMADDR(msgdst, src) msgdst = (cpuaddr)src
 
 /**
  * \brief Get memory address from SB Message
@@ -135,12 +153,14 @@
  * Macro that should be used to get memory addresses from software bus messages.
  * This is the inverse operation of CFE_SB_SET_MEMADDR.
  */
-#define CFE_SB_GET_MEMADDR(msgsrc)           (cpuaddr)msgsrc
+#define CFE_SB_GET_MEMADDR(msgsrc) (cpuaddr) msgsrc
 
 /*
 ** Pipe option bit fields.
 */
-#define CFE_SB_PIPEOPTS_IGNOREMINE 0x00000001 /**< \brief Messages sent by the app that owns this pipe will not be sent to this pipe. */
+#define CFE_SB_PIPEOPTS_IGNOREMINE                                           \
+    0x00000001 /**< \brief Messages sent by the app that owns this pipe will \
+                  not be sent to this pipe. */
 
 /*
 ** Type Definitions
@@ -148,26 +168,29 @@
 
 /** \brief Generic Software Bus Message Type Definition */
 typedef union {
-    CCSDS_PriHdr_t      Hdr;   /**< \brief CCSDS Primary Header #CCSDS_PriHdr_t */
+    CCSDS_PriHdr_t Hdr; /**< \brief CCSDS Primary Header #CCSDS_PriHdr_t */
     CCSDS_SpacePacket_t SpacePacket;
-    uint32              Dword; /**< \brief Forces minimum of 32-bit alignment for this object */
-    uint8               Byte[sizeof(CCSDS_PriHdr_t)];   /**< \brief Allows byte-level access */
-}CFE_SB_Msg_t;
+    uint32
+        Dword; /**< \brief Forces minimum of 32-bit alignment for this object */
+    uint8 Byte[sizeof(CCSDS_PriHdr_t)]; /**< \brief Allows byte-level access */
+} CFE_SB_Msg_t;
 
 /** \brief Generic Software Bus Command Header Type Definition */
 typedef union {
-    CCSDS_CommandPacket_t   Cmd;
-    CFE_SB_Msg_t            BaseMsg; /**< Base type (primary header) */
+    CCSDS_CommandPacket_t Cmd;
+    CFE_SB_Msg_t BaseMsg; /**< Base type (primary header) */
 } CFE_SB_CmdHdr_t;
 
 /** \brief Generic Software Bus Telemetry Header Type Definition */
 typedef union {
     CCSDS_TelemetryPacket_t Tlm;
-    CFE_SB_Msg_t            BaseMsg; /**< Base type (primary header) */
+    CFE_SB_Msg_t BaseMsg; /**< Base type (primary header) */
 } CFE_SB_TlmHdr_t;
 
-#define CFE_SB_CMD_HDR_SIZE     (sizeof(CFE_SB_CmdHdr_t))/**< \brief Size of #CFE_SB_CmdHdr_t in bytes */
-#define CFE_SB_TLM_HDR_SIZE     (sizeof(CFE_SB_TlmHdr_t))/**< \brief Size of #CFE_SB_TlmHdr_t in bytes */
+#define CFE_SB_CMD_HDR_SIZE \
+    (sizeof(CFE_SB_CmdHdr_t)) /**< \brief Size of #CFE_SB_CmdHdr_t in bytes */
+#define CFE_SB_TLM_HDR_SIZE \
+    (sizeof(CFE_SB_TlmHdr_t)) /**< \brief Size of #CFE_SB_TlmHdr_t in bytes */
 
 /** \brief  CFE_SB_TimeOut_t to primitive type definition
 **
@@ -181,12 +204,13 @@ typedef uint32 CFE_SB_TimeOut_t;
 **
 ** Software Bus pipe identifier used in many SB APIs
 */
-typedef uint8  CFE_SB_PipeId_t;
+typedef uint8 CFE_SB_PipeId_t;
 
 /** \brief  CFE_SB_MsgPtr_t defined as a pointer to an SB Message */
 typedef CFE_SB_Msg_t *CFE_SB_MsgPtr_t;
 
-/** \brief  CFE_SB_MsgPayloadPtr_t defined as an opaque pointer to a message Payload portion */
+/** \brief  CFE_SB_MsgPayloadPtr_t defined as an opaque pointer to a message
+ * Payload portion */
 typedef uint8 *CFE_SB_MsgPayloadPtr_t;
 
 /** \brief  CFE_SB_ZeroCopyHandle_t to primitive type definition
@@ -200,22 +224,27 @@ typedef cpuaddr CFE_SB_ZeroCopyHandle_t;
 ** Currently an unused parameter in #CFE_SB_SubscribeEx
 ** Intended to be used for interprocessor communication only
 **/
-typedef  struct {
-    uint8 Priority;/**< \brief  Specify high(1) or low(0) message priority for off-board routing, currently unused */
-    uint8 Reliability;/**< \brief  Specify high(1) or low(0) message transfer reliability for off-board routing, currently unused */
-}CFE_SB_Qos_t;
+typedef struct {
+    uint8 Priority; /**< \brief  Specify high(1) or low(0) message priority for
+                       off-board routing, currently unused */
+    uint8 Reliability; /**< \brief  Specify high(1) or low(0) message transfer
+                          reliability for off-board routing, currently unused */
+} CFE_SB_Qos_t;
 
-extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority and reliabilty for off-board routing */
-
+extern CFE_SB_Qos_t
+    CFE_SB_Default_Qos; /**< \brief  Defines a default priority and reliabilty
+                           for off-board routing */
 
 /** \brief Message Sender Identification Type Definition
 **
-** Parameter used in #CFE_SB_GetLastSenderId API which allows the receiver of a message
+** Parameter used in #CFE_SB_GetLastSenderId API which allows the receiver of a
+*message
 ** to validate the sender of the message.
 **/
 // typedef struct {
-//     uint32  ProcessorId;/**< \brief Processor Id from which the message was sent */
-//     char    AppName[OS_MAX_API_NAME];/**< \brief Application that sent the message */
+//     uint32  ProcessorId;/**< \brief Processor Id from which the message was
+//     sent */ char    AppName[OS_MAX_API_NAME];/**< \brief Application that
+//     sent the message */
 // } CFE_SB_SenderId_t;
 
 /****************** Function Prototypes **********************/
@@ -230,7 +259,8 @@ extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority a
 **
 ** \par Description
 **          This routine creates and initializes an input pipe that the calling
-**          application can use to receive software bus messages.  By default, no
+**          application can use to receive software bus messages.  By default,
+*no
 **          messages are routed to the new pipe.  So, the application must use
 **          #CFE_SB_Subscribe to specify which messages it wants to receive on
 **          this pipe.
@@ -238,15 +268,20 @@ extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority a
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in, out]  PipeIdPtr    A pointer to a variable of type #CFE_SB_PipeId_t,
+** \param[in, out]  PipeIdPtr    A pointer to a variable of type
+*#CFE_SB_PipeId_t,
 **                          which will be filled in with the pipe ID information
-**                          by the #CFE_SB_CreatePipe routine. *PipeIdPtr is the identifier for the created pipe.
+**                          by the #CFE_SB_CreatePipe routine. *PipeIdPtr is the
+*identifier for the created pipe.
 **
-** \param[in]  Depth        The maximum number of messages that will be allowed on
+** \param[in]  Depth        The maximum number of messages that will be allowed
+*on
 **                          this pipe at one time.
 **
-** \param[in]  PipeName     A string to be used to identify this pipe in error messages
-**                          and routing information telemetry.  The string must be no
+** \param[in]  PipeName     A string to be used to identify this pipe in error
+*messages
+**                          and routing information telemetry.  The string must
+*be no
 **                          longer than #OS_MAX_API_NAME (including terminator).
 **                          Longer strings will be truncated.
 **
@@ -256,11 +291,11 @@ extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority a
 ** \retval #CFE_SB_MAX_PIPES_MET \copybrief CFE_SB_MAX_PIPES_MET
 ** \retval #CFE_SB_PIPE_CR_ERR   \copybrief CFE_SB_PIPE_CR_ERR
 **
-** \sa #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName
+** \sa #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts
+*#CFE_SB_GetPipeIdByName
 **/
-int32  CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr,
-                         uint16  Depth,
-                         const char *PipeName);
+int32 CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr, uint16 Depth,
+                        const char *PipeName);
 
 /*****************************************************************************/
 /**
@@ -280,16 +315,18 @@ int32  CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr,
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  PipeId       The pipe ID (obtained previously from #CFE_SB_CreatePipe)
+** \param[in]  PipeId       The pipe ID (obtained previously from
+*#CFE_SB_CreatePipe)
 **                          of the pipe to be deleted.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_SB_BAD_ARGUMENT \copybrief CFE_SB_BAD_ARGUMENT
 **
-** \sa #CFE_SB_CreatePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName
+** \sa #CFE_SB_CreatePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts
+*#CFE_SB_GetPipeIdByName
 **/
-int32  CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
+int32 CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
@@ -307,10 +344,10 @@ int32  CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_SB_BAD_ARGUMENT \copybrief CFE_SB_BAD_ARGUMENT
 **
-** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts #CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
+** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts
+*#CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-int32  CFE_SB_SetPipeOpts(CFE_SB_PipeId_t     PipeId,
-                          uint8               Opts);
+int32 CFE_SB_SetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 Opts);
 
 /*****************************************************************************/
 /**
@@ -327,10 +364,10 @@ int32  CFE_SB_SetPipeOpts(CFE_SB_PipeId_t     PipeId,
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_SB_BAD_ARGUMENT \copybrief CFE_SB_BAD_ARGUMENT
 **
-** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
+** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts
+*#CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-int32  CFE_SB_GetPipeOpts(CFE_SB_PipeId_t     PipeId,
-                          uint8               *OptPtr);
+int32 CFE_SB_GetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 *OptPtr);
 
 /*****************************************************************************/
 /**
@@ -349,9 +386,11 @@ int32  CFE_SB_GetPipeOpts(CFE_SB_PipeId_t     PipeId,
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_SB_BAD_ARGUMENT \copybrief CFE_SB_BAD_ARGUMENT
 **
-** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName
+** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts
+*#CFE_SB_GetPipeIdByName
 **/
-int32 CFE_SB_GetPipeName(char *PipeNameBuf, size_t PipeNameSize, CFE_SB_PipeId_t PipeId);
+int32 CFE_SB_GetPipeName(char *PipeNameBuf, size_t PipeNameSize,
+                         CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
@@ -368,9 +407,10 @@ int32 CFE_SB_GetPipeName(char *PipeNameBuf, size_t PipeNameSize, CFE_SB_PipeId_t
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_SB_BAD_ARGUMENT \copybrief CFE_SB_BAD_ARGUMENT
 **
-** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts #CFE_SB_PIPEOPTS_IGNOREMINE
+** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts
+*#CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-int32  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
+int32 CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 /**@}*/
 
 /** @defgroup CFEAPISBSubscription cFE Message Subscription Control APIs
@@ -382,7 +422,8 @@ int32  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 ** \brief Subscribe to a message on the software bus
 **
 ** \par Description
-**          This routine adds the specified pipe to the destination list associated
+**          This routine adds the specified pipe to the destination list
+*associated
 **          with the specified message ID.
 **
 ** \par Assumptions, External Events, and Notes:
@@ -392,7 +433,8 @@ int32  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 **          message will first be sent to the last subscriber. If an application
 **          has timing constraints and needs to receive a message in the
 **          shortest possible time, the developer may consider holding off its
-**          subscription until other applications have subscribed to the message.
+**          subscription until other applications have subscribed to the
+*message.
 **
 ** \param[in]  MsgId        The message ID of the message to be subscribed to.
 **
@@ -400,10 +442,12 @@ int32  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 **                          should be sent to.
 **
 ** \param[in]  Quality      The requested Quality of Service (QoS) required of
-**                          the messages. Most callers will use #CFE_SB_Default_Qos
+**                          the messages. Most callers will use
+*#CFE_SB_Default_Qos
 **                          for this parameter.
 **
-** \param[in]  MsgLim       The maximum number of messages with this Message ID to
+** \param[in]  MsgLim       The maximum number of messages with this Message ID
+*to
 **                          allow in this pipe at the same time.
 **
 ** \return Execution status, see \ref CFEReturnCodes
@@ -413,12 +457,11 @@ int32  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 ** \retval #CFE_SB_BAD_ARGUMENT  \copybrief CFE_SB_BAD_ARGUMENT
 ** \retval #CFE_SB_BUF_ALOC_ERR  \copybrief CFE_SB_BUF_ALOC_ERR
 **
-** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe, #CFE_SB_UnsubscribeLocal
+** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe,
+*#CFE_SB_UnsubscribeLocal
 **/
-int32  CFE_SB_SubscribeEx(CFE_SB_MsgId_t      MsgId,
-                          CFE_SB_PipeId_t     PipeId,
-                          CFE_SB_Qos_t        Quality,
-                          uint16              MsgLim);
+int32 CFE_SB_SubscribeEx(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId,
+                         CFE_SB_Qos_t Quality, uint16 MsgLim);
 
 /*****************************************************************************/
 /**
@@ -437,7 +480,8 @@ int32  CFE_SB_SubscribeEx(CFE_SB_MsgId_t      MsgId,
 **          message will first be sent to the last subscriber. If an application
 **          has timing constraints and needs to receive a message in the
 **          shortest possible time, the developer may consider holding off its
-**          subscription until other applications have subscribed to the message.
+**          subscription until other applications have subscribed to the
+*message.
 **
 ** \param[in]  MsgId        The message ID of the message to be subscribed to.
 **
@@ -451,9 +495,10 @@ int32  CFE_SB_SubscribeEx(CFE_SB_MsgId_t      MsgId,
 ** \retval #CFE_SB_BAD_ARGUMENT  \copybrief CFE_SB_BAD_ARGUMENT
 ** \retval #CFE_SB_BUF_ALOC_ERR  \copybrief CFE_SB_BUF_ALOC_ERR
 **
-** \sa #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe, #CFE_SB_UnsubscribeLocal
+** \sa #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe,
+*#CFE_SB_UnsubscribeLocal
 **/
-int32 CFE_SB_Subscribe(CFE_SB_MsgId_t  MsgId, CFE_SB_PipeId_t PipeId);
+int32 CFE_SB_Subscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
@@ -463,19 +508,22 @@ int32 CFE_SB_Subscribe(CFE_SB_MsgId_t  MsgId, CFE_SB_PipeId_t PipeId);
 **          This routine adds the specified pipe to the destination list for
 **          the specified message ID.  This is similar to #CFE_SB_SubscribeEx
 **          with the Quality field set to #CFE_SB_Default_Qos and MsgLim set
-**          to #CFE_PLATFORM_SB_DEFAULT_MSG_LIMIT, but will not report the subscription.
+**          to #CFE_PLATFORM_SB_DEFAULT_MSG_LIMIT, but will not report the
+*subscription.
 **          Subscription Reporting is enabled for interprocessor communication
 **          by way of the Software Bus Network (SBN) Application.
 **
 ** \par Assumptions, External Events, and Notes:
-**          - This API is typically only used by Software Bus Network (SBN) Application
+**          - This API is typically only used by Software Bus Network (SBN)
+*Application
 **
 ** \param[in]  MsgId        The message ID of the message to be subscribed to.
 **
 ** \param[in]  PipeId       The pipe ID of the pipe the subscribed message
 **                          should be sent to.
 **
-** \param[in]  MsgLim       The maximum number of messages with this Message ID to
+** \param[in]  MsgLim       The maximum number of messages with this Message ID
+*to
 **                          allow in this pipe at the same time.
 **
 ** \return Execution status, see \ref CFEReturnCodes
@@ -485,10 +533,10 @@ int32 CFE_SB_Subscribe(CFE_SB_MsgId_t  MsgId, CFE_SB_PipeId_t PipeId);
 ** \retval #CFE_SB_BAD_ARGUMENT  \copybrief CFE_SB_BAD_ARGUMENT
 ** \retval #CFE_SB_BUF_ALOC_ERR  \copybrief CFE_SB_BUF_ALOC_ERR
 **
-** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_Unsubscribe, #CFE_SB_UnsubscribeLocal
+** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_Unsubscribe,
+*#CFE_SB_UnsubscribeLocal
 **/
-int32 CFE_SB_SubscribeLocal(CFE_SB_MsgId_t MsgId,
-                            CFE_SB_PipeId_t PipeId,
+int32 CFE_SB_SubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId,
                             uint16 MsgLim);
 
 /*****************************************************************************/
@@ -512,20 +560,23 @@ int32 CFE_SB_SubscribeLocal(CFE_SB_MsgId_t MsgId,
 ** \retval #CFE_SB_NO_SUBSCRIBERS \copybrief CFE_SB_NO_SUBSCRIBERS
 ** \retval #CFE_SB_INTERNAL_ERR   \copybrief CFE_SB_INTERNAL_ERR
 **
-** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal, #CFE_SB_UnsubscribeLocal
+** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal,
+*#CFE_SB_UnsubscribeLocal
 **/
-int32  CFE_SB_Unsubscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
+int32 CFE_SB_Unsubscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
-** \brief Remove a subscription to a message on the software bus on the current CPU
+** \brief Remove a subscription to a message on the software bus on the current
+*CPU
 **
 ** \par Description
 **          This routine removes the specified pipe from the destination
 **          list for the specified message ID on the current CPU.
 **
 ** \par Assumptions, External Events, and Notes:
-**          - This API is typically only used by Software Bus Network (SBN) Application
+**          - This API is typically only used by Software Bus Network (SBN)
+*Application
 **
 ** \param[in]  MsgId        The message ID of the message to be unsubscribed.
 **
@@ -537,7 +588,8 @@ int32  CFE_SB_Unsubscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 ** \retval #CFE_SB_NO_SUBSCRIBERS \copybrief CFE_SB_NO_SUBSCRIBERS
 ** \retval #CFE_SB_INTERNAL_ERR   \copybrief CFE_SB_INTERNAL_ERR
 **
-** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe
+** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal,
+*#CFE_SB_Unsubscribe
 **/
 int32 CFE_SB_UnsubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 /**@}*/
@@ -564,7 +616,8 @@ int32 CFE_SB_UnsubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 **          - This function tracks and increments the source sequence counter
 **            of a telemetry message.
 **
-** \param[in]  MsgPtr       A pointer to the message to be sent.  This must point
+** \param[in]  MsgPtr       A pointer to the message to be sent.  This must
+*point
 **                          to the first byte of the software bus message header
 **                          (#CFE_SB_Msg_t).
 **
@@ -576,7 +629,7 @@ int32 CFE_SB_UnsubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 **
 ** \sa #CFE_SB_RcvMsg, #CFE_SB_ZeroCopySend, #CFE_SB_PassMsg
 **/
-int32  CFE_SB_SendMsg(CFE_SB_Msg_t   *MsgPtr);
+int32 CFE_SB_SendMsg(CFE_SB_Msg_t *MsgPtr);
 
 /*****************************************************************************/
 /**
@@ -597,7 +650,8 @@ int32  CFE_SB_SendMsg(CFE_SB_Msg_t   *MsgPtr);
 **          - Unlike #CFE_SB_SendMsg this routine will preserve the source
 **            sequence counter in a telemetry message.
 **
-** \param[in]  MsgPtr       A pointer to the message to be sent.  This must point
+** \param[in]  MsgPtr       A pointer to the message to be sent.  This must
+*point
 **                          to the first byte of the software bus message header
 **                          (#CFE_SB_Msg_t).
 **
@@ -609,7 +663,7 @@ int32  CFE_SB_SendMsg(CFE_SB_Msg_t   *MsgPtr);
 **
 ** \sa #CFE_SB_RcvMsg, #CFE_SB_ZeroCopySend, #CFE_SB_SendMsg
 **/
-int32  CFE_SB_PassMsg(CFE_SB_Msg_t   *MsgPtr);
+int32 CFE_SB_PassMsg(CFE_SB_Msg_t *MsgPtr);
 
 /*****************************************************************************/
 /**
@@ -621,28 +675,41 @@ int32  CFE_SB_PassMsg(CFE_SB_Msg_t   *MsgPtr);
 **          message comes in or the timeout value is reached.
 **
 ** \par Assumptions, External Events, and Notes:
-**          Note - If an error occurs in this API, the *BufPtr value may be NULL or
+**          Note - If an error occurs in this API, the *BufPtr value may be NULL
+*or
 **          random. Therefore, it is recommended that the return code be tested
 **          for CFE_SUCCESS before processing the message.
 **
-** \param[in, out]  BufPtr       A pointer to a local variable of type #CFE_SB_MsgPtr_t.
-**                          Typically a caller declares a ptr of type CFE_SB_Msg_t
-**                          (i.e. CFE_SB_Msg_t *Ptr) then gives the address of that
+** \param[in, out]  BufPtr       A pointer to a local variable of type
+*#CFE_SB_MsgPtr_t.
+**                          Typically a caller declares a ptr of type
+*CFE_SB_Msg_t
+**                          (i.e. CFE_SB_Msg_t *Ptr) then gives the address of
+*that
 **                          pointer (&Ptr) as this parmeter. After a successful
-**                          receipt of a message, *BufPtr will point to the first
-**                          byte of the software bus message header. This should be
+**                          receipt of a message, *BufPtr will point to the
+*first
+**                          byte of the software bus message header. This should
+*be
 **                          used as a read-only pointer (in systems with an MMU,
-**                          writes to this pointer may cause a memory protection fault).
+**                          writes to this pointer may cause a memory protection
+*fault).
 **                          The *BufPtr is valid only until the next call to
-**                          CFE_SB_RcvMsg for the same pipe. \n *BufPtr is a pointer to the message obtained from the pipe. Valid
-**                          only until the next call to CFE_SB_RcvMsg for the same pipe.
+**                          CFE_SB_RcvMsg for the same pipe. \n *BufPtr is a
+*pointer to the message obtained from the pipe. Valid
+**                          only until the next call to CFE_SB_RcvMsg for the
+*same pipe.
 **
-** \param[in]  PipeId       The pipe ID of the pipe containing the message to be obtained.
+** \param[in]  PipeId       The pipe ID of the pipe containing the message to be
+*obtained.
 **
-** \param[in]  TimeOut      The number of milliseconds to wait for a new message if the
-**                          pipe is empty at the time of the call.  This can also be set
+** \param[in]  TimeOut      The number of milliseconds to wait for a new message
+*if the
+**                          pipe is empty at the time of the call.  This can
+*also be set
 **                          to #CFE_SB_POLL for a non-blocking receive or
-**                          #CFE_SB_PEND_FOREVER to wait forever for a message to arrive.
+**                          #CFE_SB_PEND_FOREVER to wait forever for a message
+*to arrive.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
@@ -653,9 +720,8 @@ int32  CFE_SB_PassMsg(CFE_SB_Msg_t   *MsgPtr);
 **
 ** \sa #CFE_SB_SendMsg, #CFE_SB_ZeroCopySend
 **/
-int32  CFE_SB_RcvMsg(CFE_SB_MsgPtr_t  *BufPtr,
-                     CFE_SB_PipeId_t  PipeId,
-                     int32            TimeOut);
+int32 CFE_SB_RcvMsg(CFE_SB_MsgPtr_t *BufPtr, CFE_SB_PipeId_t PipeId,
+                    int32 TimeOut);
 /**@}*/
 
 /** @defgroup CFEAPISBZeroCopy cFE Zero Copy Message APIs
@@ -667,28 +733,38 @@ int32  CFE_SB_RcvMsg(CFE_SB_MsgPtr_t  *BufPtr,
 ** \brief Get a buffer pointer to use for "zero copy" SB sends.
 **
 ** \par Description
-**          This routine can be used to get a pointer to one of the software bus'
-**          internal memory buffers that are used for sending messages.  The caller
-**          can use this memory buffer to build an SB message, then send it using
-**          the #CFE_SB_ZeroCopySend function.  This interface is more complicated
-**          than the normal #CFE_SB_ZeroCopySend interface, but it avoids an extra
-**          copy of the message from the user's memory buffer to the software bus
+**          This routine can be used to get a pointer to one of the software
+*bus'
+**          internal memory buffers that are used for sending messages.  The
+*caller
+**          can use this memory buffer to build an SB message, then send it
+*using
+**          the #CFE_SB_ZeroCopySend function.  This interface is more
+*complicated
+**          than the normal #CFE_SB_ZeroCopySend interface, but it avoids an
+*extra
+**          copy of the message from the user's memory buffer to the software
+*bus
 **          internal buffer.  The "zero copy" interface can be used to improve
 **          performance in high-rate, high-volume software bus traffic.
 **
 ** \par Assumptions, External Events, and Notes:
-**          -# The pointer returned by #CFE_SB_ZeroCopyGetPtr is only good for one
+**          -# The pointer returned by #CFE_SB_ZeroCopyGetPtr is only good for
+*one
 **             call to #CFE_SB_ZeroCopySend.
 **          -# Applications should be written as if #CFE_SB_ZeroCopyGetPtr is
-**             equivalent to a \c malloc() and #CFE_SB_ZeroCopySend is equivalent to
+**             equivalent to a \c malloc() and #CFE_SB_ZeroCopySend is
+*equivalent to
 **             a \c free().
-**          -# Applications must not de-reference the message pointer (for reading
+**          -# Applications must not de-reference the message pointer (for
+*reading
 **             or writing) after the call to #CFE_SB_ZeroCopySend.
 **
 ** \param[in]  MsgSize  The size of the SB message buffer the caller wants
 **                      (including the SB message header).
 **
-** \param[out] BufferHandle  A handle that must be supplied when sending or releasing
+** \param[out] BufferHandle  A handle that must be supplied when sending or
+*releasing
 **                           in zero copy mode.
 **
 ** \return A pointer to a memory buffer that can be used to build one SB message
@@ -696,8 +772,8 @@ int32  CFE_SB_RcvMsg(CFE_SB_MsgPtr_t  *BufPtr,
 **
 ** \sa #CFE_SB_ZeroCopyReleasePtr, #CFE_SB_ZeroCopySend
 **/
-CFE_SB_Msg_t  *CFE_SB_ZeroCopyGetPtr(uint16  MsgSize,
-                                     CFE_SB_ZeroCopyHandle_t *BufferHandle);
+CFE_SB_Msg_t *CFE_SB_ZeroCopyGetPtr(uint16 MsgSize,
+                                    CFE_SB_ZeroCopyHandle_t *BufferHandle);
 
 /*****************************************************************************/
 /**
@@ -709,12 +785,15 @@ CFE_SB_Msg_t  *CFE_SB_ZeroCopyGetPtr(uint16  MsgSize,
 **
 ** \par Assumptions, External Events, and Notes:
 **          -# This function is not needed for normal "zero copy" transfers.  It
-**             is needed only for cleanup when an application gets a pointer using
-**             #CFE_SB_ZeroCopyGetPtr, but (due to some error condition) never uses
+**             is needed only for cleanup when an application gets a pointer
+*using
+**             #CFE_SB_ZeroCopyGetPtr, but (due to some error condition) never
+*uses
 **             that pointer for a #CFE_SB_ZeroCopySend
 **
 ** \param[in]  Ptr2Release  A pointer to the SB internal buffer.  This must be a
-**                          pointer returned by a call to #CFE_SB_ZeroCopyGetPtr,
+**                          pointer returned by a call to
+*#CFE_SB_ZeroCopyGetPtr,
 **                          but never used in a call to #CFE_SB_ZeroCopySend.
 **
 ** \param[in]  BufferHandle  This must be the handle supplied with the pointer
@@ -726,8 +805,8 @@ CFE_SB_Msg_t  *CFE_SB_ZeroCopyGetPtr(uint16  MsgSize,
 **
 ** \sa #CFE_SB_ZeroCopyGetPtr, #CFE_SB_ZeroCopySend
 **/
-int32 CFE_SB_ZeroCopyReleasePtr(CFE_SB_Msg_t  *Ptr2Release,
-                                CFE_SB_ZeroCopyHandle_t         BufferHandle);
+int32 CFE_SB_ZeroCopyReleasePtr(CFE_SB_Msg_t *Ptr2Release,
+                                CFE_SB_ZeroCopyHandle_t BufferHandle);
 
 /*****************************************************************************/
 /**
@@ -745,18 +824,22 @@ int32 CFE_SB_ZeroCopyReleasePtr(CFE_SB_Msg_t  *Ptr2Release,
 ** \par Assumptions, External Events, and Notes:
 **          -# The pointer returned by #CFE_SB_ZeroCopyGetPtr is only good for
 **             one call to #CFE_SB_ZeroCopySend.
-**          -# Callers must not use the same SB message buffer for multiple sends.
+**          -# Callers must not use the same SB message buffer for multiple
+*sends.
 **          -# Applications should be written as if #CFE_SB_ZeroCopyGetPtr is
-**             equivalent to a \c malloc() and #CFE_SB_ZeroCopySend is equivalent
+**             equivalent to a \c malloc() and #CFE_SB_ZeroCopySend is
+*equivalent
 **             to a \c free().
-**          -# Applications must not de-reference the message pointer (for reading
+**          -# Applications must not de-reference the message pointer (for
+*reading
 **             or writing) after the call to #CFE_SB_ZeroCopySend.
 **          -# This function tracks and increments the source sequence counter
 **             of a telemetry message.
 **
 ** \param[in]  MsgPtr  A pointer to the SB message to be sent.
 **
-** \param[in]  BufferHandle  The handle supplied with the #CFE_SB_ZeroCopyGetPtr call.
+** \param[in]  BufferHandle  The handle supplied with the #CFE_SB_ZeroCopyGetPtr
+*call.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS           \copybrief CFE_SUCCESS
@@ -765,10 +848,11 @@ int32 CFE_SB_ZeroCopyReleasePtr(CFE_SB_Msg_t  *Ptr2Release,
 ** \retval #CFE_SB_BUF_ALOC_ERR   \copybrief CFE_SB_BUF_ALOC_ERR
 ** \retval #CFE_SB_BUFFER_INVALID \copybrief CFE_SB_BUFFER_INVALID
 **
-** \sa #CFE_SB_SendMsg, #CFE_SB_RcvMsg, #CFE_SB_ZeroCopyReleasePtr, #CFE_SB_ZeroCopyGetPtr
+** \sa #CFE_SB_SendMsg, #CFE_SB_RcvMsg, #CFE_SB_ZeroCopyReleasePtr,
+*#CFE_SB_ZeroCopyGetPtr
 **/
-int32 CFE_SB_ZeroCopySend(CFE_SB_Msg_t   *MsgPtr,
-                          CFE_SB_ZeroCopyHandle_t          BufferHandle);
+int32 CFE_SB_ZeroCopySend(CFE_SB_Msg_t *MsgPtr,
+                          CFE_SB_ZeroCopyHandle_t BufferHandle);
 
 /*****************************************************************************/
 /**
@@ -788,18 +872,22 @@ int32 CFE_SB_ZeroCopySend(CFE_SB_Msg_t   *MsgPtr,
 ** \par Assumptions, External Events, and Notes:
 **          -# The pointer returned by #CFE_SB_ZeroCopyGetPtr is only good for
 **             one call to #CFE_SB_ZeroCopySend or #CFE_SB_ZeroCopyPass.
-**          -# Callers must not use the same SB message buffer for multiple sends.
+**          -# Callers must not use the same SB message buffer for multiple
+*sends.
 **          -# Applications should be written as if #CFE_SB_ZeroCopyGetPtr is
-**             equivalent to a \c malloc() and #CFE_SB_ZeroCopyPass is equivalent
+**             equivalent to a \c malloc() and #CFE_SB_ZeroCopyPass is
+*equivalent
 **             to a \c free().
-**          -# Applications must not de-reference the message pointer (for reading
+**          -# Applications must not de-reference the message pointer (for
+*reading
 **             or writing) after the call to #CFE_SB_ZeroCopyPass.
 **          -# Unlike #CFE_SB_ZeroCopySend this routine will preserve the source
 **             sequence counter in a telemetry message.
 **
 ** \param[in]  MsgPtr  A pointer to the SB message to be sent.
 **
-** \param[in]  BufferHandle  The handle supplied with the #CFE_SB_ZeroCopyGetPtr call.
+** \param[in]  BufferHandle  The handle supplied with the #CFE_SB_ZeroCopyGetPtr
+*call.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS           \copybrief CFE_SUCCESS
@@ -808,10 +896,11 @@ int32 CFE_SB_ZeroCopySend(CFE_SB_Msg_t   *MsgPtr,
 ** \retval #CFE_SB_BUF_ALOC_ERR   \copybrief CFE_SB_BUF_ALOC_ERR
 ** \retval #CFE_SB_BUFFER_INVALID \copybrief CFE_SB_BUFFER_INVALID
 **
-** \sa #CFE_SB_PassMsg, #CFE_SB_ZeroCopySend, #CFE_SB_ZeroCopyReleasePtr, #CFE_SB_ZeroCopyGetPtr
+** \sa #CFE_SB_PassMsg, #CFE_SB_ZeroCopySend, #CFE_SB_ZeroCopyReleasePtr,
+*#CFE_SB_ZeroCopyGetPtr
 **/
-int32 CFE_SB_ZeroCopyPass(CFE_SB_Msg_t   *MsgPtr,
-                          CFE_SB_ZeroCopyHandle_t          BufferHandle);
+int32 CFE_SB_ZeroCopyPass(CFE_SB_Msg_t *MsgPtr,
+                          CFE_SB_ZeroCopyHandle_t BufferHandle);
 /**@}*/
 
 /** @defgroup CFEAPISBSetMessage cFE Setting Message Characteristics APIs
@@ -836,20 +925,22 @@ int32 CFE_SB_ZeroCopyPass(CFE_SB_Msg_t   *MsgPtr,
 **
 ** \param[in]  MsgId   The message ID to put in the message header.
 **
-** \param[in]  Length  The total number of bytes of message data, including the SB
+** \param[in]  Length  The total number of bytes of message data, including the
+*SB
 **                     message header  .
 **
-** \param[in]  Clear   A flag indicating whether to clear the rest of the message:
-**                     \arg true - fill sequence count and packet data with zeroes.
-**                     \arg false - leave sequence count and packet data unchanged.
+** \param[in]  Clear   A flag indicating whether to clear the rest of the
+*message:
+**                     \arg true - fill sequence count and packet data with
+*zeroes.
+**                     \arg false - leave sequence count and packet data
+*unchanged.
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_SetTotalMsgLength,
 **     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode
 **/
-void CFE_SB_InitMsg(void           *MsgPtr,
-                    CFE_SB_MsgId_t MsgId,
-                    uint16         Length,
-                    bool           Clear );
+void CFE_SB_InitMsg(void *MsgPtr, CFE_SB_MsgId_t MsgId, uint16 Length,
+                    bool Clear);
 
 /*****************************************************************************/
 /**
@@ -861,17 +952,18 @@ void CFE_SB_InitMsg(void           *MsgPtr,
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus message.
+** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus
+*message.
 **                     This must point to the first byte of the message header.
 **
 ** \param[in]  MsgId   The message ID to put into the message header.
 **
 **
 ** \sa #CFE_SB_GetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_SetTotalMsgLength,
-**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode, #CFE_SB_InitMsg
+**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode,
+*#CFE_SB_InitMsg
 **/
-void CFE_SB_SetMsgId(CFE_SB_MsgPtr_t MsgPtr,
-                     CFE_SB_MsgId_t MsgId);
+void CFE_SB_SetMsgId(CFE_SB_MsgPtr_t MsgPtr, CFE_SB_MsgId_t MsgId);
 
 /*****************************************************************************/
 /**
@@ -879,24 +971,30 @@ void CFE_SB_SetMsgId(CFE_SB_MsgPtr_t MsgPtr,
 **
 ** \par Description
 **          This routine sets the field in the SB message header that determines
-**          the size of the user data in a software bus message.  SB message header
-**          formats can be different for each deployment of the cFE.  So, applications
-**          should use this function rather than trying to poke a length value directly
+**          the size of the user data in a software bus message.  SB message
+*header
+**          formats can be different for each deployment of the cFE.  So,
+*applications
+**          should use this function rather than trying to poke a length value
+*directly
 **          into their SB message buffers.
 **
 ** \par Assumptions, External Events, and Notes:
 **          - You must set a valid message ID in the SB message header before
 **            calling this function.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
 ** \param[in]  DataLength  The length to set (size of the user data, in bytes).
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_SetTotalMsgLength,
-**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode, #CFE_SB_InitMsg
+**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode,
+*#CFE_SB_InitMsg
 **/
-void CFE_SB_SetUserDataLength(CFE_SB_MsgPtr_t MsgPtr,uint16 DataLength);
+void CFE_SB_SetUserDataLength(CFE_SB_MsgPtr_t MsgPtr, uint16 DataLength);
 
 /*****************************************************************************/
 /**
@@ -912,38 +1010,50 @@ void CFE_SB_SetUserDataLength(CFE_SB_MsgPtr_t MsgPtr,uint16 DataLength);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \param[in]  TotalLength The length to set (total size of the message, in bytes,
+** \param[in]  TotalLength The length to set (total size of the message, in
+*bytes,
 **                         including headers).
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_GetTotalMsgLength,
-**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode, #CFE_SB_InitMsg
+**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode,
+*#CFE_SB_InitMsg
 **/
-void CFE_SB_SetTotalMsgLength(CFE_SB_MsgPtr_t MsgPtr,uint16 TotalLength);
+void CFE_SB_SetTotalMsgLength(CFE_SB_MsgPtr_t MsgPtr, uint16 TotalLength);
 
 /*****************************************************************************/
 /**
 ** \brief Sets the time field in a software bus message.
 **
 ** \par Description
-**          This routine sets the time of a software bus message.  Most applications
-**          will want to use #CFE_SB_TimeStampMsg instead of this function.  But,
-**          when needed, #CFE_SB_SetMsgTime can be used to send a group of SB messages
+**          This routine sets the time of a software bus message.  Most
+*applications
+**          will want to use #CFE_SB_TimeStampMsg instead of this function. But,
+**          when needed, #CFE_SB_SetMsgTime can be used to send a group of SB
+*messages
 **          with identical time stamps.
 **
 ** \par Assumptions, External Events, and Notes:
-**          - If the underlying implementation of software bus messages does not include
-**            a time field, then this routine will do nothing to the message contents
+**          - If the underlying implementation of software bus messages does not
+*include
+**            a time field, then this routine will do nothing to the message
+*contents
 **            and will return #CFE_SB_WRONG_MSG_TYPE.
-**          - Note default implementation of command messages do not have a time field
+**          - Note default implementation of command messages do not have a time
+*field
 **            and will trigger the #CFE_SB_WRONG_MSG_TYPE error
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \param[in]  Time        The time to include in the message.  This will usually be a time
+** \param[in]  Time        The time to include in the message.  This will
+*usually be a time
 **                         returned by the function #CFE_TIME_GetTime.
 **
 ** \return Execution status, see \ref CFEReturnCodes
@@ -951,17 +1061,19 @@ void CFE_SB_SetTotalMsgLength(CFE_SB_MsgPtr_t MsgPtr,uint16 TotalLength);
 ** \retval #CFE_SB_WRONG_MSG_TYPE \copybrief CFE_SB_WRONG_MSG_TYPE
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_SetTotalMsgLength,
-**     #CFE_SB_GetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode, #CFE_SB_InitMsg
+**     #CFE_SB_GetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_SetCmdCode,
+*#CFE_SB_InitMsg
 **/
-int32 CFE_SB_SetMsgTime(CFE_SB_MsgPtr_t MsgPtr,
-                       CFE_TIME_SysTime_t Time);
+int32 CFE_SB_SetMsgTime(CFE_SB_MsgPtr_t MsgPtr, CFE_TIME_SysTime_t Time);
 
 /*****************************************************************************/
 /**
-** \brief Sets the time field in a software bus message with the current spacecraft time.
+** \brief Sets the time field in a software bus message with the current
+*spacecraft time.
 **
 ** \par Description
-**          This routine sets the time of a software bus message with the current
+**          This routine sets the time of a software bus message with the
+*current
 **          spacecraft time.  This will be the same time that is returned by the
 **          function #CFE_TIME_GetTime.
 **
@@ -969,8 +1081,10 @@ int32 CFE_SB_SetMsgTime(CFE_SB_MsgPtr_t MsgPtr,
 **          - If the underlying implementation of software bus messages does not
 **            include a time field, then this routine will do nothing.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_SetTotalMsgLength,
 **     #CFE_SB_SetMsgTime, #CFE_SB_SetCmdCode, #CFE_SB_InitMsg
@@ -983,15 +1097,18 @@ void CFE_SB_TimeStampMsg(CFE_SB_MsgPtr_t MsgPtr);
 **
 ** \par Description
 **          This routine sets the command code of a software bus message (if SB
-**          messages are implemented as CCSDS packets, this will be the function code).
+**          messages are implemented as CCSDS packets, this will be the function
+*code).
 **
 ** \par Assumptions, External Events, and Notes:
 **          - If the underlying implementation of software bus messages does not
 **            include a command code field, then this routine will do nothing to
 **            the message contents and will return #CFE_SB_WRONG_MSG_TYPE.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
 ** \param[in]  CmdCode     The command code to include in the message.
 **
@@ -1000,44 +1117,56 @@ void CFE_SB_TimeStampMsg(CFE_SB_MsgPtr_t MsgPtr);
 ** \retval #CFE_SB_WRONG_MSG_TYPE \copybrief CFE_SB_WRONG_MSG_TYPE
 **
 ** \sa #CFE_SB_SetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_SetTotalMsgLength,
-**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_GetCmdCode, #CFE_SB_InitMsg
+**     #CFE_SB_SetMsgTime, #CFE_SB_TimeStampMsg, #CFE_SB_GetCmdCode,
+*#CFE_SB_InitMsg
 **/
-int32 CFE_SB_SetCmdCode(CFE_SB_MsgPtr_t MsgPtr,
-                        uint16 CmdCode);
+int32 CFE_SB_SetCmdCode(CFE_SB_MsgPtr_t MsgPtr, uint16 CmdCode);
 
 /******************************************************************************/
 /**
 ** \brief Copies a string into a software bus message
 **
 ** \par Description
-**    Strings within software bus messages have a defined/fixed maximum length, and
-**    may not necessarily be null terminated within the message.  This presents a possible
+**    Strings within software bus messages have a defined/fixed maximum length,
+*and
+**    may not necessarily be null terminated within the message.  This presents
+*a possible
 **    issue when using the C library functions to copy strings out of a message.
 **
 **    This performs a very similar function to "strncpy()" except that the sizes
-**    of _both_ buffers are passed in.  Neither buffer is required to be null-terminated,
-**    but copying will stop after the first termination character is encountered.
+**    of _both_ buffers are passed in.  Neither buffer is required to be
+*null-terminated,
+**    but copying will stop after the first termination character is
+*encountered.
 **
-**    If the destination buffer is not completely filled by the source data (such as if
-**    the supplied string was shorter than the allotted length) the destination buffer
-**    will be padded with NUL characters up to the size of the buffer, similar to what
+**    If the destination buffer is not completely filled by the source data
+*(such as if
+**    the supplied string was shorter than the allotted length) the destination
+*buffer
+**    will be padded with NUL characters up to the size of the buffer, similar
+*to what
 **    strncpy() does.  This ensures that the entire destination buffer is set.
 **
 ** \note
 **    If the source string buffer is already guaranteed to be null terminated,
-**    then there is no difference between the C library "strncpy()" function and this
-**    implementation.  It is only necessary to use this when termination of the source
+**    then there is no difference between the C library "strncpy()" function and
+*this
+**    implementation.  It is only necessary to use this when termination of the
+*source
 **    buffer is not guaranteed.
 **
-** \param[out] DestStringPtr    Pointer to destination buffer (component of SB message definition)
+** \param[out] DestStringPtr    Pointer to destination buffer (component of SB
+*message definition)
 ** \param[in]  SourceStringPtr  Pointer to source buffer
-** \param[in]  DestMaxSize      Size of destination buffer as defined by the message definition
+** \param[in]  DestMaxSize      Size of destination buffer as defined by the
+*message definition
 ** \param[in]  SourceMaxSize    Size of source buffer
 **
 ** \return Number of characters copied or error code, see \ref CFEReturnCodes
 **
 */
-int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, uint32 DestMaxSize, uint32 SourceMaxSize);
+int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr,
+                              uint32 DestMaxSize, uint32 SourceMaxSize);
 /**@}*/
 
 /** @defgroup CFEAPIGetMessage cFE Getting Message Characteristics APIs
@@ -1049,17 +1178,21 @@ int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, 
 ** \brief Get a pointer to the user data portion of a software bus message.
 **
 ** \par Description
-**          This routine returns a pointer to the user data portion of a software
+**          This routine returns a pointer to the user data portion of a
+*software
 **          bus message.  SB message header formats can be different for each
-**          deployment of the cFE.  So, applications should use this function and
+**          deployment of the cFE.  So, applications should use this function
+*and
 **          avoid hard coding offsets into their SB message buffers.
 **
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus message.
+** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus
+*message.
 **
-** \return A pointer to the first byte of user data within the software bus message.
+** \return A pointer to the first byte of user data within the software bus
+*message.
 **
 ** \sa #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
@@ -1076,11 +1209,13 @@ void *CFE_SB_GetUserData(CFE_SB_MsgPtr_t MsgPtr);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus message.
+** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus
+*message.
 **
 ** \return The software bus Message ID from the message header.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_SetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_GetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_SetMsgId, #CFE_SB_GetUserDataLength,
+*#CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
 **/
 CFE_SB_MsgId_t CFE_SB_GetMsgId(const CFE_SB_Msg_t *MsgPtr);
@@ -1090,17 +1225,20 @@ CFE_SB_MsgId_t CFE_SB_GetMsgId(const CFE_SB_Msg_t *MsgPtr);
 ** \brief Gets the length of user data in a software bus message.
 **
 ** \par Description
-**          This routine returns the size of the user data in a software bus message.
+**          This routine returns the size of the user data in a software bus
+*message.
 **
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus message.
+** \param[in]  MsgPtr  A pointer to the buffer that contains the software bus
+*message.
 **                     This must point to the first byte of the message header.
 **
 ** \return The size (in bytes) of the user data in the software bus message.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_SetUserDataLength, #CFE_SB_GetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_SetUserDataLength,
+*#CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
 **/
 uint16 CFE_SB_GetUserDataLength(const CFE_SB_Msg_t *MsgPtr);
@@ -1116,12 +1254,16 @@ uint16 CFE_SB_GetUserDataLength(const CFE_SB_Msg_t *MsgPtr);
 **          - For the CCSDS implementation of this API, the size is derived from
 **            the message header.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \return The total size (in bytes) of the software bus message, including headers.
+** \return The total size (in bytes) of the software bus message, including
+*headers.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_SetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength,
+*#CFE_SB_SetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
 **/
 uint16 CFE_SB_GetTotalMsgLength(const CFE_SB_Msg_t *MsgPtr);
@@ -1132,20 +1274,26 @@ uint16 CFE_SB_GetTotalMsgLength(const CFE_SB_Msg_t *MsgPtr);
 **
 ** \par Description
 **          This routine gets the command code from a software bus message (if
-**          SB messages are implemented as CCSDS packets, this will be the function
+**          SB messages are implemented as CCSDS packets, this will be the
+*function
 **          code).
 **
 ** \par Assumptions, External Events, and Notes:
 **          - If the underlying implementation of software bus messages does not
-**            include a command code field, then this routine will return a zero.
+**            include a command code field, then this routine will return a
+*zero.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \return The command code included in the software bus message header (if present).
+** \return The command code included in the software bus message header (if
+*present).
 **         Otherwise, returns a command code value of zero.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_GetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength,
+*#CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_SetCmdCode, #CFE_SB_GetChecksum
 **/
 uint16 CFE_SB_GetCmdCode(CFE_SB_MsgPtr_t MsgPtr);
@@ -1160,15 +1308,20 @@ uint16 CFE_SB_GetCmdCode(CFE_SB_MsgPtr_t MsgPtr);
 ** \par Assumptions, External Events, and Notes:
 **          - If the underlying implementation of software bus messages does not
 **            include a time field, then this routine will return a zero time.
-**          - Note default implementation of command messages do not have a time field.
+**          - Note default implementation of command messages do not have a time
+*field.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \return The system time included in the software bus message header (if present),
+** \return The system time included in the software bus message header (if
+*present),
 **         otherwise, returns a time value of zero.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_GetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength,
+*#CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_SetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
 **/
 CFE_TIME_SysTime_t CFE_SB_GetMsgTime(CFE_SB_MsgPtr_t MsgPtr);
@@ -1182,68 +1335,99 @@ CFE_TIME_SysTime_t CFE_SB_GetMsgTime(CFE_SB_MsgPtr_t MsgPtr);
 // **          to find out which application sent the message that was received.
 // **
 // ** \par Assumptions, External Events, and Notes:
-// **          Note - If an error occurs in this API, the *Ptr value may be NULL or
-// **          random. Therefore, it is recommended that the return code be tested
+// **          Note - If an error occurs in this API, the *Ptr value may be NULL
+// or
+// **          random. Therefore, it is recommended that the return code be
+// tested
 // **          for CFE_SUCCESS before reading the sender information.
 // **
-// ** \param[in]  Ptr       A pointer to a local variable of type #CFE_SB_SenderId_t.
-// **                       Typically a caller declares a ptr of type CFE_SB_SenderId_t
-// **                       (i.e. CFE_SB_SenderId_t *Ptr) then gives the address of that
-// **                       pointer (&Ptr) for this parameter. After a successful call
-// **                       to this API, *Ptr will point to the first byte of the
-// **                       CFE_SB_SenderId_t structure containing the sender information
-// **                       for the last message received on the given pipe. This should
-// **                       be used as a read-only pointer (in systems with an MMU, writes
-// **                       to this pointer may cause a memory protection fault).  The *Ptr
-// **                       is valid only until the next call to CFE_SB_RcvMsg for the
+// ** \param[in]  Ptr       A pointer to a local variable of type
+// #CFE_SB_SenderId_t.
+// **                       Typically a caller declares a ptr of type
+// CFE_SB_SenderId_t
+// **                       (i.e. CFE_SB_SenderId_t *Ptr) then gives the address
+// of that
+// **                       pointer (&Ptr) for this parameter. After a
+// successful call
+// **                       to this API, *Ptr will point to the first byte of
+// the
+// **                       CFE_SB_SenderId_t structure containing the sender
+// information
+// **                       for the last message received on the given pipe.
+// This should
+// **                       be used as a read-only pointer (in systems with an
+// MMU, writes
+// **                       to this pointer may cause a memory protection
+// fault).  The *Ptr
+// **                       is valid only until the next call to CFE_SB_RcvMsg
+// for the
 // **                       same pipe.
 // **
 // ** \param[in]  PipeId    The pipe ID of the pipe the message was taken from.
 // **
 // ** \return The last sender's application ID
 // **/
-// uint32  CFE_SB_GetLastSenderId(CFE_SB_SenderId_t **Ptr,CFE_SB_PipeId_t  PipeId);
+// uint32  CFE_SB_GetLastSenderId(CFE_SB_SenderId_t **Ptr,CFE_SB_PipeId_t
+// PipeId);
 
 /******************************************************************************/
 /**
 ** \brief Copies a string out of a software bus message
 **
 ** \par Description
-**    Strings within software bus messages have a defined/fixed maximum length, and
-**    may not necessarily be null terminated within the message.  This presents a possible
+**    Strings within software bus messages have a defined/fixed maximum length,
+*and
+**    may not necessarily be null terminated within the message.  This presents
+*a possible
 **    issue when using the C library functions to copy strings out of a message.
 **
-**    This function should replace use of C library functions such as strcpy/strncpy
-**    when copying strings out of software bus messages to local storage buffers.
+**    This function should replace use of C library functions such as
+*strcpy/strncpy
+**    when copying strings out of software bus messages to local storage
+*buffers.
 **
-**    Up to [SourceMaxSize] or [DestMaxSize-1] (whichever is smaller) characters will be
-**    coped from the source buffer to the destination buffer, and a NUL termination
+**    Up to [SourceMaxSize] or [DestMaxSize-1] (whichever is smaller) characters
+*will be
+**    coped from the source buffer to the destination buffer, and a NUL
+*termination
 **    character will be written to the destination buffer as the last character.
 **
-**    If the DefaultString pointer is non-NULL, it will be used in place of the source
-**    string if the source is an empty string.  This is typically a string constant that
-**    comes from the platform configuration, allowing default values to be assumed for
+**    If the DefaultString pointer is non-NULL, it will be used in place of the
+*source
+**    string if the source is an empty string.  This is typically a string
+*constant that
+**    comes from the platform configuration, allowing default values to be
+*assumed for
 **    fields that are unspecified.
 **
-**    IMPORTANT - the default string, if specified, must be null terminated.  This will
-**    be the case if a string literal is passed in (the typical/expected use case).
+**    IMPORTANT - the default string, if specified, must be null terminated.
+*This will
+**    be the case if a string literal is passed in (the typical/expected use
+*case).
 **
-**    If the default is NULL, then only the source string will be copied, and the result
+**    If the default is NULL, then only the source string will be copied, and
+*the result
 **    will be an empty string if the source was empty.
 **
-**    If the destination buffer is too small to store the entire string, it will be
+**    If the destination buffer is too small to store the entire string, it will
+*be
 **    truncated, but it will still be null terminated.
 **
 ** \param[out] DestStringPtr    Pointer to destination buffer
-** \param[in]  SourceStringPtr  Pointer to source buffer (component of SB message definition)
+** \param[in]  SourceStringPtr  Pointer to source buffer (component of SB
+*message definition)
 ** \param[in]  DefaultString    Default string to use if source is empty
-** \param[in]  DestMaxSize      Size of destination storage buffer (must be at least 2)
-** \param[in]  SourceMaxSize    Size of source buffer as defined by the message definition
+** \param[in]  DestMaxSize      Size of destination storage buffer (must be at
+*least 2)
+** \param[in]  SourceMaxSize    Size of source buffer as defined by the message
+*definition
 **
 ** \return Number of characters copied or error code, see \ref CFEReturnCodes
 **
 */
-int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, const char *DefaultString, uint32 DestMaxSize, uint32 SourceMaxSize);
+int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr,
+                              const char *DefaultString, uint32 DestMaxSize,
+                              uint32 SourceMaxSize);
 /**@}*/
 
 /** @defgroup CFEAPISBChecksum cFE Checksum Control APIs
@@ -1266,13 +1450,17 @@ int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, 
 **          - If the underlying implementation of software bus messages does not
 **            include a checksum field, then this routine will return a zero.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
-** \return The checksum included in the software bus message header (if present), otherwise,
+** \return The checksum included in the software bus message header (if
+*present), otherwise,
 **         returns a checksum value of zero.
 **
-** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength, #CFE_SB_GetTotalMsgLength,
+** \sa #CFE_SB_GetUserData, #CFE_SB_GetMsgId, #CFE_SB_GetUserDataLength,
+*#CFE_SB_GetTotalMsgLength,
 **     #CFE_SB_GetMsgTime, #CFE_SB_GetCmdCode, #CFE_SB_GetChecksum
 **     #CFE_SB_ValidateChecksum, #CFE_SB_GenerateChecksum
 **/
@@ -1283,18 +1471,24 @@ uint16 CFE_SB_GetChecksum(CFE_SB_MsgPtr_t MsgPtr);
 ** \brief Calculates and sets the checksum of a software bus message
 **
 ** \par Description
-**          This routine calculates the checksum of a software bus message according
-**          to an implementation-defined algorithm.  Then, it sets the checksum field
-**          in the message with the calculated value.  The contents and location of
-**          this field will depend on the underlying implementation of software bus
+**          This routine calculates the checksum of a software bus message
+*according
+**          to an implementation-defined algorithm.  Then, it sets the checksum
+*field
+**          in the message with the calculated value.  The contents and location
+*of
+**          this field will depend on the underlying implementation of software
+*bus
 **          messages.  It may be a checksum, a CRC, or some other algorithm.
 **
 ** \par Assumptions, External Events, and Notes:
 **          - If the underlying implementation of software bus messages does not
 **            include a checksum field, then this routine will do nothing.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
 ** \sa #CFE_SB_ValidateChecksum, #CFE_SB_GetChecksum
 **/
@@ -1305,22 +1499,29 @@ void CFE_SB_GenerateChecksum(CFE_SB_MsgPtr_t MsgPtr);
 ** \brief Validates the checksum of a software bus message.
 **
 ** \par Description
-**          This routine calculates the expected checksum of a software bus message
-**          according to an implementation-defined algorithm.  Then, it checks the
-**          calculated value against the value in the message's checksum.  If the
+**          This routine calculates the expected checksum of a software bus
+*message
+**          according to an implementation-defined algorithm.  Then, it checks
+*the
+**          calculated value against the value in the message's checksum.  If
+*the
 **          checksums do not match, this routine will generate an event message
 **          reporting the error.
 **
 ** \par Assumptions, External Events, and Notes:
 **          - If the underlying implementation of software bus messages does not
-**            include a checksum field, then this routine will always return \c true.
+**            include a checksum field, then this routine will always return \c
+*true.
 **
-** \param[in]  MsgPtr      A pointer to the buffer that contains the software bus message.
-**                         This must point to the first byte of the message header.
+** \param[in]  MsgPtr      A pointer to the buffer that contains the software
+*bus message.
+**                         This must point to the first byte of the message
+*header.
 **
 ** \return Boolean checksum result
 ** \retval true  The checksum field in the packet is valid.
-** \retval false The checksum field in the packet is not valid or the message type is wrong.
+** \retval false The checksum field in the packet is not valid or the message
+*type is wrong.
 **
 ** \sa #CFE_SB_GenerateChecksum, #CFE_SB_GetChecksum
 **/
@@ -1344,7 +1545,6 @@ bool CFE_SB_ValidateChecksum(CFE_SB_MsgPtr_t MsgPtr);
  */
 bool CFE_SB_IsValidMsgId(CFE_SB_MsgId_t MsgId);
 
-
 /*****************************************************************************/
 /**
  * \brief Identifies whether two #CFE_SB_MsgId_t values are equal
@@ -1363,9 +1563,10 @@ bool CFE_SB_IsValidMsgId(CFE_SB_MsgId_t MsgId);
  * \retval true  Message IDs are Equal
  * \retval false Message IDs are not Equal
  */
-static inline bool CFE_SB_MsgId_Equal(CFE_SB_MsgId_t MsgId1, CFE_SB_MsgId_t MsgId2)
-{
-    return CFE_SB_MSGID_UNWRAP_VALUE(MsgId1) == CFE_SB_MSGID_UNWRAP_VALUE(MsgId2);
+static inline bool CFE_SB_MsgId_Equal(CFE_SB_MsgId_t MsgId1,
+                                      CFE_SB_MsgId_t MsgId2) {
+    return CFE_SB_MSGID_UNWRAP_VALUE(MsgId1) ==
+           CFE_SB_MSGID_UNWRAP_VALUE(MsgId2);
 }
 
 /*****************************************************************************/
@@ -1394,8 +1595,7 @@ static inline bool CFE_SB_MsgId_Equal(CFE_SB_MsgId_t MsgId1, CFE_SB_MsgId_t MsgI
  *
  * \return Integer representation of the #CFE_SB_MsgId_t
  */
-static inline CFE_SB_MsgId_Atom_t CFE_SB_MsgIdToValue(CFE_SB_MsgId_t MsgId)
-{
+static inline CFE_SB_MsgId_Atom_t CFE_SB_MsgIdToValue(CFE_SB_MsgId_t MsgId) {
     return CFE_SB_MSGID_UNWRAP_VALUE(MsgId);
 }
 
@@ -1423,8 +1623,8 @@ static inline CFE_SB_MsgId_Atom_t CFE_SB_MsgIdToValue(CFE_SB_MsgId_t MsgId)
  *
  * \return #CFE_SB_MsgId_t representation of the integer
  */
-static inline CFE_SB_MsgId_t CFE_SB_ValueToMsgId(CFE_SB_MsgId_Atom_t MsgIdValue)
-{
+static inline CFE_SB_MsgId_t CFE_SB_ValueToMsgId(
+    CFE_SB_MsgId_Atom_t MsgIdValue) {
     CFE_SB_MsgId_t Result = CFE_SB_MSGID_WRAP_VALUE(MsgIdValue);
     return Result;
 }
@@ -1444,5 +1644,5 @@ uint32 CFE_SB_GetPktType(CFE_SB_MsgId_t MsgId);
 
 /**@}*/
 
-#endif  /* _cfe_sb_ */
+#endif /* _cfe_sb_ */
 /*****************************************************************************/
