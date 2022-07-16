@@ -24,9 +24,9 @@
 /*
 ** Plan Handler command codes
 */
-#define PLAN_HANDLER_NOOP_CC                0
-#define PLAN_HANDLER_RESET_COUNTERS_CC      1
-#define PLAN_HANDLER_PROCESS_PLAN_CC        2
+#define PLAN_HANDLER_NOOP_CC 0
+#define PLAN_HANDLER_RESET_COUNTERS_CC 1
+#define PLAN_HANDLER_PROCESS_NEW_PLAN_CC 2
 
 /*************************************************************************/
 /*
@@ -35,8 +35,9 @@
 
 typedef struct {
 
-    uint8 CommandErrorCounter;
-    uint8 CommandCounter;
+    uint32 CommandErrorCounter;
+    uint32 CommandCounter;
+    uint32 PlanCounter;
     uint8 spare[2];
 } PLAN_HANDLER_HkTlm_Payload_t;
 
@@ -66,8 +67,9 @@ typedef union {
 // in future version
 typedef struct {
 
-    char filename[64];
-    char locaton[64];
+    char filename[64]; //name of the plan file
+    char location[64]; //path for the plan file
+    char name[64]; //unique name for the plan
 
 } PLAN_HANDLER_PlanInfo_t;
 
