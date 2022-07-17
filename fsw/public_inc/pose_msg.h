@@ -29,6 +29,7 @@ extern "C" {
 */
 typedef struct OS_PACK {
     CFE_TIME_SysTime_t timeStamp;
+    int32 SeqId;     // for image-related pose messages
     float64 x_pos;    // meters
     float64 y_pos;    // meters
     float64 z_pos;    // meters
