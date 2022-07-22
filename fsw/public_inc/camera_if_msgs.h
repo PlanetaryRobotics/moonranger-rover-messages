@@ -67,8 +67,15 @@ typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
 } OS_PACK CAMERA_IF_ImgSavedTlm_t;
 
+/* SendStereoImg payload */
+typedef struct {
+    CFE_TIME_SysTime_t Timestamp;   // cFE mission time on when img is captured
+    uint32 SeqId = 0;               // counter, the n-th img captured
+} CAMERA_IF_SendStereoImgTlm_Payload_t;
+
 typedef struct {
     uint8 TlmHeader[CFE_SB_TLM_HDR_SIZE];
+    CAMERA_IF_SendStereoImgTlm_Payload_t Payload;
 } OS_PACK CAMERA_IF_SendStereoImgTlm_t;
 
 /*
