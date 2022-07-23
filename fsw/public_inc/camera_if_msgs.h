@@ -70,7 +70,7 @@ typedef struct {
 /* SendStereoImg payload */
 typedef struct {
     CFE_TIME_SysTime_t Timestamp;   // cFE mission time on when img is captured
-    uint32 SeqId = 0;               // counter, the n-th img captured
+    uint32 SeqId;               // counter, the n-th img captured
 } CAMERA_IF_SendStereoImgTlm_Payload_t;
 
 typedef struct {
@@ -91,6 +91,11 @@ typedef union {
     CFE_SB_Msg_t MsgHdr;
     CAMERA_IF_ImgSavedTlm_t ImgSavedTlm;
 } CAMERA_IF_ImgSavedBuffer_t;
+
+typedef union {
+    CFE_SB_Msg_t MsgHdr;
+    CAMERA_IF_SendStereoImgTlm_t SendImgTlm;
+} CAMERA_IF_SendImgBuffer_t;
 
 #define CAMERA_IF_HK_TLM_LEN sizeof(CAMERA_IF_HkTlm_t)
 #define CAMERA_IF_HK_PAYLOAD_LEN sizeof(CAMERA_IF_HkTlm_Payload_t)
